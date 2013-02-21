@@ -1,0 +1,23 @@
+<h1>Listing t_skills</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @t_skills.each do |t_skill| %>
+  <tr>
+    <td><%= t_skill.name %></td>
+    <td><%= link_to 'Show', t_skill %></td>
+    <td><%= link_to 'Edit', edit_t_skill_path(t_skill) %></td>
+    <td><%= link_to 'Destroy', t_skill, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New T skill', new_t_skill_path %>

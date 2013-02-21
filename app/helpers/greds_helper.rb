@@ -1,0 +1,2 @@
+module GredsHelper
+end

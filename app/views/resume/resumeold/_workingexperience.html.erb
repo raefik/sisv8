@@ -1,0 +1,20 @@
+
+																		<h4><b>
+																		Working Experience</b>
+																		</h4>
+																			<table border=1>
+																			<tr>
+																			<th>Bil</th><th>Company</th><th>Year Experience</th><th>Worked As</th>
+																			</tr>
+																			 <%i=0%>
+																			<%current_user.working_experiences.each do |u|%>
+																			<%i+=1%>
+																			<tr>
+																			<td><%=i%> ) </td>
+																			<td><%=u.company%></td>
+																			<td><%=u.year_exp%></td>
+																			<td><%=u.working_as%></td>
+																			</tr>
+																			<%end%>
+																			</table>
+																			</div>

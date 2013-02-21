@@ -1,0 +1,58 @@
+<% unless @iklan||@resume||@offer||@reminder||@test%>
+
+<body class="dashborad">        
+    <div id="alertMessage" class="error"></div>
+	
+	 <div id="header">
+	 <% if signed_in? %>
+                <div id="account_info"> 
+					<div class="setting" title="Profile Setting"><b>Welcome,</b> <b class="red"><%= current_user.name %></b><img src="/images/gear.png" class="gear"  alt="Profile Setting" ></div>
+					<div class="logout" title="Disconnect"><b ><%= link_to "Logout", signout_path %></li></b></div> 
+                </div>
+				<%else%>
+				<div id="account_info">
+				<div title="Click Here to Login"><b ><%= link_to "Login", signin_path %></li></b></div> 
+				<% end %>
+				</div>
+			</div><!-- End Header -->
+			
+
+
+<div id="left_menu">
+	<ul id="main_menu" class="main_menu">
+	<li class="limenu" ><%= link_to "Home", root_path %></li>
+<% if signed_in? %>
+					<%if current_user.role_id==1%>
+					<%=render 'layouts/student'%>
+					<%end%>
+					<%if current_user.role_id==2%>
+					<%=render 'layouts/company'%>
+					<%end%>
+							<%if current_user.role_id==3 %>
+								<li class="limenu" ><%= link_to "Profile", current_user%> </li>
+									<%if Staff.find_by_user_id(current_user.id).staff_type_id==1%>
+												<%=render 'layouts/coordinator'%>
+									<%else %>
+									<%if Staff.find_by_user_id(current_user.id).staff_type_id==3%>
+											<%if Staff.find_by_user_id(current_user.id).validate_staff==true%>	
+												<%=render 'layouts/academic_sv'%>
+											<%end%>
+												
+									<%end%>
+									<%end%>
+							<%end%>
+					
+<% end %>
+
+
+
+<% if signed_in? %>
+<li class="limenu " > <%= link_to "Logout", signout_path, :method => :delete %> </li>
+<% else %>
+<li class="limenu " ><%= link_to "Register", signup_path %> </li>
+<li class="limenu " ><%= link_to "Login", signin_path %> </li>
+<% end %>
+</ul>
+</div>
+
+<%end%>

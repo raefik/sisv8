@@ -1,0 +1,55 @@
+<fieldset>
+<fieldset>
+<legend>Student Details</legend>
+<table>
+
+
+		<tr>
+		<td><b>Matric No:</b></td><td><%=@data_student.matric_no%></td>
+		</tr>
+		<tr>
+		<td><b>Name:</b></td><td><%=@data_student.user.name%></td>
+		</tr>
+		<tr>
+		<td><b>Company For Internships:</b></td><td><b><%=@data_student.user.user_companies.where(:action_status_id=>3).first.company.user.name%></b><br/>
+													<%=@data_student.user.user_companies.where(:action_status_id=>3).first.company.user.comp_profiles.first.place%><br/>
+													<%=@data_student.user.user_companies.where(:action_status_id=>3).first.company.user.comp_profiles.first.postcode%><br/>
+													<%=@data_student.user.user_companies.where(:action_status_id=>3).first.company.user.comp_profiles.first.city%><br/>
+													<%unless @data_student.user.user_companies.where(:action_status_id=>3).first.company.user.comp_profiles.first.state_id.nil?%>
+													<%=@data_student.user.user_companies.where(:action_status_id=>3).first.company.user.comp_profiles.first.state.name%><%end%><br/></td>
+		</tr>
+		<tr>
+		<td><b>Academic Supervisor:</b></td><td><%unless @data_student.staff_id.nil?%><%=@data_student.staff.name%><%end%></td>
+		</tr>
+
+</table>
+</fieldset>
+
+
+<fieldset>
+<legend>Kriteria Pemarkahan</legend>
+<table>
+<tr>
+ <td>Buku Log 6% :</td><td><%= @data_student.buku_log %></td>
+</tr>
+<tr>
+ <td>Laporan Kemajuan Oleh Penyelia 44% :</td><td><%= @data_student.penyelia %></td>
+</tr>
+<tr>
+ <td>Laporan Pelajar 50% :</td><td> <%= @data_student.laporan%></td>
+</tr>
+<table>
+<center>***** ***** *****</center>
+<tr>
+ <td>Jumlah Keseluruhan :</td><td><%=@data_student.buku_log+@data_student.penyelia+@data_student.laporan%></td>
+</tr>
+<tr>
+ <td>Gred :</td><td><%unless @data_student.gred_id.nil?%><%= @data_student.gred.name%><%end%></td>
+</tr>
+<tr>
+ <td>Catatan :</td><td><%= @data_student.catatan %></td>
+</tr> 
+</table>   
+</table>
+</fieldset>
+</fieldset>

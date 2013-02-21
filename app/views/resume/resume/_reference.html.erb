@@ -1,0 +1,35 @@
+<div class="widget">
+                    <div class="header"><span > References</span>
+                            </div>
+                            </div>
+						</div>
+
+
+<div class="content" >
+     <table class="display static " id="static">
+	<thead>
+	<tr>
+		<th align="left">Bil</th><th align="left">Name</th><th align="left">Position</th><th align="left">Company</th><th align="left">Contact No</th><th align="left">Email</th><th align="left">Relationship</th>
+	</tr>
+	</thead>
+	
+<tbody>
+
+
+<%i=0%>
+<%@resume.stud_references.each do |u|%>
+<%i+=1%>
+<tr>
+		<td  align="left"><%=i%> )</td>
+		<td  align="left"><%=u.name%></td>
+		<td  align="left"><%=u.occupation%></td>
+		<td  align="left"><%=u.company%></td>
+		<td  align="left"><%=u.contact_no%></td>
+		<td  align="left"><%=u.email%></td>
+		<td  align="left"><%=u.relationship%></td>
+</tr>
+<%end%>
+
+</tbody>
+</table>
+</div>																	

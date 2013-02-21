@@ -1,0 +1,64 @@
+<!--stud_profile -->
+<div id="left_column">
+<div class="sidebar_box">
+<h2>
+<span class="header">Staff Profile</span>
+<span class="edit_link"><%= link_to "[ Edit ]", edit_staff_path("#{@staff_profile.id}") %></span>
+<br/>
+</h2>
+<div class="sidebar_box_contents">
+<table>
+<tr>
+<td class="label">Staff No</td>
+<td>:</td>
+<td><span><%=@staff_profile.staff_no%></span></td>
+</tr>
+<tr>
+<td class="label">Type</td>
+<td>:</td>
+<td><span><%=@staff_profile.staff_type.name%></span></td>
+</tr>
+<tr>
+<td class="label">Gelaran</td>
+<td>:</td>
+<td><span><%=@staff_profile.gelaran.name%></span></td>
+</tr>
+<tr>
+<td class="label">Faculty</td>
+<td>:</td>
+<td><span><%=@staff_profile.faculty.name%></span></td>
+</tr>
+<tr>
+<td class="label">Kampus</td>
+<td>:</td>
+<td><span><%unless @staff_profile.kampu_id.nil?%><%=@staff_profile.kampu.name%><%end%></span></td>
+</tr>
+<tr>
+<td class="label">Room No:</td>
+<td>:</td>
+<td><span><%=@staff_profile.room_no%></span></td>
+</tr>
+<tr>
+<td class="label">Location:</td>
+<td>:</td>
+<td><span><%=@staff_profile.place%></span></td>
+</tr>
+<tr>
+<td class="label">Office No</td>
+<td>:</td>
+<td><span><%=@staff_profile.office_no%></span></td>
+</tr>
+<tr>
+<td class="label">Mobile No</td>
+<td>:</td>
+<td><span><%=@staff_profile.hp_no%></span></td>
+</tr>
+<tr>
+<td class="label">Email</td>
+<td>:</td>
+<td><span><%=@staff_profile.email%></span></td>
+</tr>
+</table>
+</div>
+</div>
+</div>

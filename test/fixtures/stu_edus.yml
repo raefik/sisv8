@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  cgpa: MyString
+  current_sem: MyString
+  prog_name: 1
+  prog_code: 1
+  faculty_id: 1
+  user_id: 1
+
+two:
+  cgpa: MyString
+  current_sem: MyString
+  prog_name: 1
+  prog_code: 1
+  faculty_id: 1
+  user_id: 1

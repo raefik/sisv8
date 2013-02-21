@@ -1,0 +1,17 @@
+
+<h4><b>
+Student Skills																		
+</b>
+</h4>																	
+<table border=1>
+<tr>
+<th>Bil</th><th>Skill</th><th>Year Experience</th><th>Proficiency</th>
+</tr>
+<%i=0%>
+<%current_user.stud_skills.each do |u|%>
+<%i+=1%>
+<tr>
+<td><%=i%> ) </td><td><%=u.skill%></td><td><%=u.year_exp%></td><td><%=u.proficiency%></td>
+</tr>
+<%end%>
+</table>

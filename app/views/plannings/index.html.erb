@@ -1,0 +1,23 @@
+<h1>Listing plannings</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @plannings.each do |planning| %>
+  <tr>
+    <td><%= planning.name %></td>
+    <td><%= link_to 'Show', planning %></td>
+    <td><%= link_to 'Edit', edit_planning_path(planning) %></td>
+    <td><%= link_to 'Destroy', planning, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Planning', new_planning_path %>

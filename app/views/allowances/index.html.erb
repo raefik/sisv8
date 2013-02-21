@@ -1,0 +1,23 @@
+<h1>Listing allowances</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @allowances.each do |allowance| %>
+  <tr>
+    <td><%= allowance.name %></td>
+    <td><%= link_to 'Show', allowance %></td>
+    <td><%= link_to 'Edit', edit_allowance_path(allowance) %></td>
+    <td><%= link_to 'Destroy', allowance, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Allowance', new_allowance_path %>

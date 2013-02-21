@@ -1,0 +1,49 @@
+<h1>Listing comp_profiles</h1>
+
+<table>
+  <tr>
+    <th>Bis type</th>
+    <th>Official no</th>
+    <th>Email</th>
+    <th>Url</th>
+    <th>Contact person</th>
+    <th>Register no</th>
+    <th>Sector</th>
+    <th>Industry</th>
+    <th>Cluster</th>
+    <th>Place</th>
+    <th>Postcode</th>
+    <th>City</th>
+    <th>State</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @comp_profiles.each do |comp_profile| %>
+  <tr>
+    <td><%= comp_profile.bis_type %></td>
+    <td><%= comp_profile.official_no %></td>
+    <td><%= comp_profile.email %></td>
+    <td><%= comp_profile.url %></td>
+    <td><%= comp_profile.contact_person %></td>
+    <td><%= comp_profile.register_no %></td>
+    <td><%= comp_profile.sector.name %></td>
+    <td><%= comp_profile.industry.name %></td>
+    <td><%= comp_profile.cluster.name %></td>
+    <td><%= comp_profile.place %></td>
+    <td><%= comp_profile.postcode %></td>
+    <td><%= comp_profile.city %></td>
+    <td><%= comp_profile.state.name %></td>
+    <td><%= comp_profile.user_id %></td>
+    <td><%= link_to 'Show', comp_profile %></td>
+    <td><%= link_to 'Edit', edit_comp_profile_path(comp_profile) %></td>
+    <td><%= link_to 'Destroy', comp_profile, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Comp profile', new_comp_profile_path %>

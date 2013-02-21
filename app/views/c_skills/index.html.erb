@@ -1,0 +1,23 @@
+<h1>Listing c_skills</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @c_skills.each do |c_skill| %>
+  <tr>
+    <td><%= c_skill.name %></td>
+    <td><%= link_to 'Show', c_skill %></td>
+    <td><%= link_to 'Edit', edit_c_skill_path(c_skill) %></td>
+    <td><%= link_to 'Destroy', c_skill, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New C skill', new_c_skill_path %>

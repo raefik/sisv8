@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  bis_type: MyString
+  official_no: MyString
+  email: MyString
+  url: MyString
+  contact_person: MyString
+  register_no: MyString
+  sector: 1
+  industry: 1
+  cluster: 1
+  place: MyText
+  postcode: MyString
+  city: MyString
+  state: 1
+  user_id: 1
+
+two:
+  bis_type: MyString
+  official_no: MyString
+  email: MyString
+  url: MyString
+  contact_person: MyString
+  register_no: MyString
+  sector: 1
+  industry: 1
+  cluster: 1
+  place: MyText
+  postcode: MyString
+  city: MyString
+  state: 1
+  user_id: 1

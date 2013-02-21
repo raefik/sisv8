@@ -1,0 +1,55 @@
+                    <div class="clear"></div>
+
+					<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span> Working Experience </span>
+                            
+						</div>
+						 <div class="content">
+						 
+	<div class="boxtitle"><span class="ico gray audio_knob"></span>
+	Details
+</div>
+
+
+
+<%= form_for(@working_experience) do |f| %>
+  <% if @working_experience.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@working_experience.errors.count, "error") %> prohibited this working_experience from being saved:</h2>
+
+      <ul>
+      <% @working_experience.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="section" >
+    <%= f.label :company %><br />
+    <%= f.text_field :company %>
+  </div>
+  <div class="section" >
+    <%= f.label :"duration (month)" %><br />
+    <%= f.text_field :year_exp %>
+  </div>
+  <div class="section" >
+    <%= f.label :position %><br />
+    <%= f.text_field :working_as %>
+  </div>
+  
+  <div class="section last">	
+
+   <div class="actions">
+    <%= f.submit "Update", :class => 'uibutton loading', :title => 'Updating' %>
+	<%= link_to 'Back to Profile', user_path(current_user), :class => 'uibutton loading', :title => 'Loading' %>
+  </div>
+<% end %>
+
+</div>
+
+</div>
+</div>
+</div>
+<div class="clear"></div>

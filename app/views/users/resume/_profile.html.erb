@@ -1,0 +1,46 @@
+<div class="widget">
+                    <div class="header"><span > Personal </span>
+                            </div>
+                            </div>
+						</div>
+
+
+<div class="content" >
+     <table >
+	<thead>
+	
+	<tr>
+<th width="250" align="left"><h4><b><%=@user.name%></b></h4></th>
+</tr>
+</thead>
+<tbody>
+	
+
+<tr>
+	<td  align="left"><b>Address:</b>
+	<%=@stud_add.place%><br/>
+	<%=@stud_add.postcode%><br/>
+	<%=@stud_add.city%><br/>
+	<%=@stud_add.state.name%>
+	</td>																		
+</tr>
+
+<tr>
+<td  align="left"><b>Email:</b>&nbsp;&nbsp;<%=@stud_profile.second_email%></td>
+</tr>
+<tr>
+<td  align="left"><b>Mobile No:</b>&nbsp;&nbsp;<%=@stud_profile.hp_no%></td>
+</tr>
+<tr>
+<td  align="left"><b>IC No:</b>&nbsp;&nbsp;<%=@stud_profile.nric%></td>
+</tr>
+<tr>
+<td  align="left"><b>Gender:</b>&nbsp;&nbsp;<%=@stud_profile.gender.name%></td>
+</tr>
+		</tbody>
+</table>
+																			
+</div>
+																		
+																		
+																			

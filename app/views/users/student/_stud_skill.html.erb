@@ -1,0 +1,35 @@
+<div class="widget">
+                    <div class="header"><span >Student's skill</span>
+					<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/tambah.png"), new_stud_skill_path %></div>
+                            </div>
+                            </div>
+<div class="content" >
+     <table>
+	<thead>
+		<tr>
+			<th align="left">Bil</th><th align="left">Skill</th><th align="left">Proficiency</th><th align="left"></th>
+		</tr>
+	</thead>
+	
+<tbody>
+
+
+<%i=0%>
+<%current_user.stud_skills.each do |u|%>
+<%i+=1%>
+
+<tr>
+<td  align="left"><%=i%> ) </td>
+<td  align="left"><%=u.skill%></td>
+<td  align="left"><%=u.skill_pro.name%></td>
+<td  align="left"><%= link_to image_tag("/images/icon/icon_edit.png"), edit_stud_skill_path(u) %>&nbsp&nbsp&nbsp&nbsp<%= link_to image_tag("/images/icon/icon_delete.png"), u, confirm: 'Are you sure?', method: :delete %></td> 
+</tr>
+
+<%end%>
+
+<br />
+</tbody>
+</table>
+</div>
+
+

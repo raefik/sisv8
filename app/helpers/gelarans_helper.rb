@@ -1,0 +1,2 @@
+module GelaransHelper
+end

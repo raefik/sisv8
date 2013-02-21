@@ -1,0 +1,59 @@
+                    <div class="clear"></div>
+
+					<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span> Address </span>
+                            
+						</div>
+						 <div class="content">
+						 
+	<div class="boxtitle"><span class="ico gray audio_knob"></span>
+	Enter Details
+</div>
+
+
+
+<%= form_for(@stud_add) do |f| %>
+  <% if @stud_add.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stud_add.errors.count, "error") %> prohibited this stud_add from being saved:</h2>
+
+      <ul>
+      <% @stud_add.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="section" >
+    <%= f.label :address %><br />
+    <%= f.text_area :place %>
+  </div>
+  <div class="section" >
+    <%= f.label :postcode %><br />
+    <%= f.text_field :postcode %>
+  </div>
+  <div class="section" >
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+  <div class="section" >
+    <%= f.label :state_id %><br />
+    <%=collection_select(:stud_add,:state_id,State.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+  
+  <div class="section last">	
+
+   <div class="actions">
+    <%= f.submit "Update", :class => 'uibutton loading', :title => 'Saving' %>
+	<%= link_to 'back to profile', user_path(current_user), :class => 'uibutton loading', :title => 'Loading' %>
+  </div>
+<% end %>
+
+</div>
+
+</div>
+</div>
+</div>
+<div class="clear"></div>
+

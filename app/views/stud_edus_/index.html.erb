@@ -1,0 +1,35 @@
+<h1>Listing stud_edus</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Cgpa</th>
+    <th>Current sem</th>
+    <th>Prog name</th>
+    <th>Prog code</th>
+    <th>Faculty</th>
+    <th>Student</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stud_edus.each do |stud_edu| %>
+  <tr>
+    <td><%= stud_edu.user_id %></td>
+    <td><%= stud_edu.cgpa %></td>
+    <td><%= stud_edu.current_sem %></td>
+    <td><%= stud_edu.prog_name %></td>
+    <td><%= stud_edu.prog_code %></td>
+    <td><%= stud_edu.faculty %></td>
+    <td><%= stud_edu.student_id %></td>
+    <td><%= link_to 'Show', stud_edu %></td>
+    <td><%= link_to 'Edit', edit_stud_edu_path(stud_edu) %></td>
+    <td><%= link_to 'Destroy', stud_edu, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stud edu', new_stud_edu_path %>

@@ -1,0 +1,97 @@
+body {
+font-family: sans-serif;
+background: #F3F4F8;
+margin: 0;
+text-align: center;
+}
+#whole_page {
+width: 85%;
+margin: auto;
+padding: 0;
+text-align: left;
+border-width: 0 1px 1px 1px;
+border-color: #B3C4D1;
+border-style: solid;
+}
+
+
+#header {
+color: white;
+background: #3A4E6C url(headerkkk.jpg) no-repeat 30%; /* No "ruby" defined in HTML color names! */
+font-size: 24pt;
+padding: 0.25em;
+margin-top: 10px;
+font-family: Times New Roman;
+height: 88px;
+}
+#nav {
+color: black;
+font-size: 12pt;
+font-weight: bold;
+background: #929CC4;
+border-color: blue;
+border-width: 1px 1px 1px 1px solid;
+padding: 0.5em;
+}
+#nav a, #nav a:visited {
+color: #0A1C38;
+text-decoration: none;
+}
+#nav a:hover {
+border-bottom: 2px dotted #0A1C38;
+color: #fff;
+}
+#content {
+height: 100%;
+background: white;
+padding: 1em;
+}
+#content h1 {
+font-size: 18pt;
+font-family: Times New Roman;
+}
+#footer {
+color: white;
+background: ; /* No "ruby" defined in HTML color names! */
+font-size: 12pt;
+padding: 0.25em;
+margin-top: 10px;
+text-align: center;
+}
+
+
+/* Form Styles */
+fieldset {
+background: #;
+border-width: 1px 1px 1px 1px;
+border-color: #6D7DBA;
+border-style: dotted;
+}
+legend {
+color: white;
+background:  #3A4E6C;
+padding: .4em 1em;
+}
+
+/* Debug Style */
+.debug_dump {
+text-align: left;
+border-top: 1px dashed #fff;
+background: maroon;
+margin: 0;
+padding: 0.5em;
+color:#fff;
+}
+#debug {
+margin-top: 1em;
+margin-left: auto;
+}
+#debug a, #debug a.visited {
+text-decoration: none;
+color: maroon;
+}
+fieldset.debug_info {
+text-align: left;
+margin: 1em;
+background: #eee;
+}

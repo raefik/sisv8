@@ -1,0 +1,3 @@
+class WorkingExperience < ActiveRecord::Base
+belongs_to :user
+end

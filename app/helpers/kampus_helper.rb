@@ -1,0 +1,2 @@
+module KampusHelper
+end

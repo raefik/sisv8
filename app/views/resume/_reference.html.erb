@@ -1,0 +1,24 @@
+
+<h3>
+<span class="header">References</span>														
+<br/>
+</h3>																	
+<table border=1>
+<tr>
+<th>Bil</th><th>Name</th><th>Occupation</th><th>Company</th><th>Contact No</th><th>Email</th><th>Relationship</th>
+</tr>
+<%i=0%>
+<%current_user.stud_references.each do |u|%>
+<%i+=1%>
+<tr>
+		<td><%=i%> )</td>
+		<td><%=u.name%></td>
+		<td><%=u.occupation%></td>
+		<td><%=u.company%></td>
+		<td><%=u.contact_no%></td>
+		<td><%=u.email%></td><td>
+		<%=u.relationship%></td>
+</tr>
+<%end%>
+</table>
+																			

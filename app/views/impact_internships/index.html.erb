@@ -1,0 +1,23 @@
+<h1>Listing impact_internships</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @impact_internships.each do |impact_internship| %>
+  <tr>
+    <td><%= impact_internship.name %></td>
+    <td><%= link_to 'Show', impact_internship %></td>
+    <td><%= link_to 'Edit', edit_impact_internship_path(impact_internship) %></td>
+    <td><%= link_to 'Destroy', impact_internship, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Impact internship', new_impact_internship_path %>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  matric_no: MyString
+  nric: MyString
+  gender: 1
+  patient_history: MyString
+  disease_description: MyString
+  hp_no: MyString
+  second_email: MyString
+  user_id: 1
+
+two:
+  matric_no: MyString
+  nric: MyString
+  gender: 1
+  patient_history: MyString
+  disease_description: MyString
+  hp_no: MyString
+  second_email: MyString
+  user_id: 1

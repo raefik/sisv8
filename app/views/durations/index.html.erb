@@ -1,0 +1,23 @@
+<h1>Listing durations</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @durations.each do |duration| %>
+  <tr>
+    <td><%= duration.name %></td>
+    <td><%= link_to 'Show', duration %></td>
+    <td><%= link_to 'Edit', edit_duration_path(duration) %></td>
+    <td><%= link_to 'Destroy', duration, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Duration', new_duration_path %>

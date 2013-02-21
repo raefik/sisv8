@@ -1,0 +1,23 @@
+<h1>Listing action_statuses</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @action_statuses.each do |action_status| %>
+  <tr>
+    <td><%= action_status.name %></td>
+    <td><%= link_to 'Show', action_status %></td>
+    <td><%= link_to 'Edit', edit_action_status_path(action_status) %></td>
+    <td><%= link_to 'Destroy', action_status, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Action status', new_action_status_path %>

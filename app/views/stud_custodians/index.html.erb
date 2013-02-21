@@ -1,0 +1,39 @@
+<h1>Listing stud_custodians</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Place</th>
+    <th>Postcode</th>
+    <th>State</th>
+    <th>City</th>
+    <th>Email</th>
+    <th>Hp no</th>
+    <th>Relationship</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stud_custodians.each do |stud_custodian| %>
+  <tr>
+    <td><%= stud_custodian.name %></td>
+    <td><%= stud_custodian.place %></td>
+    <td><%= stud_custodian.postcode %></td>
+    <td><%= stud_custodian.state %></td>
+    <td><%= stud_custodian.city %></td>
+    <td><%= stud_custodian.email %></td>
+    <td><%= stud_custodian.hp_no %></td>
+    <td><%= stud_custodian.relationship %></td>
+    <td><%= stud_custodian.user_id %></td>
+    <td><%= link_to 'Show', stud_custodian %></td>
+    <td><%= link_to 'Edit', edit_stud_custodian_path(stud_custodian) %></td>
+    <td><%= link_to 'Destroy', stud_custodian, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stud custodian', new_stud_custodian_path %>

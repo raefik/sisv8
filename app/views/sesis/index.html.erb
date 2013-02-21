@@ -1,0 +1,23 @@
+<h1>Listing sesis</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sesis.each do |sesi| %>
+  <tr>
+    <td><%= sesi.name %></td>
+    <td><%= link_to 'Show', sesi %></td>
+    <td><%= link_to 'Edit', edit_sesi_path(sesi) %></td>
+    <td><%= link_to 'Destroy', sesi, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sesi', new_sesi_path %>

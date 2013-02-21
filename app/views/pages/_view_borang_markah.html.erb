@@ -1,0 +1,25 @@
+<table>
+<%@data_student.each do |f| %>
+<tr>
+ <td>Buku Log 6% :</td><td><%= f.buku_log %></td>
+</tr>
+<tr>
+ <td>Laporan Kemajuan Oleh Penyelia-44% :</td><td><%= f.penyelia %></td>
+</tr>
+<tr>
+ <td>Laporan Pelajar-50% :</td><td> <%= f.laporan%></td>
+</tr>
+<table>
+<center>***** ***** *****</center>
+<tr>
+ <td>Jumlah Keseluruhan :</td><td><%unless f.buku_log.nil?||f.penyelia.nil?||f.laporan.nil?%><%=f.buku_log+f.penyelia+f.laporan%><%end%></td>
+</tr>
+<tr>
+ <td>Gred :</td><td><%unless f.gred_id.nil?%><%= f.gred.name%><%end%></td>
+</tr>
+<tr>
+ <td>Catatan :</td><td><%= f.catatan %></td>
+</tr> 
+</table>   
+<% end %>
+</table>

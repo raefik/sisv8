@@ -1,0 +1,85 @@
+<%= form_for(@section_b) do |f| %>
+  <% if @section_b.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@section_b.errors.count, "error") %> prohibited this section_b from being saved:</h2>
+
+      <ul>
+      <% @section_b.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<fieldset>
+<legend>Personal Attributes</legend>
+<table>
+<ol>
+	<tr>
+	<td><table><tr><td></td></tr></table></td><td><table><tr><th>Very Strongly <br/>Disagree</th><th>Strongly Disagree</th><th>Disagree</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th></tr></table></td>
+	</tr>
+	<tr>
+    <td><li><%= f.label :pa_1,"I am a faithful person." %></li></td>
+    <td><table><tr><td><%= radio_button_tag :pa_1, 'testing' %></td><td></td><td><%= radio_button_tag :pa_1, 'testing' %></td><td></td><td><%= radio_button_tag :pa_1, 'testing' %></td><td><%= radio_button_tag :pa_1, 'testing' %></td><td><%= radio_button_tag :pa_1, 'testing' %></td><td><%= radio_button_tag :pa_1, 'testing' %></td></tr></table></td>
+    </tr>
+	<tr>
+    <td><li><%= f.label :pa_2,"I cannot cope under pressure." %></li></td>
+    <td><table><tr><td><%= radio_button_tag :pa_2, 'testing' %></td><td></td><td><%= radio_button_tag :pa_2, 'testing' %></td><td></td><td><%= radio_button_tag :pa_2, 'testing' %></td><td><%= radio_button_tag :pa_2, 'testing' %></td><td><%= radio_button_tag :pa_2, 'testing' %></td><td><%= radio_button_tag :pa_2, 'testing' %></td></tr></table></td>
+	</tr>
+	<tr>
+    <td><li><%= f.label :pa_3 ,"I am an honest and reliable person."%></li></td>
+    <td><table><tr><td><%= radio_button_tag :pa_3, 'testing' %></td><td></td><td><%= radio_button_tag :pa_3, 'testing' %></td><td></td><td><%= radio_button_tag :pa_3, 'testing' %></td><td><%= radio_button_tag :pa_3, 'testing' %></td><td><%= radio_button_tag :pa_3, 'testing' %></td><td><%= radio_button_tag :pa_3, 'testing' %></td></tr></table></td>
+	</tr>
+	<tr>
+    <td><li><%= f.label :pa_4,"I cannot adapt well to changes." %></li></td>
+    <td><table><tr><td><%= radio_button_tag :pa_4, 'testing' %></td><td></td><td><%= radio_button_tag :pa_4, 'testing' %></td><td></td><td><%= radio_button_tag :pa_4, 'testing' %></td><td><%= radio_button_tag :pa_4, 'testing' %></td><td><%= radio_button_tag :pa_4, 'testing' %></td><td><%= radio_button_tag :pa_4, 'testing' %></td></tr></table></td>
+	</tr>
+	<tr>
+    <td><li><%= f.label :pa_5 ,"I can manage time effectively.   "%></li></td>
+    <td><table><tr><td><%= radio_button_tag :pa_5, 'testing' %></td><td></td><td><%= radio_button_tag :pa_5, 'testing' %></td><td></td><td><%= radio_button_tag :pa_5, 'testing' %></td><td><%= radio_button_tag :pa_5, 'testing' %></td><td><%= radio_button_tag :pa_5, 'testing' %></td><td><%= radio_button_tag :pa_5, 'testing' %></td></tr></table></td>
+	</tr>
+	<tr>
+    <td><li><%= f.label :pa_6,"I have a high self respect of myself.  "%></li></td>
+    <td><table><tr><td><%= radio_button_tag :pa_6, 'testing' %></td><td></td><td><%= radio_button_tag :pa_6, 'testing' %></td><td></td><td><%= radio_button_tag :pa_6, 'testing' %></td><td><%= radio_button_tag :pa_6, 'testing' %></td><td><%= radio_button_tag :pa_6, 'testing' %></td><td><%= radio_button_tag :pa_6, 'testing' %></td></tr></table></td>
+	</tr>
+	<tr>
+    <td><li><%= f.label :pa_7,"I am a dependable person.  " %></li></td>
+    <td><table><tr><td><%= radio_button_tag :pa_7, 'testing' %></td><td></td><td><%= radio_button_tag :pa_7, 'testing' %></td><td></td><td><%= radio_button_tag :pa_7, 'testing' %></td><td><%= radio_button_tag :pa_7, 'testing' %></td><td><%= radio_button_tag :pa_7, 'testing' %></td><td><%= radio_button_tag :pa_7, 'testing' %></td></tr></table></td>
+	</tr>
+	<tr>
+    <td><li><%= f.label :pa_8 ,"I am not a committed person."%></li></td>
+    <td><table><tr><td><%= radio_button_tag :pa_8, 'testing' %></td><td></td><td><%= radio_button_tag :pa_8, 'testing' %></td><td></td><td><%= radio_button_tag :pa_8, 'testing' %></td><td><%= radio_button_tag :pa_8, 'testing' %></td><td><%= radio_button_tag :pa_8, 'testing' %></td><td><%= radio_button_tag :pa_8, 'testing' %></td></tr></table></td>
+    </tr>
+	<tr>  
+    <td><li><%= f.label :pa_9,"I am a self-motivated person." %></li></td>
+    <td><table><tr><td><%= radio_button_tag :pa_9, 'testing' %></td><td></td><td><%= radio_button_tag :pa_9, 'testing' %></td><td></td><td><%= radio_button_tag :pa_9, 'testing' %></td><td><%= radio_button_tag :pa_9, 'testing' %></td><td><%= radio_button_tag :pa_9, 'testing' %></td><td><%= radio_button_tag :pa_9, 'testing' %></td></tr></table></td>
+	</tr>
+	<tr> 
+    <td><li><%= f.label :pa_10,"I am a practical and logical person." %></li></td>
+    <td><table><tr><td><%= radio_button_tag :pa_10, 'testing' %></td><td></td><td><%= radio_button_tag :pa_10, 'testing' %></td><td></td><td><%= radio_button_tag :pa_10, 'testing' %></td><td><%= radio_button_tag :pa_10, 'testing' %></td><td><%= radio_button_tag :pa_10, 'testing' %></td><td><%= radio_button_tag :pa_10, 'testing' %></td></tr></table></td>
+	</tr>
+	<tr>
+    <td><li><%= f.label :pa_11,"I am an enthusiastic person." %></li></td>
+    <td><table><tr><td><%= radio_button_tag :pa_11, 'testing' %></td><td></td><td><%= radio_button_tag :pa_11, 'testing' %></td><td></td><td><%= radio_button_tag :pa_11, 'testing' %></td><td><%= radio_button_tag :pa_11, 'testing' %></td><td><%= radio_button_tag :pa_11, 'testing' %></td><td><%= radio_button_tag :pa_11, 'testing' %></td></tr></table></td>
+	</tr>
+	<tr>
+    <td><li><%= f.label :pa_12,"I am a flexible person." %></li></td>
+    <td><table><tr><td><%= radio_button_tag :pa_12, 'testing' %></td><td></td><td><%= radio_button_tag :pa_12, 'testing' %></td><td></td><td><%= radio_button_tag :pa_12, 'testing' %></td><td><%= radio_button_tag :pa_12, 'testing' %></td><td><%= radio_button_tag :pa_12, 'testing' %></td><td><%= radio_button_tag :pa_12, 'testing' %></td></tr></table></td>
+	</tr>
+	<tr>
+    <td><li><%= f.label :pa_13,"I am not a punctual person." %></li></td>
+    <td><table><tr><td><%= radio_button_tag :pa_13, 'testing' %></td><td></td><td><%= radio_button_tag :pa_13, 'testing' %></td><td></td><td><%= radio_button_tag :pa_13, 'testing' %></td><td><%= radio_button_tag :pa_13, 'testing' %></td><td><%= radio_button_tag :pa_13, 'testing' %></td><td><%= radio_button_tag :pa_13, 'testing' %></td></tr></table></td>
+	</tr>
+	<tr>
+    <td><li><%= f.label :pa_14,"I cannot present myself appropriately
+(It includes my physical presentation, personal hygiene, how I speak, get along with others and deal with issues that come up in any situations).
+" %></li></td>
+    <td><table><tr><td><%= radio_button_tag :pa_14, 'testing' %></td><td></td><td><%= radio_button_tag :pa_14, 'testing' %></td><td></td><td><%= radio_button_tag :pa_14, 'testing' %></td><td><%= radio_button_tag :pa_14, 'testing' %></td><td><%= radio_button_tag :pa_14, 'testing' %></td><td><%= radio_button_tag :pa_14, 'testing' %></td></tr></table></td>
+	</tr>
+	
+</ol>   
+</table>
+</fieldset>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

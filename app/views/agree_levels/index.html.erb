@@ -1,0 +1,23 @@
+<h1>Listing agree_levels</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @agree_levels.each do |agree_level| %>
+  <tr>
+    <td><%= agree_level.name %></td>
+    <td><%= link_to 'Show', agree_level %></td>
+    <td><%= link_to 'Edit', edit_agree_level_path(agree_level) %></td>
+    <td><%= link_to 'Destroy', agree_level, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Agree level', new_agree_level_path %>

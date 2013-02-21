@@ -1,0 +1,63 @@
+                    <div class="clear"></div>
+
+					<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span> Refferences </span>
+                            
+						</div>
+						 <div class="content">
+						 
+
+
+<%= form_for(@stud_reference) do |f| %>
+  <% if @stud_reference.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stud_reference.errors.count, "error") %> prohibited this stud_reference from being saved:</h2>
+
+      <ul>
+      <% @stud_reference.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="section">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="section">
+    <%= f.label :position %><br />
+    <%= f.text_field :occupation %>
+  </div>
+  <div class="section">
+    <%= f.label :company %><br />
+    <%= f.text_field :company %>
+  </div>
+  <div class="section">
+    <%= f.label :contact_no %><br />
+    <%= f.text_field :contact_no %>
+  </div>
+  <div class="section">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="section">
+    <%= f.label :relationship %><br />
+    <%= f.text_field :relationship %>
+  </div>
+
+ <div class="section last">	
+
+   <div class="actions">
+    <%= f.submit "Add", :class => 'uibutton loading', :title => 'Adding' %>
+	<%= link_to 'Back to Profile', user_path(current_user), :class => 'uibutton loading', :title => 'Loading' %>
+  </div>
+<% end %>
+
+</div>
+
+</div>
+</div>
+</div>
+<div class="clear"></div>

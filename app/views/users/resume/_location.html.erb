@@ -1,0 +1,28 @@
+
+
+<div class="widget">
+                    <div class="header"><span > Preferred Internship Details</span>
+                            </div>
+                            </div>
+						</div>
+
+
+<div class="content" >
+     <table >
+	<thead>
+	</thead>
+	
+<tbody>
+
+</tr>
+<%i=0%>
+<%current_user.locations.each do |u|%>
+<%i+=1%>
+<tr>
+<td width="50" align="left"><%=i%> ) </td><td  align="left"><%=u.state.name%></td>
+</tr>
+<%end%>
+
+</tbody>
+</table>
+</div>

@@ -1,0 +1,45 @@
+                    <div class="clear"></div>
+
+					<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span> About Me </span>
+                            
+						</div>
+						 <div class="content">
+						 
+	<div class="boxtitle"><span class="ico gray audio_knob"></span>
+	Write about yourself
+</div>
+
+
+<%= form_for(@stud_description) do |f| %>
+  <% if @stud_description.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stud_description.errors.count, "error") %> prohibited this stud_description from being saved:</h2>
+
+      <ul>
+      <% @stud_description.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="section">
+    <%= f.text_area :about_me %>
+  </div>
+
+<div class="section last">	
+
+   <div class="actions">
+    <%= f.submit "Add", :class => 'uibutton loading', :title => 'Adding' %>
+	<%= link_to 'Back to profile', user_path(current_user), :class => 'uibutton loading', :title => 'Loading' %>
+  </div>
+<% end %>
+
+</div>
+
+</div>
+</div>
+</div>
+<div class="clear"></div>

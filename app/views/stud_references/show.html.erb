@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @stud_reference.user_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @stud_reference.name %>
+</p>
+
+<p>
+  <b>Occupation:</b>
+  <%= @stud_reference.occupation %>
+</p>
+
+<p>
+  <b>Company:</b>
+  <%= @stud_reference.company %>
+</p>
+
+<p>
+  <b>Contact no:</b>
+  <%= @stud_reference.contact_no %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @stud_reference.email %>
+</p>
+
+<p>
+  <b>Relationship:</b>
+  <%= @stud_reference.relationship %>
+</p>
+
+
+<%= link_to 'Edit', edit_stud_reference_path(@stud_reference) %> |
+<%= link_to 'Back', stud_references_path %>

@@ -1,0 +1,71 @@
+                    <div class="clear"></div>
+
+					<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span>  Student Profile  </span>
+                            
+						</div>
+						 <div class="content">
+						 
+	<div class="boxtitle"><span class="ico gray audio_knob"></span>
+	Edit profile
+</div>
+
+<%= form_for(@stud_profile) do |f| %>
+  <% if @stud_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stud_profile.errors.count, "error") %> prohibited this stud_profile from being saved:</h2>
+
+      <ul>
+      <% @stud_profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="section" >
+    <%= f.label :matric_no %><br />
+    <%= f.text_field :matric_no %>
+  </div>
+  <div class="section" >
+    <%= f.label :nric %><br />
+    <%= f.text_field :nric %>
+  </div>
+  <div class="section" >
+    <%= f.label :gender %><br />
+    <%=collection_select(:stud_profile,:gender_id, Gender.all,:id,:name,:prompt=>"Please Select") %>
+  </div>
+  <div class="section" >
+    <%= f.label :medical_history %><br />
+    <%= f.text_field :patient_history %>
+  </div>
+  <div class="section" >
+    <%= f.label :disease_description %><br />
+    <%= f.text_area :disease_description,:placeholder => "Leave blank if no disease"  %>
+  </div>
+  <div class="section" >
+    <%= f.label :hp_no %><br />
+    <%= f.text_field :hp_no %>
+  </div>
+  <div class="section" >
+    <%= f.label :alternate_email %><br />
+    <%= f.text_field :second_email %>
+  </div>
+ <div class="section last">	
+
+  <div class="actions">
+    <%= f.submit "Update", :class => 'uibutton loading', :title => 'Saving' %>
+	<%= link_to 'Back to profile', user_path(current_user), :class => 'uibutton loading', :title => 'Loading' %>
+  </div>
+  
+    
+  
+<% end %>
+
+</div>
+
+</div>
+</div>
+</div>
+<div class="clear"></div>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  staff_id: 1
+  buku_log: 1
+  penyelia: 1
+  laporan: 1
+  jumlah: 1
+  gred: MyString
+  catatan: MyString
+
+two:
+  user_id: 1
+  staff_id: 1
+  buku_log: 1
+  penyelia: 1
+  laporan: 1
+  jumlah: 1
+  gred: MyString
+  catatan: MyString

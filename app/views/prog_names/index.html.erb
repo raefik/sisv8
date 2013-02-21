@@ -1,0 +1,23 @@
+<h1>Listing prog_names</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @prog_names.each do |prog_name| %>
+  <tr>
+    <td><%= prog_name.name %></td>
+    <td><%= link_to 'Show', prog_name %></td>
+    <td><%= link_to 'Edit', edit_prog_name_path(prog_name) %></td>
+    <td><%= link_to 'Destroy', prog_name, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Prog name', new_prog_name_path %>

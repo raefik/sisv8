@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kpi_id: 1
+  prog_name_id: 1
+  prog_code_id: 1
+  class_name: MyString
+  total_student: MyString
+
+two:
+  kpi_id: 1
+  prog_name_id: 1
+  prog_code_id: 1
+  class_name: MyString
+  total_student: MyString

@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @markah_student.user_id %>
+</p>
+
+<p>
+  <b>Staff:</b>
+  <%= @markah_student.staff_id %>
+</p>
+
+<p>
+  <b>Buku log:</b>
+  <%= @markah_student.buku_log %>
+</p>
+
+<p>
+  <b>Penyelia:</b>
+  <%= @markah_student.penyelia %>
+</p>
+
+<p>
+  <b>Laporan:</b>
+  <%= @markah_student.laporan %>
+</p>
+
+<p>
+  <b>Jumlah:</b>
+  <%= @markah_student.jumlah %>
+</p>
+
+<p>
+  <b>Gred:</b>
+  <%= @markah_student.gred %>
+</p>
+
+<p>
+  <b>Catatan:</b>
+  <%= @markah_student.catatan %>
+</p>
+
+
+<%= link_to 'Edit', edit_markah_student_path(@markah_student) %> |
+<%= link_to 'Back', markah_students_path %>

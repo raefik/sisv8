@@ -1,0 +1,51 @@
+
+
+
+<div class="widget">
+                    <div class="header"><span >Basic Info</span>
+					<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/edit.png"), edit_user_path(current_user) %></div>
+					<br/>
+                            </div>
+                            </div>
+				
+
+
+<div class="content" >
+     <table class="widget id="static">
+	
+	<thead>
+	</thead>
+	
+<tbody>
+
+
+
+<tr>
+<td  align="left">Profile Picture</td>
+<td  align="left">:</td>
+<td  align="left"><span><%= gravatar_for @user %></span></td>
+</tr>
+
+<tr>
+<td  align="left">Name</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@user.name%></span></td>
+</tr>
+
+<tr>
+<td  align="left">Email</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@user.email%></span></td>
+</tr>
+
+<tr>
+<td  align="left">Password</td>
+<td  align="left">:</td>
+<td  align="left"><span>******</span></td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+

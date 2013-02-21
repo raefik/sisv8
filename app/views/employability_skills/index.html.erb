@@ -1,0 +1,27 @@
+<h1>Listing employability_skills</h1>
+
+<table>
+  <tr>
+    <th>Expected</th>
+    <th>Perception</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @employability_skills.each do |employability_skill| %>
+  <tr>
+    <td><%= employability_skill.expected %></td>
+    <td><%= employability_skill.perception %></td>
+    <td><%= employability_skill.user_id %></td>
+    <td><%= link_to 'Show', employability_skill %></td>
+    <td><%= link_to 'Edit', edit_employability_skill_path(employability_skill) %></td>
+    <td><%= link_to 'Destroy', employability_skill, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Employability skill', new_employability_skill_path %>

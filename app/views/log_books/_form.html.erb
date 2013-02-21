@@ -1,0 +1,55 @@
+                    <div class="clear"></div>
+
+					<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span> Log Book </span>
+                            
+						</div>
+						 <div class="content">
+						 
+	<div class="boxtitle"><span class="ico gray audio_knob"></span>
+	Write Entry
+</div>
+
+
+
+<%= form_for(@log_book) do |f| %>
+  <% if @log_book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@log_book.errors.count, "error") %> prohibited this log_book from being saved:</h2>
+
+      <ul>
+      <% @log_book.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="section">
+    <%= f.label :date %><br />
+    <%= f.text_field :date ,:id => 'datepick',:class=>'datepicker' %>
+  </div>
+  <div class="section">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="section">
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </div>
+  
+   <div class="section last">	
+
+   <div class="actions">
+    <%= f.submit "Done", :class => 'uibutton loading', :title => 'Saving' %>
+  </div>
+<% end %>
+
+</div>
+
+</div>
+</div>
+</div>
+<div class="clear"></div>
+

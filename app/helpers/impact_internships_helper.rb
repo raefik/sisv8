@@ -1,0 +1,2 @@
+module ImpactInternshipsHelper
+end

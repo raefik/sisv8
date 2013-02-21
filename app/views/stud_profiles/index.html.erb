@@ -1,0 +1,43 @@
+<div class="widget">
+						<div class="header"><span ><span class="ico  gray random"></span>List Of Student</span></div>
+						<div class="content"  >
+
+                    <form> 
+						<div class="tableName">
+							
+
+<table class="display data_table2" >
+	<thead>
+		<tr>
+			<th><div class="th_wrapp">Matrix Number</div></th>
+			<th><div class="th_wrapp">Student IC</div></th>
+			<th><div class="th_wrapp">Name</div></th>
+			<th><div class="th_wrapp">Gender</div></th>
+			<th><div class="th_wrapp">HP</div></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @stud_profiles.each do |stud_profile| %>
+	<% if Staff.find_by_user_id(current_user.id).id==stud_profile.staff_id %>
+		<tr class="odd gradeX">
+	<td><%= stud_profile.matric_no %></td>
+    <td><%= stud_profile.nric %></td>
+	<td><%= stud_profile.user.name %></td>
+    <td><%= stud_profile.gender.name %></td>
+    <td><%= stud_profile.hp_no %></td>
+    <td><%= link_to 'Student Detail', stud_profile %></td>
+	<td><%= link_to 'Visit Log', visit_student_path(:student => stud_profile.user_id)  %></td>
+		</tr>
+	<% end %>
+	<% end %>
+	</tbody>
+</table>
+						</div>
+					</form>
+                    
+                        </div>
+                    </div>
+
+                    

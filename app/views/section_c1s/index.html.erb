@@ -1,0 +1,29 @@
+<h1>Listing section_c1s</h1>
+
+<table>
+  <tr>
+    <th>C skill</th>
+    <th>Agree level</th>
+    <th>User</th>
+    <th>Student</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @section_c1s.each do |section_c1| %>
+  <tr>
+    <td><%= section_c1.c_skill_id %></td>
+    <td><%= section_c1.agree_level_id %></td>
+    <td><%= section_c1.user_id %></td>
+    <td><%= section_c1.student_id %></td>
+    <td><%= link_to 'Show', section_c1 %></td>
+    <td><%= link_to 'Edit', edit_section_c1_path(section_c1) %></td>
+    <td><%= link_to 'Destroy', section_c1, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Section c1', new_section_c1_path %>

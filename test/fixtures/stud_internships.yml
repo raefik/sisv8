@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  duration: 1
+  sem_internship: 1
+  user_id: 1
+
+two:
+  duration: 1
+  sem_internship: 1
+  user_id: 1

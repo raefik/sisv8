@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @log_book.date %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @log_book.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @log_book.content %>
+</p>
+
+<p>
+  <b>Action:</b>
+  <%= @log_book.action_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_log_book_path(@log_book) %> |
+<%= link_to 'Back', log_books_path %>

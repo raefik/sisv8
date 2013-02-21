@@ -1,0 +1,82 @@
+<h1>Advertisements</h1>
+<tr >	
+			<td id="left">
+			
+						<div class="sidebar_box_resume">
+						<h2>
+						<div align="right" >
+							<strong>[Advertised Date]:</strong><%=@comp_adv.adv_date%><br/><strong>[Close Date]:</strong><%=@comp_adv.exp_date%>
+						</div>
+						</h2>
+					
+					        <div align="center">
+							            <%= gravatar_for @iklan ,:size => 80%>
+										<h1><b><%=@iklan.name%></b><br/>
+										<%=@comp_profile.place%>,<%=@comp_profile.postcode%>,<%=@comp_profile.city%><br/>
+										<%=@comp_profile.state.name%><br/>
+										<b>Website:</b><%=@comp_profile.url%>,<b>Email:</b><%=@comp_profile.email%><br/>
+										<b>Contact No:</b><%=@comp_profile.official_no%><br/>
+										<b>Contact Person:</b><%=@comp_profile.contact_person%><br/><br/>
+										</h1>	
+								</div>
+								<div align="center">
+								      <%=@comp_adv.about_company%>
+								 </div>
+								 <br/>
+							     <div align="center">
+								      <b>Available For:</b>  <%=@comp_adv.level%><br/>
+									  <b>Allowance:</b>  <%#@comp_adv.status.name%> , <%=@comp_adv.value_allowance%><br/>
+								 </div>
+								 <br/>
+								<div align="left">
+								<table>
+								
+								<tr>
+										<th><u>Requirement</u></th>
+										<%current_user.requirements.each do |u|%>
+										<tr>
+								        <td>-<%=u.name%></td>
+										</tr>
+										<%end%>
+								</tr>
+								<tr>
+
+								  
+										<th><u>Available Courses For Interships</u></th>
+										<% current_user.available_internships.each do |u|%>
+										<tr>
+										<td>-<%=u.prog_name.name%></td>
+										</tr>
+										<%end%>
+								
+								</tr>
+								<tr>
+
+								   
+										<th><u>Benefit</u></th>
+										<% current_user.benefits.each do |u|%>
+										<tr>
+										<td>-<%=u.name%></td>
+										</tr>
+										<%end%>
+								
+								</tr>								
+										
+								
+								</table>
+								</div>
+							
+							 <center>
+								 <%@companies.each do |f| %>
+							 <%=button_to 'Apply',user_companies_path(:company_id=>f)%>
+								 <%end%>
+								 <form> 
+								 <input type="button" value="Close" onclick="window.close()">
+								 </form>
+						   </center>
+						    <h2> <div align="center">Universiti Teknologi Mara</div></h2>
+						</div>
+			</td>
+			
+</tr>
+</div>

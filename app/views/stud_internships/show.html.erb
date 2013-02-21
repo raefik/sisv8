@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Duration:</b>
+  <%= @stud_internship.duration_id %>
+</p>
+
+<p>
+  <b>Sem internship:</b>
+  <%= @stud_internship.sem_internship_id %>
+</p>
+
+
+
+
+<%= link_to 'Edit', edit_stud_internship_path(@stud_internship) %> |
+<%= link_to 'Back', stud_internships_path %>

@@ -1,0 +1,23 @@
+<h1>Listing s_managements</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @s_managements.each do |s_management| %>
+  <tr>
+    <td><%= s_management.name %></td>
+    <td><%= link_to 'Show', s_management %></td>
+    <td><%= link_to 'Edit', edit_s_management_path(s_management) %></td>
+    <td><%= link_to 'Destroy', s_management, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New S management', new_s_management_path %>

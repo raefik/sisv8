@@ -1,0 +1,40 @@
+<div class="widget">
+                    <div class="header"><span > Address </span>
+					<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/edit.png"), edit_stud_add_path("#{@stud_add.id}") %></div>
+					<br/>
+                            </div>
+                            </div>
+				
+
+
+<div class="content" >
+     <table >
+	<thead>
+	</thead>
+	
+<tbody>
+
+<tr>
+<td  align="left">Location:</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_add.place%></span></td>
+</tr>
+<tr>
+<td  align="left">Postcode</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_add.postcode%></span></td>
+</tr>
+<tr>
+<td  align="left">City</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_add.city%></span></td>
+</tr>
+<tr>
+<td  align="left">State</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_add.state.name%></span></td>
+</tr>
+
+</tbody>
+</table>
+</div>

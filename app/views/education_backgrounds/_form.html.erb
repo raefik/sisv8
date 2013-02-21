@@ -1,0 +1,57 @@
+                    <div class="clear"></div>
+
+					<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span> Education Background </span>
+                            
+						</div>
+						 <div class="content">
+						 
+	<div class="boxtitle"><span class="ico gray audio_knob"></span>
+	Enter Education Details
+</div>
+
+
+<%= form_for(@education_background) do |f| %>
+  <% if @education_background.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@education_background.errors.count, "error") %> prohibited this education_background from being saved:</h2>
+
+      <ul>
+      <% @education_background.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="section" >
+    <%= f.label :institute %><br />
+    <%= f.text_field :institute %>
+  </div>
+  
+  <div class="section" >
+    <%= f.label :education_level %><br />
+    <%= f.text_field :education_level %>
+  </div>
+  
+  <div class="section" >
+    <%= f.label :year %><br />
+    <%= f.text_field :year %>
+  </div>
+  
+  
+<div class="section last">	
+
+   <div class="actions">
+    <%= f.submit "Add", :class => 'uibutton loading', :title => 'Adding' %>
+  </div>
+<% end %>
+
+</div>
+
+</div>
+</div>
+</div>
+<div class="clear"></div>
+

@@ -1,0 +1,55 @@
+<div class="widget">
+                    <div class="header"><span > Education Detail </span>
+					<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/edit.png"), edit_stud_edu_path("#{@stud_edu.id}") %></div>
+					<br/>
+                            </div>
+                            </div>
+				
+
+
+<div class="content" >
+     <table>
+	<thead>
+	</thead>
+	
+<tbody>
+
+<tr>
+<td  align="left">Current CGPA:</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_edu.cgpa%></span></td>
+</tr>
+<tr>
+<td  align="left">Current Semester:</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_edu.current_sem%></span></td>
+</tr>
+<tr>
+<td  align="left">Class:</td>
+<td  align="left">:</td>
+<td  align="left"><span><% if @stud_edu.student_class_id==0%> <%else%><%=@stud_edu.student_class.class_name%> <%end%></span> </td>
+</tr>
+<tr>
+<td  align="left">Program Name:</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_edu.prog_name.name%></span></td>
+</tr>
+<tr>
+<td  align="left">Course Code:</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_edu.prog_code.name%></span></td>
+</tr>
+<tr>
+<td  align="left">Faculty:</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_edu.faculty.name%></span></td>
+</tr>
+<tr>
+<td  align="left">Kampus:</td>
+<td  align="left">:</td>
+<td  align="left"><span><%unless @stud_edu.kampu_id.nil?%><%=@stud_edu.kampu.name%><%end%></span></td>
+</tr>
+
+</tbody>
+</table>
+</div>

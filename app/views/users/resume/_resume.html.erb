@@ -1,0 +1,105 @@
+
+
+						<% @stud_profile = StudProfile.find_by_user_id(current_user.id) %>
+						<% @stud_edu = StudEdu.find_by_user_id(current_user.id) %>
+						<% @stud_add = StudAdd.find_by_user_id(current_user.id) %>
+						<% @stud_custodian = StudCustodian.find_by_user_id(current_user.id) %>
+						<% if @stud_profile.matric_no.blank? || @stud_profile.nric.blank? || @stud_profile.gender_id.blank? || @stud_edu.cgpa.blank? || @stud_edu.current_sem.blank? || @stud_edu.prog_name_id.blank? || @stud_edu.prog_code_id.blank? || @stud_edu.faculty_id.blank? || @stud_edu.kampu_id.blank? || @stud_add.place.blank? || @stud_add.postcode.blank? || @stud_add.city.blank? || @stud_add.state_id.blank? || @stud_custodian.name.blank? || @stud_custodian.place.blank? || @stud_custodian.city.blank? || @stud_custodian.relationship.blank? || @stud_custodian.state_id.blank? then%>
+							<%flash.now[:error]="You must completely fill up the profile form first!"%>
+						<%end%>
+						
+<div class="widget">						
+<div class="header"><font size="5px"><b>Resume</b></font></div>						
+</div>						
+
+<table id="resume_content" >
+	<tr><td id="resume_header"></td><td id="resume_header"></td></tr>
+	            <tr>
+						<td><%#kolum yang pertama%>
+							<table id="left",border=1>
+								<tr>
+									<td>
+										  
+										<%=render 'users/resume/picture'%>				
+														
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<%=render 'users/resume/profile'%>				
+									</td>
+								</tr>
+								
+								<tr>
+									<td>
+										 <%=render 'users/resume/education'%>			
+														
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<%=render 'users/resume/internship'%>	
+									</td>
+								</tr>
+								
+								<tr>
+									<td>				
+										<%=render 'users/resume/custodian'%>					
+									</td>
+								</tr>
+								
+								
+							</table>
+						</td>
+
+						<td><%#kolum yang kedua%>
+							<table id="right">
+								<tr>
+									<td>				
+										<%=render 'users/resume/location'%>						
+									</td>
+								</tr>
+									
+									<tr>
+										<td>
+											  
+															<%=render 'users/resume/language'%>				
+														
+										 </td>
+									</tr>
+									<tr>
+										<td>
+											   
+															<%=render 'users/resume/skill'%>							
+														
+										</td>
+									</tr>
+									<tr>
+										 <td>
+											  <%=render 'users/resume/workingexperience'%>	
+																		
+														
+										</td>
+									</tr>
+									<tr>
+										 <td>
+											 
+															<%=render 'users/resume/reference'%>			
+													
+										</td>
+									</tr>		
+									<tr>
+										 <td>
+											  
+															<%=render 'users/resume/aboutme'%>			
+														
+										</td>
+									</tr>
+												
+						
+					        </table>
+				        </td>
+	            </tr>
+<tr><td id="resume_header"></td><td id="resume_header"></td></tr>
+</table>
+	  

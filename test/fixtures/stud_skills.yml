@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  skill: MyString
+  year_exp: MyString
+  proficiency: MyString
+
+two:
+  skill: MyString
+  year_exp: MyString
+  proficiency: MyString

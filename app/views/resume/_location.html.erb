@@ -1,0 +1,18 @@
+
+																		<h3>
+																		<span class="header">Prefered Locations For Internships</span>
+																		<br/>
+																		</h3>
+																			<table border=1>
+																			<tr>
+																			<th>Bil</th><th>Location</th>
+																			</tr>
+																			 <%i=0%>
+																			<%current_user.locations.each do |u|%>
+																			<%i+=1%>
+																			<tr>
+																			<td><%=i%> ) </td><td><%=u.state.name%></td>
+																			</tr>
+																			<%end%>
+																			</table>
+																			</div>

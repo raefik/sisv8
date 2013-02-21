@@ -1,0 +1,75 @@
+    <div class="clear"></div>
+
+	<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span>  Company Advertisment  </span>
+                            
+						</div>
+						 <div class="content">
+						 
+	<div class="boxtitle"><span class="ico gray audio_knob"></span>
+
+
+<%= form_for(@comp_adv) do |f| %>
+  <% if @comp_adv.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comp_adv.errors.count, "error") %> prohibited this comp_adv from being saved:</h2>
+
+      <ul>
+      <% @comp_adv.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="section" >
+    <%= f.label :Advertisment_Date %><br />
+    <%= f.date_select :adv_date ,:order=>[:day,:month,:year]%>
+  </div>
+<div class="section" >
+    <%= f.label :Expired_Date %><br />
+    <%= f.date_select :exp_date,:order=>[:day,:month,:year]%>
+  </div>
+
+<div class="section" >
+    <%= f.label :About_Company %><br />
+    <%= f.text_area :about_company %>
+  </div>
+
+
+  <div class="section" >
+    <%= f.label :status_id,"Allowance" %><br />
+    <%=collection_select(:comp_adv,:status_id,Status.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+  <div class="section" >
+    <%= f.label :'Allowance_Value_(RM/Month)' %><br />
+    <%= f.text_field :value_allowance %>
+  </div>
+  <div class="section" >
+    <%= f.label :level,"Available For (Person)"%>
+    <%= f.text_field :level %><br />
+  </div>
+
+
+  <div class="section last">
+
+                                  <div>
+								  
+	<%if @admin==true then%>
+		<%= f.submit "Save"%>
+	<%else%>
+		<%= f.submit "Submit", :class => 'uibutton loading', :title => 'Updating'%>
+	<%end%>
+
+</div>
+</div>
+							 
+</div>
+<% end %>
+
+
+
+
+	</div>
+	</div>
+	<div class="clear"></div>

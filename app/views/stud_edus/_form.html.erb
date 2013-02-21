@@ -1,0 +1,69 @@
+                    <div class="clear"></div>
+
+					<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span> Education Details </span>
+                            
+						</div>
+						 <div class="content">
+						 
+	<div class="boxtitle"><span class="ico gray audio_knob"></span>
+	Enter Details
+</div>
+
+<%= form_for(@stud_edu) do |f| %>
+  <% if @stud_edu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stud_edu.errors.count, "error") %> prohibited this stud_edu from being saved:</h2>
+
+      <ul>
+      <% @stud_edu.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="section" >
+    <%= f.label :cgpa %><br />
+    <%= f.text_field :cgpa %>
+  </div>
+  <div class="section" >
+    <%= f.label :current_sem %><br />
+    <%= f.text_field :current_sem %>
+  </div>
+   <div class="section" >
+    <%= f.label :group %><br />
+    <%=collection_select(:stud_edu,:student_class_id,StudentClass.all,:id,:class_name,:prompt=>"Please Select")%>
+  </div>
+  <div class="section" >
+    <%= f.label :prog_name_id %><br />
+   <%=collection_select(:stud_edu,:prog_name_id,ProgName.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+  <div class="section" >
+    <%= f.label :course_code_id %><br />
+   <%=collection_select(:stud_edu,:prog_code_id,ProgCode.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+  <div class="section" >
+    <%= f.label :faculty_id %><br />
+    <%=collection_select(:stud_edu,:faculty_id,Faculty.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+   <div class="section" >
+    <%= f.label :kampu_id,"Campus" %><br />
+    <%=collection_select(:stud_edu,:kampu_id,Kampu.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+  
+  <div class="section last">	
+
+   <div class="actions">
+    <%= f.submit "Update", :class => 'uibutton loading', :title => 'Saving' %>
+	<%= link_to 'Back to profile', user_path(current_user), :class => 'uibutton loading', :title => 'Loading' %>
+  </div>
+<% end %>
+
+</div>
+
+</div>
+</div>
+</div>
+<div class="clear"></div>

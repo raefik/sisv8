@@ -1,0 +1,21 @@
+<%= form_for(@c_skill) do |f| %>
+  <% if @c_skill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@c_skill.errors.count, "error") %> prohibited this c_skill from being saved:</h2>
+
+      <ul>
+      <% @c_skill.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

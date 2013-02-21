@@ -1,0 +1,65 @@
+                    <div class="clear"></div>
+
+					<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span> Internship Details </span>
+                            
+						</div>
+						 <div class="content">
+						 
+	<div class="boxtitle"><span class="ico gray audio_knob"></span>
+	Details
+</div>
+<script type="text/javascript">
+/*$(document).ready(function(){
+	$("#datepick").change(function(){
+		var now = $('#datepick').val();
+		dateFormat: 'Y-m-d',;
+		alert(now);
+	});
+});*/
+</script>
+
+<%= form_for(@stud_internship) do |f| %>
+  <% if @stud_internship.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stud_internship.errors.count, "error") %> prohibited this stud_internship from being saved:</h2>
+
+      <ul>
+      <% @stud_internship.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+  <div class="section" >
+	<%= f.label :"duration (month)" %><br />
+    <%= f.text_field :duration %>
+  </div>
+  
+  <div class="section" >
+    <%= f.label :internship_start_date%><br />
+	<%= f.text_field :sem_internship_start ,:id => 'datepick',:class=>'datepicker' %>
+  </div>
+
+  <div class="section" >
+    <%= f.label :internship_end_date%><br />
+	<%= f.text_field :sem_internship_end ,:id => 'datepick',:class=>'datepicker' %>
+  </div>
+  
+<div class="section last">	
+
+   <div class="actions">
+    <%= f.submit "Update", :class => 'uibutton loading', :title => 'Saving' %>
+	<%= link_to 'Back to profile', user_path(current_user), :class => 'uibutton loading', :title => 'Loading' %>
+  </div>
+<% end %>
+
+</div>
+
+</div>
+</div>
+</div>
+<div class="clear"></div>

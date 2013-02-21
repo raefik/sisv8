@@ -1,0 +1,40 @@
+<%= form_for(@student_class) do |f| %>
+  <% if @student_class.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student_class.errors.count, "error") %> prohibited this student_class from being saved:</h2>
+
+      <ul>
+      <% @student_class.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+    <%= f.label :sesi_id %><br />
+    <%=collection_select(:student_class,:sesi_id,Sesi.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+  <div class="field">
+    <%= f.label :tahun %><br />
+    <%= f.text_field :tahun %>
+  </div>
+  <div class="field">
+    <%= f.label :prog_name_id %><br />
+    <%=collection_select(:student_class,:prog_name_id,ProgName.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+  <div class="field">
+    <%= f.label :prog_code_id %><br />
+     <%=collection_select(:student_class,:prog_code_id,ProgCode.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+  <div class="field">
+    <%= f.label :class_name %><br />
+    <%= f.text_field :class_name %>
+  </div>
+  <div class="field">
+    <%= f.label :total_student %><br />
+    <%= f.text_field :total_student %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

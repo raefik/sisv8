@@ -1,0 +1,23 @@
+<h1>Listing available_internships</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @available_internships.each do |available_internship| %>
+  <tr>
+    <td><%= available_internship.name %></td>
+    <td><%= link_to 'Show', available_internship %></td>
+    <td><%= link_to 'Edit', edit_available_internship_path(available_internship) %></td>
+    <td><%= link_to 'Destroy', available_internship, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Available internship', new_available_internship_path %>

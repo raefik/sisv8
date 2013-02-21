@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Kpi:</b>
+  <%= @student_class.staff.name %>
+</p>
+
+<p>
+  <b>Prog name:</b>
+  <%= @student_class.prog_name.name %>
+</p>
+
+<p>
+  <b>Prog code:</b>
+  <%= @student_class.prog_code.name %>
+</p>
+
+<p>
+  <b>Class name:</b>
+  <%= @student_class.class_name %>
+</p>
+
+<p>
+  <b>Total student:</b>
+  <%= @student_class.total_student %>
+</p>
+
+
+<%= link_to 'Edit', edit_student_class_path(@student_class) %> |
+<%= link_to 'Back', student_classes_path %>

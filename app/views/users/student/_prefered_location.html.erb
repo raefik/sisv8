@@ -1,0 +1,33 @@
+<div class="widget">
+                    <div class="header"><span >Prefered Location For Internships</span> 
+					<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/tambah.png"), new_location_path %></div>
+                            </div>
+                            </div>
+							
+
+<div class="content" >
+     <table >
+	<thead>
+		<tr>
+			<th align="left">Bil</th><th align="left">Locations</th><th align="left"></th>
+		</tr>
+	</thead>
+	
+<tbody>
+
+<%i=0%>
+<%current_user.locations.each do |u|%>
+<%i+=1%>
+
+<tr>
+<td  align="left"><%=i%> ) </td>
+<td  align="left"><%= u.state.name%></td>
+<td  align="left"><%= link_to image_tag("/images/icon/icon_edit.png"), edit_location_path(u) %>&nbsp&nbsp&nbsp&nbsp<%= link_to image_tag("/images/icon/icon_delete.png"), u, confirm: 'Are you sure?', method: :delete %></td>
+</tr>
+
+<%end%>
+<br />
+</tbody>
+</table>
+</div>
+

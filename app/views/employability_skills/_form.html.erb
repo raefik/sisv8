@@ -1,0 +1,47 @@
+<%= form_for(@employability_skill) do |f| %>
+  <% if @employability_skill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employability_skill.errors.count, "error") %> prohibited this employability_skill from being saved:</h2>
+
+      <ul>
+      <% @employability_skill.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<fieldset>
+<table>
+	<tr>
+		<th>Traits</th><th>Expected</th><th>Perception</th>
+	<tr>
+	<tr> 
+		<td><b>Communication</b><br/>(eg. Verbal, negotiating, listening, asking questions,  ICT interacting, presenting a point to view)</td><td><%= f.text_area :expected_communication %></td><td><%= f.text_area :perception_communication %></td> 
+	</tr>
+	<tr> 
+		<td><b>Teamwork</b><br/>(eg. Working together,  sharing information and expertise,  leading or supporting a team, managing and resolving conflicts, open to other opinions)</td><td><%= f.text_area :expected_teamwork %></td><td><%= f.text_area :perception_teamwork %></td>
+	</tr>
+	<tr> 
+		<td><b>Problem Solving</b><br/>(eg. Identifying, finding a range of strategies and developing practical solutions to problems )</td><td><%= f.text_area :expected_ps%></td><td><%= f.text_area :perception_ps %></td> 
+	</tr>
+	<tr> 
+		<td><b>Self-management</b><br/>(eg. Confidence, responsible, carry out a task from start to finish based on quality standards) </td><td><%= f.text_area :expected_sm %></td><td><%= f.text_area :perception_sm %></td> 
+	</tr>
+	<tr> 
+		<td><b>Planning and Organizing</b><br/>(eg. Using time and resources effectively,  setting priorities and planning for contingencies, effective assignment of tasks)</td><td><%= f.text_area :expected_po %></td><td><%= f.text_area :perception_po %></td> 
+	</tr>
+	<tr> 
+		<td><b>Technology Skills</b><br/>(eg. Have adequate IT skills to apply in given tasks, willing to learn new IT skills)</td><td><%= f.text_area :expected_ts %></td><td><%= f.text_area :perception_ts %></td> 
+	</tr>
+	<tr> 
+		<td><b>Learning continuously</b><br/>(eg enthusiasm, willingness to learn in to accommodate change)</td><td><%= f.text_area :expected_lc %></td><td><%= f.text_area :perception_lc %></td> 
+	</tr>
+	<tr> 
+		<td><b>Innovative outcomes</b><br/>(eg.  creative thinking in work, extra effort in given task )    </td><td><%= f.text_area :expected_io %></td><td><%= f.text_area :perception_io %></td> 
+	</tr>
+</table>
+</fieldset>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,32 @@
+<div class="widget">
+                    <div class="header"><span >Benefits</span>
+                            </div>
+                            </div>
+<div class="content" >
+     <table>
+	<thead>
+		<tr>
+			<th align="left">Bil</th><th align="left" width= "392" style="width: 20px;">Benefit</th><th align="left"></th>
+		</tr>
+	</thead>
+	
+<tbody>
+
+
+<%i=0%>
+<%current_user.benefits.each do |u|%>
+<%i+=1%>
+<tr>
+
+	<td  align="left"><%=i%> ) </td>
+	<td  align="left"><%=u.name%></td>
+    <td  align="left"><span class="tip" ><%= link_to image_tag("/images/icon/icon_edit.png"), edit_benefit_path(u) %>&nbsp&nbsp&nbsp&nbsp<%= link_to image_tag("/images/icon/icon_delete.png"), u, confirm: 'Are you sure?', method: :delete %></td>
+	
+</tr>
+<%end%>
+
+<br />
+</tbody>
+</table>
+</div>
+<%= link_to 'New Benefit', new_benefit_path, :class => 'uibutton loading', :title => 'Opening'%>

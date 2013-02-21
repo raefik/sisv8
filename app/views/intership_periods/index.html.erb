@@ -1,0 +1,23 @@
+<h1>Listing intership_periods</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @intership_periods.each do |intership_period| %>
+  <tr>
+    <td><%= intership_period.name %></td>
+    <td><%= link_to 'Show', intership_period %></td>
+    <td><%= link_to 'Edit', edit_intership_period_path(intership_period) %></td>
+    <td><%= link_to 'Destroy', intership_period, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Intership period', new_intership_period_path %>

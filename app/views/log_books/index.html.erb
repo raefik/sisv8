@@ -1,0 +1,37 @@
+<div class="widget">
+                    <div class="header"><span > Log Book</span>
+                            </div>
+                            </div>
+<div  class="widget" >
+     <table  class="widget" " id="static">
+	<thead>
+		<tr>
+			<th align="left">Bil.</th><th align="left">Date</th><th align="left">Title</th><th width= "250" align="left">Content</th><th align="left">Action</th><th align="left" colspan="3"></th>
+		</tr>
+	</thead>
+<tbody class="widget">
+  
+<%i=0%>
+<% @log_books.each do |log_book| %>
+<%i+=1%>
+  <tr>
+	<td  align="left"><%=i%>.</td>																							
+    <td  align="left"><%= log_book.date %></td>
+    <td  align="left"><%= log_book.title %></td>
+    <td width= "250" align="left"><%= log_book.content %></td>
+    <td  align="left"><%= log_book.action_id %></td>
+    <td  align="left"><span class="tip" ><%= link_to image_tag("/images/icon/icon_edit.png"), edit_log_book_path(log_book) %>&nbsp&nbsp&nbsp&nbsp<%= link_to image_tag("/images/icon/icon_delete.png"), log_book, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+
+
+<br />
+</tbody>
+</table>
+</div>	
+<%= link_to 'New entry', new_log_book_path, :class => 'uibutton loading', :title => 'Opening'%>
+
+
+
+
+

@@ -1,0 +1,27 @@
+<h1>Listing education_backgrounds</h1>
+
+<table>
+  <tr>
+    <th>Institute</th>
+    <th>Year</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @education_backgrounds.each do |education_background| %>
+  <tr>
+    <td><%= education_background.institute %></td>
+    <td><%= education_background.year %></td>
+    <td><%= education_background.user_id %></td>
+    <td><%= link_to 'Show', education_background %></td>
+    <td><%= link_to 'Edit', edit_education_background_path(education_background) %></td>
+    <td><%= link_to 'Destroy', education_background, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Education background', new_education_background_path %>

@@ -1,0 +1,97 @@
+<p id="notice"><%= notice %></p>
+
+<div class="widgets">
+							<div class="twoOne">
+								<div class="widget">
+								 <div class="header"><span><span class="ico gray window"></span>Student Biodata</span></div>
+									<div class="content">
+									
+									<form id="demo"> 
+										
+										<div class="section" >
+											<label> Name </label>   
+											<div> <%= @stud_profile.user.name %> </div>
+										</div>
+										
+										<div class="section" >
+											<label> IC Number </label>   
+											<div> <%= @stud_profile.nric %> </div>
+										</div>
+									
+										<div class="section" >
+											<label> Gender </label>   
+											<div> <%= @stud_profile.gender.name %> </div>
+										</div>
+										
+										<div class="section" >
+											<label> Address </label>   
+											<div> <%= @stud_add.place %> </div>
+										</div>
+										
+										<div class="section" >
+											<label> State </label>   
+											<div> <%= @stud_add.city %> </div>
+										</div>
+										
+										<div class="section" >
+											<label> Phone Number </label>   
+											<div> <%= @stud_profile.hp_no %> </div>
+										</div>
+										
+										<div class="section" >
+											<label> Email </label>   
+											<div> <%= @stud_profile.second_email %> </div>
+										</div>
+										
+									</form>
+
+									</div>
+								 </div>
+</div>
+
+<div class="clear"></div>
+</div>
+<br>
+				<div class="widgets">
+					<div class="twoOne">
+								<div class="widget">
+								 <div class="header"><span><span class="ico gray window"></span>Student Education</span></div>
+									<div class="content">
+									
+									<form id="demo"> 
+										
+										<div class="section" >
+											<label> Faculty </label>   
+											<div> <%= @stud_edu.faculty.name %> </div>
+										</div>
+										
+										<div class="section" >
+											<label> Program </label>   
+											<div> <%= @stud_edu.prog_name.name %> </div>
+										</div>
+										
+										<div class="section" >
+											<label> Student ID </label>   
+											<div> <%= @stud_profile.matric_no %> </div>
+										</div>
+										
+										<div class="section" >
+											<label> Program </label>   
+											<div> <%= @stud_edu.current_sem %> </div>
+										</div>
+										
+										<div class="section" >
+											<label> Program </label>   
+											<div> <%= @stud_edu.cgpa %> </div>
+										</div>
+										
+									</form>
+									
+
+					</div>
+				</div>
+</div>
+<div class="clear"></div>
+</div>		
+<br>				
+<%= link_to 'Back', stud_profiles_path %>

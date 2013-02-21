@@ -1,0 +1,23 @@
+<h1>Listing staff_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @staff_types.each do |staff_type| %>
+  <tr>
+    <td><%= staff_type.name %></td>
+    <td><%= link_to 'Show', staff_type %></td>
+    <td><%= link_to 'Edit', edit_staff_type_path(staff_type) %></td>
+    <td><%= link_to 'Destroy', staff_type, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Staff type', new_staff_type_path %>

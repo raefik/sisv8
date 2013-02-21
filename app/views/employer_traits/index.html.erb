@@ -1,0 +1,24 @@
+<h1>Listing employer_traits</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @employer_traits.each do |employer_trait| %>
+  <tr>
+	<td><%= employer_trait.title %></td>
+    <td><%= employer_trait.name %></td>
+    <td><%= link_to 'Show', employer_trait %></td>
+    <td><%= link_to 'Edit', edit_employer_trait_path(employer_trait) %></td>
+    <td><%= link_to 'Destroy', employer_trait, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Employer trait', new_employer_trait_path %>

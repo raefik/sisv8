@@ -1,0 +1,41 @@
+    <div class="clear"></div>
+
+	<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span>  Program Available For Internship  </span>
+                            
+						</div>
+						 <div class="content">
+						 
+
+
+
+
+
+<%= form_for(@available_internship) do |f| %>
+  <% if @available_internship.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@available_internship.errors.count, "error") %> prohibited this available_internship from being saved:</h2>
+
+      <ul>
+      <% @available_internship.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="section">
+    <%=collection_select(:available_internship,:prog_name_id,ProgName.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+  <div class="section last">
+								  
+<%= f.submit "New Program", :class => 'uibutton loading', :title => 'Saving'%>
+
+
+</div>
+</div>
+							 
+</div>
+<% end %>
+

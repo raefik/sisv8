@@ -1,0 +1,65 @@
+<div class="widget">
+                    <div class="header"><span > Custodian </span>
+					<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/edit.png"), edit_stud_custodian_path("#{@stud_custodian.id}") %></div>
+					<br/>
+                            </div>
+                            </div>
+				
+
+
+<div class="content" >
+     <table >
+	<thead>
+	</thead>
+	
+<tbody>
+<div>
+</div><tr>
+<td  align="left">Name</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_custodian.name%></span></td>
+</tr>
+<tr>
+<td  align="left">Location</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_custodian.place%></span></td>
+</tr>
+<tr>
+<td  align="left">Postcode</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_custodian.postcode%></span></td>
+</tr>
+<tr>
+<td  align="left">City</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_custodian.city%></span></td>
+</tr>
+<tr>
+<td  align="left">State</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_custodian.state.name%></span></td>
+</tr>
+<tr>
+<td  align="left">Email</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_custodian.email%></span></td>
+</tr>
+<tr>
+<td  align="left">Mobile 1</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_custodian.hp_no%></span></td>
+</tr>
+<tr>
+<td  align="left">Mobile 2</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_custodian.hp_no_2%></span></td>
+</tr>
+<tr>
+<td  align="left">Relationship</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_custodian.relationship%></span></td>
+</tr>
+
+</tbody>
+</table>
+</div>

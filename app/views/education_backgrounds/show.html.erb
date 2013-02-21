@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Institute:</b>
+  <%= @education_background.institute %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%= @education_background.year %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @education_background.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_education_background_path(@education_background) %> |
+<%= link_to 'Back', education_backgrounds_path %>

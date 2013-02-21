@@ -1,0 +1,61 @@
+<%= form_for(@section_d) do |f| %>
+  <% if @section_d.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@section_d.errors.count, "error") %> prohibited this section_d from being saved:</h2>
+
+      <ul>
+      <% @section_d.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%i=0%>
+<fieldset>
+<legend>Impact Of Industrial Training</legend>
+<table>
+<ol>
+	<tr>
+	<td><table><tr><td></td></tr></table></td><td><table><tr><th>Very Strongly <br/>Disagree</th><th>Strongly Disagree</th><th>Disagree</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th></tr></table></td>
+	</tr>
+	<tr>
+		<td><li><%= f.label :d_1,"The knowledge acquired during the training was not relevant to my future work." %></td>
+		<td><table><tr><td><%= radio_button_tag :d_1,'testing'%></td><td></td><td><%= radio_button_tag :d_1,'testing' %></td><td></td><td><%= radio_button_tag :d_1, 'testing' %></td><td><%= radio_button_tag :d_1, 'testing' %></td><td><%= radio_button_tag :d_1, 'testing' %></td><td><%= radio_button_tag :d_1, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :d_2,"I enjoyed the work given during the training."%></td>
+		<td><table><tr><td><%= radio_button_tag :d_2, 'testing' %></td><td></td><td><%= radio_button_tag :d_2, 'testing' %></td><td></td><td><%= radio_button_tag :d_2, 'testing' %></td><td><%= radio_button_tag :d_2, 'testing' %></td><td><%= radio_button_tag :d_2, 'testing' %></td><td><%= radio_button_tag :d_2, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :d_3 ,"I enjoyed interacting with the employees of the company."%></td>
+		<td><table><tr><td><%= radio_button_tag :d_3, 'testing' %></td><td></td><td><%= radio_button_tag :d_3, 'testing' %></td><td></td><td><%= radio_button_tag :d_3, 'testing' %></td><td><%= radio_button_tag :d_3, 'testing' %></td><td><%= radio_button_tag :d_3, 'testing' %></td><td><%= radio_button_tag :d_3, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :d_4,"I did not enjoy learning about the nature of business of the company." %></td>
+		<td><table><tr><td><%= radio_button_tag :d_4, 'testing' %></td><td></td><td><%= radio_button_tag :d_4, 'testing' %></td><td></td><td><%= radio_button_tag :d_4, 'testing' %></td><td><%= radio_button_tag :d_4, 'testing' %></td><td><%= radio_button_tag :d_4, 'testing' %></td><td><%= radio_button_tag :d_4, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :d_5,"I see the need for teamwork  in the working environment."%></td>
+		<td><table><tr><td><%= radio_button_tag :d_5, 'testing' %></td><td></td><td><%= radio_button_tag :d_5, 'testing' %></td><td></td><td><%= radio_button_tag :d_5, 'testing' %></td><td><%= radio_button_tag :d_5, 'testing' %></td><td><%= radio_button_tag :d_5, 'testing' %></td><td><%= radio_button_tag :d_5, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :d_6 ,"I see the need for good communication skills in the working environment."%></td>
+		<td><table><tr><td><%= radio_button_tag :d_6, 'testing' %></td><td></td><td><%= radio_button_tag :d_6, 'testing' %></td><td></td><td><%= radio_button_tag :d_6, 'testing' %></td><td><%= radio_button_tag :d_6, 'testing' %></td><td><%= radio_button_tag :d_6, 'testing' %></td><td><%= radio_button_tag :d_6, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :d_7 ,"I do not believe that the industry provided me with relevant training experience."%></td>
+		<td><table><tr><td><%= radio_button_tag :d_7, 'testing' %></td><td></td><td><%= radio_button_tag :d_7, 'testing' %></td><td></td><td><%= radio_button_tag :d_7, 'testing' %></td><td><%= radio_button_tag :d_7, 'testing' %></td><td><%= radio_button_tag :d_7, 'testing' %></td><td><%= radio_button_tag :d_7, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :d_8,"I show commitment to the company."%></td>
+		<td><table><tr><td><%= radio_button_tag :d_8, 'testing' %></td><td></td><td><%= radio_button_tag :d_8, 'testing' %></td><td></td><td><%= radio_button_tag :d_8, 'testing' %></td><td><%= radio_button_tag :d_8, 'testing' %></td><td><%= radio_button_tag :d_8, 'testing' %></td><td><%= radio_button_tag :d_8, 'testing' %></td></tr></table></td>
+    </tr>
+</ol>   
+</table>
+</fieldset>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+<% end %>
+</ol>

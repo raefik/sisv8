@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  company: MyString
+  year_exp: MyString
+  working_as: MyString
+  user_id: 1
+
+two:
+  company: MyString
+  year_exp: MyString
+  working_as: MyString
+  user_id: 1

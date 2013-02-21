@@ -1,0 +1,23 @@
+<h1>Listing p_solvings</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @p_solvings.each do |p_solving| %>
+  <tr>
+    <td><%= p_solving.name %></td>
+    <td><%= link_to 'Show', p_solving %></td>
+    <td><%= link_to 'Edit', edit_p_solving_path(p_solving) %></td>
+    <td><%= link_to 'Destroy', p_solving, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New P solving', new_p_solving_path %>

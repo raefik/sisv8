@@ -1,0 +1,111 @@
+<div class="clear"></div>
+
+					<div class="widget">
+					
+					<div class="content">
+
+<h1>Resume</h1>
+<table id="resume_content" >
+	<tr><td id="resume_header"></td><td id="resume_header"></td></tr>
+	            <tr>
+						<td><%#kolum yang pertama%>
+							<table id="left",border=1>
+								<tr>
+									<td>
+										  
+										<%=render 'resume/resume/picture'%>			
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<%=render 'resume/resume/profile'%>				
+									</td>
+								</tr>
+								
+								<tr>
+									<td>
+										 <%=render 'resume/resume/education'%>			
+														
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<%=render 'resume/resume/internship'%>	
+									</td>
+								</tr>
+								
+								<tr>
+									<td>				
+										<%=render 'resume/resume/custodian'%>					
+									</td>
+								</tr>
+								
+								
+							</table>
+						</td>
+
+						<td><%#kolum yang kedua%>
+							<table id="right">
+								<tr>
+									<td>				
+										<%=render 'resume/resume/location'%>						
+									</td>
+								</tr>
+									
+									<tr>
+										<td>
+											  
+															<%=render 'resume/resume/language'%>				
+														
+										 </td>
+									</tr>
+									<tr>
+										<td>
+											   
+															<%=render 'resume/resume/skill'%>							
+														
+										</td>
+									</tr>
+									<tr>
+										 <td>
+											  <%=render 'resume/resume/workingexperience'%>	
+																		
+														
+										</td>
+									</tr>
+									<tr>
+										 <td>
+											 
+															<%=render 'resume/resume/reference'%>			
+													
+										</td>
+									</tr>		
+									<tr>
+										 <td>
+											  
+															<%=render 'resume/resume/aboutme'%>			
+														
+										</td>
+									</tr>
+												
+						
+					        </table>
+				        </td>
+	            </tr>
+<tr><td id="resume_header"></td><td id="resume_header"></td></tr>
+</table>
+
+
+	  
+	  		<center>
+							<%=form_for @resume_company do |u|%>
+							<%=u.label:action_status_id,"Result"%>
+							<%=collection_select(:user_company,:action_status_id,ActionStatus.all,:id,:name,:prompt=>"Please select")%>
+							<div class="actions">
+							<%= u.submit "Update Status", :class => 'uibutton loading', :title => 'Saving' %>
+						    </div>
+							<%end%>
+			</center>		
+
+</div>			
+</div>				

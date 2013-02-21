@@ -1,0 +1,59 @@
+                    <div class="clear"></div>
+
+					<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span> Languages </span>
+                            
+						</div>
+						 <div class="content">
+						 
+	<div class="boxtitle"><span class="ico gray audio_knob"></span>
+	Enter New Language
+</div>
+
+
+<%= form_for(@stud_language) do |f| %>
+  <% if @stud_language.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stud_language.errors.count, "error") %> prohibited this stud_language from being saved:</h2>
+
+      <ul>
+      <% @stud_language.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+  <div class="section" >
+<%= f.label :language %><br />
+<%#collection_select(:stud_language, :language_id,Language.all,:id,:name,:prompt=>"Please Select")%>
+<%=f.text_field :language%>
+  </div>
+  
+  <div class="section" >
+    <%= f.label :spoken %><br />
+    <%=collection_select(:stud_language,:spoken_id,Spoken.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+
+  <div class="section" >
+    <%= f.label :written %><br />
+    <%=collection_select(:stud_language,:written_id,Written.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+
+ <div class="section last">	
+
+   <div class="actions">
+    <%= f.submit "Add", :class => 'uibutton loading', :title => 'Adding' %>
+	<%= link_to 'Back to Profile', user_path(current_user), :class => 'uibutton loading', :title => 'Loading' %>
+  </div>
+<% end %>
+
+</div>
+
+</div>
+</div>
+</div>
+<div class="clear"></div>
+

@@ -1,0 +1,21 @@
+
+<table>
+  <tr>
+    <th>Bil.</th>
+    <th>Date</th>
+    <th>Title</th>
+    <th>Content</th>
+  </tr>
+<%i=0%>
+<% @log_books.each do |log_book| %>
+<%i+=1%>
+  <tr>
+    <td><%=i%>.</td>
+    <td><%= log_book.date %></td>
+    <td><%= log_book.title %></td>
+    <td><%= log_book.content %></td>
+	<td><%# link_to 'Show', log_book %></td>
+    <td><%# link_to 'Edit', edit_log_book_path(log_book) %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,2 @@
+module EmployabilitySkillsHelper
+end

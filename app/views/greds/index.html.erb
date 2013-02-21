@@ -1,0 +1,23 @@
+<h1>Listing greds</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @greds.each do |gred| %>
+  <tr>
+    <td><%= gred.name %></td>
+    <td><%= link_to 'Show', gred %></td>
+    <td><%= link_to 'Edit', edit_gred_path(gred) %></td>
+    <td><%= link_to 'Destroy', gred, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Gred', new_gred_path %>

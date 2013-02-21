@@ -1,0 +1,23 @@
+<h1>Listing code_programs</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @code_programs.each do |code_program| %>
+  <tr>
+    <td><%= code_program.name %></td>
+    <td><%= link_to 'Show', code_program %></td>
+    <td><%= link_to 'Edit', edit_code_program_path(code_program) %></td>
+    <td><%= link_to 'Destroy', code_program, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Code program', new_code_program_path %>

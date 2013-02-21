@@ -1,0 +1,269 @@
+<%= form_for(@section_c) do |f| %>
+  <% if @section_c.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@section_c.errors.count, "error") %> prohibited this section_c from being saved:</h2>
+
+      <ul>
+      <% @section_c.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<fieldset>
+<legend>Communication</legend>
+<table>
+<ol>
+	<tr>
+	<td><table><tr><td></td></tr></table></td><td><table><tr><th>Very Strongly <br/>Disagree</th><th>Strongly Disagree</th><th>Disagree</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th></tr></table></td>
+	</tr>
+	<tr>
+		<td><li><%= f.label :c_1,"I speak clearly and directly." %></li></td>
+		<td><table><tr><td><%= radio_button_tag :c_1, 'testing' %></td><td></td><td><%= radio_button_tag :c_1, 'testing' %></td><td></td><td><%= radio_button_tag :c_1, 'testing' %></td><td><%= radio_button_tag :c_1, 'testing' %></td><td><%= radio_button_tag :c_1, 'testing' %></td><td><%= radio_button_tag :c_1, 'testing' %></td></tr></table></td>
+	</tr>
+	 
+    <tr>
+		<td><li><%= f.label :c_2 ,"I am not capable of negotiating."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :c_2, 'testing' %></td><td></td><td><%= radio_button_tag :c_2, 'testing' %></td><td></td><td><%= radio_button_tag :c_2, 'testing' %></td><td><%= radio_button_tag :c_2, 'testing' %></td><td><%= radio_button_tag :c_2, 'testing' %></td><td><%= radio_button_tag :c_2, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :c_3 ,"I listen and ask questions to understand the points of views of others."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :c_3, 'testing' %></td><td></td><td><%= radio_button_tag :c_3, 'testing' %></td><td></td><td><%= radio_button_tag :c_3, 'testing' %></td><td><%= radio_button_tag :c_3, 'testing' %></td><td><%= radio_button_tag :c_3, 'testing' %></td><td><%= radio_button_tag :c_3, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :c_4 ,"I interact using a range of ICT ( Eg. e-mail, sms, blog, facebook, twitter, etc. )"%></li></td>
+		<td><table><tr><td><%= radio_button_tag :c_4, 'testing' %></td><td></td><td><%= radio_button_tag :c_4, 'testing' %></td><td></td><td><%= radio_button_tag :c_4, 'testing' %></td><td><%= radio_button_tag :c_4, 'testing' %></td><td><%= radio_button_tag :c_4, 'testing' %></td><td><%= radio_button_tag :c_4, 'testing' %></td></tr></table></td>
+    </tr>
+	
+</ol>   
+</table>
+</fieldset>
+
+<fieldset>
+<legend>Teamwork</legend>
+<table>
+<ol>
+	<tr>
+	<td><table><tr><td></td></tr></table></td><td><table><tr><th>Very Strongly <br/>Disagree</th><th>Strongly Disagree</th><th>Disagree</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th></tr></table></td>
+	</tr>
+    <tr>
+		<td><li><%= f.label :tw_1 ,"I contribute to a team by sharing information and expertise."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :tw_1, 'testing' %></td><td></td><td><%= radio_button_tag :tw_1, 'testing' %></td><td></td><td><%= radio_button_tag :tw_1, 'testing' %></td><td><%= radio_button_tag :tw_1, 'testing' %></td><td><%= radio_button_tag :tw_1, 'testing' %></td><td><%= radio_button_tag :tw_1, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :tw_2 ,"I cannot work across different ages, gender,  ethnic. "%></li></td>
+		<td><table><tr><td><%= radio_button_tag :tw_2, 'testing' %></td><td></td><td><%= radio_button_tag :tw_2, 'testing' %></td><td></td><td><%= radio_button_tag :tw_2, 'testing' %></td><td><%= radio_button_tag :tw_2, 'testing' %></td><td><%= radio_button_tag :tw_2, 'testing' %></td><td><%= radio_button_tag :tw_2, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :tw_3 ,"I cannot work as an individual and as a member of a team."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :tw_3, 'testing' %></td><td></td><td><%= radio_button_tag :tw_3, 'testing' %></td><td></td><td><%= radio_button_tag :tw_3, 'testing' %></td><td><%= radio_button_tag :tw_3, 'testing' %></td><td><%= radio_button_tag :tw_3, 'testing' %></td><td><%= radio_button_tag :tw_3, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :tw_4 ,"I lead or support a team when appropriate."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :tw_4, 'testing' %></td><td></td><td><%= radio_button_tag :tw_4, 'testing' %></td><td></td><td><%= radio_button_tag :tw_4, 'testing' %></td><td><%= radio_button_tag :tw_4, 'testing' %></td><td><%= radio_button_tag :tw_4, 'testing' %></td><td><%= radio_button_tag :tw_4, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :tw_5 ,"I manage and resolve conflicts when appropriate."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :tw_5, 'testing' %></td><td></td><td><%= radio_button_tag :tw_5, 'testing' %></td><td></td><td><%= radio_button_tag :tw_5, 'testing' %></td><td><%= radio_button_tag :tw_5, 'testing' %></td><td><%= radio_button_tag :tw_5, 'testing' %></td><td><%= radio_button_tag :tw_5, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :tw_6 ,"I try to respect and  be open to the opinions and contributions of others. "%></li></td>
+		<td><table><tr><td><%= radio_button_tag :tw_6, 'testing' %></td><td></td><td><%= radio_button_tag :tw_6, 'testing' %></td><td></td><td><%= radio_button_tag :tw_6, 'testing' %></td><td><%= radio_button_tag :tw_6, 'testing' %></td><td><%= radio_button_tag :tw_6, 'testing' %></td><td><%= radio_button_tag :tw_6, 'testing' %></td></tr></table></td>
+    </tr>
+</ol>   
+</table>
+</fieldset>
+
+<fieldset>
+<legend>Problem Solving</legend>
+<table>
+<ol>
+	<tr>
+	<td><table><tr><td></td></tr></table></td><td><table><tr><th>Very Strongly <br/>Disagree</th><th>Strongly Disagree</th><th>Disagree</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th></tr></table></td>
+	</tr>
+    <tr>
+		<td><li><%= f.label :ps_1 ,"Identify the source of a problem."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :ps_1, 'testing' %></td><td></td><td><%= radio_button_tag :ps_1, 'testing' %></td><td></td><td><%= radio_button_tag :ps_1, 'testing' %></td><td><%= radio_button_tag :ps_1, 'testing' %></td><td><%= radio_button_tag :ps_1, 'testing' %></td><td><%= radio_button_tag :ps_1, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :ps_2 ,"I am innovative in exploring possible solutions."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :ps_2, 'testing' %></td><td></td><td><%= radio_button_tag :ps_2, 'testing' %></td><td></td><td><%= radio_button_tag :ps_2, 'testing' %></td><td><%= radio_button_tag :ps_2, 'testing' %></td><td><%= radio_button_tag :ps_2, 'testing' %></td><td><%= radio_button_tag :ps_2, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :ps_3 ,"I implement solutions"%></li></td>
+		<td><table><tr><td><%= radio_button_tag :ps_3, 'testing' %></td><td></td><td><%= radio_button_tag :ps_3, 'testing' %></td><td></td><td><%= radio_button_tag :ps_3, 'testing' %></td><td><%= radio_button_tag :ps_3, 'testing' %></td><td><%= radio_button_tag :ps_3, 'testing' %></td><td><%= radio_button_tag :ps_3, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :ps_4 ,"I apply a range of strategies to problem solving."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :ps_4, 'testing' %></td><td></td><td><%= radio_button_tag :ps_4, 'testing' %></td><td></td><td><%= radio_button_tag :ps_4, 'testing' %></td><td><%= radio_button_tag :ps_4, 'testing' %></td><td><%= radio_button_tag :ps_4, 'testing' %></td><td><%= radio_button_tag :ps_4, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :ps_5 ,"I cannot solve problems in teams."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :ps_5, 'testing' %></td><td></td><td><%= radio_button_tag :ps_5, 'testing' %></td><td></td><td><%= radio_button_tag :ps_5, 'testing' %></td><td><%= radio_button_tag :ps_5, 'testing' %></td><td><%= radio_button_tag :ps_5, 'testing' %></td><td><%= radio_button_tag :ps_5, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :ps_6 ,"I develop practical solutions to problem solving."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :ps_6, 'testing' %></td><td></td><td><%= radio_button_tag :ps_6, 'testing' %></td><td></td><td><%= radio_button_tag :ps_6, 'testing' %></td><td><%= radio_button_tag :ps_6, 'testing' %></td><td><%= radio_button_tag :ps_6, 'testing' %></td><td><%= radio_button_tag :ps_6, 'testing' %></td></tr></table></td>
+    </tr>
+</ol>   
+</table>
+</fieldset>
+
+<fieldset>
+<legend>Self-Management</legend>
+<table>
+<ol>
+	<tr>
+	<td><table><tr><td></td></tr></table></td><td><table><tr><th>Very Strongly <br/>Disagree</th><th>Strongly Disagree</th><th>Disagree</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th></tr></table></td>
+	</tr>
+    <tr>
+		<td><li><%= f.label :sm_1 ,"I have confidence in my own ideas. "%></li></td>
+		<td><table><tr><td><%= radio_button_tag :sm_1, 'testing' %></td><td></td><td><%= radio_button_tag :sm_1, 'testing' %></td><td></td><td><%= radio_button_tag :sm_1, 'testing' %></td><td><%= radio_button_tag :sm_1, 'testing' %></td><td><%= radio_button_tag :sm_1, 'testing' %></td><td><%= radio_button_tag :sm_1, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :sm_2 ,"I am a responsible person."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :sm_2, 'testing' %></td><td></td><td><%= radio_button_tag :sm_2, 'testing' %></td><td></td><td><%= radio_button_tag :sm_2, 'testing' %></td><td><%= radio_button_tag :sm_2, 'testing' %></td><td><%= radio_button_tag :sm_2, 'testing' %></td><td><%= radio_button_tag :sm_2, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :sm_3 ,"I carry out a task from start to finish."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :sm_3, 'testing' %></td><td></td><td><%= radio_button_tag :sm_3, 'testing' %></td><td></td><td><%= radio_button_tag :sm_3, 'testing' %></td><td><%= radio_button_tag :sm_3, 'testing' %></td><td><%= radio_button_tag :sm_3, 'testing' %></td><td><%= radio_button_tag :sm_3, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :sm_4 ,"I cannot monitor the success of a task."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :sm_4, 'testing' %></td><td></td><td><%= radio_button_tag :sm_4, 'testing' %></td><td></td><td><%= radio_button_tag :sm_4, 'testing' %></td><td><%= radio_button_tag :sm_4, 'testing' %></td><td><%= radio_button_tag :sm_4, 'testing' %></td><td><%= radio_button_tag :sm_4, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :sm_5 ,"I work based on quality standards and specifications."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :sm_5, 'testing' %></td><td></td><td><%= radio_button_tag :sm_5, 'testing' %></td><td></td><td><%= radio_button_tag :sm_5, 'testing' %></td><td><%= radio_button_tag :sm_5, 'testing' %></td><td><%= radio_button_tag :sm_5, 'testing' %></td><td><%= radio_button_tag :sm_5, 'testing' %></td></tr></table></td>
+    </tr>
+</ol>   
+</table>
+</fieldset>
+
+<fieldset>
+<legend>Planning And Organizing</legend>
+<table>
+<ol>
+	<tr>
+	<td><table><tr><td></td></tr></table></td><td><table><tr><th>Very Strongly <br/>Disagree</th><th>Strongly Disagree</th><th>Disagree</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th></tr></table></td>
+	</tr>
+    <tr>
+		<td><li><%= f.label :po_1 ,"I manage time and priorities."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :po_1, 'testing' %></td><td></td><td><%= radio_button_tag :po_1, 'testing' %></td><td></td><td><%= radio_button_tag :po_1, 'testing' %></td><td><%= radio_button_tag :po_1, 'testing' %></td><td><%= radio_button_tag :po_1, 'testing' %></td><td><%= radio_button_tag :po_1, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :po_2 ,"I am a resourceful person."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :po_2, 'testing' %></td><td></td><td><%= radio_button_tag :po_2, 'testing' %></td><td></td><td><%= radio_button_tag :po_2, 'testing' %></td><td><%= radio_button_tag :po_2, 'testing' %></td><td><%= radio_button_tag :po_2, 'testing' %></td><td><%= radio_button_tag :po_2, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :po_3 ,"I can allocate people and other resources to tasks."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :po_3, 'testing' %></td><td></td><td><%= radio_button_tag :po_3, 'testing' %></td><td></td><td><%= radio_button_tag :po_3, 'testing' %></td><td><%= radio_button_tag :po_3, 'testing' %></td><td><%= radio_button_tag :po_3, 'testing' %></td><td><%= radio_button_tag :po_3, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :po_4 ,"I am not able to collect, analyze and organize information."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :po_4, 'testing' %></td><td></td><td><%= radio_button_tag :po_4, 'testing' %></td><td></td><td><%= radio_button_tag :po_4, 'testing' %></td><td><%= radio_button_tag :po_4, 'testing' %></td><td><%= radio_button_tag :po_4, 'testing' %></td><td><%= radio_button_tag :po_4, 'testing' %></td></tr></table></td>
+    </tr>
+</ol>   
+</table>
+</fieldset>
+
+<fieldset>
+<legend>Technology Skill</legend>
+<table>
+<ol>
+	<tr>
+	<td><table><tr><td></td></tr></table></td><td><table><tr><th>Very Strongly <br/>Disagree</th><th>Strongly Disagree</th><th>Disagree</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th></tr></table></td>
+	</tr>
+    <tr>
+		<td><li><%= f.label :ts_1 ,"I have a range of basic IT skills eg. Words, Excel, Power Point."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :ts_1, 'testing' %></td><td></td><td><%= radio_button_tag :ts_1, 'testing' %></td><td></td><td><%= radio_button_tag :ts_1, 'testing' %></td><td><%= radio_button_tag :ts_1, 'testing' %></td><td><%= radio_button_tag :ts_1, 'testing' %></td><td><%= radio_button_tag :ts_1, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :ts_2 ,"I apply IT as a management tool."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :ts_2, 'testing' %></td><td></td><td><%= radio_button_tag :ts_2, 'testing' %></td><td></td><td><%= radio_button_tag :ts_2, 'testing' %></td><td><%= radio_button_tag :ts_2, 'testing' %></td><td><%= radio_button_tag :ts_2, 'testing' %></td><td><%= radio_button_tag :ts_2, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :ts_3 ,"I use IT to organize data."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :ts_3, 'testing' %></td><td></td><td><%= radio_button_tag :ts_3, 'testing' %></td><td></td><td><%= radio_button_tag :ts_3, 'testing' %></td><td><%= radio_button_tag :ts_3, 'testing' %></td><td><%= radio_button_tag :ts_3, 'testing' %></td><td><%= radio_button_tag :ts_3, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :ts_4 ,"I am not willing to learn new IT skills."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :ts_4, 'testing' %></td><td></td><td><%= radio_button_tag :ts_4, 'testing' %></td><td></td><td><%= radio_button_tag :ts_4, 'testing' %></td><td><%= radio_button_tag :ts_4, 'testing' %></td><td><%= radio_button_tag :ts_4, 'testing' %></td><td><%= radio_button_tag :ts_4, 'testing' %></td></tr></table></td>
+    </tr>
+</ol>   
+</table>
+</fieldset>
+
+<fieldset>
+<legend>Learning COntinuously</legend>
+<table>
+<ol>
+	<tr>
+	<td><table><tr><td></td></tr></table></td><td><table><tr><th>Very Strongly <br/>Disagree</th><th>Strongly Disagree</th><th>Disagree</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th></tr></table></td>
+	</tr>
+    <tr>
+		<td><li><%= f.label :lc_1 ,"I do not have an enthusiasm for ongoing learning."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :lc_1, 'testing' %></td><td></td><td><%= radio_button_tag :lc_1, 'testing' %></td><td></td><td><%= radio_button_tag :lc_1, 'testing' %></td><td><%= radio_button_tag :lc_1, 'testing' %></td><td><%= radio_button_tag :lc_1, 'testing' %></td><td><%= radio_button_tag :lc_1, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :lc_2 ,"I am willing to learn in any setting.
+
+"%></li></td>
+		<td><table><tr><td><%= radio_button_tag :lc_2, 'testing' %></td><td></td><td><%= radio_button_tag :lc_2, 'testing' %></td><td></td><td><%= radio_button_tag :lc_2, 'testing' %></td><td><%= radio_button_tag :lc_2, 'testing' %></td><td><%= radio_button_tag :lc_2, 'testing' %></td><td><%= radio_button_tag :lc_2, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :lc_3 ,"I am prepared to learn in order to accommodate change."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :lc_3, 'testing' %></td><td></td><td><%= radio_button_tag :lc_3, 'testing' %></td><td></td><td><%= radio_button_tag :lc_3, 'testing' %></td><td><%= radio_button_tag :lc_3, 'testing' %></td><td><%= radio_button_tag :d_1, 'testing' %></td><td><%= radio_button_tag :lc_3, 'testing' %></td></tr></table></td>
+    </tr>
+</ol>   
+</table>
+</fieldset>
+
+<fieldset>
+<legend>Planning And Organizing</legend>
+<table>
+<ol>
+	<tr>
+	<td><table><tr><td></td></tr></table></td><td><table><tr><th>Very Strongly <br/>Disagree</th><th>Strongly Disagree</th><th>Disagree</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th></tr></table></td>
+	</tr>
+    <tr>
+		<td><li><%= f.label :io_1 ,"I am willing to put extra effort in given task."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :io_1, 'testing' %></td><td><%= radio_button_tag :io_1, 'testing' %></td><td></td><td><%= radio_button_tag :io_1, 'testing' %></td><td><%= radio_button_tag :io_1, 'testing' %></td><td><%= radio_button_tag :io_1, 'testing' %></td><td><%= radio_button_tag :io_1, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :io_2,"I do not translate ideas into actions."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :io_2, 'testing' %></td><td><%= radio_button_tag :io_2, 'testing' %></td><td></td><td><%= radio_button_tag :io_2, 'testing' %></td><td><%= radio_button_tag :io_2, 'testing' %></td><td><%= radio_button_tag :io_2, 'testing' %></td><td><%= radio_button_tag :io_2, 'testing' %></td></tr></table></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :io_3 ,"I initiate innovative solutions."%></li></td>
+		<td><table><tr><td><%= radio_button_tag :io_3, 'testing' %></td><td><%= radio_button_tag :io_3, 'testing' %></td><td></td><td><%= radio_button_tag :io_3, 'testing' %></td><td><%= radio_button_tag :io_3, 'testing' %></td><td><%= radio_button_tag :io_3, 'testing' %></td><td><%= radio_button_tag :io_3, 'testing' %></td></tr></table></td>
+    </tr>
+</ol>   
+</table>
+</fieldset>
+
+<fieldset>
+<legend>Planning And Organizing</legend>
+<table>
+<ol>
+	<tr>
+	<td><table><tr><td></td></tr></table></td><td><table><tr><th>Very Strongly <br/>Disagree</th><th>Strongly Disagree</th><th>Disagree</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th></tr></table></td>
+	</tr>
+    <tr>
+		<td><li><%= f.label :user_id ,""%></li></td>
+		<td><%= f.number_field :user_id %></td>
+    </tr>
+    <tr>
+		<td><li><%= f.label :student_id ,""%></li></td>
+		<td><%= f.number_field :student_id %></td>
+	</tr>
+
+</ol>   
+</table>
+</fieldset>   
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

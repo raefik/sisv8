@@ -1,0 +1,31 @@
+<h1>Listing comp_advs</h1>
+
+<table>
+  <tr>
+    <th>Adv date</th>
+    <th>Exp date</th>
+    <th>About company</th>
+    <th>Allowance</th>
+    <th>Value allowance</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @comp_advs.each do |comp_adv| %>
+  <tr>
+    <td><%= comp_adv.adv_date %></td>
+    <td><%= comp_adv.exp_date %></td>
+    <td><%= comp_adv.about_company %></td>
+    <td><%= comp_adv.status.name %></td>
+    <td><%= comp_adv.value_allowance %></td>
+    <td><%= link_to 'Show', comp_adv %></td>
+    <td><%= link_to 'Edit', edit_comp_adv_path(comp_adv) %></td>
+    <td><%= link_to 'Destroy', comp_adv, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Comp adv', new_comp_adv_path %>

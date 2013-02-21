@@ -1,0 +1,383 @@
+<h1>Resume</h1>
+<table>
+	<tr><td id="resume_header"></td><td id="resume_header"></td></tr>
+	  <td><%#kolum yang pertama%>
+	     <table>
+		        <tr>
+				    <td>
+					   <table>
+					        <tr>
+							    <td>
+								   <table>
+								        <tr>
+										   <td><table>
+													<tr><td></td><td></td></tr>
+													<tr >
+															<td>
+																		
+																		<div">
+																		<h2>
+																		<span class="header">Personal Profile</span>
+																		
+																		<br/>
+																		</h2>
+																		
+																			<table>
+																			<tr>
+																			<td></td>
+																			<td><span><%= gravatar_for @resume ,:size=>70%></span></td>
+																			<td></td>
+																			</tr>
+																			<tr>
+																			<td><b>Name:</b><%=@resume.name%></td>
+																			<td></td>
+																			<td></td>
+																			</tr>
+																			<tr>
+																			<td><b>Address:</b></td>
+																			<td><%=@stud_add.place%><br/><%=@stud_add.postcode%><br/><%=@stud_add.city%><br/><%=@stud_add.state_id%></td>
+																			<td></td>
+																			</tr>
+																			<tr>
+																			<td><b>Email:</b><%=@stud_profile.second_email%></td>
+																			<td></td>
+																			<td></td>
+																			</tr>
+																			<tr>
+																			<td><b>Mobile No</b><%=@stud_profile.hp_no%></td>
+																			<td></td>
+																			<td></td>
+																			</tr>
+																			</table>
+																			</div>
+															</td>
+													</tr>
+												<tr><td></td><td></td></tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							 <tr>
+							    <td>
+								   <table>
+								        <tr>
+										   <td><table>
+													<tr><td></td><td></td></tr>
+													<tr >
+															<td>
+																		
+																		<div">
+																		<h2>
+																		<span class="header">Education Profile</span>
+																		
+																		<br/>
+																		</h2>
+																		
+																			<table>
+																			<tr>
+																			<td>Current Semester:</td>
+																			<td><%=@stud_edu.current_sem%></td>
+																			<td></td>
+																			</tr>
+																			<tr>
+																			<td>Program Name:</td>
+																			<td><%=@stud_edu.prog_name%></td>
+																			<td></td>
+																			</tr>
+																			<tr>
+																			<td>Program Code:</td>
+																			<td><%=@stud_edu.prog_code%></td>
+																			<td></td>
+																			</tr>
+																			<tr>
+																			<td>Faculty:</td>
+																			<td><%=@stud_edu.faculty%></td>
+																			<td></td>
+																			</tr>
+																			<tr>
+																			<td>Current CGPA:</td>
+																			<td><%=@stud_edu.cgpa%></td>
+																			<td></td>
+																			</tr>
+																			</table>
+																			</div>
+															</td>
+													</tr>
+												<tr><td></td><td></td></tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							 <tr>
+							    <td>
+								   <table>
+								        <tr>
+										   <td><table>
+													<tr><td></td><td></td></tr>
+													<tr >
+															<td>
+																		
+																		<div">
+																		<h2>
+																		<span class="header">Internships Profile</span>
+																		
+																		<br/>
+																		</h2>
+																		
+																			<table>
+																			<tr>
+																			<td>Semester For Internships</td>
+																			<td><%=@stud_internship.sem_internship%></td>
+																			<td></td>
+																			</tr>
+																			<tr>
+																			<td>Duration For Internships</td>
+																			<td><%=@stud_internship.duration%></td>
+																			<td></td>
+																			</tr>
+																			</table>
+																			</div>
+															</td>
+													</tr>
+												<tr><td></td><td></td></tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							 <tr>
+							    <td>
+								   <table>
+								        <tr>
+										   <td><table>
+													<tr><td></td><td></td></tr>
+													<tr >
+															<td>
+																		
+																		<div">
+																		<h2>
+																		<span class="header">Prefered Locations For Internships</span>
+																		
+																		<br/>
+																		</h2>
+																		
+																			<table>
+																			<tr>
+																			<td>First Option:</td>
+																			<td><%=@stud_prefered_location.location1%></td>
+																			<td></td>
+																			</tr>
+																			<tr>
+																			<td>Second Option:</td>
+																			<td><%=@stud_prefered_location.location2%></td>
+																			<td></td>
+																			</tr>
+																			<tr>
+																			<td>Third Option</td>
+																			<td><%=@stud_prefered_location.location3%></td>
+																			<td></td>
+																			</tr>
+																			</table>
+																			</div>
+															</td>
+													</tr>
+												<tr><td></td><td></td></tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							 
+					  </table>
+					</td>
+				</tr>
+		</table>
+	  </td>
+	  <td><%#kolum yang kedua%>
+	   <table>
+	       <tr>
+		      <td>
+			    <table>
+					        <tr>
+							    <td>
+								   <table>
+								        <tr>
+										   <td><table>
+													<tr><td></td><td></td></tr>
+													<tr >
+															<td>
+																		
+																		<div">
+																		<h2>
+																		<span class="header">Student Skills</span>
+																		
+																		<br/>
+																		</h2>
+																		
+																			<table>
+																			<tr>
+																			<th>Bil</th><th>Skill</th><th>Year Experience</th><th>Proficiency</th>
+																			</tr>
+																			 <%i=0%>
+																			<%@resume.stud_skills.each do |u|%>
+																			<%i+=1%>
+																			<tr>
+																			<td><%=i%> ) </td><td><%=u.skill%></td><td><%=u.year_exp%></td><td><%=u.proficiency%></td>
+																			</tr>
+																			<%end%>
+
+																			</table>
+																			</div>
+															</td>
+													</tr>
+												<tr><td></td><td></td></tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							 <tr>
+							    <td>
+								   <table>
+								        <tr>
+										   <td><table>
+													<tr><td></td><td></td></tr>
+													<tr >
+															<td>
+																		
+																		<div">
+																		<h2>
+																		<span class="header">Student Languages</span>
+																		
+																		<br/>
+																		</h2>
+																		
+																			<table>
+																			<tr>
+																			<th>Bil</th><th>Language</th><th>Spoken</th><th>Written</th>
+																			</tr>
+																			<%i=0%>
+																			<%@resume.stud_languages.each do |u|%>
+																			<%i+=1%>
+																			<tr>
+																			<td><%=i%> ) </td><td><%=u.language%></td><td><%=u.spoken%></td><td><%=u.wriiten%></td>
+																			</tr>
+																			<%end%>
+																			</table>
+																			</div>
+															</td>
+													</tr>
+												<tr><td></td><td></td></tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							 <tr>
+							    <td>
+								   <table>
+								        <tr>
+										   <td><table>
+													<tr><td></td><td></td></tr>
+													<tr >
+															<td>
+																		
+																		<div">
+																		<h2>
+																		<span class="header">Custodian Profile</span>
+																		
+																		<br/>
+																		</h2>
+																		
+																			<table>
+																			<tr>
+																			<td>Name:</td>
+																			<td><%=@stud_custodian.name%></td>
+																			<td></td>
+																			</tr>
+																			<tr>
+																			<td>Address:</td>
+																			<td><%=@stud_custodian.place%><br/><%=@stud_custodian.postcode%><br/><%=@stud_custodian.city%><br/><%=@stud_custodian.state%></td>
+																			<td></td>
+																			</tr>
+																			<tr>
+																			<td>Email:</td>
+																			<td><%=@stud_custodian.email%></td>
+																			<td></td>
+																			</tr>
+																			<tr>
+																			<td>Mobile No:</td>
+																			<td><%=@stud_custodian.hp_no%></td>
+																			<td></td>
+																			</tr>
+																			<tr>
+																			<td>Relationship:</td>
+																			<td><%=@stud_custodian.relationship%></td>
+																			<td></td>
+																			</tr>
+																			</table>
+																			</div>
+															</td>
+													</tr>
+												<tr><td></td><td></td></tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							 <tr>
+							    <td>
+								   <table>
+								        <tr>
+										   <td><table>
+													<tr><td></td><td></td></tr>
+													<tr >
+															<td>
+																		
+																		<div">
+																		<h2>
+																		<span class="header">References</span>
+																		
+																		<br/>
+																		</h2>
+																		
+																			<table>
+																			<tr>
+																			<th>Bil</th><th>Name</th><th>Occupation</th><th>Company</th><th>Contact No</th><th>Email</th><th>Relationship</th>
+																			</tr>
+																			<%i=0%>
+																			<%@resume.stud_references.each do |u|%>
+																			<%i+=1%>
+																			<tr>
+																			<td><%=i%> ) </td><td><%=u.name%></td><td><%=u.occupation%></td><td><%=u.company%></td><td><%=u.contact_no%></td><td><%=u.email%></td><td><%=u.relationship%></td>
+																			</tr>
+																			<%end%>
+																			</table>
+																			</div>
+															</td>
+													</tr>
+												<tr><td></td><td></td></tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							 
+					  </table>
+			 </td>
+		   </tr>
+	  </table>
+	  </td>
+	<tr><td id="resume_header"></td><td id="resume_header"></td></tr>
+</table>	
+							

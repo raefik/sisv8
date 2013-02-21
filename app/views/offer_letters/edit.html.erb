@@ -1,0 +1,34 @@
+<center><h1>Offer Letter</h1></center>
+<b><%=@offer.user.name%></b><br/>
+<%=@comp_profile.place%>,<br/>
+<%=@comp_profile.postcode%>,<br/>
+<%=@comp_profile.city%>,<br/>
+<%=@comp_profile.state.name%>.<br/>
+Email:<%=@comp_profile.email%><br/>
+Contact No:<%=@comp_profile.official_no%><br/>
+_________________________________________________________________<br/>
+
+<%=current_user.name%><br/>
+<%=@stud_add.place%><br/>
+<%=@stud_add.postcode%>,<br/>
+<%=@stud_add.city%>,<br/>
+<%=@stud_add.state.name%>.<br/><br/>
+Dear Sir/Madam,<br/><br/>
+We would like to tell you that you are accepted to join internship in our company.Please click the Accept button to accept the offer letter.
+<br/><br/>Thank You,<br/>
+Regards,
+<br/>
+Computer Generated Letter 
+
+
+
+
+						
+                          <center>  <%=form_for @user_company do |u|%>
+						    <%=u.hidden_field :action_status_id,:value => "3" %>
+							<div class="actions">
+							<%= u.submit "Accept Offer"%>
+						    </div>
+							<%end%>
+							</center>
+						

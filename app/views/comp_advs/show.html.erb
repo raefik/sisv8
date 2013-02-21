@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Adv date:</b>
+  <%= @comp_adv.adv_date %>
+</p>
+
+<p>
+  <b>Exp date:</b>
+  <%= @comp_adv.exp_date %>
+</p>
+
+<p>
+  <b>About company:</b>
+  <%= @comp_adv.about_company %>
+</p>
+<p>
+  <b>Allowance:</b>
+  <%= @comp_adv.status.name %>
+</p>
+
+<p>
+  <b>Value allowance:</b>
+  <%= @comp_adv.value_allowance %>
+</p>
+
+<%= link_to 'Edit', edit_comp_adv_path(@comp_adv) %> |
+<%= link_to 'Back', comp_advs_path %>

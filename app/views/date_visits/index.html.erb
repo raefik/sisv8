@@ -1,0 +1,36 @@
+<div class="widget">
+						<div class="header"><span ><span class="ico  gray random"></span>Visit Records</span></div>
+						<div class="content"  >
+
+                    <form> 
+						<div class="tableName">
+
+<table class="display data_table2" >
+	<thead>
+		<tr>
+			<th><div class="th_wrapp">Date</div></th>
+			<th><div class="th_wrapp">Student Name</div></th>
+			<th><div class="th_wrapp">Student ID</div></th>
+			<th><div class="th_wrapp">Student IC</div></th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @date_visits.each do |date_visit| %>
+	<% if date_visit.student_id==@student.id %>
+		<tr class="odd gradeX">
+			<td><%= date_visit.date %></td>
+		<td><%= date_visit.user.name %></td>
+		<td><%= @stud_profiles.matric_no %></td>
+		<td><%= @stud_profiles.nric %></td>
+		</tr>
+	<% end %>
+	<% end %>
+	</tbody>
+</table>
+						</div>
+					</form>
+                    
+                        </div>
+                    </div>
+
+                    

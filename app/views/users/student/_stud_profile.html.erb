@@ -1,0 +1,56 @@
+<div class="widget">
+                    <div class="header"><span > Student Profile </span>
+					<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/edit.png"), edit_stud_profile_path("#{@stud_profile.id}") %></div>
+					<br/>
+                            </div>
+                            </div>
+				
+
+
+<div class="content" >
+     <table >
+	<thead>
+	</thead>
+	
+<tbody>
+
+
+<tr>
+<td  align="left">Matric No:</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_profile.matric_no%></span></td>
+</tr>
+<tr>
+<td  align="left">IC No:</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_profile.nric%></span></td>
+</tr>
+<tr>
+<td  align="left">Gender</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_profile.gender.name%></span></td>
+</tr>
+<tr>
+<td  align="left">Patient History</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_profile.patient_history%></span></td>
+</tr>
+<tr>
+<td  align="left">Disease Decription</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_profile.disease_description%></span></td>
+</tr>
+<tr>
+<td  align="left">Mobile No</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_profile.hp_no%></span></td>
+</tr>
+<tr>
+<td  align="left">Second Email</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_profile.second_email%></span></td>
+</tr>
+
+</tbody>
+</table>
+</div>

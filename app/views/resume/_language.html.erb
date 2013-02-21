@@ -1,0 +1,18 @@
+
+<h3>
+<span class="header">Student Languages</span>																
+<br/>
+</h3>																	
+<table border=1>
+<tr>
+<th>Bil</th><th>Language</th><th>Spoken</th><th>Written</th>
+</tr>
+<%i=0%>
+<%current_user.stud_languages.each do |u|%>
+<%i+=1%>
+<tr>
+<td><%=i%> ) </td><td><%=u.language%></td><td><%=u.spoken%></td><td><%=u.wriiten%></td>
+</tr>
+<%end%>
+</table>
+																			

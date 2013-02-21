@@ -1,0 +1,23 @@
+<h1>Listing sem_internships</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sem_internships.each do |sem_internship| %>
+  <tr>
+    <td><%= sem_internship.name %></td>
+    <td><%= link_to 'Show', sem_internship %></td>
+    <td><%= link_to 'Edit', edit_sem_internship_path(sem_internship) %></td>
+    <td><%= link_to 'Destroy', sem_internship, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sem internship', new_sem_internship_path %>

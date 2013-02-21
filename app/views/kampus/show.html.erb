@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @kampu.name %>
+</p>
+
+<p>
+  <b>Cawangan:</b>
+  <%= @kampu.cawangan %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @kampu.state_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_kampu_path(@kampu) %> |
+<%= link_to 'Back', kampus_path %>

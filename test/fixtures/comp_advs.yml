@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  adv_date: 2012-02-08
+  exp_date: 2012-02-08
+  about_company: MyText
+  requirement: MyText
+  level: 1
+  allowance: 1
+  value_allowance: MyString
+  benefit: MyText
+  available_intern: MyText
+  user_id: 1
+
+two:
+  adv_date: 2012-02-08
+  exp_date: 2012-02-08
+  about_company: MyText
+  requirement: MyText
+  level: 1
+  allowance: 1
+  value_allowance: MyString
+  benefit: MyText
+  available_intern: MyText
+  user_id: 1

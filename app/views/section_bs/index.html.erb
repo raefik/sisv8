@@ -1,0 +1,29 @@
+<h1>Listing section_bs</h1>
+
+<table>
+  <tr>
+    <th>Pa 1</th>
+    <th>Pa 2</th>
+    <th>User</th>
+    <th>Student</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @section_bs.each do |section_b| %>
+  <tr>
+    <td><%= section_b.pa_1 %></td>
+    <td><%= section_b.pa_2 %></td>
+    <td><%= section_b.user_id %></td>
+    <td><%= section_b.student_id %></td>
+    <td><%= link_to 'Show', section_b %></td>
+    <td><%= link_to 'Edit', edit_section_b_path(section_b) %></td>
+    <td><%= link_to 'Destroy', section_b, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Section b', new_section_b_path %>

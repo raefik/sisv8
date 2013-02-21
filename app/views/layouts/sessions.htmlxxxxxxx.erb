@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= title %></title>
+<%= csrf_meta_tag %>
+<%= javascript_include_tag "jquery-1.7.1" %>
+<%= render 'layouts/stylesheets' %>
+<%= javascript_include_tag "application" %>
+</head>
+<body>
+
+<%= yield %>
+
+</html>

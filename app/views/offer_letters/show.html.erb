@@ -1,0 +1,26 @@
+<center><h1>Confirmation Letter</h1></center>
+<b><%=@offer.user.name%></b>,<br/>
+<%=@comp_profile.first.place%>,<br/>
+<%=@comp_profile.first.postcode%>,<br/>
+<%=@comp_profile.first.city%>,<br/>
+<%=@comp_profile.first.state.name%>.<br/>
+Email:<%=@comp_profile.first.email%><br/>
+Contact No:<%=@comp_profile.first.official_no%><br/>
+_________________________________________________________________<br/>
+<%=current_user.name%><br/>
+<%=@stud_add.place%><br/>
+<%=@stud_add.postcode%>,<br/>
+<%=@stud_add.city%>,<br/>
+<%=@stud_add.state.name%>.<br/><br/>
+Dear Sir/Madam,<br/><br/>
+Thank You for accepting our offer.This is not a formal letter.
+<br/><br/>Thank You,<br/>
+Regards,
+<br/>
+Computer Generated Letter 
+                              <center> 
+    							  <form> 
+										<input type="button" value="Close" onclick="window.close()">
+							      </form>
+							  </center>
+                            

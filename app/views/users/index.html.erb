@@ -1,0 +1,5 @@
+<%unless current_user.role.name=="student"%>
+<%=render 'users/iklan/iklan'%>
+<%else%>
+<%=render 'users/resume/resume'%>
+<%end%>

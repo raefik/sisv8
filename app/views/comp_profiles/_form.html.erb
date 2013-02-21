@@ -1,0 +1,104 @@
+<div class="clear"></div>
+
+	<div class="widget">
+	<div class="header"><span><span class="ico gray window"></span>Editing comp_profile</span></div>
+
+	 <div class="content">
+						 
+	<div class="boxtitle"><span class="ico gray audio_knob"></span>
+	
+	
+<%= form_for(@comp_profile) do |f| %>
+  <% if @comp_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comp_profile.errors.count, "error") %> prohibited this comp_profile from being saved:</h2>
+
+      <ul>
+      <% @comp_profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ 
+ 
+<div class="section" >
+    <%= f.label :business_type %><br />
+    <%= f.text_field :bis_type %>
+  </div>
+ <div class="section" >
+    <%= f.label :register_number %><br />
+    <%= f.text_field :register_no %>
+  </div>
+<div class="section" >
+    <%= f.label :'official_phone_number' %><br />
+    <%= f.text_field :official_no %>
+  </div>
+<div class="section" >
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+<div class="section" >
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </div>
+<div class="section" >
+    <%= f.label :contact_person %><br />
+    <%= f.text_field :contact_person %>
+  </div>
+
+<div class="section" >
+    <%= f.label :sector_id %><br />
+    <%= collection_select(:comp_profile,:sector_id,Sector.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+<div class="section" >
+    <%= f.label :cluster_id %><br />
+   <%= collection_select(:comp_profile,:cluster_id,Cluster.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+<div class="section" >
+    <%= f.label :industry_id %><br />
+    <%= collection_select(:comp_profile,:industry_id,Industry.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+
+
+<div class="section" >
+    <%= f.label :place %><br />
+    <%= f.text_area :place %>
+  </div>
+<div class="section" >
+    <%= f.label :postcode %><br />
+    <%= f.text_field :postcode %>
+  </div>
+<div class="section" >
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+<div class="section" >
+    <%= f.label :state_id %><br />
+    <%= collection_select(:comp_profile,:state_id,State.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+
+  
+  <div class="section last">
+
+                                  <div>
+								  
+	<%if @admin==true then%>
+		<%= f.submit "Save"%>
+	<%else%>
+		<%= f.submit "Update", :class => 'uibutton loading', :title => 'Updating'%>
+	<%end%>
+
+</div>
+</div>
+							 
+</div>
+<% end %>
+
+
+
+
+	</div>
+	</div>
+	<div class="clear"></div>

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @stud_add.user_id %>
+</p>
+
+<p>
+  <b>Place:</b>
+  <%= @stud_add.place %>
+</p>
+
+<p>
+  <b>Postcode:</b>
+  <%= @stud_add.postcode %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @stud_add.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @stud_add.state_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_stud_add_path(@stud_add) %> |
+<%= link_to 'Back', stud_adds_path %>

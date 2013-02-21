@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Skill:</b>
+  <%= @stud_skill.skill %>
+</p>
+
+
+<p>
+  <b>Proficiency:</b>
+  <%= @stud_skill.skill_pro_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_stud_skill_path(@stud_skill) %> |
+<%= link_to 'Back', stud_skills_path %>

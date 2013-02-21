@@ -1,0 +1,2 @@
+module SectionBsHelper
+end

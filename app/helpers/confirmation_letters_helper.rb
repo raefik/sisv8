@@ -1,0 +1,2 @@
+module ConfirmationLettersHelper
+end

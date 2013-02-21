@@ -1,0 +1,53 @@
+/*Resume*/
+
+.edit_link a {
+text-decoration: none;
+color: #fff;
+}
+.edit_link a:hover {
+color: #3A4E6C;
+}
+#resume_content{
+width: 75%;
+margin:auto;
+background: #F3F4F8;
+}
+#resume_header{
+color: white;
+background: #3A4E6C; 
+font-size: 10pt;
+padding: 2px;
+margin-top: 2px;
+font-family: Times New Roman;
+}
+#left{
+width: 250px;
+background-color:;
+height:600px;
+}
+
+#right {
+width: 400px;
+background-color:;
+height:600px;
+}
+.sidebar_box_resume {
+background-color: #F3F4F8;
+border: 1px solid #9EA3B0;
+font-size: 12px;
+margin-bottom: 0.5px;
+}
+
+.sidebar_box_resume h2 {
+margin-top: 0px;
+padding: 6px;
+background-color: #929CC4;
+border: 1px solid #9EA3B0;
+font-size: 13px;
+color: black;
+font-weight:bold;
+}
+.sidebar_box_resume p {
+padding-left: 6px;
+padding-right: 6px;
+}

@@ -1,0 +1,35 @@
+<div class="widget">
+                    <div class="header"><span > Education Details </span>
+                            </div>
+                            </div>
+						</div>
+
+
+<div class="content" >
+     <table>
+	<thead>
+	</thead>
+	<tbody>																
+
+<tr>						
+<td  align="left"><b>Current Semester:</b>&nbsp;&nbsp;<%= if !@stud_edu.current_sem.blank? then @stud_edu.current_sem else " " end%></td>																		
+</tr>
+<tr>						
+<td  align="left"><b>Class:</b>&nbsp;&nbsp;<%= if !@stud_edu.student_class.blank? then @stud_edu.student_class.class_name else " " end%></td>																		
+</tr>
+<tr>																		
+<td  align="left"><b>Program:</b>&nbsp;&nbsp;<%= if !@stud_edu.prog_name.blank? then @stud_edu.prog_name.name else " " end%></td>																		
+</tr>
+<tr>																		
+<td  align="left"><b>Program Code:&nbsp;&nbsp;</b><%= if !@stud_edu.prog_code.name.blank? then @stud_edu.prog_code.name else " " end%></td>																		
+</tr>
+<tr>																		
+<td  align="left"><b>Faculty:</b>&nbsp;&nbsp;<%= if !@stud_edu.faculty.name.blank? then @stud_edu.faculty.name else " " end%></td>																		
+</tr>
+<tr>																		
+<td  align="left"><b>Cgpa:</b>&nbsp;&nbsp;<%= if !@stud_edu.cgpa.blank? then @stud_edu.cgpa else " " end%></td>																		
+</tr>
+	</tbody>
+</table
+
+</div>

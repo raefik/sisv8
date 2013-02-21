@@ -1,0 +1,105 @@
+
+						
+<script type="text/javascript">
+<!--
+function popup(url) 
+{
+ var width  = 600;
+ var height = 400;
+ var left   = (screen.width  - width)/2;
+ var top    = (screen.height - height)/2;
+ var params = 'width='+width+', height='+height;
+ params += ', top='+top+', left='+left;
+ params += ', directories=no';
+ params += ', location=no';
+ params += ', menubar=no';
+ params += ', resizable=no';
+ params += ', scrollbars=1';
+ params += ', status=no';
+ params += ', toolbar=no';
+ newwin=window.open(url,'windowname5', params);
+ if (window.focus) {newwin.focus()}
+ return false;
+}
+function openWin()
+{
+myWindow=window.open('','','width=200,height=100');
+myWindow.document.write("<p>This is 'myWindow'</p>");
+myWindow.focus();
+}
+
+</script>
+
+
+<div class="widget">
+						<div class="header"><span ><span class="ico  gray random"></span> Companies For Internships (max 5 companies) </span></div>
+						<div class="content"  >
+
+				 <form> 
+						<div class="tableName">
+							
+							
+<table class="display data_table1" >
+	<thead>
+		<tr>
+			<th align="left"><div class="th_wrapp"> List of available company </div></th>
+			<th align="left"><div class="th_wrapp"> Category </div></th>
+		</tr>
+	</thead>
+	
+	<tbody>			
+<%if signed_in?%>
+
+					
+									
+										<%@users.each do|f|%>
+										<tr class="users">
+										<td align="left">
+									    <%#= gravatar_for f, :size => 30 %>
+										<%= link_to f.name,"",:target=>'_self',:onClick=>"popup('iklan/#{f.id}')" %>
+										
+										<%end%>
+					
+					
+<%end%>
+</tbody>
+</table>
+</div>
+
+
+</br>
+</br>		
+					
+     <table >
+	<thead>
+		<tr>
+			<th align="left">Bil</th><th align="left">Company Name</th><th align="left">Date Applied</th><th align="left">Action</th><th align="left">Request Accepted</th><th align="left">Offer Letter</th>
+		</tr>
+	</thead>
+	
+<tbody>
+
+									<%i=0%>
+									<%@students.each do |f| %>
+									<%i+=1%>
+									<tr><td align="left"><%=i%> ) </td>
+										<td align="left">
+												<%=f.company.name%>				              
+										</td>
+																
+										<td align="left"><%=f.created_at.strftime("%d-%m-%Y ") %></td>
+										<td align="left"><%=f.action_status.name%></td>
+										<td align="left"><%unless f.action_status_id==1%><%=f.updated_at.strftime("%d-%m-%Y ") %><%end%></td>
+										<td align="left"><%if f.action_status_id==2%><%= link_to "Offer letter","",:target=>'_self',:onClick=>"popup('/offer_letters/#{f.company_id}/edit')" %><%end%>
+										<%if f.action_status_id==3%><%= link_to "Accept Offer Letter","",:target=>'_self',:onClick=>"popup('/offer_letters/#{f.company_id}')" %><%end%></td>
+										</tr>
+									
+									<%end%>
+</tbody>
+
+</form>
+</div>
+</div>	
+</table>	
+					
+					

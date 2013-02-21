@@ -1,0 +1,37 @@
+
+
+<%#----------for student------------------%>
+<%if current_user.role.name=="student"%>
+<%=render 'users/basic_info'%>
+<%=render 'users/student/stud_edu'%>
+<%=render 'users/student/stud_add'%>
+<%=render 'users/student/stud_custodian'%>
+<%=render 'users/student/stud_skill'%>
+<%=render 'users/student/stud_language'%>
+<%=render 'users/student/education_background'%>
+<%=render 'users/student/working_experience'%>
+<%=render 'users/student/stud_internship'%>
+<%=render 'users/student/prefered_location'%>
+<%=render 'users/student/stud_references'%>
+<%=render 'users/student/stud_description'%>
+<%=render 'users/student/stud_profile'%>
+
+
+<%end%>
+
+<%#----------for company------------------%>
+<%if current_user.role.name=="company"%>
+<%=render 'users/basic_info'%>
+<%=render 'users/company/company_profile'%>
+<%=render 'users/company/company_adv'%>
+<%=render 'users/company/requirement'%>
+<%=render 'users/company/benefit'%>
+<%=render 'users/company/available_internship'%>
+<%end%>
+
+<%#----------for student------------------%>
+<%if current_user.role.name=="staff"%>
+<%=render 'users/basic_info'%>
+<%=render 'users/staff/staff_profile'%>
+<%end%>
+

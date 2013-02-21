@@ -1,0 +1,23 @@
+<h1>Listing p_attributes</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @p_attributes.each do |p_attribute| %>
+  <tr>
+    <td><%= p_attribute.name %></td>
+    <td><%= link_to 'Show', p_attribute %></td>
+    <td><%= link_to 'Edit', edit_p_attribute_path(p_attribute) %></td>
+    <td><%= link_to 'Destroy', p_attribute, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New P attribute', new_p_attribute_path %>

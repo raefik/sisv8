@@ -1,0 +1,28 @@
+<fieldset>
+<%= form_for(@data_student) do |f| %>
+  
+  <div class="field">
+    <%= f.label :buku_log %>(Buku Log-6%)<br />
+    <%= f.number_field :buku_log %>
+  </div>
+  <div class="field">
+    <%= f.label :penyelia %>(Laporan Kemajuan Oleh Penyelia-44%)<br />
+    <%= f.number_field :penyelia %>
+  </div>
+  <div class="field">
+    <%= f.label :laporan %>(Laporan Pelajar-50%)<br />
+    <%= f.number_field :laporan %>
+  </div>
+  <div class="field">
+    <%= f.label :gred_id %><br />
+    <%=collection_select(:stud_profile,:gred_id,Gred.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+  <div class="field">
+    <%= f.label :catatan %><br />
+    <%= f.text_field :catatan %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Update Student Marks"%>
+  </div>
+<% end %>
+</fieldset>

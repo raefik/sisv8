@@ -1,0 +1,2 @@
+module CompProfilesHelper
+end

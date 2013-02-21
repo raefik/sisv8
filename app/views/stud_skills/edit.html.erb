@@ -1,0 +1,55 @@
+                    <div class="clear"></div>
+
+					<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span> Skills </span>
+                            
+						</div>
+						 <div class="content">
+						 
+	<div class="boxtitle"><span class="ico gray audio_knob"></span>
+	Enter New Skills
+</div>
+
+
+
+<%= form_for(@stud_skill) do |f| %>
+  <% if @stud_skill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stud_skill.errors.count, "error") %> prohibited this stud_skill from being saved:</h2>
+
+      <ul>
+      <% @stud_skill.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+  <div class="section" >
+    <%= f.label :skill %><br />
+    <%= f.text_field :skill %>
+  </div>
+  
+  <div class="section" >
+    <%= f.label :skill_pro %><br />
+	<%=collection_select(:stud_skill,:skill_pro_id,SkillPro.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+
+  
+  <div class="section last">	
+
+   <div class="actions">
+    <%= f.submit "Update", :class => 'uibutton loading', :title => 'Updating' %>
+	<%= link_to 'Back to profile', user_path(current_user), :class => 'uibutton loading', :title => 'Loading' %>
+  </div>
+<% end %>
+
+</div>
+
+</div>
+</div>
+</div>
+<div class="clear"></div>
+

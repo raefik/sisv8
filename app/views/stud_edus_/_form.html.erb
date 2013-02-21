@@ -1,0 +1,38 @@
+<%= form_for(@stud_edu) do |f| %>
+  <% if @stud_edu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stud_edu.errors.count, "error") %> prohibited this stud_edu from being saved:</h2>
+
+      <ul>
+      <% @stud_edu.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<fieldset><legend>Edit Profile</legend>
+  <div class="field">
+    <%= f.label :cgpa %><br />
+    <%= f.text_field :cgpa %>
+  </div>
+  <div class="field">
+    <%= f.label :current_sem %><br />
+    <%= f.text_field :current_sem %>
+  </div>
+  <div class="field">
+    <%= f.label :prog_name_id %><br />
+    <%=collection_select(:stud_edu,:prog_name_id,ProgName.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+  <div class="field">
+    <%= f.label :prog_code_id %><br />
+   <%=collection_select(:stud_edu,:prog_code_id,ProgCode.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+  <div class="field">
+    <%= f.label :faculty_id %><br />
+     <%=collection_select(:stud_edu,:faculty_id,Faculty.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+</fieldset>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

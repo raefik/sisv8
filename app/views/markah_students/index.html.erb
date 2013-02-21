@@ -1,0 +1,37 @@
+<h1>Listing markah_students</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Staff</th>
+    <th>Buku log</th>
+    <th>Penyelia</th>
+    <th>Laporan</th>
+    <th>Jumlah</th>
+    <th>Gred</th>
+    <th>Catatan</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @markah_students.each do |markah_student| %>
+  <tr>
+    <td><%= markah_student.user_id %></td>
+    <td><%= markah_student.staff_id %></td>
+    <td><%= markah_student.buku_log %></td>
+    <td><%= markah_student.penyelia %></td>
+    <td><%= markah_student.laporan %></td>
+    <td><%= markah_student.jumlah %></td>
+    <td><%= markah_student.gred %></td>
+    <td><%= markah_student.catatan %></td>
+    <td><%= link_to 'Show', markah_student %></td>
+    <td><%= link_to 'Edit', edit_markah_student_path(markah_student) %></td>
+    <td><%= link_to 'Destroy', markah_student, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Markah student', new_markah_student_path %>

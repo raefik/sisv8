@@ -1,0 +1,68 @@
+<div class="widget">
+                    <div class="header"><span > Company Profile</span>
+					<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/edit.png"), edit_comp_profile_path("#{@comp_profile.id}") %></div>
+					<br/>
+                            </div>
+                            </div>
+					
+
+
+<div class="content" >
+     <table >
+	<thead>
+	</thead>
+	
+<tbody>
+
+<!--stud_profile -->
+
+<tr>
+<td  align="left">Type Of Business</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@comp_profile.bis_type%></span></td>
+</tr>
+<tr>
+<td  align="left">Register No</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@comp_profile.register_no%></span></td>
+</tr>
+<tr>
+<td  align="left">Address</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@comp_profile.place%>,<br/><%=@comp_profile.postcode%>,<br/><%=@comp_profile.city%>,<br/><%unless @comp_profile.state_id.nil?%><%=@comp_profile.state.name%><%end%></span></td>
+</tr>
+<tr>
+<td  align="left">Official No</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@comp_profile.official_no%></span></td>
+</tr>
+<tr>
+<td  align="left">Contact Person </td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@comp_profile.contact_person%></span></td>
+</tr>
+<td  align="left">Email </td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@comp_profile.email%></span></td>
+</tr>
+<td  align="left">Website</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@comp_profile.url%></span></td>
+</tr>
+<td  align="left">Mohe Sector </td>
+<td  align="left">:</td>
+<td  align="left"><span><%unless @comp_profile.sector_id.nil?%><%=@comp_profile.sector.name%><%end%></span></td>
+</tr>
+<td  align="left">Mohe Cluster</td>
+<td  align="left">:</td>
+<td  align="left"><span><%unless @comp_profile.cluster_id.nil?%><%=@comp_profile.cluster.name%><%end%></span></td>
+</tr>
+<td  align="left">Mohe Industry </td>
+<td  align="left">:</td>
+<td  align="left"><span><%unless @comp_profile.cluster_id.nil?%><%=@comp_profile.industry.name%><%end%></span></td>
+</tr>
+
+
+</tbody>
+</table>
+</div>

@@ -1,0 +1,64 @@
+                    <div class="clear"></div>
+
+					<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span>  Edit User  </span>
+                            
+						</div>
+						 <div class="content">
+						 
+	<div class="boxtitle"><span class="ico gray audio_knob"></span>
+
+	Enter Your Profile
+  </div>
+
+<%= form_for(@user) do |f| %>
+
+<%= render 'shared/error_messages', :object => f.object %>
+<div class="section" >
+<%= f.label :name %>
+<%= f.text_field :name %>
+</div>
+</br>
+
+<div class="section" >
+<%= f.label :email %>
+<%= f.text_field :email %>
+</div>
+</br>
+
+<div class="section" >
+<%= f.label :password %>
+<%= f.password_field :password%>
+</div>
+
+</br>
+<div class="section" >
+<%= f.label :password_confirmation, "Confirmation" %>
+<%= f.password_field :password_confirmation %>
+</div>
+
+
+<div class="section last">			  
+								  
+<div class="actions">
+	<%= f.submit "Update", :class => 'uibutton loading', :title => 'Saving' %>
+</div> 
+<% end %>
+</div>
+
+<p/>
+
+
+<div class="boxtitle"><span class="ico gray audio_knob"></span>
+Profile Picture
+ </div>
+  
+<%= gravatar_for @user %>
+<a href="http://gravatar.com/emails">change</a>
+
+
+</div>
+</div>
+</div>
+<div class="clear"></div>

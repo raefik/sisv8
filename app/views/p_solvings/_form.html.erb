@@ -1,0 +1,21 @@
+<%= form_for(@p_solving) do |f| %>
+  <% if @p_solving.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@p_solving.errors.count, "error") %> prohibited this p_solving from being saved:</h2>
+
+      <ul>
+      <% @p_solving.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

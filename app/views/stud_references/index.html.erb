@@ -1,0 +1,35 @@
+<h1>Listing stud_references</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Name</th>
+    <th>Occupation</th>
+    <th>Company</th>
+    <th>Contact no</th>
+    <th>Email</th>
+    <th>Relationship</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stud_references.each do |stud_reference| %>
+  <tr>
+    <td><%= stud_reference.user_id %></td>
+    <td><%= stud_reference.name %></td>
+    <td><%= stud_reference.occupation %></td>
+    <td><%= stud_reference.company %></td>
+    <td><%= stud_reference.contact_no %></td>
+    <td><%= stud_reference.email %></td>
+    <td><%= stud_reference.relationship %></td>
+    <td><%= link_to 'Show', stud_reference %></td>
+    <td><%= link_to 'Edit', edit_stud_reference_path(stud_reference) %></td>
+    <td><%= link_to 'Destroy', stud_reference, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stud reference', new_stud_reference_path %>

@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Cgpa:</b>
+  <%= @stud_edu.cgpa %>
+</p>
+
+<p>
+  <b>Current sem:</b>
+  <%= @stud_edu.current_sem %>
+</p>
+<p>
+  <b>Class:</b>
+  <%= @stud_edu.student_class_id%>
+</p>
+<p>
+  <b>Prog name:</b>
+  <%= @stud_edu.prog_name_id %>
+</p>
+
+<p>
+  <b>Prog code:</b>
+  <%= @stud_edu.prog_code_id %>
+</p>
+
+<p>
+  <b>Faculty:</b>
+  <%= @stud_edu.faculty_id %>
+</p>
+<p>
+  <b>Kampus:</b>
+  <%= @stud_edu.kampu_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_stud_edu_path(@stud_edu) %> |
+<%= link_to 'Back', stud_edus_path %>

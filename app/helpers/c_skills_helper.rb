@@ -1,0 +1,2 @@
+module CSkillsHelper
+end

@@ -1,0 +1,31 @@
+<h1>Listing stud_adds</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Place</th>
+    <th>Postcode</th>
+    <th>City</th>
+    <th>State</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stud_adds.each do |stud_add| %>
+  <tr>
+    <td><%= stud_add.user_id %></td>
+    <td><%= stud_add.place %></td>
+    <td><%= stud_add.postcode %></td>
+    <td><%= stud_add.city %></td>
+    <td><%= stud_add.state_id %></td>
+    <td><%= link_to 'Show', stud_add %></td>
+    <td><%= link_to 'Edit', edit_stud_add_path(stud_add) %></td>
+    <td><%= link_to 'Destroy', stud_add, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stud add', new_stud_add_path %>

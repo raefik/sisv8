@@ -1,0 +1,35 @@
+<div class="widget">
+                    <div class="header"><span > Internship </span>
+					<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/edit.png"), edit_stud_internship_path("#{@stud_internship.id}") %></div>
+					<br/>
+                            </div>
+                            </div>
+				
+
+
+<div class="content" >
+     <table >
+	<thead>
+	</thead>
+	
+<tbody>
+
+<tr>
+<td  align="left">Duration</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_internship.duration%> month</span></td>
+</tr>
+<tr>
+<td  align="left">Internships start date</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_internship.sem_internship_start%></span></td>
+</tr>
+<tr>
+<td  align="left">Internships end date</td>
+<td  align="left">:</td>
+<td  align="left"><span><%=@stud_internship.sem_internship_end%></span></td>
+</tr>
+
+</tbody>
+</table>
+</div>

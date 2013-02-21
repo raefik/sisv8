@@ -1,0 +1,40 @@
+
+
+<div class="widget">
+                    <div class="header"><span >Languages</span> 
+					<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/tambah.png"), new_stud_language_path %></div>
+                            </div>
+                            </div>
+							
+
+<div class="content" >
+     <table >
+	<thead>
+		<tr>
+			<th align="left">Bil</th><th align="left">Language</th><th align="left">Spoken</th><th align="left">Written</th><th align="left"></th>
+		</tr>
+	</thead>
+	
+<tbody>
+
+
+<%i=0%>
+<%current_user.stud_languages.each do |u|%>
+<%i+=1%>
+
+
+<tr>
+<td  align="left"><%=i%> ) </td>
+<td  align="left"><%=u.language%></td>
+<td  align="left"><%=u.spoken.name%></td>
+<td  align="left"><%=u.written.name%></td>
+<td  align="left"><%= link_to image_tag("/images/icon/icon_edit.png"), edit_stud_language_path(u) %>&nbsp&nbsp&nbsp&nbsp<%= link_to image_tag("/images/icon/icon_delete.png"), u, confirm: 'Are you sure?', method: :delete %></td>
+</tr>
+
+<%end%>
+
+<br />
+</tbody>
+</table>
+</div>
+

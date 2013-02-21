@@ -1,0 +1,33 @@
+<h1>Listing student_classes</h1>
+
+<table>
+  <tr>
+    <th>Bil</th>
+    <th>Ketua Program Industry</th>
+    <th>Prog name</th>
+    <th>Prog code</th>
+    <th>Class name</th>
+    <th>Total student</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<%i=0%>
+<% @student_classes.each do |student_class| %>
+<%i+=1%>
+  <tr>
+   <td><%=i%>.</td> <td><%= student_class.staff.name %></td>
+    <td><%= student_class.prog_name.name %></td>
+    <td><%= student_class.prog_code.name %></td>
+    <td><%= student_class.class_name %></td>
+    <td><%= student_class.total_student %></td>
+    <td><%= link_to 'Show', student_class %></td>
+    <td><%= link_to 'Edit', edit_student_class_path(student_class) %></td>
+    <td><%= link_to 'Destroy', student_class, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Student class', new_student_class_path %>
