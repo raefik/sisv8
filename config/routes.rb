@@ -1,4 +1,13 @@
 SisV5::Application.routes.draw do
+  resources :eval_by_akademic_svs
+  match '/academic_svs' ,:to=>'eval_by_akademic_svs#index'
+  resources :eval_by_industry_svs
+  match '/industry_svs' ,:to=>'eval_by_industry_svs#index'
+  resources :buttons
+  post 'add_button' => 'buttons#create'
+  resources :eval_industry_svs
+  post 'eval_form' => 'eval_industry_svs#create'
+
   resources :languages
 
   resources :language_opts

@@ -1,0 +1,27 @@
+<table>
+  <tr>
+    <th>Stud name</th>
+    <th>Stud</th>
+    <th>Sv name</th>
+    <th>P1</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @eval_industry_svs.each do |eval_industry_sv| %>
+  <tr>
+    <td><%= eval_industry_sv.stud_name %></td>
+    <td><%= eval_industry_sv.stud_id %></td>
+    <td><%= eval_industry_sv.sv_name %></td>
+    <td><%= eval_industry_sv.p1 %></td>
+    <td><%= link_to 'Show', eval_industry_sv %></td>
+    <td><%= link_to 'Edit', edit_eval_industry_sv_path(eval_industry_sv) %></td>
+    <td><%= link_to 'Destroy', eval_industry_sv, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Eval industry sv', new_eval_industry_sv_path %>

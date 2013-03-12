@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 		@student                 = current_user.students.find_by_user_id(@user.id)
 		@stud_profile            = current_user.stud_profiles.find_by_user_id(@user.id)
 		@stud_custodian          = current_user.stud_custodians.find_by_user_id(@user.id)
-		@stud_skill               = current_user.stud_skills.find_by_user_id(@user.id)
+		@stud_skill              = current_user.stud_skills.find_by_user_id(@user.id)
 		@stud_language           = current_user.stud_languages.find_by_user_id(@user.id)
 		@stud_edu                = current_user.stud_edus.find_by_user_id(@user.id)
 	    @stud_reference          = current_user.stud_references.find_by_user_id(@user.id)

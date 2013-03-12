@@ -138,7 +138,7 @@
 								</div>
 								
 								<%#else%>
-								<%= StudProfile.find(:first,:conditions=>["user_id=?",f.user_id]).staff.name%>
+							<% unless StudProfile.find(:first,:conditions=>["user_id=?",f.user_id]).staff.name.nil? %><%= StudProfile.find(:first,:conditions=>["user_id=?",f.user_id]).staff.name %><%end%>
 								<%#end%> </td>
 							</tr>
 							<%end%>

@@ -5,7 +5,7 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql'
+gem 'mysql2'
 #gem 'mongrel', '>= 1.2.0.pre2'
 gem 'gravatar_image_tag'
 gem 'will_paginate'
@@ -22,8 +22,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 gem 'jquery-rails'
-#gem 'therubyracer'
-gem 'execjs'
+gem 'therubyracer'
+#gem 'execjs'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

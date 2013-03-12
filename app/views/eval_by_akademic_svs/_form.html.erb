@@ -1,0 +1,221 @@
+<%= form_for(@eval_by_akademic_sv) do |f| %>
+  <% if @eval_by_akademic_sv.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@eval_by_akademic_sv.errors.count, "error") %> prohibited this eval_by_akademic_sv from being saved:</h2>
+
+      <ul>
+      <% @eval_by_akademic_sv.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <table>
+ <tr>
+    <td><%= f.label :stud_name ,"Student Name:"%>:</td>
+    <td><%= f.text_field :stud_name %></td>
+</tr><tr>
+   <td> <%= f.label :stud_id,"Student Id:" %>:</td>
+   <td> <%= f.text_field :stud_id %></td>
+  </tr><tr>
+    <td><%= f.label :sv_name ,"Supervisor Name:"%>:</td>
+    <td><%= f.text_field :sv_name %></td>
+ </tr>
+ </table>
+ <br/>
+ <table border="1" width="900">
+ <tr><th>No</th><th>Presentation</th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
+ <tr>
+    <td>1</td>
+    <td><%= f.label :p1 ,"The student is well prepared for the  presentation"%></td>
+    <td><div align="center"><%= f.radio_button :p1 ,"1", :id=>"p1_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :p1 ,"2", :id=>"p1_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :p1 ,"3", :id=>"p1_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :p1 ,"4", :id=>"p1_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :p1 ,"5", :id=>"p1_5"%></div></td>
+ </tr>
+ <tr>
+ <td>2</td>
+    <td><%= f.label :p2 ,"The visual aid is used effectively "%></td>
+    <td><div align="center"><%= f.radio_button :p2 ,"1", :id=>"p2_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :p2 ,"2", :id=>"p2_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :p2 ,"3", :id=>"p2_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :p2 ,"4", :id=>"p2_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :p2 ,"5", :id=>"p2_5"%></div></td>
+  </tr>
+  <tr>
+  <td>3</td>
+   <td> <%= f.label :p3 ,"The clarity of voice and pronunciation is good and clear"%></td>
+   <td> <div align="center"><%= f.radio_button :p3,"1", :id=>"p3_1" %></div></td>
+	<td><div align="center"><%= f.radio_button :p3,"2", :id=>"p3_2" %></div></td>
+	<td><div align="center"><%= f.radio_button :p3,"3", :id=>"p3_3" %></div></td>
+	<td><div align="center"><%= f.radio_button :p3,"4", :id=>"p3_4" %></div></td>
+	<td><div align="center"><%= f.radio_button :p3,"5", :id=>"p3_5" %></div></td>
+  </tr>
+  <tr>
+  <td>4</td>
+    <td><%= f.label :p4 ,"The student makes eye contact and interact with audience "%></td>
+    <td><div align="center"><%= f.radio_button :p4 ,"1", :id=>"p4_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :p4 ,"2", :id=>"p4_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :p4 ,"3", :id=>"p4_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :p4 ,"4", :id=>"p4_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :p4 ,"5", :id=>"p4_5"%></div></td>
+  </tr><tr>
+  <td>5</td>
+   <td> <%= f.label :p5 ,"The structure of presentation is well organized and interesting "%></td>
+   <td> <div align="center"><%= f.radio_button :p5 ,"1", :id=>"p5_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :p5 ,"2", :id=>"p5_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :p5 ,"3", :id=>"p5_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :p5 ,"4", :id=>"p5_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :p5 ,"5", :id=>"p5_5"%></div></td>
+  </tr>
+  <table/>
+  <br/>
+  <table border="1" width="900">
+ <tr><th>No</th><th>Presentation</th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
+  <tr>
+  <td>1</td>
+   <td> <%= f.label :a1 ,"The type of operation, equipment or process is suitable for the application of student's knowledge "%></td>
+   <td> <div align="center"><%= f.radio_button :a1 ,"1", :id=>"a1_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :a1 ,"2", :id=>"a1_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :a1 ,"3", :id=>"a1_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :a1 ,"4", :id=>"a1_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :a1 ,"5", :id=>"a1_5"%></div></td>
+ </tr><tr>
+ <td>2</td>
+   <td> <%= f.label :a2 ,"Safety is a prior practice in the workplace "%></td>
+    <td><div align="center"><%= f.radio_button :a2 ,"1", :id=>"a2_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :a2 ,"2", :id=>"a2_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :a2 ,"3", :id=>"a2_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :a2 ,"4", :id=>"a2_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :a2 ,"5", :id=>"a2_5"%></div></td>
+  </tr><tr>
+  <td>3</td>
+   <td> <%= f.label :a3 ,"The student shows good grasp of knowledge on the unit operation and process flow of this industrial company "%></td>
+   <td><div align="center"> <%= f.radio_button :a3 ,"1", :id=>"a3_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :a3 ,"2", :id=>"a3_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :a3 ,"3", :id=>"a3_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :a3 ,"4", :id=>"a3_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :a3 ,"5", :id=>"a3_5"%></div></td>
+  </tr><tr>
+  <td>4</td>
+   <td><%= f.label :a4 ,"The student shows good relationship with supervisor and management "%></td>
+   <td> <div align="center"><%= f.radio_button :a4 ,"1", :id=>"a4_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :a4 ,"2", :id=>"a4_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :a4 ,"3", :id=>"a4_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :a4 ,"4", :id=>"a4_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :a4 ,"5", :id=>"a4_5"%></div></td>
+  </tr><tr>
+  <td>5</td>
+   <td> <%= f.label :a5 ,"This student create harmonious work environment in the company "%></td>
+   <td> <div align="center"><%= f.radio_button :a5 ,"1", :id=>"a5_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :a5 ,"2", :id=>"a5_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :a5 ,"3", :id=>"a5_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :a5 ,"4", :id=>"a5_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :a5 ,"5", :id=>"a5_5"%></div></td>
+  </tr><tr>
+  <td>6</td>
+   <td> <%= f.label :a6 ,"The student gives full cooperation in project or tasks given "%></td>
+   <td><div align="center"> <%= f.radio_button :a6 ,"1", :id=>"a6_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :a6 ,"2", :id=>"a6_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :a6 ,"3", :id=>"a6_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :a6 ,"4", :id=>"a6_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :a6 ,"5", :id=>"a6_5"%></div></td>
+  </tr><tr>
+  <td>7</td>
+    <td><%= f.label :a7 ,"The student shows great initiative and creativity on project given "%></td>
+   <td> <div align="center"><%= f.radio_button :a7 ,"1", :id=>"a7_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :a7 ,"2", :id=>"a7_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :a7 ,"3", :id=>"a7_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :a7 ,"4", :id=>"a7_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :a7 ,"5", :id=>"a7_5"%></div></td>
+  </tr><tr>
+  <td>8</td>
+    <td><%= f.label :a8 ,"The student demonstrates good attitude and discipline "%></td>
+   <td><div align="center"><%= f.radio_button :a8 ,"1", :id=>"a8_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :a8 ,"2", :id=>"a8_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :a8 ,"3", :id=>"a8_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :a8 ,"4", :id=>"a8_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :a8 ,"5", :id=>"a8_5"%></div></td>
+  </tr><tr>
+  <td>9</td>
+    <td><%= f.label :a9 ,"The student does not play truant and has good attendance "%></td>
+    <td><div align="center"><%= f.radio_button :a9 ,"1", :id=>"a9_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :a9 ,"2", :id=>"a9_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :a9 ,"3", :id=>"a9_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :a9 ,"4", :id=>"a9_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :a9 ,"5", :id=>"a9_5"%></div></td>
+  </tr>
+  </table>
+  <br/>
+  <table border="1" width="900">
+  <tr><th>No</th><th>Log Book </th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
+  <tr>
+  <td>1</td>
+    <td><%= f.label :l1 ,"Weekly activities and verification by industry supervisor is illustrated in the log book "%></td>
+    <td><div align="center"><%= f.radio_button :l1 ,"1", :id=>"l1_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :l1 ,"2", :id=>"l1_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :l1 ,"3", :id=>"l1_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :l1 ,"4", :id=>"l1_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :l1 ,"5", :id=>"l1_5"%></div></td>
+  </tr><tr>
+  <td>2</td>
+    <td><%= f.label :a11 ,"Relevant sketches, diagrams or figures are attached to support the description of activities "%></td>
+    <td><div align="center"><%= f.radio_button :a11 ,"1", :id=>"l2_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :a11 ,"2", :id=>"l2_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :a11 ,"3", :id=>"l2_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :a11 ,"4", :id=>"l2_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :a11 ,"5", :id=>"l2_5"%></div></td>
+  </tr><tr>
+  <td>3</td>
+    <td><%= f.label :l2 ,"Introduction with company background, operation, process flow and organizational chart are clearly outlined "%></td>
+    <td><div align="center"><%= f.radio_button :l2 ,"1", :id=>"l3_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :l2 ,"2", :id=>"l3_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :l2 ,"3", :id=>"l3_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :l2 ,"4", :id=>"l3_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :l2 ,"5", :id=>"l3_5"%></div></td>
+  </tr>
+  </table>
+  <br/>
+  <table border="1" width="900">
+  <tr><th>No</th><th>Field Report</th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
+  <tr>
+  <td>1</td>
+   <td> <%= f.label :r1 ,"Summary of daily activity and job roles is clearly described"%></td>
+    <td><div align="center"><%= f.radio_button :r1 ,"1", :id=>"r1_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :r1 ,"2", :id=>"r1_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :r1 ,"3", :id=>"r1_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :r1 ,"4", :id=>"r1_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :r1 ,"5", :id=>"r1_5"%></div></td>
+  </tr><tr>
+  <td>2</td>
+   <td> <%= f.label :r2 ,"Summary of daily activity and job roles is clearly described"%></td>
+    <td><div align="center"><%= f.radio_button :r2 ,"1", :id=>"r2_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :r2 ,"2", :id=>"r2_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :r2 ,"3", :id=>"r2_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :r2 ,"4", :id=>"r2_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :r2 ,"5", :id=>"r2_5"%></div></td>
+ </tr>
+ </tr><tr>
+  <td>3</td>
+   <td> <%= f.label :r3 ,"Tasks, assignment or project given is particularly reported"%></td>
+    <td><div align="center"><%= f.radio_button :r3 ,"1", :id=>"r3_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :r3 ,"2", :id=>"r3_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :r3 ,"3", :id=>"r3_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :r3 ,"4", :id=>"r3_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :r3 ,"5", :id=>"r3_5"%></div></td>
+ </tr><tr>
+  <td>4</td>
+   <td> <%= f.label :r4 ,"The report ends with conclusion or summary"%></td>
+    <td><div align="center"><%= f.radio_button :r4 ,"1", :id=>"r4_1"%></div></td>
+	<td><div align="center"><%= f.radio_button :r4 ,"2", :id=>"r4_2"%></div></td>
+	<td><div align="center"><%= f.radio_button :r4 ,"3", :id=>"r4_3"%></div></td>
+	<td><div align="center"><%= f.radio_button :r4 ,"4", :id=>"r4_4"%></div></td>
+	<td><div align="center"><%= f.radio_button :r4 ,"5", :id=>"r4_5"%></div></td>
+ </tr>
+ </table>
+ <br/>
+    <%= f.submit "Submit Form" ,:id=>"frm_submit"%>
+ 
+<% end %>

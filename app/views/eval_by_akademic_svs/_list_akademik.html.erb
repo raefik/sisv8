@@ -1,0 +1,63 @@
+<table>
+  <tr>
+    <th>Stud name</th>
+    <th>Stud</th>
+    <th>Sv name</th>
+    <th>P1</th>
+    <th>P2</th>
+    <th>P3</th>
+    <th>P4</th>
+    <th>P5</th>
+    <th>A1</th>
+    <th>A2</th>
+    <th>A3</th>
+    <th>A4</th>
+    <th>A5</th>
+    <th>A6</th>
+    <th>A7</th>
+    <th>A8</th>
+    <th>A9</th>
+    <th>L1</th>
+    <th>A11</th>
+    <th>L2</th>
+    <th>R1</th>
+    <th>R2</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @eval_by_akademic_svs.each do |eval_by_akademic_sv| %>
+  <tr>
+    <td><%= eval_by_akademic_sv.stud_name %></td>
+    <td><%= eval_by_akademic_sv.stud_id %></td>
+    <td><%= eval_by_akademic_sv.sv_name %></td>
+    <td><%= eval_by_akademic_sv.p1 %></td>
+    <td><%= eval_by_akademic_sv.p2 %></td>
+    <td><%= eval_by_akademic_sv.p3 %></td>
+    <td><%= eval_by_akademic_sv.p4 %></td>
+    <td><%= eval_by_akademic_sv.p5 %></td>
+    <td><%= eval_by_akademic_sv.a1 %></td>
+    <td><%= eval_by_akademic_sv.a2 %></td>
+    <td><%= eval_by_akademic_sv.a3 %></td>
+    <td><%= eval_by_akademic_sv.a4 %></td>
+    <td><%= eval_by_akademic_sv.a5 %></td>
+    <td><%= eval_by_akademic_sv.a6 %></td>
+    <td><%= eval_by_akademic_sv.a7 %></td>
+    <td><%= eval_by_akademic_sv.a8 %></td>
+    <td><%= eval_by_akademic_sv.a9 %></td>
+    <td><%= eval_by_akademic_sv.l1 %></td>
+    <td><%= eval_by_akademic_sv.a11 %></td>
+    <td><%= eval_by_akademic_sv.l2 %></td>
+    <td><%= eval_by_akademic_sv.r1 %></td>
+    <td><%= eval_by_akademic_sv.r2 %></td>
+    <td><%= link_to 'Show', eval_by_akademic_sv %></td>
+    <td><%= link_to 'Edit', edit_eval_by_akademic_sv_path(eval_by_akademic_sv) %></td>
+    <td><%= link_to 'Destroy', eval_by_akademic_sv, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Eval by akademic sv', new_eval_by_akademic_sv_path %>

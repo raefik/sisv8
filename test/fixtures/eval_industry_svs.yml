@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  stud_name: MyString
+  stud_id: MyString
+  sv_name: MyString
+  p1: MyString
+
+two:
+  stud_name: MyString
+  stud_id: MyString
+  sv_name: MyString
+  p1: MyString

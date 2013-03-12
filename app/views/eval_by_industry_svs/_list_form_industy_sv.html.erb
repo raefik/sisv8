@@ -1,0 +1,71 @@
+<table>
+  <tr>
+    <th>Stud name</th>
+    <th>Stud</th>
+    <th>Sv name</th>
+    <th>P1</th>
+    <th>P2</th>
+    <th>P3</th>
+    <th>P4</th>
+    <th>P5</th>
+    <th>A1</th>
+    <th>A2</th>
+    <th>A3</th>
+    <th>A4</th>
+    <th>A5</th>
+    <th>A6</th>
+    <th>A7</th>
+    <th>A8</th>
+    <th>A9</th>
+    <th>A10</th>
+    <th>A11</th>
+    <th>A12</th>
+    <th>A13</th>
+    <th>A14</th>
+    <th>A15</th>
+    <th>A16</th>
+    <th>A17</th>
+    <th>A18</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @eval_by_industry_svs.each do |eval_by_industry_sv| %>
+  <tr>
+    <td><%= eval_by_industry_sv.stud_name %></td>
+    <td><%= eval_by_industry_sv.stud_id %></td>
+    <td><%= eval_by_industry_sv.sv_name %></td>
+    <td><%= eval_by_industry_sv.p1 %></td>
+    <td><%= eval_by_industry_sv.p2 %></td>
+    <td><%= eval_by_industry_sv.p3 %></td>
+    <td><%= eval_by_industry_sv.p4 %></td>
+    <td><%= eval_by_industry_sv.p5 %></td>
+    <td><%= eval_by_industry_sv.a1 %></td>
+    <td><%= eval_by_industry_sv.a2 %></td>
+    <td><%= eval_by_industry_sv.a3 %></td>
+    <td><%= eval_by_industry_sv.a4 %></td>
+    <td><%= eval_by_industry_sv.a5 %></td>
+    <td><%= eval_by_industry_sv.a6 %></td>
+    <td><%= eval_by_industry_sv.a7 %></td>
+    <td><%= eval_by_industry_sv.a8 %></td>
+    <td><%= eval_by_industry_sv.a9 %></td>
+    <td><%= eval_by_industry_sv.a10 %></td>
+    <td><%= eval_by_industry_sv.a11 %></td>
+    <td><%= eval_by_industry_sv.a12 %></td>
+    <td><%= eval_by_industry_sv.a13 %></td>
+    <td><%= eval_by_industry_sv.a14 %></td>
+    <td><%= eval_by_industry_sv.a15 %></td>
+    <td><%= eval_by_industry_sv.a16 %></td>
+    <td><%= eval_by_industry_sv.a17 %></td>
+    <td><%= eval_by_industry_sv.a18 %></td>
+    <td><%= link_to 'Show', eval_by_industry_sv %></td>
+    <td><%= link_to 'Edit', edit_eval_by_industry_sv_path(eval_by_industry_sv) %></td>
+    <td><%= link_to 'Destroy', eval_by_industry_sv, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Eval by industry sv', new_eval_by_industry_sv_path %>

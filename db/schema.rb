@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120927011150) do
+ActiveRecord::Schema.define(:version => 20130306185030) do
 
   create_table "action_statuses", :force => true do |t|
     t.string   "name"
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(:version => 20120927011150) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "adv_id"
+  end
+
+  create_table "buttons", :force => true do |t|
+    t.string   "name"
+    t.string   "gender"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "c_skills", :force => true do |t|
@@ -182,6 +189,97 @@ ActiveRecord::Schema.define(:version => 20120927011150) do
     t.string   "title"
   end
 
+  create_table "eval_by_akademic_svs", :force => true do |t|
+    t.string   "stud_name"
+    t.string   "stud_id"
+    t.string   "sv_name"
+    t.string   "p1"
+    t.string   "p2"
+    t.string   "p3"
+    t.string   "p4"
+    t.string   "p5"
+    t.string   "a1"
+    t.string   "a2"
+    t.string   "a3"
+    t.string   "a4"
+    t.string   "a5"
+    t.string   "a6"
+    t.string   "a7"
+    t.string   "a8"
+    t.string   "a9"
+    t.string   "l1"
+    t.string   "a11"
+    t.string   "l2"
+    t.string   "r1"
+    t.string   "r2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "r3"
+    t.string   "r4"
+  end
+
+  create_table "eval_by_industry_svs", :force => true do |t|
+    t.string   "stud_name"
+    t.string   "stud_id"
+    t.string   "sv_name"
+    t.string   "p1"
+    t.string   "p2"
+    t.string   "p3"
+    t.string   "p4"
+    t.string   "p5"
+    t.string   "a1"
+    t.string   "a2"
+    t.string   "a3"
+    t.string   "a4"
+    t.string   "a5"
+    t.string   "a6"
+    t.string   "a7"
+    t.string   "a8"
+    t.string   "a9"
+    t.string   "a10"
+    t.string   "a11"
+    t.string   "a12"
+    t.string   "a13"
+    t.string   "a14"
+    t.string   "a15"
+    t.string   "a16"
+    t.string   "a17"
+    t.string   "a18"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "eval_industry_svs", :force => true do |t|
+    t.string   "stud_name"
+    t.string   "stud_id"
+    t.string   "sv_name"
+    t.string   "p1"
+    t.string   "p2"
+    t.string   "p3"
+    t.string   "p4"
+    t.string   "p5"
+    t.string   "a1"
+    t.string   "a2"
+    t.string   "a3"
+    t.string   "a4"
+    t.string   "a5"
+    t.string   "a6"
+    t.string   "a7"
+    t.string   "a8"
+    t.string   "a9"
+    t.string   "a10"
+    t.string   "a11"
+    t.string   "a12"
+    t.string   "a13"
+    t.string   "a14"
+    t.string   "a15"
+    t.string   "a16"
+    t.string   "a17"
+    t.string   "a18"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "faculties", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -234,6 +332,12 @@ ActiveRecord::Schema.define(:version => 20120927011150) do
     t.string   "name"
     t.string   "cawangan"
     t.integer  "state_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "language_opts", :force => true do |t|
+    t.string   "languade"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -312,23 +416,6 @@ ActiveRecord::Schema.define(:version => 20120927011150) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "products", :force => true do |t|
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
-  end
-
-  create_table "profile_pics", :force => true do |t|
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
   end
 
   create_table "prog_codes", :force => true do |t|
@@ -665,7 +752,7 @@ ActiveRecord::Schema.define(:version => 20120927011150) do
   end
 
   create_table "stud_languages", :force => true do |t|
-    t.string   "language_id"
+    t.string   "language"
     t.integer  "spoken_id"
     t.string   "written_id"
     t.integer  "user_id"

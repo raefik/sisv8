@@ -1,0 +1,2 @@
+module EvalIndustrySvsHelper
+end
