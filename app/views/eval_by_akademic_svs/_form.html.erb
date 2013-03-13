@@ -10,25 +10,29 @@
       </ul>
     </div>
   <% end %>
-
- <table>
- <tr>
-    <td><%= f.label :stud_name ,"Student Name:"%>:</td>
-    <td><%= f.text_field :stud_name %></td>
-</tr><tr>
-   <td> <%= f.label :stud_id,"Student Id:" %>:</td>
-   <td> <%= f.text_field :stud_id %></td>
-  </tr><tr>
-    <td><%= f.label :sv_name ,"Supervisor Name:"%>:</td>
-    <td><%= f.text_field :sv_name %></td>
- </tr>
- </table>
- <br/>
+<div class="widget">
+	<div class="header"><span><span class="ico gray window"></span> Evaluation By Academic Supervisor </span> </div> 
+	<div class="content">
+		<div class="section" >
+			<%= f.label :stud_name ,"Student Name:"%>
+		</div>
+		<div><%= f.text_field :stud_name %></div>
+		<div class="section" >
+			<%= f.label :stud_id,"Student Id:" %>
+		</div>
+		<div><%= f.text_field :stud_id %></div>
+		<div class="section" >
+			<%= f.label :sv_name ,"Supervisor Name:"%>
+		</div>
+		<div><%= f.text_field :sv_name %></div>
+ <br/> <br/>
+ 
  <table border="1" width="900">
  <tr><th>No</th><th>Presentation</th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
  <tr>
     <td>1</td>
     <td><%= f.label :p1 ,"The student is well prepared for the  presentation"%></td>
+    <div align="center" style="display: none;"><%= f.radio_button 'p1', "1", :checked => true, :type => 'hidden'%></div>
     <td><div align="center"><%= f.radio_button :p1 ,"1", :id=>"p1_1"%></div></td>
 	<td><div align="center"><%= f.radio_button :p1 ,"2", :id=>"p1_2"%></div></td>
 	<td><div align="center"><%= f.radio_button :p1 ,"3", :id=>"p1_3"%></div></td>
@@ -216,6 +220,7 @@
  </tr>
  </table>
  <br/>
-    <%= f.submit "Submit Form" ,:id=>"frm_submit"%>
- 
+    <%= f.submit "Submit Form" ,:id=>"frm_submit", :class => "uibutton loading"%>
+	</div>
+</div> 
 <% end %>

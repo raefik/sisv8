@@ -1,226 +1,228 @@
-<%= form_for(@eval_by_industry_sv) do |f| %>
-  <% if @eval_by_industry_sv.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@eval_by_industry_sv.errors.count, "error") %> prohibited this eval_by_industry_sv from being saved:</h2>
 
-      <ul>
-      <% @eval_by_industry_sv.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for(@eval_by_industry_sv) do |f| %>
+	<% if @eval_by_industry_sv.errors.any? %>
+    <div id="error_explanation">
+    	<h2><%= pluralize(@eval_by_industry_sv.errors.count, "error") %> prohibited this eval_by_industry_sv from being saved:</h2>
+
+    	<ul>
+    		<% @eval_by_industry_sv.errors.full_messages.each do |msg| %>
+    			<li><%= msg %></li>
+    		<% end %>
+    	</ul>
     </div>
-  <% end %>
-  
-<table>
-<tr> 
-     <td> <%= f.label :stud_name,"Student Name:"%></td>
-     <td><%= f.text_field :stud_name %></td>
- <tr/>
- <tr></tr>
- <tr>
-     <td><%= f.label :stud_id ,"Student Id:"%></td>
-     <td><%= f.text_field :stud_id %></td>
-  <tr/>
-  <tr></tr>  <tr>
-  
-     <td><%= f.label :sv_name, "Supervisor Name:"%></td>
-     <td><%= f.text_field :sv_name %></td>
-	
-  </tr></table>
-  <br/>
+<% end %>
+
+<div class="widget">
+	<div class="header"><span><span class="ico gray window"></span> Evaluation By Academic Supervisor </span> </div> 
+	<div class="content">
+		<div class="section" >
+			<%= f.label :stud_name,"Student Name:"%>
+		</div>
+		<div><%= f.text_field :stud_name %></div>
+		<div class="section" >
+			<%= f.label :stud_id ,"Student Id:"%>
+		</div>
+		<div><%= f.text_field :stud_id %></div>
+		<div class="section" >
+			<%= f.label :sv_name, "Supervisor Name:"%>
+		</div>
+		<div><%= f.text_field :sv_name %></div>	
+	<br/><br/>
   <table border="1" width="900">
   <tr>
      <th>No</th><th>Presentation</th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th>
- </tr>
-	 <tr>
-	 <td>1</td>
-     <td><%= f.label :p1,"The student is well prepared for the  presentation" %></td>
-     <td><div align="center"><%= f.radio_button :p1,"1" %></div></td>
-	 <td><div align="center"><%= f.radio_button :p1,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :p1,"3" %></div></td>
-	 <td><div align="center"><%= f.radio_button :p1,"4" %></div></td> 
-	 <td><div align="center"><%= f.radio_button :p1,"5" %></div></td>
-  </tr><tr>
-  <td>2</td>
-     <td><%= f.label :p2 ,"The visual aid is used effectively" %></td>
-     <td><div align="center"><%= f.radio_button :p2 ,"1" %></div></td>
-	 <td><div align="center"><%= f.radio_button :p2 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :p2 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :p2 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :p2 ,"5"%></div></td>
- </tr><tr>
-     <td>3</td>
-     <td><%= f.label :p3 ,"The clarity of voice and pronunciation is good and clear"%></td>
-     <td><div align="center"><%= f.radio_button :p3 ,"1"%></div></td>
-     <td><div align="center"><%= f.radio_button :p3 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :p3 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :p3 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :p3,"5" %></div></td>
-</tr><tr>
-     <td>4</td>
-     <td><%= f.label :p4 ,"The student makes eye contact and interact with audience"%></td>
-     <td><div align="center"><%= f.radio_button :p4 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :p4 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :p4 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :p4 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :p4,"5" %></div></td>
- </tr><tr>
-    <td>5</td>
-    <td> <%= f.label :p5 ,"The structure of presentation is well organized and interesting" %></td>
-     <td><div align="center"><%= f.radio_button :p5 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :p5 ,"2" %></div></td>
-     <td><div align="center"><%= f.radio_button :p5 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :p5 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :p5 ,"5"%></div></td>
-  </tr>
-  </table><br/><br/><br/>
-  <table border="1" width="900"><tr><th>No</th><th>Industrial Training Assessment</th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
-  <tr>
-    <td>1</td>
-    <td> <%= f.label :a1 ,"The student is a fast learner in absorbing new knowledge and concept"%></td>
-     <td><div align="center"><%= f.radio_button :a1 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a1 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a1 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a1 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a1,"5" %></div></td>
-  </tr><tr>
-     <td>2</td>
-     <td><%= f.label :a2 ,"The student is able to think critically to resolve issues"%></td>
-     <td><div align="center"><%= f.radio_button :a2 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a2 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a2 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a2 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a2 ,"5"%></div></td>
-   </tr><tr>
-     <td>3</td>
-     <td><%= f.label :a3 ,"The student is able to gain depth of concept and process"%></td>
-     <td><div align="center"><%= f.radio_button :a3 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a3 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a3 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a3 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a3,"5" %></div></td>
- </tr><tr>
-     <td>4</td>
-     <td><%= f.label :a4 ,"The student is able to adapt in overall work environment"%></td>
-     <td><div align="center"><%= f.radio_button :a4 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a4 ,"2" %></div></td>
-     <td><div align="center"><%= f.radio_button :a4 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a4 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a4,"5" %></div></td>
- </tr><tr>
-     <td>5</td>
-     <td><%= f.label :a5 ,"The student is able to adapt in system or processes of the work place"%></td>
-     <td><div align="center"><%= f.radio_button :a5 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a5 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a5 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a5 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a5 ,"5"%></div></td>
- </tr><tr>
-    <td>6</td>
-     <td><%= f.label :a6 ,"The student communicate well with supervisor and management team "%></td>
-    <td> <div align="center"><%= f.radio_button :a6 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a6 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a6 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a6 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a6 ,"5"%></div></td>
-  </tr><tr>
-    <td>7</td>
-    <td> <%= f.label :a7 ,"The student interact well with colleagues and subordinates"%></td>
- <td><%= f.radio_button :a7 ,"1"%></td>
-	 <td><div align="center"><%= f.radio_button :a7 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a7 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a7 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a7,"5" %></div></td>
-  </tr><tr>
-  <td>8</td>
-     <td><%= f.label :a8 ,"The student demonstrate good responsibility towards tasks and duties assigned"%></td>
-      <td><div align="center"><%= f.radio_button :a8 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a8 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a8 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a8 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a8,"5" %></div></td>
- </tr><tr>
- <td>9</td>
-     <td><%= f.label :a9 ,"The student takes improvement action in the event of failure of project achievement"%></td>
-     <td><div align="center"><%= f.radio_button :a9 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a9 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a9 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a9 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a9 ,"5"%></div></td>
- </tr><tr>
- <td>10</td>
-     <td><%= f.label :a10 ,"The student takes great initiative to gain new ideas and knowledge on project given"%></td>
-     <td><div align="center"><%= f.radio_button :a10 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a10 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a10 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a10 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a10 ,"5"%></div></td>
-  </tr><tr>
-  <td>11</td>
-     <td><%= f.label :a11 ,"The student complies with the rules and regulations of the company"%></td>
-     <td><div align="center"><%= f.radio_button :a11 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a11 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a11 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a11 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a11 ,"5"%></div></td>
-  </tr><tr>
-  <td>12</td>
-     <td><%= f.label :a12 ,"The student has shown good level of confidence in presenting the ideas towards the project given"%></td>
-     <td><div align="center"><%= f.radio_button :a12 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a12 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a12 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a12 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a12,"5" %></div></td>
-</tr><tr>
-<td>13</td>  
-     <td><%= f.label :a13 ,"The student is proficient in speaking in English/Malay"%></td>
-     <td><div align="center"><%= f.radio_button :a13 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a13 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a13 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a13 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a13 ,"5"%></div></td>
-  </tr><tr>
-  <td>14</td>
-     <td><%= f.label :a14 ,"The student is proficient in writing in English/Malay"%></td>
-     <td><div align="center"><%= f.radio_button :a14 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a14 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a14 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a14 ,"4"%></div></td>
-     <td><div align="center"><%= f.radio_button :a14 ,"5" %></div></td>
-  </tr><tr>
-  <td>15</td>
-     <td><%= f.label :a15 ,"The student demonstrate good attendance record"%></td>
-     <td><div align="center"><%= f.radio_button :a15 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a15 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a15,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a15 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a15 ,"5"%></div></td>
-  </tr><tr>
-  <td>16</td>
-     <td><%= f.label :a16 ,"The student is able to work independently"%></td>
-     <td><div align="center"><%= f.radio_button :a16 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a16 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a16 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a16 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a16 ,"5"%></div></td>
-  </tr><tr>
-  <td>17</td>
-     <td><%= f.label :a17 ,"The student is punctual in attending meeting or company event"%></td>
-     <td><div align="center"><%= f.radio_button :a17 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a17 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a17 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a17 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a17 ,"5"%></div></td>
-  </tr><tr>
-  <td>18</td>
-     <td><%= f.label :a18 ,"The student is able to complete task given within dateline"%></td>
-     <td><div align="center"><%= f.radio_button :a18 ,"1"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a18 ,"2" %></div></td>
-	 <td><div align="center"><%= f.radio_button :a18 ,"3"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a18 ,"4"%></div></td>
-	 <td><div align="center"><%= f.radio_button :a18 ,"5"%></div></td>
-  </tr>
+	 </tr>
+		 <tr>
+		 <td>1</td>
+	     <td><%= f.label :p1,"The student is well prepared for the  presentation" %></td>
+	     <div align="center" style="display: none;"><%= f.radio_button 'p1', "1", :checked => true, :type => 'hidden'%></div>
+	     <td><div align="center"><%= f.radio_button 'p1', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'p1', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'p1', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'p1', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'p1', "5"%></div></td>
+	  </tr><tr>
+	  <td>2</td>
+	     <td><%= f.label :p2 ,"The visual aid is used effectively" %></td>
+	     <td><div align="center"><%= f.radio_button 'p2', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'p2', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'p2', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'p2', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'p2', "5"%></div></td>
+	 </tr><tr>
+	     <td>3</td>
+	     <td><%= f.label :p3 ,"The clarity of voice and pronunciation is good and clear"%></td>
+	     <td><div align="center"><%= f.radio_button :p3 ,"1", :class => "ck"%></div></td>
+	     <td><div align="center"><%= f.radio_button :p3 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :p3 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :p3 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :p3,"5" %></div></td>
+	</tr><tr>
+	     <td>4</td>
+	     <td><%= f.label :p4 ,"The student makes eye contact and interact with audience"%></td>
+	     <td><div align="center"><%= f.radio_button :p4 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :p4 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :p4 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :p4 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :p4,"5" %></div></td>
+	 </tr><tr>
+	    <td>5</td>
+	    <td> <%= f.label :p5 ,"The structure of presentation is well organized and interesting" %></td>
+	     <td><div align="center"><%= f.radio_button :p5 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :p5 ,"2" %></div></td>
+	     <td><div align="center"><%= f.radio_button :p5 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :p5 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :p5 ,"5"%></div></td>
+	  </tr>
+	  </table><br/><br/><br/>
+	  <table border="1" width="900"><tr><th>No</th><th>Industrial Training Assessment</th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
+	  <tr>
+	    <td>1</td>
+	    <td> <%= f.label :a1 ,"The student is a fast learner in absorbing new knowledge and concept"%></td>
+	     <td><div align="center"><%= f.radio_button :a1 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a1 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a1 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a1 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a1,"5" %></div></td>
+	  </tr><tr>
+	     <td>2</td>
+	     <td><%= f.label :a2 ,"The student is able to think critically to resolve issues"%></td>
+	     <td><div align="center"><%= f.radio_button :a2 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a2 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a2 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a2 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a2 ,"5"%></div></td>
+	   </tr><tr>
+	     <td>3</td>
+	     <td><%= f.label :a3 ,"The student is able to gain depth of concept and process"%></td>
+	     <td><div align="center"><%= f.radio_button :a3 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a3 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a3 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a3 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a3,"5" %></div></td>
+	 </tr><tr>
+	     <td>4</td>
+	     <td><%= f.label :a4 ,"The student is able to adapt in overall work environment"%></td>
+	     <td><div align="center"><%= f.radio_button :a4 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a4 ,"2" %></div></td>
+	     <td><div align="center"><%= f.radio_button :a4 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a4 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a4,"5" %></div></td>
+	 </tr><tr>
+	     <td>5</td>
+	     <td><%= f.label :a5 ,"The student is able to adapt in system or processes of the work place"%></td>
+	     <td><div align="center"><%= f.radio_button :a5 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a5 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a5 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a5 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a5 ,"5"%></div></td>
+	 </tr><tr>
+	    <td>6</td>
+	     <td><%= f.label :a6 ,"The student communicate well with supervisor and management team "%></td>
+	    <td> <div align="center"><%= f.radio_button :a6 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a6 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a6 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a6 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a6 ,"5"%></div></td>
+	  </tr><tr>
+	    <td>7</td>
+	    <td> <%= f.label :a7 ,"The student interact well with colleagues and subordinates"%></td>
+	 <td><%= f.radio_button :a7 ,"1"%></td>
+		 <td><div align="center"><%= f.radio_button :a7 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a7 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a7 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a7,"5" %></div></td>
+	  </tr><tr>
+	  <td>8</td>
+	     <td><%= f.label :a8 ,"The student demonstrate good responsibility towards tasks and duties assigned"%></td>
+	      <td><div align="center"><%= f.radio_button :a8 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a8 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a8 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a8 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a8,"5" %></div></td>
+	 </tr><tr>
+	 <td>9</td>
+	     <td><%= f.label :a9 ,"The student takes improvement action in the event of failure of project achievement"%></td>
+	     <td><div align="center"><%= f.radio_button :a9 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a9 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a9 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a9 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a9 ,"5"%></div></td>
+	 </tr><tr>
+	 <td>10</td>
+	     <td><%= f.label :a10 ,"The student takes great initiative to gain new ideas and knowledge on project given"%></td>
+	     <td><div align="center"><%= f.radio_button :a10 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a10 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a10 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a10 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a10 ,"5"%></div></td>
+	  </tr><tr>
+	  <td>11</td>
+	     <td><%= f.label :a11 ,"The student complies with the rules and regulations of the company"%></td>
+	     <td><div align="center"><%= f.radio_button :a11 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a11 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a11 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a11 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a11 ,"5"%></div></td>
+	  </tr><tr>
+	  <td>12</td>
+	     <td><%= f.label :a12 ,"The student has shown good level of confidence in presenting the ideas towards the project given"%></td>
+	     <td><div align="center"><%= f.radio_button :a12 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a12 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a12 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a12 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a12,"5" %></div></td>
+	</tr><tr>
+	<td>13</td>  
+	     <td><%= f.label :a13 ,"The student is proficient in speaking in English/Malay"%></td>
+	     <td><div align="center"><%= f.radio_button :a13 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a13 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a13 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a13 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a13 ,"5"%></div></td>
+	  </tr><tr>
+	  <td>14</td>
+	     <td><%= f.label :a14 ,"The student is proficient in writing in English/Malay"%></td>
+	     <td><div align="center"><%= f.radio_button :a14 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a14 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a14 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a14 ,"4"%></div></td>
+	     <td><div align="center"><%= f.radio_button :a14 ,"5" %></div></td>
+	  </tr><tr>
+	  <td>15</td>
+	     <td><%= f.label :a15 ,"The student demonstrate good attendance record"%></td>
+	     <td><div align="center"><%= f.radio_button :a15 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a15 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a15,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a15 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a15 ,"5"%></div></td>
+	  </tr><tr>
+	  <td>16</td>
+	     <td><%= f.label :a16 ,"The student is able to work independently"%></td>
+	     <td><div align="center"><%= f.radio_button :a16 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a16 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a16 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a16 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a16 ,"5"%></div></td>
+	  </tr><tr>
+	  <td>17</td>
+	     <td><%= f.label :a17 ,"The student is punctual in attending meeting or company event"%></td>
+	     <td><div align="center"><%= f.radio_button :a17 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a17 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a17 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a17 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a17 ,"5"%></div></td>
+	  </tr><tr>
+	  <td>18</td>
+	     <td><%= f.label :a18 ,"The student is able to complete task given within dateline"%></td>
+	     <td><div align="center"><%= f.radio_button :a18 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a18 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a18 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a18 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a18 ,"5"%></div></td>
+	  </tr>
  </table><br/>
-  <%= f.submit "Submit Form"%>
-
+   <%= f.submit "Submit Form", :class => "uibutton loading"%>
+ 	</div>
+</div>
 <% end %>
