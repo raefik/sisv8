@@ -11,5 +11,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_stud_description_path(@stud_description) %> |
-<%= link_to 'Back', stud_descriptions_path %>
+<%= link_to 'Edit', edit_stud_description_path(@stud_description), :class => 'uibutton loading'%> |
+	<%= link_to 'Back to Profile', user_path(current_user), :class => 'uibutton loading', :title => 'Loading' %>
