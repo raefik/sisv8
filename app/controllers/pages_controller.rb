@@ -64,6 +64,13 @@ class PagesController < ApplicationController
   def student_all
   @title="students"
   @data_student=StudProfile.search(params[:search])
+  if (params[:act].nil? && params[:act] == "searching")
+  	@act = "upd"
+  		@stud = StudProfile.find_by_matric_no(params[:search])
+	    @staffid = params[:stud_profile][:staff_id].to_i
+	  	@stud.staff_id = @staffid
+	  	@stud.save
+  end
   #@data_academic=Student.find_by_user_id("#{@data.user_id}")
   #@data_class=StudEdu.search(params[:search])
   #@data_class=StudEdu.find(:all,:conditions=>["student_class_id=?",params[:search]])
@@ -71,6 +78,19 @@ class PagesController < ApplicationController
   @student_all = StudProfile.includes(:staff,:user=>[:role,{:user_companies=>:company},:companies,:students]).all
   #@stud = UserCompany.includes(:company,:student,:user=>[:role,{:stud_profiles=>:staff},:staffs]).find(:all,:conditions=>["total =?",1])
   @stud = UserCompany.includes(:company,:student,:user=>[:role,{:stud_profiles=>:staff},:staffs]).find(:all,:conditions=>["total =?",1])
+  end
+  
+  def updatestudprofile
+  
+  	@stud = StudProfile.find_by_matric_no(params[:studid])
+  	@staffid = params[:staffid]
+  	if !@staffid.nil?
+  		@stud.staff_id = @staffid.to_i
+		@stud.save
+	end
+	if @stud.save
+		redirect_to '/search_student'
+	end
   end
 
    def staff

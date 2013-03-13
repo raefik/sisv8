@@ -177,6 +177,8 @@ SisV5::Application.routes.draw do
   resources :stud_skills
 
   resources :stud_references
+  
+  match "updatestudprof" => "pages#updatestudprofile"
 
   resources :stud_adds
 

@@ -9,6 +9,7 @@
 				<%= label_tag :search,"Enter Student No:"%>
 				<br/>
 				<%= text_field_tag :search,params[:search]%>
+				<%= hidden_field :act,:value => "searching"%>
 				<%= submit_tag "Search",:name=>nil%>
 			</p>
 			<%end%>
@@ -48,7 +49,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td><b>Academic Supervisor:</b></td><td><%unless f.staff_id.nil?%><%= f.staff.name%><%end%></td>
+					<td><b>Academic Supervisor:</b></td><td><%if f.staff_id? %><%= f.staff.name%><%end%></td>
 				</tr>
 				<%end%>
 			
@@ -57,15 +58,14 @@
 						<legend>
 							Action
 						</legend>
-						<%= form_for(@data_student) do |f| %>
-						<div class="field">
-							<%= f.label :staff_id ,"Academic Supervisor :" %>
-							<%= collection_select(:stud_profile,:staff_id,Staff.where(:staff_type_id=>3).all,:id,:name,:prompt=>"Please Select") %>
-						</div>
-						 <div align="right" class="actions">
-							<%= f.submit%>
-						</div>
-						<% end %>
+						<form>
+							<div class="field">
+								<label>Academic Supervisor :</label>
+								<input type="hidden" id="studid" value= '<%=@data_student[0].matric_no%>'/>
+								<%= collection_select(:stud_profile,:staff_id,Staff.where(:staff_type_id=>3).all,:id,:name,:prompt=>"Please Select") %>
+								<input type="button" value="Update Student Profile" id="updatesv"/>
+							</div>
+						</form>
 					</fieldset>
 				</tr>
 			</table>
@@ -107,12 +107,12 @@
 						</thead>
 						<tbody>
 						
-							<% i=0%>
+							<% @i=0%>
 
 							<%@stud.each do|f|%>
-							<% i+=1%>
+							<% @i+=1%>
 							<tr>
-								<td><%=i%>)</td>
+								<td><%=@i%>)</td>
 
 								<td><%=form_tag @data_student_path, :method=>'get' do%>
 								<%= hidden_field_tag :search,params[:search],:value=>StudProfile.find(:all,:conditions=>["user_id=?",f.user_id]).first.matric_no%>
@@ -131,15 +131,11 @@
 										 <%= f.action_status.name%>
 										
 								</td>								
-								<td> 
-								<%#if f.staff_id.nil?%>
-								<div class="field">
-									<%# collection_select(:stud_profile,:staff_id,Staff.where(:staff_type_id=>3).all,:id,:name,:prompt=>"Please Select") %>
-								</div>
-								
-								<%#else%>
-							<% unless StudProfile.find(:first,:conditions=>["user_id=?",f.user_id]).staff.name.nil? %><%= StudProfile.find(:first,:conditions=>["user_id=?",f.user_id]).staff.name %><%end%>
-								<%#end%> </td>
+								<td>
+								<%if !StudProfile.find_by_user_id(f.user_id).staff_id.nil? %> 
+								<%= StudProfile.find_by_user_id(f.user_id).staff.name %>
+								<%end%>
+								</td>
 							</tr>
 							<%end%>
 						</tbody>
@@ -148,3 +144,21 @@
 	</div>
 	</form>
 </div>
+<script type="text/javascript">
+	
+	$(document).ready(function () {
+		$("#updatesv").click(function (){
+			$.ajax({
+				type: "GET",
+				url: "updatestudprof",
+				data: { 
+					studid: $("#studid").val(),
+					staffid: $("#stud_profile_staff_id").val()
+				}
+			}).success(function( t ) {	
+				//alert("success");
+				window.location.reload();
+			});
+		});
+	});
+</script>

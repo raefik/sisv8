@@ -5,6 +5,12 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+end
+
 gem 'mysql2'
 #gem 'mongrel', '>= 1.2.0.pre2'
 gem 'gravatar_image_tag'
