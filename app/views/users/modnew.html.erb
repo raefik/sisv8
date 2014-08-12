@@ -1,0 +1,246 @@
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      // Smart Wizard       
+      $('#wizardvalidate').smartWizard({transitionEffect:'slideleft',onLeaveStep:leaveAStepCallback,onFinish:onFinishCallback,enableFinishButton:false});
+
+      function leaveAStepCallback(obj){
+        var step_num= obj.attr('rel');
+        return validateSteps(step_num);
+      }
+      
+      function onFinishCallback(){
+       if(validateAllSteps()){
+        $('form').submit();
+       }
+      }
+            
+    });
+     
+    function validateAllSteps(){
+       var isStepValid = true;
+       
+       if(validateStep1() == false){
+         isStepValid = false;
+         $('#wizardvalidate').smartWizard('setError',{stepnum:1,iserror:true});         
+       }else{
+         $('#wizardvalidate').smartWizard('setError',{stepnum:1,iserror:false});
+       }
+
+  // add more if you want to validateStep 2
+       if(validateStep2() == false){
+         isStepValid = false;
+         $('#wizardvalidate').smartWizard('setError',{stepnum:2,iserror:true});         
+       }else{
+         $('#wizardvalidate').smartWizard('setError',{stepnum:2,iserror:false});
+       }
+       
+       if(validateStep3() == false){
+         isStepValid = false;
+         $('#wizardvalidate').smartWizard('setError',{stepnum:3,iserror:true});         
+       }else{
+         $('#wizardvalidate').smartWizard('setError',{stepnum:3,iserror:false});
+       }
+       if(!isStepValid){
+          $('#wizardvalidate').smartWizard('showMessage','Please correct the errors in the steps and continue');
+       }
+       return isStepValid;
+    }   
+    
+    
+    function validateSteps(step){
+      var isStepValid = true;
+      // validate step 1
+      if(step == 1){
+        if(validateStep1() == false ){
+          isStepValid = false; 
+          $('#wizardvalidate').smartWizard('showMessage','Please correct the errors in step'+step+ ' and click next.');
+          $('#wizardvalidate').smartWizard('setError',{stepnum:step,iserror:true});         
+        }else{
+          $('#wizardvalidate').smartWizard('setError',{stepnum:step,iserror:false});
+        }
+      }
+
+      // validate step 2
+      if(step == 2){
+        if(validateStep2() == false ){
+          isStepValid = false; 
+          $('#wizardvalidate').smartWizard('showMessage','Please correct the errors in step'+step+ ' and click next.');
+          $('#wizardvalidate').smartWizard('setError',{stepnum:step,iserror:true});         
+        }else{
+          $('#wizardvalidate').smartWizard('setError',{stepnum:step,iserror:false});
+        }
+      }
+      
+      
+      // validate step3
+      if(step == 3){
+        if(validateStep3() == false ){
+          isStepValid = false; 
+          $('#wizardvalidate').smartWizard('showMessage','Please correct the errors in step'+step+ ' and click next.');
+          $('#wizardvalidate').smartWizard('setError',{stepnum:step,iserror:true});         
+        }else{
+          $('#wizardvalidate').smartWizard('setError',{stepnum:step,iserror:false});
+        }
+      }
+      
+      return isStepValid;
+    }
+    
+    function validateStep1(){
+       var isValid = true; 
+       // Validate Username
+       var un = $('#username').val();
+       if(!un && un.length <= 0){
+         isValid = false;
+         $('#msg_username').html('Please fill username').show();
+       }else{
+         $('#msg_username').html('').hide();
+       }
+       
+       // validate password
+       var pw = $('#password').val();
+       if(!pw && pw.length <= 0){
+         isValid = false;
+         $('#msg_password').html('Please fill password').show();         
+       }else{
+         $('#msg_password').html('').hide();
+       }
+       
+       // validate confirm password
+       var cpw = $('#cpassword').val();
+       if(!cpw && cpw.length <= 0){
+         isValid = false;
+         $('#msg_cpassword').html('Please fill confirm password').show();         
+       }else{
+         $('#msg_cpassword').html('').hide();
+       }  
+       
+       // validate password match
+       if(pw && pw.length > 0 && cpw && cpw.length > 0){
+         if(pw != cpw){
+           isValid = false;
+           $('#msg_cpassword').html('Password mismatch').show();            
+         }else{
+           $('#msg_cpassword').html('').hide();
+         }
+       }
+       return isValid;
+    }
+
+    function validateStep2(){
+      var isValid = true;    
+      //validate email  email
+      var email = $('#email').val();
+       if(email && email.length > 0){
+         if(!isValidEmailAddress(email)){
+           isValid = false;
+           $('#msg_email').html('Email is invalid').show();           
+         }else{
+          $('#msg_email').html('').hide();
+         }
+       }else{
+         isValid = false;
+         $('#msg_email').html('Please enter email').show();
+       }       
+      return isValid;
+    }
+    
+    // Email Validation
+    function isValidEmailAddress(emailAddress) {
+      var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+      return pattern.test(emailAddress);
+    } 
+    
+    
+</script>
+        <div class="clear"></div>
+
+	<div class="widget">
+		<div class="header"><span><span class="ico gray wizard"></span>  New Company registration sign up  </span>
+                </div>
+		<div class="content">
+			<div class="boxtitle"><span class="ico gray audio_knob"></span>            
+				<%if @admin==true then%>
+					Enter Staff Details
+				<%else%>
+					Enter Your Details
+				<%end%>
+	  		</div>
+			<%= form_for(@user) do |f| %>
+				<%= render "shared/error_messages", :object => f.object %>
+				<input type='hidden' name="issubmit" value="1">
+			<!-- wizard -->
+			<div id="wizardvalidate" class="swMain">
+  			<ul>
+  		  		<li><a href="#step-1">
+  					<label class="stepNumber">1</label>
+  					<span class="stepDesc">
+  					   Account <br />
+  					   <small>account details</small>
+  					</span>
+  			    	</a></li>
+  		  		<li><a href="#step-2">
+  					<label class="stepNumber">2</label>
+  					<span class="stepDesc">
+  					   Contact <br />
+  					   <small>Contact details</small>
+  					</span>
+  				</a></li>
+  	  		</ul>
+
+	  		<div id="step-1" style="width:100%;">	
+            <h2 class="StepTitle">Step 1: Account Details</h2>
+                                    <div class="section last">
+                                    <label> Login  Account  <small>Signup details</small></label>
+	                                    <div>
+	                                    <%= f.text_field :name,:placeholder=>"Username",:class=>"medium",:id=>"username"%>
+	                                    <label id="msg_username" class="red"></label>
+	                                    <span class="f_help"> cCompany name login to register. </span> 
+	                                    </div>
+	                                    <div>	
+	                                    <%= f.password_field :password,:placeholder=>"Password",:class=>"medium",:id=>"password"%>
+	                                    <label id="msg_password" class="red"></label>
+	                                    </div>
+	                                    <div>
+	                                    <%= f.password_field :password_confirmation,:placeholder=>"Confirm Password",:class=>"medium",:id=>"cpassword" %>
+	                                    <label id="msg_cpassword" class="red"></label>
+	                                    </div>
+	                                    
+                                    </div>
+			</div>
+			<div id="step-2" style="width:100%;">
+			<h2 class="StepTitle">Step 2: Contact Details</h2>
+                                    <div class="section last">
+                                    	<label> Contact Detail <small></small></label>
+	                                    <div>
+                                      <%= f.text_field :email,:placeholder=>"Email",:class=>"medium",:id=>"email"  %><label id="msg_email" class="red"></label>
+                                      </div>  
+	                                    <div>
+	                                    	<%=collection_select(:user,:role_id,Role.where(:name => "moderator"),:id,:name,:class=>"medium")%>
+	                                    </div>	
+                                      <div>           
+                                        <%if @admin==true then%>
+                                          <%= f.submit "Save"%>
+                                        <%else%>
+                                          <%= f.submit "Sign up", :class => 'uibutton loading', :title => 'Saving' %>
+                                        <%end%>
+                                      </div>
+			
+			</div> <!-- end wizard -->
+
+
+
+		</div>
+		<% end %>
+		<%if @admin==true%>
+		<%=link_to pensyarah_path%>
+		<%end%>
+		
+	</div>
+</div>
+	<div class="clear"></div>
+
+<!-- </div> <!-- inner -->
+</div> <!--content--> 
+<br />

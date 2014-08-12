@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Bil</Data></Cell>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">No Kad Pengenalan</Data></Cell>
+        <Cell><Data ss:Type="String">No Pelajar</Data></Cell>
+        <Cell><Data ss:Type="String">Sem</Data></Cell>
+        <Cell><Data ss:Type="String">Status Latihan Industri</Data></Cell>
+        <Cell><Data ss:Type="String">Tempoh Latihan Industri(Bulan)</Data></Cell>
+        <Cell><Data ss:Type="String">Keputusan Latihan Industri</Data></Cell>
+        <Cell><Data ss:Type="String">Nama Syarikat</Data></Cell>
+        <Cell><Data ss:Type="String">Tajuk Laporan Latihan Industri</Data></Cell>
+        <Cell><Data ss:Type="String">Penyelia Industri</Data></Cell>
+        <Cell><Data ss:Type="String">Penyelia (Uitm)</Data></Cell>
+        <Cell><Data ss:Type="String">Sektor</Data></Cell>
+        <Cell><Data ss:Type="String">Kategori Industri</Data></Cell>
+        <Cell><Data ss:Type="String">Elaun Syarikat</Data></Cell>
+      </Row>
+      <%i=0%>
+    <% @users.each do |user| %>
+    	<%i+=1%>
+      <Row>
+        <Cell><Data ss:Type="Number"><%=i%></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.fullname %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= StudProfile.find_by_user_id(user.id).nric %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= StudProfile.find_by_user_id(user.id).matric_no %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= StudEdu.find_by_user_id(user.id).current_sem %></Data></Cell>
+        <Cell><Data ss:Type="String">Aktif</Data></Cell>
+        <Cell><Data ss:Type="String">
+	        <%if StudInternship.find_by_user_id(user.id).nil? %>
+	          	-
+	        <%else%>
+	        	<%= StudInternship.find_by_user_id(user.id).duration %>  	
+	        <%end%>
+        </Data></Cell>
+        <Cell><Data ss:Type="String"> - </Data></Cell>
+        <Cell><Data ss:Type="String"> <%if UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).nil?%>
+					<%else%>
+					<%= Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).company_id).name %> <br/>
+					<%= CompProfile.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).company_id).user.id).city %><br/>
+			<%= CompProfile.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).company_id).user.id).official_no %><br/>
+			<%= CompProfile.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).company_id).user.id).email %><br/>
+			<%= CompProfile.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).company_id).user.id).supervisor_contact %><br/>
+					<%end%>
+					 </Data></Cell>
+        <Cell><Data ss:Type="String">Tajuk Laporan Latihan Industri</Data></Cell>
+        
+        <Cell><Data ss:Type="String"><!--sv-->
+        <%if UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).nil?%>
+		<%else%>
+        	<%= CompProfile.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).company_id).user.id).supervisor %>
+        <%end%>
+        </Data></Cell>
+        
+        <Cell><Data ss:Type="String"><!--sv-->
+        <%if StudProfile.find_by_user_id(user.id).staff_id == nil %>
+					<%else%>
+						<%= Staff.find_by_id(StudProfile.find_by_user_id(user.id).staff_id).name %><br/>
+						<%= Staff.find_by_id(StudProfile.find_by_user_id(user.id).staff_id).hp_no %><br/>
+				<%end%>
+        </Data></Cell>
+        
+        <Cell><Data ss:Type="String"><!--sektor-->
+	        <%if UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).nil?%>
+			<%else%>
+	        	<%= CompProfile.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).company_id).user.id).sector.name %>
+	        <%end%>
+        </Data></Cell>
+        
+        <Cell><Data ss:Type="String"><!--industry-->
+	        <%if UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).nil?%>
+			<%else%>
+	        	<%= CompProfile.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).company_id).user.id).industry.name %>
+	        <%end%>
+        </Data></Cell>
+        
+        <Cell><Data ss:Type="String"><!--elaun-->
+	        <%if UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).nil?%>
+			<%else%>
+	        	<%= CompAdv.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).company_id).user.id).value_allowance %>
+	        <%end%>
+        </Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

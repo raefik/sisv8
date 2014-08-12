@@ -1,13 +1,165 @@
+<link rel="stylesheet" href="/assets/extra/font-awesome.min.css">
+<script src="/assets/mylib/jquery.slides.min.js"></script>
+<style>
+	.company{
+		background-color: #fffcfc;
+		width: 100px;
+		padding: 2px 2px 2px 2px;
+		margin: 2px 2px 2px 2px; 
+		float: left;
+		text-transform: uppercase;
+		font-size: 80%;
+		white-space:nowrap; 
+		overflow:hidden; 
+		border: 1px solid #EEBD8F;
+		text-overflow:ellipsis;
+	}
+	.oneTwo {
+		margin: 1px;
+	}
+	.info{
+		background-color: #fffcfc;
+		width: auto;
+		padding: 2px 10px 2px 10px;
+		margin: 2px 2px 2px 2px; 
+		border: 1px solid #c7c7c7;
+		-moz-border-radius: 2px 2px 2px 2px;
+		-webkit-border-radius:8px 8px 8px 8px;
+		border-radius: 3px 3px 3px 3px;
+		font-size: 90%;
+	}
+	td{ padding: 0px 5px}
+	.infoin{
+		float: left;
+	}
+	
+	h5{
+		margin-bottom: 6px;
+		line-height: 17px;
+	}
+	
+	body{font-size: 11px;}
+	.oneTwo{
+		text-align: justify;
+	}	
+	
+	
+	.container {
+        width: auto;
+    }
 
+
+
+    .navbar {
+      overflow: hidden
+    }
+
+
+	
+
+</style>
 <%if signed_in?%>
-					
 <%else%>
-			<h1>Smart Internship System (SIS)</h1>
-			<p>
-			This is the home page for the
-			<a href="http://railstutorial.org/">Smart Internship System</a>
-			sample application.
-			</p>
-			<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
-			<p></p>
-			<%end%>
+	
+<div class="clear"></div> 
+
+<div class="oneTwo " >
+	<h5>Newest Registered Companies</h5>
+	<% @company.each do |company| %>
+  <div class="company" align="center">
+    <%if Photo.find_by_user_id(company.user_id).nil? %>
+		<img class="profile" src="/assets/profilePlus.jpg" height="30px" />
+	<%else%>
+			<img class="profile" src="<%= Photo.find_by_user_id(company.user_id).image%>" height="30px"/>
+	<%end%></br><%= company.user.fullname %>
+  </div>
+  <% end %>
+</div>
+<div class="oneTwo" >
+	<h5> Info </h5>
+	<div class="info">
+		<table>
+			<tr>
+				<td valign="baseline">
+				<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="15px" />
+				</td>
+				<td>
+				<b>Pusat Kerjaya & Kaunseling</b> &nbsp 18/2/2014<hr/>
+			Program Interaksi Bersama Tan Sri Mahmood Bin Adam, Pengerusi Suruhanjaya Perkhidmatan Awam Malaysia
+				</td>
+			</tr>
+		</table>	
+	</div>
+	<div class="info">
+		<table>
+			<tr>
+				<td valign="baseline">
+				<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="15px" />
+				</td>
+				<td>
+				<b>Pusat Pengambilan Pelajar</b> &nbsp 15/2/2014<hr/>
+				Kepada yang berminat bolehlah email resume ke info@ungufxmedia.com Bersama Tan Sri Mahmood Bin Adam, Pengerusi Suruhanjaya Perkhidmatan Awam Malaysia Bersama Tan Sri Mahmood Bin Adam, Pengerusi Suruhanjaya Perkhidmatan Awam Malaysia
+				</td>
+			</tr>
+		</table>	
+	</div>
+	<div class="info">
+		<table>
+			<tr>
+				<td valign="baseline">
+				<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="15px" />
+				</td>
+				<td>
+				<b>Pusat Pengambilan Pelajar</b> &nbsp 15/2/2014<hr/>
+				Kepada yang berminat bolehlah a Tan Sri Mahmood Bin Adam, Pengerusi Suruhanjaya Perkhidmatan Awam Malaysia
+				</td>
+			</tr>
+		</table>	
+	</div>
+	<div class="info">
+		<table>
+			<tr>
+				<td valign="baseline">
+				<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="15px" />
+				</td>
+				<td>
+				<b>Pusat Kerjaya & Kaunseling</b> &nbsp 18/2/2014<hr/>
+			Program Interaksi Bersama Tan Sri Mahmood Bin Adam, Pengerusi Suruhanjaya Perkhidmatan Awam Malaysia
+				</td>
+			</tr>
+		</table>	
+	</div>
+</div>
+<div class="clear"></div>
+<br/><hr/><br/>
+
+<div class="box">
+
+
+<b>ADDRESS:</b><br/>
+Bangunan Budisiswa , HEP<br/>
+Universiti Teknologi MARA<br/>
+40450, Shah Alam, Selangor, Malaysia.<br/>
+<br/>
+TELEPHONE: (+603) 5544 2053/2058<br/>
+FAX: (+603) 5544 5805<br/>
+EMAIL: silc@salam.uitm.edu.my / gem@salam.uitm.edu.my<br/>
+See more at: http://icn.uitm.edu.my/	<br/>
+<div>
+<div class="clear"></div>
+<br/><br/>
+<%end%>
+ <script>
+    $(function() {
+      $('#slides').slidesjs({
+		  width:800,
+        height: 210,
+        play: {
+          active: true,
+          auto: true,
+          interval: 8000,
+          swap: true
+        }
+      });
+    });
+  </script>

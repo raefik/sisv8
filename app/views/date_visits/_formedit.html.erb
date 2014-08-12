@@ -1,0 +1,26 @@
+<%= form_for(@date_visit) do |f| %>
+  <% if @date_visit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@date_visit.errors.count, "error") %> prohibited this date_visit from being saved:</h2>
+
+      <ul>
+      <% @date_visit.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+  <div class="field">
+    <%= f.text_field :date ,:placeholder=>"Date",:id => 'datepick2',:class=>'datepicker' %>
+  </div>
+  <div class="field">
+     <%= f.text_field :stud_profile_id ,:placeholder=>"Student ID", :id=>"sdid"%>
+	 <%= f.text_field :staff_id ,:placeholder=>"Staff ID" , :id=>"stid"%>
+  </div>
+  <div class="actions">
+  <br>
+    <%= f.submit "Submit" , :class => 'uibutton loading', :title => 'Saving', :id=>"end" %>	
+  </div>
+<% end %>

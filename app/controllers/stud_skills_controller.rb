@@ -77,7 +77,7 @@ class StudSkillsController < ApplicationController
     @stud_skill.destroy
 
     respond_to do |format|
-      format.html { redirect_to stud_skills_url }
+      format.html { redirect_to @stud_skill.user }
       format.json { head :ok }
     end
   end

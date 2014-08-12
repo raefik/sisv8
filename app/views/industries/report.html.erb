@@ -1,0 +1,407 @@
+<style>
+    table{
+        margin: 10px;padding: 10px
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 900px;
+        
+    }
+    table td{
+        padding: 5px;
+        font-size: 90%;
+        border-bottom-style:solid;
+        border-bottom-width: 1px;
+    }
+
+    table th{
+      font-weight:bold; 
+      border-bottom-style:solid;
+      border-bottom-width: 3px;
+      padding-bottom: 10px;
+      border-bottom-color: #7F6DDD;
+      color: #7F6DDD;
+    }
+</style>
+    <div class="oneTwo">
+                    <div class="widget">
+                    <div class="header"><span><span class="ico gray window"></span>  Internship student </span></div>
+                       <div class="content">
+                          <span><b>Total : </b> <%= @totalstud%> student</span><br/>
+                          <span><b>Total Active : </b> <%= @totInactive%> student <%= @totalstudintern%> student has checkin</span><br/>
+                          <span><b>Company : </b> <%= @company%> company</span><br/>
+                       </div>
+                    </div>
+    </div>
+    <div class="oneTwo">
+                    <div class="widget">
+                    <div class="header"><span><span class="ico gray window"></span>  Staff  </span></div>
+                       <div class="content">
+                          <span><b>Coordinator : </b> <%= @coordinator%> </span><br/>
+                          <span><b>Academic Supervisor : </b> <%= @acasupervisor%> </span><br/>
+                       </div>
+                    </div>
+    </div>
+<br/><br /> <br/><br /> <br/><br /> <br/><br /><br/><br />   
+<div class="widget">
+                    <div class="header"><span ><span class="ico  gray random"></span> Report : Evaluation by Industry Supervisor ( Total Evaluation = <%= @total%> )</span></div>
+                   <div class="content" > 	
+<div ><br />
+    <table  >
+  <tr>
+     <th width="4.5%">No</th><th width="69%">Presentation</th><th width="30%">Rating (%)</th>
+     </tr>
+         <tr>
+         <td>1</td>
+         <td>The student is well prepared for the  presentation</td>
+         <div align="center" style="display: none;"></div>
+         <td><div align="center"><%= @p1 %></div></td>
+      </tr><tr>
+      <td>2</td>
+         <td>The visual aid is used effectively</td>
+         <td><div align="center"><%= @p2 %></div></td>
+     </tr><tr>
+         <td>3</td>
+         <td>The clarity of voice and pronunciation is good and clear</td>
+         <td><div align="center"><%= @p3 %></div></td>
+    </tr><tr>
+         <td>4</td>
+         <td>The student makes eye contact and interact with audience</td>
+         <td><div align="center"><%= @p4 %></div></td>
+     </tr><tr>
+        <td>5</td>
+        <td> The structure of presentation is well organized and interesting</td>
+         <td><div align="center"><%= @p5 %></div></td>
+      </tr>
+      </table><br/><br/><br/>
+      <table ><tr><th>No</th><th>Industrial Training Assessment</th><th width="26.5%">Rating (%)</th>
+      <tr>
+        <td>1</td>
+        <td>The student is a fast learner in absorbing new knowledge and concept</td>
+         <td><div align="center"><%= @a1 %></div></td>
+      </tr><tr>
+         <td>2</td>
+         <td>The student is able to think critically to resolve issues</td>
+        <td><div align="center"><%= @a2 %></div></td>
+       </tr><tr>
+         <td>3</td>
+         <td>The student is able to gain depth of concept and process</td>
+         <td><div align="center"><%= @a3 %></div></td>
+     </tr><tr>
+         <td>4</td>
+         <td>The student is able to adapt in overall work environment</td>
+        <td><div align="center"><%= @a4 %></div></td>
+     </tr><tr>
+         <td>5</td>
+         <td>The student is able to adapt in system or processes of the work place</td>
+         <td><div align="center"><%= @a5 %></div></td>
+     </tr><tr>
+        <td>6</td>
+         <td>The student communicate well with supervisor and management team</td>
+         <td><div align="center"><%= @a6 %></div></td>
+      </tr><tr>
+        <td>7</td>
+        <td>The student interact well with colleagues and subordinates</td>
+        <td><div align="center"><%= @a7 %></div></td>
+      </tr><tr>
+      <td>8</td>
+         <td>The student demonstrate good responsibility towards tasks and duties assigned</td>
+         <td><div align="center"><%= @a8 %></div></td>
+     </tr><tr>
+     <td>9</td>
+         <td>The student takes improvement action in the event of failure of project achievement</td>
+         <td><div align="center"><%= @a9 %></div></td>
+     </tr><tr>
+     <td>10</td>
+         <td>The student takes great initiative to gain new ideas and knowledge on project given</td>
+         <td><div align="center"><%= @a10 %></div></td>
+      </tr><tr>
+      <td>11</td>
+         <td>The student complies with the rules and regulations of the company</td>
+         <td><div align="center"><%= @a11 %></div></td>
+      </tr><tr>
+      <td>12</td>
+         <td>The student has shown good level of confidence in presenting the ideas towards the project given</td>
+         <td><div align="center"><%= @a12 %></div></td>
+    </tr><tr>
+    <td>13</td>  
+         <td>The student is proficient in speaking in English/Malay</td>
+         <td><div align="center"><%= @a13 %></div></td>
+      </tr><tr>
+      <td>14</td>
+         <td>The student is proficient in writing in English/Malay</td>
+         <td><div align="center"><%= @a14 %></div></td>
+      </tr><tr>
+      <td>15</td>
+         <td>The student demonstrate good attendance record</td>
+         <td><div align="center"><%= @a15 %></div></td>
+
+      </tr><tr>
+      <td>16</td>
+         <td>The student is able to work independently</td>
+         <td><div align="center"><%= @a16 %></div></td>
+      </tr><tr>
+      <td>17</td>
+         <td>The student is punctual in attending meeting or company event</td>
+         <td><div align="center"><%= @a17 %></div></td>
+      </tr><tr>
+      <td>18</td>
+         <td>The student is able to complete task given within dateline</td>
+         <td><div align="center"><%= @a18 %></div></td>
+      </tr>
+ </table><br/>
+ <div >
+                                                      <table class="chart-bar" > 
+                                                      <thead height="100px">
+                                                        <tr>
+                                                            <th width="10%" ></th>
+                                                            <th width="25%" style="color : #bedd17;">Percentage %</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>1</th>
+                                                            <td><%= @p1 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>2</th>
+                                                            <td><%= @p2 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>3</th>
+                                                            <td><%= @p3 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>4</th>
+                                                            <td><%= @p4 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>5</th>
+                                                            <td><%= @p5 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>6</th>
+
+                                                            <td><%= @a1 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>7</th>
+                                                            <td><%= @a2 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>8</th>
+                                                            <td><%= @a3 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>9</th>
+                                                            <td><%= @a4 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>10</th>
+                                                            <td><%= @a5 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>11</th>
+                                                            <td><%= @a6 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>12</th>
+                                                            <td><%= @a7 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>13</th>
+                                                            <td><%= @a8 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>14</th>
+                                                            <td><%= @a9 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>15</th>
+                                                            <td><%= @a10 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>16</th>
+                                                            <td><%= @a11 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>17</th>
+                                                            <td><%= @a12 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>18</th>
+                                                            <td><%= @a13 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>19</th>
+                                                            <td><%= @a14 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>20</th>
+                                                            <td><%= @a15 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>21</th>
+                                                            <td><%= @a16 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>22</th>
+                                                            <td><%= @a17 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>23</th>
+                                                            <td><%= @a18 %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+    </div>                                            
+                                      </div>
+                   </div>
+</div>    
+
+<div class="widget">
+                    <div class="header"><span ><span class="ico  gray random"></span> Report : Evaluation by Academic Supervisor ( Total Evaluation = <%= @total2%> )</span></div>
+                   <div class="content" >   
+<div ><br />
+    <table >
+ <tr><th width="3%">No</th><th width="69%">Presentation</th><th>Rating %</th>
+ <tr>
+    <td>1</td>
+    <td>The student is well prepared for the  presentation</td>
+    <td><div align="center"><%= @pp1%></div></td>
+ </tr>
+ <tr>
+ <td>2</td>
+    <td>The visual aid is used effectively</td>
+    <td><div align="center"><%= @pp2%></div></td>
+  </tr>
+  <tr>
+  <td>3</td>
+   <td>The clarity of voice and pronunciation is good and clear</td>
+   <td><div align="center"><%= @pp3%></div></td>
+  </tr>
+  <tr>
+  <td>4</td>
+    <td>The student makes eye contact and interact with audience</td>
+    <td><div align="center"><%= @pp4%></div></td>
+  </tr><tr>
+  <td>5</td>
+   <td>The structure of presentation is well organized and interesting</td>
+   <td><div align="center"><%= @pp5%></div></td>
+  </tr>
+  <table/>
+  <br/>
+  <table  width="900">
+ <tr><th width="3%">No</th><th width="69%">Presentation</th><th>Rating %</th>
+  <tr>
+  <td>1</td>
+   <td>The type of operation, equipment or process is suitable for the application of student's knowledge</td>
+   <td> <div align="center"><%= @aa1%></div></td>
+ </tr><tr>
+ <td>2</td>
+   <td>Safety is a prior practice in the workplace</td>
+    <td> <div align="center"><%= @aa2%></div></td>
+  </tr><tr>
+  <td>3</td>
+   <td>The student shows good grasp of knowledge on the unit operation and process flow of this industrial company</td>
+   <td> <div align="center"><%= @aa3%></div></td>
+  </tr><tr>
+  <td>4</td>
+   <td>The student shows good relationship with supervisor and management</td>
+   <td> <div align="center"><%= @aa4%></div></td>
+  </tr><tr>
+  <td>5</td>
+   <td>This student create harmonious work environment in the company</td>
+   <td> <div align="center"><%= @aa5%></div></td>
+  </tr><tr>
+  <td>6</td>
+   <td>The student gives full cooperation in project or tasks given</td>
+   <td> <div align="center"><%= @aa6%></div></td>
+  </tr><tr>
+  <td>7</td>
+    <td>The student shows great initiative and creativity on project given</td>
+   <td> <div align="center"><%= @aa7%></div></td>
+  </tr><tr>
+  <td>8</td>
+    <td>The student demonstrates good attitude and discipline</td>
+   <td> <div align="center"><%= @aa8%></div></td>
+  </tr><tr>
+  <td>9</td>
+    <td>The student does not play truant and has good attendance</td>
+    <td> <div align="center"><%= @aa9%></div></td>
+  </tr>
+  </table>
+  <br/>
+  <table  width="900">
+  <tr><th width="3%">No</th><th width="69%">Log Book </th><th>Rating %</th>
+  <tr>
+  <td>1</td>
+    <td>Weekly activities and verification by industry supervisor is illustrated in the log book</td>
+    <td><div align="center"><%= @l1 %></div></td>
+  </tr><tr>
+  <td>2</td>
+    <td>Relevant sketches, diagrams or figures are attached to support the description of activities</td>
+    <td><div align="center"><%= @aa11 %></div></td>
+  </tr><tr>
+  <td>3</td>
+    <td>Introduction with company background, operation, process flow and organizational chart are clearly outlined</td>
+    <td><div align="center"><%= @l2 %></div></td>
+  </tr>
+  </table>
+  <br/>
+  <table  width="900">
+  <tr><th width="3%">No</th><th width="69%">Field Report</th><th>Rating %</th></tr>
+  <tr>
+  <td>1</td>
+   <td>Summary of daily activity and job roles is clearly described</td>
+    <td><div align="center"><%= @r1%></div></td>
+  </tr><tr>
+  <td>2</td>
+   <td>Summary of daily activity and job roles is clearly described</td>
+    <td><div align="center"><%= @r2%></div></td>
+ </tr>
+ </tr><tr>
+  <td>3</td>
+   <td>Tasks, assignment or project given is particularly reported</td>
+    <td><div align="center"><%= @r3%></div></td>
+ </tr><tr>
+  <td>4</td>
+   <td>The report ends with conclusion or summary</td>
+    <td><div align="center"><%= @r3%></div></td>
+ </tr>
+ </table>
+                                      </div>
+                   </div>
+</div>                
+
+
+
+
+<script>
+$("table.chart-bar").each(function() {
+    var colors = [];
+    $("table.chart-bar thead th:not(:first)").each(function() {
+        colors.push($(this).css("color"));
+    });
+    
+    var flotOptions = {
+		bars: {
+	        align:  "center",
+	        horizontal: false
+	    },
+	    yaxis: {
+	    	min:0,
+	    	max:100,
+	    }
+    };
+    $(this).graphTable({
+        series: 'columns',
+        position: 'replace',
+        width: 977,
+        height: 500,
+        colors: colors,
+    }, flotOptions);
+});
+
+
+
+</script>

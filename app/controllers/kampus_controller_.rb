@@ -80,4 +80,15 @@ class KampusController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def erase
+  	id = params[:id]
+  	lb = Kampu.find(id)
+	  	if lb.delete
+		  	respond_to do |format|
+		      format.html { redirect_to kampus_url }
+		      format.json { head :ok }
+		    end
+		end    
+  end
 end

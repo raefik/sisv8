@@ -1,10 +1,45 @@
 class LogBooksController < ApplicationController
   # GET /log_books
   # GET /log_books.json
+  
+  def get_logbook
+  end  
+  
+  def log_svc
+	@log_books = LogBook.order( 'created_at DESC' )
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @log_books }
+    end
+  end
+  
+  def log_sva
+  	studentid = StudProfile.find_all_by_staff_id(Staff.find_by_user_id(current_user.id).id).each.map do |x| 
+  		x.user_id
+  	end
+	@log_books = LogBook.find_all_by_user_id(studentid)
+	#raise studentid.to_yaml 
+	
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @log_books }
+    end
+  end
+  
+  def logstudent
+	@log_books = LogBook.where(:user_id=> current_user.id)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @log_books }
+    end
+  end
+  
+
+  
   def index
 	user=StudProfile.find_by_user_id(current_user.id)
-    @log_books = LogBook.find(:all,:conditions=>["stud_profile_id=?",user.id])
-
+    #@log_books = LogBook.find(:all,:conditions=>["stud_profile_id=?",user.id])
+	@log_books = LogBook.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @log_books }
@@ -46,7 +81,14 @@ class LogBooksController < ApplicationController
 
     respond_to do |format|
       if @log_book.save
-		redirect_to :back
+		     case current_user.role_id
+          when 1
+            format.html { redirect_to "/logstudent" }
+          when 2
+            format.html { redirect_to "/log_svc" }
+          when 3
+            format.html { redirect_to "/log_sva" }
+          end 
       else
         format.html { render action: "new" }
         format.json { render json: @log_book.errors, status: :unprocessable_entity }
@@ -61,7 +103,14 @@ class LogBooksController < ApplicationController
 
     respond_to do |format|
       if @log_book.update_attributes(params[:log_book])
-        format.html { redirect_to @log_book, notice: 'Log book was successfully updated.' }
+       case current_user.role_id
+      when 1
+        format.html { redirect_to "/logstudent" }
+      when 2
+        format.html { redirect_to "/log_svc" }
+      when 3
+        format.html { redirect_to "/log_sva" }
+      end    
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -77,8 +126,33 @@ class LogBooksController < ApplicationController
     @log_book.destroy
 
     respond_to do |format|
-      format.html { redirect_to log_books_url }
+      case current_user.role_id
+      when 1
+        format.html { redirect_to "/logstudent" }
+      when 2
+        format.html { redirect_to "/log_svc" }
+      when 3
+        format.html { redirect_to "/log_sva" }
+      end    
       format.json { head :ok }
     end
+  end
+  
+  def erase
+  	id = params[:id]
+  	lb = LogBook.find(id)
+	  	if lb.delete
+		  	respond_to do |format|
+		      case current_user.role_id
+		      when 1
+		        format.html { redirect_to "/logstudent" }
+		      when 2
+		        format.html { redirect_to "/log_svc" }
+		      when 3
+		        format.html { redirect_to "/log_sva" }
+		      end    
+		      format.json { head :ok }
+		    end
+		end    
   end
 end

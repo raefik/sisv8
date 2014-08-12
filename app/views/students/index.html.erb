@@ -1,23 +1,32 @@
-<h1>Listing students</h1>
+<div class="widget">
+						<div class="header"><span ><span class="ico  gray random"></span> Listing students </span></div>
+						<div class="content"  >
+<div class="tableName">
 
-<table>
-  <tr>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<table class="display data_table2" >
+	<thead>
+	  <tr>
+		<th>User</th>
+		<th>Name</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	  </tr>
+	</thead>
+<tbody>
+		
 <% @students.each do |student| %>
-  <tr>
+  <tr class="odd gradeX">
     <td><%= student.user_id %></td>
+	<td><%= student.name %></td>
     <td><%= link_to 'Show', student %></td>
     <td><%= link_to 'Edit', edit_student_path(student) %></td>
     <td><%= link_to 'Destroy', student, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
-
+	</div>
+</div>	
 <br />
 
 <%= link_to 'New Student', new_student_path %>

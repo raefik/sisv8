@@ -1,83 +1,136 @@
-<h1>Advertisements</h1>
-<tr >	
-			<td id="left">
-			
-						<div class="sidebar_box_resume">
-						<h2>
-						<div align="right" >
-							<strong>[Advertised Date]:</strong><%=@comp_adv.adv_date%><br/><strong>[Close Date]:</strong><%=@comp_adv.exp_date%>
-						</div>
-						</h2>
-					
-					        <div align="center">
-							            <%= gravatar_for @iklan ,:size => 80%>
-										<h1><b><%=@iklan.name%></b><br/>
-										<%=@comp_profile.place%>,<%=@comp_profile.postcode%>,<%=@comp_profile.city%><br/>
-										<%=@comp_profile.state.name%><br/>
-										<b>Website:</b><%=@comp_profile.url%>,<b>Email:</b><%=@comp_profile.email%><br/>
-										<b>Contact No:</b><%=@comp_profile.official_no%><br/>
-										<b>Contact Person:</b><%=@comp_profile.contact_person%><br/><br/>
-										</h1>	
-								</div>
-								<div align="center">
-								      <%=@comp_adv.about_company%>
-								 </div>
-								 <br/>
-							     <div align="center">
-								      <b>Available For:</b>  <%=@comp_adv.level%><br/>
-									  <b>Allowance:</b>  <%#@comp_adv.status.name%> , <%=@comp_adv.value_allowance%><br/>
-								 </div>
-								 <br/>
-								<div align="left">
-								<table>
-								
-								<tr>
-										<th><u>Requirement</u></th>
-										<td><% @requirements.each do |u|%></td>
-									
-										<tr>
-								        <td>-<%=u.name%></td>
-										</tr>
-										<%end%>
-								</tr>
-								<tr>
-
-								  
-										<th><u>Available Courses For Interships</u></th>
-										<% @available_internships.each do |u|%>
-										<tr>
-										<td>-<%=u.prog_name.name%></td>
-										</tr>
-										<%end%>
-								
-								</tr>
-								<tr>
-
-								   
-										<th><u>Benefit</u></th>
-										<% @benefit.each do |u|%>
-										<tr>
-										<td>-<%=u.name%></td>
-										</tr>
-										<%end%>
-								
-								</tr>								
-										
-								
-								</table>
-								</div>
-							
-							 <center>
-								 <%@companies.each do |f| %>
-							 <%=button_to 'Apply',user_companies_path(:company_id=>f)%>
-								 <%end%>
-								 <form> 
-								 <input type="button" value="Close" onclick="window.close()">
-								 </form>
-						   </center>
-						    <h2> <div align="center">Universiti Teknologi Mara</div></h2>
-						</div>
-			</td>
-			
-</tr>
+<%if current_user.role_id == 1 %> 
+	<a id="findme" class="uibutton"><h2 >Apply</h2></a>
+<%end%>
+<div hidden="true">
+	<%@companies.each do |f| %>
+	<%=button_to 'Apply',user_companies_path(:company_id=>f), :class=>"klik"%>
+	<%end%>
 </div>
+<div class="oneTwo what">
+	<table border="0" >
+		<tr>
+			<td>
+				<%if Photo.find_by_user_id(@iklan.id).nil? %>
+				 		<img class="profile" src="/assets/profilePlus.jpg" width="100px" />
+				<%else%>
+						<img class="profile" src="<%= Photo.find_by_user_id(@iklan.id).image%>" width="100px"/>
+				<%end%>
+			</td>
+			<td style="padding-left:5px;">
+			<h5 style="line-height: 17px;"><%=@iklan.name%></h5>
+			<%=@comp_profile.place%>,	
+			<%=@comp_profile.postcode%>,
+			<%=@comp_profile.city%>
+			<%@comp_profile.state.name%><br/>
+			<br/>
+				Our Company overall <b><%=@comp_adv.about_company%></b>
+			</td>
+		</tr>	
+	</table>	
+</div>		
+<br/>
+<div class="clear"></div>
+<div class="clear"></div>
+	<div>
+		</br>
+		<table border="0">
+			<tr>
+				<td width="25px"><img src="/assets/zice/images/icon/color_18/clock.png" height="15px"/></td>
+				<td>Close Date</td> 
+				<td style="color:red;">
+					<b>
+						<%if @comp_adv.exp_date.nil?%>
+						<%else%>
+							<%=@comp_adv.exp_date.strftime("%d %b %Y")%>
+						<%end%>
+						
+					</b></td>
+			</tr>
+			<tr>
+				<td><img src="/assets/zice/images/icon/color_18/messenger.png" height="15px"/></td>
+				<td>Available For </td><td><b><%=@comp_adv.level%> people</b></td>
+			</tr>
+			<tr>	
+				<td><img src="/assets/zice/images/icon/color_18/money_bag.png" height="15px"/></td>
+				<td>Allowance </td>
+				<td>RM<b><%#@comp_adv.status.name%> <%=@comp_adv.value_allowance%></b></td>
+			</tr>
+		</table>
+		</br>
+		<div>
+			<b>Requirement</b>
+			<table border="0">
+			<%@requirements.each do |u|%>
+				<tr>
+					<td width="25px"><img src="/assets/zice/images/icon/color_18/directional_right.png" height="10px"/></td><td><%=u.name%></td>
+				</tr>
+			<%end%>
+			</table>
+		</div>
+			</br>
+		<div >
+		<b>Available Courses For Internships</b>
+			<table border="0">
+			<% @available_internships.each do |u|%>
+				<tr>
+					<td width="25px"><img src="/assets/zice/images/icon/color_18/directional_right.png" height="10px"/></td><td><%=u.prog_name.name%></td>
+				</tr>
+			<%end%>
+			</table>
+		</div>	
+			</br>
+		<div >		
+			<b>Benefit</b>
+			<table border="0">
+				<% @benefit.each do |u|%>
+					<tr>
+					<td width="25px"><img src="/assets/zice/images/icon/color_18/directional_right.png" height="10px"/></td><td><%=u.name%></td>
+					</tr>
+				<%end%>
+			</table>
+		</div>	
+	</div> <!-- end div -->
+
+	<div class="clear"></div>
+	</br>
+	<div>
+			<table border="0">
+			<tr>
+				<td><%=@comp_profile.url%></td>
+			</tr><tr>
+				<td><b>Email</b></td><td>:</td><td><%=@comp_profile.email%></td>
+			</tr><tr>	
+				<td><b>Contact No</b></td><td>:</td><td><%=@comp_profile.official_no%></td>
+			</tr><tr>
+				<td><b>Contact Person</b></td><td>:</td><td><%=@comp_profile.contact_person%></td>
+			</tr>	
+			</table>
+	</div> 
+</div>
+<style>
+td {padding:1px;
+	font-size: 85%;
+}
+
+.what{
+	background-color: #fff;
+	padding: 5px;
+}
+#content{padding-top: 0px;}
+	.images{visibility:hidden;}
+	.image2{visibility:hidden;}
+	#shadowhead {
+		background-image:none;
+		
+		}
+		body{background-color: #F4F4FF;}
+
+</style>
+
+<script>
+	$(document).ready(function(){
+			$("#findme").click(function(){
+				$(".klik").click();
+			});		
+	});			
+</script>

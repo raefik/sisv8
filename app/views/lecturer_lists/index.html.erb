@@ -1,0 +1,67 @@
+<style>
+    table{
+        margin: 10px;padding: 10px
+        border-collapse: collapse;
+        border-spacing: 0;
+        padding: 10px;
+        margin: 0px;
+    }
+    table td{
+        padding: 10px;
+        font-size: 90%;
+        border-bottom-style:solid;
+        border-bottom-width: 1px;
+    }
+
+    table th{
+      font-weight:bold; 
+      border-bottom-style:solid;
+      border-bottom-width: 3px;
+      padding-bottom: 10px;
+      border-bottom-color: #7F6DDD;
+      color: #7F6DDD;
+    }
+</style>
+<h5>Lecturer lists</h5><%= link_to 'New Lecturer list', new_lecturer_list_path , :class=>"uibutton"%>
+
+<table bgcolor="white">
+  <tr>
+    <th>Staffno</th>
+    <th>Fullname</th>
+    <th>Faculty</th>
+    <th>Subjectcode</th>
+    <th>Subjectname</th>
+    <th>Group</th>
+    <th>Campuscode</th>
+    <th>Contactno</th>
+    <th>Handphoneno</th>
+    <th>Email</th>
+	<th>MyKad No</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @lecturer_lists.each do |lecturer_list| %>
+  <tr>
+    <td><%= lecturer_list.staffno %></td>
+    <td><%= lecturer_list.fullname %></td>
+    <td><%= lecturer_list.faculty %></td>
+    <td><%= lecturer_list.subjectcode %></td>
+    <td><%= lecturer_list.subjectname %></td>
+    <td><%= lecturer_list.groupname %></td>
+    <td><%= lecturer_list.campuscode %></td>
+    <td><%= lecturer_list.contactno %></td>
+    <td><%= lecturer_list.handphoneno %></td>
+    <td><%= lecturer_list.email %></td>
+	<td><%= lecturer_list.mykadno %></td>
+    <td><%= link_to 'Show', lecturer_list %></td>
+    <td><%= link_to 'Edit', edit_lecturer_list_path(lecturer_list) %></td>
+    <td><%= link_to 'Destroy', lecturer_list, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+

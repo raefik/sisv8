@@ -1,0 +1,70 @@
+                    <div class="clear"></div>
+
+					<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span> New Asistant Registerar </span>
+                            
+						</div>
+						 <div class="content">
+						 
+	<div class="boxtitle"><span class="ico gray audio_knob"></span>
+	Details
+</div>
+
+
+
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from register :</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="section" >
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="section" >
+    <%= f.label :password%><br />
+    <%= f.text_field :password %>
+  </div>
+  <div class="section" >
+	<%= f.label :password_confirmation, "Password Confirmation" %><br />
+	<%= f.password_field :password_confirmation %>
+	</div>
+  <div class="section" >
+    <%= f.label :fullname %><br />
+    <%= f.text_field :fullname %>
+  </div>
+
+  <div class="section" >
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+    <%= f.text_field :role_id ,:value=>'4',:hidden=>'true'%>
+  </div>
+  
+  <div class="section" >
+    <%= f.label 'faculty' %><br />
+      <%=collection_select(:user,:faculty_id,Faculty.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+
+  <div class="section last">	
+
+   <div class="actions">
+    <%= f.submit "Add", :class => 'uibutton loading', :title => 'Saving' %>
+	<%= link_to 'Back to Profile', user_path(current_user), :class => 'uibutton loading', :title => 'Loading' %>
+  </div>
+<% end %>
+
+</div>
+
+</div>
+</div>
+</div>
+<div class="clear"></div>

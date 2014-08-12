@@ -1,0 +1,79 @@
+<div class="widget">
+						<div class="header"><span ><span class="ico  gray random"></span> List of Industrial Coordinators </span></div>
+						<div class="content"  style="padding: 0px 0px;">
+
+                    <form> 
+						<div class="tableName">
+<table class="display data_table2">
+  <thead>
+	<tr>
+    <th width="45px">Photo</th>
+    <th >Detail</th>
+    <th >Faculty & Program</th>
+    <th >Contact</th>
+    <th></th>
+    
+	</tr>
+  </thead>
+  <tbody>
+<% @staffs = Staff.all %>
+<% @staffs.each do |staff| %>
+	<%if staff.staff_type_id==1 %>
+  <tr>
+    <td>
+    <%if Photo.find_by_user_id(staff.user_id).nil? %>
+	 	<div class="profile"><a href="/photos/new?user_id=<%= staff.user_id %>"><img  src="/assets/profilePlus.jpg" width="50px" /></a></div>
+	<%else%>
+		<div class="profile"><a href="/photos/<%= Photo.find_by_user_id(staff.user_id).id%>/edit?user_id=<%= staff.user_id %>"><img  src="<%= Photo.find_by_user_id(staff.user_id).image%>" width="50px"/></a></div>
+	<%end%>
+    </td>
+    <td align="left"><b><%= staff.name %></b><br/><%= staff.staff_no %></br><%= staff.staff_type.name %></td>
+
+    <td align="left"><%= staff.faculty.name %><br/><%= ProgName.find_by_id(staff.prog_name_id).name %></td>
+    <td align="left">
+    	Room &nbsp<%= staff.room_no %></br>
+		<%= staff.email %></br>
+		<%= staff.office_no %></br>
+    </td>
+    <td align="left"><%= link_to image_tag('/images/icon/icon_edit.png'), edit_staff_path(staff) %>
+	</td>
+    
+  </tr>
+	<% end %>
+<% end %>
+	</tbody>
+	
+</table>
+</div></form> 
+</div>
+</div>
+<br />
+
+<style>
+.tableName .dataTables_wrapper .dataTables_filter {
+		position: absolute;
+		float: none;
+		right: 10px;
+		top: -35px;
+		width: auto;
+	}	
+	.dataTables_wrapper .dataTables_info {
+		line-height: 18px;
+		padding-left: 10px;
+	}
+	.dataTables_wrapper .dataTables_paginate {
+		margin: 0px 9px 9px 0px;
+	}
+table.display tbody td {
+		padding: 5px 0px!important;
+	}
+	.profile:hover {	
+		width: 100%;
+		height: 80%;
+		opacity:0.3;
+		filter:alpha(opacity=30);
+		transition: all 0.5s;
+		-webkit-transition: all 0.5s;
+	}
+	td{font-size: 90%}
+</style>

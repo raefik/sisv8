@@ -1,0 +1,100 @@
+    <div class="clear"></div>
+
+	<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span>  New Student  </span>
+                            
+						</div>
+						 <div class="content">
+
+<%= form_for(@student_list) do |f| %>
+  <% if @student_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student_list.errors.count, "error") %> prohibited this student_list from being saved:</h2>
+
+      <ul>
+      <% @student_list.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="section">
+    <%= f.label :studentid %><br />
+    <%= f.text_field :studentid %>
+  </div>
+  <div class="section">
+    <%= f.label :mykadno %><br />
+    <%= f.text_field :mykadno %>
+  </div>
+  <div class="section">
+    <%= f.label :fullname %><br />
+    <%= f.text_field :fullname %>
+  </div>
+  <div class="section">
+    <%= f.label :gender_id %><br />
+	<%=collection_select(:student_list,:gender_id,Gender.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+  <div class="section">
+    <%= f.label :groupcode %><br />
+    <%= f.text_field :groupcode %>
+  </div>
+  <div class="section">
+    <%= f.label :programcode %><br />
+    <%= f.text_field :programcode %>
+  </div>
+  <div class="section">
+    <%= f.label :facultycode %><br />
+    <%= f.text_field :facultycode %>
+  </div>
+  <div class="section">
+    <%= f.label :campuscode %><br />
+    <%= f.text_field :campuscode %>
+  </div>
+  <div class="section">
+    <%= f.label :contactno %><br />
+    <%= f.text_field :contactno %>
+  </div>
+  <div class="section">
+    <%= f.label :handphoneno %><br />
+    <%= f.text_field :handphoneno %>
+  </div>
+  <div class="section">
+    <%= f.label :religion_id %><br />
+    <%= f.text_field :religion_id %>
+  </div>
+  <div class="section">
+    <%= f.label :add1 %><br />
+    <%= f.text_field :add1 %>
+  </div>
+  <div class="section">
+    <%= f.label :add2 %><br />
+    <%= f.text_field :add2 %>
+  </div>
+  <div class="section">
+    <%= f.label :postcode %><br />
+    <%= f.text_field :postcode %>
+  </div>
+  <div class="section">
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+  <div class="section">
+    <%= f.label :state_id %><br />
+    <%=collection_select(:student_list,:state_id,State.all,:id,:name,:prompt=>"Please Select")%>
+  </div>
+  <div class="section">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="section">
+    <%= f.label :cgpa %><br />
+    <%= f.text_field :cgpa %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit", :class => 'uibutton loading', :title => 'Saving'%>
+  </div>
+<% end %>
+</div>
+</div>

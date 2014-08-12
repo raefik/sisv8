@@ -2,34 +2,33 @@
                     <div class="header"><span >Working experience</span> 
 					<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/tambah.png"), new_working_experience_path %></div>
                             </div>
-                            </div>
+                            
 							
 
-<div class="content" >
-     <table >
-	<thead>
-		<tr>
-			<th align="left">Bil</th><th align="left">Company</th><th align="left">Duration</th><th align="left">Position</th><th align="left"></th>
-		</tr>
-	</thead>
-	
-<tbody>
+	<div class="content" style="padding:0px;">
+	     <table class="display" >
+			<thead>
+				<tr>
+					<th align="left">Bil</th><th align="left">Company</th><th align="left">Duration</th><th align="left">Position</th><th align="left"><th align="left"></th>
+				</tr>
+			</thead>
+			
+			<tbody>
+			<%i=0%>
+			<%current_user.working_experiences.each do |u|%>
+			<%i+=1%>
+			<tr>
+			<td  align="left"><%=i%> ) </td>
+			<td  align="left"><%=u.company%></td>
+			<td  align="left"><%=u.year_exp%> month </td>
+			<td  align="left"><%=u.working_as%></td>
+			<td  align="left"><%= link_to image_tag("/images/icon/icon_edit.png"), edit_working_experience_path(u) %></td>
+			<td  align="left"><%= button_to 'Delete', u,method: :delete, :confirm => 'Are you sure?'  %></td>
+			</tr>
+			<%end%>
 
-
-<%i=0%>
-<%current_user.working_experiences.each do |u|%>
-<%i+=1%>
-<tr>
-<td  align="left"><%=i%> ) </td>
-<td  align="left"><%=u.company%></td>
-<td  align="left"><%=u.year_exp%> month </td>
-<td  align="left"><%=u.working_as%></td>
-<td  align="left"><%= link_to image_tag("/images/icon/icon_edit.png"), edit_working_experience_path(u) %>&nbsp&nbsp&nbsp&nbsp<%= link_to image_tag("/images/icon/icon_delete.png"), u, confirm: 'Are you sure?', method: :delete %></td>
-</tr>
-<%end%>
-
-<br />
-</tbody>
-</table>
+			<br />
+			</tbody>
+		</table>
+	</div>
 </div>
-

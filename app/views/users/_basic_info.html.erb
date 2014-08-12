@@ -1,51 +1,42 @@
+<style>
+	.profile:hover{
+		background-color: #ffcc00	;
+		opacity:0.7;
+		filter:alpha(opacity=70);
+	}
+</style>
 
-
-
-<div class="widget">
-                    <div class="header"><span >Basic Info</span>
-					<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/edit.png"), edit_user_path(current_user) %></div>
-					<br/>
-                            </div>
-                            </div>
-				
-
-
-<div class="content" >
-     <table class="widget id="static">
+<div class="oneTwo">
+	<div class="widget">
+	    <div class="header"><span >Basic Info</span>
+		<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/edit.png"), edit_user_path(current_user) %></div>
+		<br/>
+	    </div>
 	
-	<thead>
-	</thead>
+		<div class="content" >
+			<form id="validation_demo" action=""> 
+					<div class="section">
+						<label>Photo 			</label>
+						<%if Photo.find_by_user_id(current_user.id).nil? %>
+							<a href="/photos/new"><img class="profile" src="/assets/profilePlus.jpg" height="120px" /></a>
+						<%else%>
+							<a href="/photos/<%= Photo.find_by_user_id(current_user.id).id%>/edit">
+								<img class="profile" src="<%= Photo.find_by_user_id(current_user.id).image%>" height="120px"/>
+							</a>
+						<%end%>
+					</div>
+					<div class="section">
+						<label>Username 			</label>
+						<div><%=@user.name%></div><br/>
+					</div>
 	
-<tbody>
-
-
-
-<tr>
-<td  align="left">Profile Picture</td>
-<td  align="left">:</td>
-<td  align="left"><span><%= gravatar_for @user %></span></td>
-</tr>
-
-<tr>
-<td  align="left">Name</td>
-<td  align="left">:</td>
-<td  align="left"><span><%=@user.name%></span></td>
-</tr>
-
-<tr>
-<td  align="left">Email</td>
-<td  align="left">:</td>
-<td  align="left"><span><%=@user.email%></span></td>
-</tr>
-
-<tr>
-<td  align="left">Password</td>
-<td  align="left">:</td>
-<td  align="left"><span>******</span></td>
-</tr>
-
-</tbody>
-</table>
+					<div class="section last">
+						<label>Email  			</label> 
+						<div><%=@user.email%></div>
+					</div>
+	
+			</form>		
+		</div>
+	</div>	
 </div>
-
 

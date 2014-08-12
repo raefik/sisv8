@@ -1,17 +1,246 @@
+<div class="twoOne">
+	<div class="widget">
+		<div class="header"><span ><span class="ico  gray calendar"></span>Visit Records</span></div>
+		<div class="content"  >
+			<div id='calendar2'></div>
+		</div>
+	</div>
+							<div class="widget">
+								 <div class="header"><span><span class="ico gray group"></span>Student List</span></div>
+									<div class="content" style="padding:0px 0px;">
+					<form> 
+						<div class="tableName">
+					<table class="display data_table2 meme"  >
+						<thead>
+							<tr>
+								<th ><div class="th_wrapp">Student</div></th>
+								<th ><div class="th_wrapp">Company</div></th>
+								<th  ><div class="th_wrapp">Supervisor</div></th>
+								
+							</tr>
+						</thead>
+						<tbody>
 
+							<% @studcin = UserCompany.includes(:company,:student,:user=>[:role,{:stud_profiles=>:staff},:staffs]).find(:all,:conditions=>["total =?",2])%>
+							<%@studcin.each do|f|%>
+							  <%if StudProfile.find_by_user_id(f.user_id).staff.id == Staff.find_by_user_id(current_user.id).id%>
+									<tr>
+		
+										<td align="left">
+										<table >
+										<tr>
+											<td>
+										<%if Photo.find_by_user_id(f.user_id).nil? %>
+			<img class="profile" src="/assets/profileNope.jpg" width="35px" />
+		<%else%>
+				<img class="profile" src="<%= Photo.find_by_user_id(f.user_id).image%>" width="35px"/>
+		<%end%>	
+											</td><td>
+										<%=f.user.fullname %></br><%= StudProfile.find(:all,:conditions=>["user_id=?",f.user_id]).first.matric_no%></br>( <%= StudProfile.find_by_user_id(f.student.user_id).hp_no %> )
+											</td>
+										</tr>
+										</table>	
+										</td>
+										
+										
+										<td align="left">
+										<table class="ext">
+										<tr>
+										<td>
+										<%if Photo.find_by_user_id(UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,6]).company.user_id).nil? %>
+			<img class="profile" src="/assets/profileNope.jpg" height="35px" />
+		<%else%>
+				<img class="profile" src="<%= Photo.find_by_user_id(UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,6]).company.user_id).image%>" height="35px"/>
+		<%end%>	
+										</td><td>
+											<%=  f.company.name%>&nbsp<%= CompProfile.find_by_user_id(f.company.user_id).state.name %>
+											<br/>
+												 ( <%=  CompProfile.find_by_user_id(UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,6]).company.user_id).official_no %> )
+												 
+											</td>
+										</tr>
+										</table>		 
+										</td>
+										
+										<td align="left">
+										<%if !StudProfile.find_by_user_id(f.user_id).staff_id.nil? %> 
+										<%= StudProfile.find_by_user_id(f.user_id).staff.name %>
+										<%end%>	 
+										</td>
+									</tr>
+								<%end%>
+							<%end%>	
+						</tbody>
+					</table>
+			</div>	
+			</form>
+		</div>
+	</div>
+</div>	
+<div class="oneThree">
 <div class="widgets">
-
-							<div class="oneTwo">
 								<div class="widget">
 								 <div class="header"><span><span class="ico gray window"></span>Make Visit Appointment</span></div>
 									<div class="content">
-                          
-									<%= render 'form' %>
-
+									<table>
+										<tr>
+											<td>
+												<label>Date</label>
+											</td>
+											<td>
+												<input type="text" placeholder="Date" id="datepick" class="datepicker"/>
+											</td>
+										</tr>
+										<tr>
+											<td>	
+												<label>Student ID</label>
+											</td>
+											<td>
+												<input type="text" class="sid" placeholder="Student ID"/>
+											</td>
+										</tr>		
+									
+									</table>
+										
+										<a align="center" id="findme" class="uibutton loading">Submit</a>
+									
+									
+									<div hidden=true>
+										<%= render "form" %>
+									</div>
 									</div>
 								 </div>
-							</div>
+								 <br />
+								 <div class="widget">
+								 <div class="header"><span><span class="ico gray info"></span>Incoming Visit</span></div>
+									<div class="content" style="padding:0px 0px;">
+										<form> 
+						<div class="tableName">				
+<table class="display " >
+	<thead>
+		<tr>
+			<th><div class="th_wrapp"></div></th>
+			<th><div class="th_wrapp">Name</div></th>
+			<th><div class="th_wrapp">Date</div></th>
+			<th><div class="th_wrapp"></div></th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @date_visits = DateVisit.where(:staff_id=> current_user.id )  %>
+	<% @date_visits.each do |ds| %>
+	
+		<tr class="odd gradeX">
+		<td align="left">
+								<%if Photo.find_by_user_id(ds.stud_profile.user_id).nil? %>
+	<img class="profile" src="/assets/profileNope.jpg" width="35px" />
+<%else%>
+		<img class="profile" src="<%= Photo.find_by_user_id(ds.stud_profile.user_id).image%>" width="35px"/>
+<%end%>	
+									</td>
+	<td align="left">
+		<%= ds.stud_profile.user.fullname %><br/>
+		<%= ds.stud_profile.nric %><br/>
+		<%= ds.stud_profile.matric_no %><br/>
+		<%= ds.stud_profile.hp_no %>
+	</td>
+    <td><%= ds.date.strftime("%d/%m/%Y") %></td>
+	<td>
+		<%= link_to image_tag("/images/icon/color_18/trash_can.png"), ds, :method=> :destroy %>
+	</td>
+	
+		</tr>
+	<% end %>
+	</tbody>
+</table>
 </div>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<style>
+	.tableName .dataTables_wrapper .dataTables_filter {
+		right: 5px;
+		top: -35px;
+		
+	}
+	table.display tbody td {	
+		padding: 1px 10px!important;
+	}
+	
+	#calendar2 {
+		width: 80%;
+		margin: 0 auto;
+	}
+	td {font-size: 90%;}
+	table.display tbody tr:last-child td {
+		border-bottom: 0px solid #d9d9d9;
+	}
+	
+</style>
 
+<script >
 
+	$(document).ready(function(){
+			$('#findme').click(function(){
+					sid = $('.sid').val();
+					datepick = $('#datepick').val();
+					url = '/studentprofind.json?sid='+sid;
+				$.getJSON(url, function(data) {
+				if(data[0] != null){
+					$('#sdid').val(data[0]['id']);
+					$('#datepick2').val(datepick);
+					$('#stid').val(<%= current_user.id %>);
+					
+					$('#cid').val(  );
+					$('#end').click();
+				}else{
+					$('#sdid').val('Nope Registered');
+				}  
+				});  
+			});
+			
+			$('#calendar2').fullCalendar({
+				editable: false,
+				events: [
+				<% @date_visits = DateVisit.where(:staff_id=> current_user.id )  %>
+				<% @date_visits.each do |ds| %>
+					{
+						title: 'Visit -> <%= ds.stud_profile.matric_no %>',	
+						start: new Date(<%= ds.date.strftime("%Y,  %m-1, %d") %>)
+					},
+				<% end %>
+					
+				]
+			});
+	});	
+</script>
+<style>
+	td{font-size: 90%;}
+	table .ext td {
+		padding: 2px 10px!important;
+	}
+	table.display tbody tr:last-child td {
+		border-bottom: 0px solid #d9d9d9;
+		}
+	table.display tbody td {
+	padding: 2px 5px!important;
+	}
+	.tableName .dataTables_wrapper .dataTables_filter {
+		position: absolute;
+		float: none;
+		right: 5px;
+		top: -35px;
+		width: auto;
+	}
+	.twoOne {
+	width: 65%;
+	float: right;
+	margin-left: 0%;
+	}
+	.oneThree{
+		float: right;
+	}
 
+</style>

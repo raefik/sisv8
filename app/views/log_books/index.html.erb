@@ -1,21 +1,19 @@
 <div class="widget">
-                    <div class="header"><span > Log Book</span>
-                            </div>
-                            </div>
-<div  class="widget" >
-     <table  class="widget" " id="static">
+                    <div class="header"><span ><span class="ico  gray random"></span> Log Book </span></div>
+						<div class="content"  >
+     <table class="display data_table2" >
 	<thead>
 		<tr>
-			<th align="left">Bil.</th><th align="left">Date</th><th align="left">Title</th><th width= "250" align="left">Content</th><th align="left">Action</th><th align="left" colspan="3"></th>
+			<th align="left">Date</th>
+			<th align="left">Title</th>
+			<th width= "250" align="left">Content</th>
+			<th align="left">Action</th><th align="left" colspan="3"></th>
 		</tr>
 	</thead>
 <tbody class="widget">
   
-<%i=0%>
 <% @log_books.each do |log_book| %>
-<%i+=1%>
-  <tr>
-	<td  align="left"><%=i%>.</td>																							
+  <tr>																						
     <td  align="left"><%= log_book.date %></td>
     <td  align="left"><%= log_book.title %></td>
     <td width= "250" align="left"><%= log_book.content %></td>
@@ -28,6 +26,7 @@
 <br />
 </tbody>
 </table>
+</div>
 </div>	
 <%= link_to 'New entry', new_log_book_path, :class => 'uibutton loading', :title => 'Opening'%>
 

@@ -1,0 +1,14 @@
+<style>
+	.profile:hover{
+		background-color: #ffcc00	;
+		opacity:0.7;
+		filter:alpha(opacity=70);
+	}
+</style>
+<%if Photo.find_by_user_id(current_user.id).nil? %>
+	<a href="/photos/new"><img class="profile" src="/assets/profilePlus.jpg" height="100px" /></a>
+<%else%>
+	<a href="/photos/<%= Photo.find_by_user_id(current_user.id).id%>/edit">
+		<img class="profile" src="<%= Photo.find_by_user_id(current_user.id).image%>" height="141px"/>
+	</a>
+<%end%>

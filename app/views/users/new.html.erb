@@ -1,73 +1,346 @@
-<!-- <div id="content">
-                <div class="inner"> -->
+<script type="text/javascript">
+    $(document).ready(function(){
+      // Smart Wizard       
+      $('#wizardvalidate').smartWizard({transitionEffect:'slideleft',onLeaveStep:leaveAStepCallback,onFinish:onFinishCallback,enableFinishButton:false});
 
-                    <div class="clear"></div>
+      function leaveAStepCallback(obj){
+        var step_num= obj.attr('rel');
+        return validateSteps(step_num);
+      }
+      
+      function onFinishCallback(){
+       if(validateAllSteps()){
+        $('form').submit();
+       }
+      }
+      		$("html, body").animate({scrollTop: 900}, 0);
+          $("html, body").animate({scrollTop: 0}, 2700);  
+    });
+     
+    function validateAllSteps(){
+       var isStepValid = true;
+       
+       if(validateStep1() == false){
+         isStepValid = false;
+         $('#wizardvalidate').smartWizard('setError',{stepnum:1,iserror:true});         
+       }else{
+         $('#wizardvalidate').smartWizard('setError',{stepnum:1,iserror:false});
+       }
 
-					<div class="widget">
+  // add more if you want to validateStep 2
+       if(validateStep2() == false){
+         isStepValid = false;
+         $('#wizardvalidate').smartWizard('setError',{stepnum:2,iserror:true});         
+       }else{
+         $('#wizardvalidate').smartWizard('setError',{stepnum:2,iserror:false});
+       }
+       
+       if(validateStep3() == false){
+         isStepValid = false;
+         $('#wizardvalidate').smartWizard('setError',{stepnum:3,iserror:true});         
+       }else{
+         $('#wizardvalidate').smartWizard('setError',{stepnum:3,iserror:false});
+       }
+       if(!isStepValid){
+          $('#wizardvalidate').smartWizard('showMessage','Please correct the errors in the steps and continue');
+       }
+       return isStepValid;
+    }   
+    
+    
+    function validateSteps(step){
+      var isStepValid = true;
+      // validate step 1
+      if(step == 1){
+        if(validateStep1() == false ){
+          isStepValid = false; 
+          $('#wizardvalidate').smartWizard('showMessage','Please correct the errors in step'+step+ ' and click next.');
+          $('#wizardvalidate').smartWizard('setError',{stepnum:step,iserror:true});         
+        }else{
+          $('#wizardvalidate').smartWizard('setError',{stepnum:step,iserror:false});
+        }
+      }
+
+      // validate step 2
+      if(step == 2){
+        if(validateStep2() == false ){
+          isStepValid = false; 
+          $('#wizardvalidate').smartWizard('showMessage','Please correct the errors in step'+step+ ' and click next.');
+          $('#wizardvalidate').smartWizard('setError',{stepnum:step,iserror:true});         
+        }else{
+          $('#wizardvalidate').smartWizard('setError',{stepnum:step,iserror:false});
+        }
+      }
+      
+      
+      // validate step3
+      if(step == 3){
+        if(validateStep3() == false ){
+          isStepValid = false; 
+          $('#wizardvalidate').smartWizard('showMessage','Please correct the errors in step'+step+ ' and click next.');
+          $('#wizardvalidate').smartWizard('setError',{stepnum:step,iserror:true});         
+        }else{
+          $('#wizardvalidate').smartWizard('setError',{stepnum:step,iserror:false});
+        }
+      }
+      
+      return isStepValid;
+    }
+    
+    function validateStep1(){
+       var isValid = true; 
+       // Validate Username
+       var un = $('#fullname').val();
+       if(!un && un.length <= 0){
+         isValid = false;
+         $('#msg_username').html('Please fill full company name').show();
+       }else{
+         $('#msg_username').html('').hide();
+       }
+       
+       // Validate Username
+       var un = $('#username').val();
+       if(!un && un.length <= 0){
+         isValid = false;
+         $('#msg_username').html('Please fill username').show();
+       }else{
+         $('#msg_username').html('').hide();
+       }
+       
+       // validate password
+       var pw = $('#password').val();
+       if(!pw && pw.length <= 0){
+         isValid = false;
+         $('#msg_password').html('Please fill password').show();         
+       }else{
+         $('#msg_password').html('').hide();
+       }
+       
+       // validate confirm password
+       var cpw = $('#cpassword').val();
+       if(!cpw && cpw.length <= 0){
+         isValid = false;
+         $('#msg_cpassword').html('Please fill confirm password').show();         
+       }else{
+         $('#msg_cpassword').html('').hide();
+       }  
+       
+       // validate password match
+       if(pw && pw.length > 0 && cpw && cpw.length > 0){
+         if(pw != cpw){
+           isValid = false;
+           $('#msg_cpassword').html('Password mismatch').show();            
+         }else{
+           $('#msg_cpassword').html('').hide();
+         }
+       }
+       return isValid;
+    }
+
+    function validateStep2(){
+      var isValid = true;    
+      //validate email  email
+      var email = $('#email').val();
+       if(email && email.length > 0){
+         if(!isValidEmailAddress(email)){
+           isValid = false;
+           $('#msg_email').html('Email is invalid').show();           
+         }else{
+          $('#msg_email').html('').hide();
+         }
+       }else{
+         isValid = false;
+         $('#msg_email').html('Please enter email').show();
+       }       
+      return isValid;
+    }
+    
+    // Email Validation
+    function isValidEmailAddress(emailAddress) {
+      var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+      return pattern.test(emailAddress);
+    } 
+</script>
+
+	<div class="term">
+<h4>SIS Smart Internship Online Terms of Service</h4>
+1.    Welcome to AdSense!<br/>
+Thanks for your interest in our search and advertising services (the “Services”)!  
+By using our Services, you agree to these terms (the “AdSense Terms”), the AdSense Program Policies and the Google Branding Guidelines  (collectively, the “Agreement”). If ever in conflict, to the extent of such conflict, the AdSense Terms will take precedence over any other terms of the Agreement.  Please read the Agreement carefully.
+As used in the Agreement, “you” or “publisher” means the individual or entity using the Services (and/or any individual, entity or successor entity, agency or network acting on your behalf), “we,” “us” or “Google” means Google Inc., and the “parties” means you and Google.  <br/><br/>
+2.    Access to the Services; AdSense Accounts<br/>
+Your use of the Services is subject to your creation and our approval of an AdSense account (an “Account”).  We have the right to refuse or limit your access to the Services. By submitting an application to use the Services, if you are an individual, you represent that you are at least 18 years of age.  You may only have one Account.  
+By enrolling in AdSense, you permit Google to serve, as applicable, (i) advertisements and other content (“Ads”), (ii) Google search boxes and search results, and (iii) related search queries and other links to your websites, mobile applications, media players, mobile content, and/or other properties approved by Google (each individually a “Property”).  In addition, you grant Google the right to access, index and cache the Properties, or any portion thereof, including by automated means. Google may refuse to provide the Services to any Property.
+Any Property that is a software application and accesses our Services (a) may require preapproval by Google in writing, and (b) must comply with Google’s Software Principles.<br/><br/>
+3.    Using our Services<br/>
+You may use our Services only as permitted by this Agreement and any applicable laws.  Don’t misuse our Services. For example, don’t interfere with our Services or try to access them using a method other than the interface and the instructions that we provide.<br/>
+You may discontinue your use of any Service at any time by removing the relevant code from your Properties.  
+4.    Changes to our Services; Changes to the Agreement
+We are constantly changing and improving our Services. We may add or remove functionalities or features of the Services at any time, and we may suspend or stop a Service altogether.<br/>
+We may modify the Agreement at any time. We’ll post any modifications to the AdSense Terms on this page and any modifications to the AdSense Program Policies or the Google Branding Guidelines on their respective pages.  Changes will not apply retroactively and generally will become effective 14 days after they are posted. However, changes addressing new functions for a Service or changes made for legal reasons will be effective immediately. If you don’t agree to any modified terms in the Agreement, you’ll have to stop using the affected Services.<br/><br/>
+5.    Payments<br/>
+Subject to this Section 5 and Section 10 of these AdSense Terms, you will receive a payment related to the number of valid clicks on Ads displayed on your Properties, the number of valid impressions of Ads displayed on your Properties, or other valid events performed in connection with the display of Ads on your Properties, in each case as determined by Google.  <br/>
+Except in the event of termination, we will pay you by the end of the calendar month following any calendar month in which the earned balance in your Account equals or exceeds the applicable payment threshold.  If you implement search Services, our payments may be offset by any applicable fees for such Services.
+Unless expressly authorized in writing by Google, you may not enter into any type of arrangement with a third party where that third party receives payments made to you under the Agreement or other financial benefit in relation to the Services.<br/>
+Payments will be calculated solely based on our accounting. Payments to you may be withheld to reflect or adjusted to exclude any amounts refunded or credited to advertisers and any amounts arising from invalid activity, as determined by Google in its sole discretion.  Invalid activity is determined by Google in all cases and includes, but is not limited to, (i) spam, invalid queries, invalid impressions or invalid clicks on Ads generated by any person, bot, automated program or similar device, including through any clicks or impressions originating from your IP addresses or computers under your control; (ii) clicks solicited or impressions generated by payment of money, false representation, or requests for end users to click on Ads or take other actions; (iii) Ads served to end users whose browsers have JavaScript disabled; and (iv) clicks or impressions co-mingled with a significant amount of the activity described in (i, ii, and iii) above.  <br/>
+In addition to our other rights and remedies, we may (a) withhold and offset any payments owed to you under the Agreement against any fees you owe us under the Agreement or any other agreement, or (b) require you to refund us within 30 days of any invoice, any amounts we may have overpaid to you in prior periods.  If you dispute any payment made or withheld relating to the Services, you must notify Google in writing within 30 days of any such payment.  If you do not, any claim relating to the disputed payment is waived.  If an advertiser whose Ads are displayed on any Property defaults on payment to Google, we may withhold payment or charge back your account.
+To ensure proper payment, you are responsible for providing and maintaining accurate contact and payment information in your Account.  You are responsible for any charges assessed by your bank or payment provider.<br/><br/>
+6. Taxes<br/>
+As between you and Google, Google is responsible for all taxes (if any) associated with the transactions between Google and advertisers in connection with Ads displayed on the Properties.  You are responsible for all taxes (if any) associated with the Services, other than taxes based on Google’s net income.  All payments to you from Google in relation to the Services will be treated as inclusive of tax (if applicable) and will not be adjusted.<br/><br/>  
+7.    Intellectual Property; Brand Features<br/>
+Other than as set out expressly in the Agreement, neither party will acquire any right, title or interest in any intellectual property rights belonging to the other party or to the other party’s licensors.
+If Google provides you with software in connection with the Services, we grant you a  non-exclusive, non-sublicensable license for use of such software.  This license is for the sole purpose of enabling you to use and enjoy the benefit of the Services as provided by Google, in the manner permitted by the Agreement.  Other than distributing content via the AdMob SDK, you may not copy, modify, distribute, sell, or lease any part of our Services or included software, nor may you reverse engineer or attempt to extract the source code of that software, unless laws prohibit those restrictions or you have our written permission.  You will not remove, obscure, or alter Google's copyright notice, Brand Features, or other proprietary rights notices affixed to or contained within any Google services, software, or documentation.
+We grant you a non-exclusive, non-sublicensable license to use Google’s trade names, trademarks, service marks, logos, domain names, and other distinctive brand features (“Brand Features”) solely in connection with your use of the Services and in accordance with the Agreement and the Google Branding Guidelines.  We may revoke this license at any time.  Any goodwill arising from your use of Google’s Brand Features will belong to Google.
+We may include your name and Brand Features in our presentations, marketing materials, customer lists and financial reports.<br/><br/>
+8.    Privacy<br/>
+Our privacy policy explains how we treat your personal data and protect your privacy when you use our Services. By using our Services, you agree that Google can use such data in accordance with our privacy policy.
+You will ensure that at all times you use the Services, the Properties have a clearly labeled and easily accessible privacy policy that provides end users with clear and comprehensive information about cookies, device-specific information, location information and other information stored on, accessed on, or collected from end users’ devices in connection with the Services, including, as applicable, information about end users’ options for cookie management.  You will use commercially reasonable efforts to ensure that an end user gives consent to the storing and accessing of cookies, device-specific information, location information or other information on the end user's device in connection with the Services where such consent is required by law.<br/><br/>
+9.    Confidentiality<br/>
+You agree not to disclose Google Confidential Information without our prior written consent. "Google Confidential Information" includes: (a) all Google software, technology and documentation relating to the Services; (b) click-through rates or other statistics relating to Property performance as pertaining to the Services; (c) the existence of, and information about, beta features in a Service; and (d) any other information made available by Google that is marked confidential or would normally be considered confidential under the circumstances in which it is presented.  Google Confidential Information does not include information that you already knew prior to your use of the Services, that becomes public through no fault of yours, that was independently developed by you, or that was lawfully given to you by a third party.  Notwithstanding this Section 9, you may accurately disclose the amount of Google’s gross payments resulting from your use of the Services.  <br/><br/>
+10. Termination<br/>
+You may terminate the Agreement at any time by completing the account cancellation process.  The Agreement will be considered terminated within 10 business days of Google's receipt of your notice.   If you terminate the Agreement and your earned balance equals or exceeds the applicable threshold, we will pay you your earned balance within approximately 90 days after the end of the calendar month in which the Agreement is terminated.  Any earned balance below the applicable threshold will remain unpaid.
+Google may at any time terminate the Agreement, or suspend or terminate the participation of any Property in the Services for any reason.  If we terminate the Agreement due to your breach or due to invalid activity, we may withhold unpaid amounts or charge back your account. If you breach the Agreement or Google suspends or terminates your Account, you (i) will not be allowed to create a new Account, and (ii) may not be permitted to monetize content on other Google products.
+<br/><br/>
+11.  Indemnity
+ <br/>
+You agree to indemnify and defend Google, its affiliates, agents, and advertisers from and against any and all third-party claims and liabilities arising out of or related to the Properties, including any content served on the Properties that is not provided by Google, your use of the Services, or your breach of any term of the Agreement.  Google’s advertisers are third-party beneficiaries of this indemnity.<br/><br/>
+ 
+12. Representations; Warranties; Disclaimers<br/>
+You represent and warrant that (i) you have full power and authority to enter into the Agreement; (ii) you are the owner of, or are legally authorized to act on behalf of the owner of, each Property; (iii) you are the technical and editorial decision maker in relation to each Property on which the Services are implemented and that you have control over the way in which the Services are implemented on each Property; (iv) Google has never previously terminated or otherwise disabled an AdSense account created by you due to your breach of the Agreement or due to invalid activity; (v) entering into or performing under the Agreement will not violate any agreement you have with a third party or any third-party rights; and (vi) all of the information provided by you to Google is correct and current.
+OTHER THAN AS EXPRESSLY SET OUT IN THE AGREEMENT, WE DO NOT MAKE ANY PROMISES ABOUT THE SERVICES.  FOR EXAMPLE, WE DON’T MAKE ANY COMMITMENTS ABOUT THE CONTENT WITHIN THE SERVICES, THE SPECIFIC FUNCTION OF THE SERVICES, OR THEIR PROFITABILITY, RELIABILITY, AVAILABILITY, OR ABILITY TO MEET YOUR NEEDS. WE PROVIDE EACH SERVICE “AS IS”.
+TO THE EXTENT PERMITTED BY LAW, WE EXCLUDE ALL WARRANTIES, EXPRESS, STATUTORY OR IMPLIED.  WE EXPRESSLY DISCLAIM THE WARRANTIES OR CONDITIONS OF NONINFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.<br/><br/>
+13. Limitation of Liability<br/>
+TO THE EXTENT PERMITTED BY LAW, EXCEPT FOR ANY INDEMNIFICATION OBLIGATIONS HEREUNDER OR YOUR BREACH OF ANY INTELLECTUAL PROPERTY RIGHTS, CONFIDENTIALITY OBLIGATIONS AND/OR PROPRIETARY INTERESTS RELATING TO THE AGREEMENT, (i) IN NO EVENT SHALL EITHER PARTY BE LIABLE UNDER THE AGREEMENT FOR ANY CONSEQUENTIAL, SPECIAL, INDIRECT, EXEMPLARY, OR PUNITIVE DAMAGES WHETHER IN CONTRACT, TORT OR ANY OTHER THEORY, EVEN IF SUCH PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES AND NOTWITHSTANDING ANY FAILURE OF ESSENTIAL PURPOSE OF ANY LIMITED REMEDY, AND (ii) EACH PARTY’S AGGREGATE LIABILITY UNDER THE AGREEMENT IS LIMITED TO THE NET AMOUNT RECEIVED AND RETAINED BY THAT PARTICULAR PARTY IN CONNECTION WITH THIS AGREEMENT DURING THE THREE MONTH PERIOD IMMEDIATELY PRECEDING THE DATE OF THE CLAIM.  Each party acknowledges that the other party has entered into the Agreement relying on the limitations of liability stated herein and that those limitations are an essential basis of the bargain between the parties.<br/><br/>
+14. Miscellaneous<br/>
+Entire Agreement; Amendments.  The Agreement is our entire agreement relating to your use of the Services and supersedes any prior or contemporaneous agreements on that subject.  This Agreement may be amended (i) in a writing signed by both parties that expressly states that it is amending the Agreement, or (ii) as set forth in Section 4, if you keep using the Services after Google modifies the Agreement.  <br/>
+Assignment.  You may not assign or transfer any of your rights under the Agreement.<br/>
+Independent Contractors.  The parties are independent contractors and the Agreement does not create an agency, partnership, or joint venture.
+No Third-Party Beneficiaries. Other than as set forth in Section 11, this Agreement does not create any third-party beneficiary rights.<br/>
+No Waiver.  Other than as set forth in Section 5, the failure of either party to enforce any provision of the Agreement will not constitute a waiver.<br/>
+Severability.  If it turns out that a particular term of the Agreement is not enforceable, the balance of the Agreement will remain in full force and effect.<br/>
+Survival.  Sections 7, 9, 10, 11, 13, and 14 of these AdSense Terms will survive termination.<br/>
+Governing Law; Venue.  All claims arising out of or relating to this Agreement or the Services will be governed by California law, excluding California’s conflict of laws rules, and will be litigated exclusively in the federal or state courts of Santa Clara County, California, USA, and you and Google consent to personal jurisdiction in those courts.
+Force Majeure.  Neither party will be liable for inadequate performance to the extent caused by a condition (for example, natural disaster, act of war or terrorism, riot, labor condition, governmental action, and Internet disturbance) that was beyond the party’s reasonable control.
+Communications.  In connection with your use of the Services, we may contact you regarding service announcements, administrative messages, and other information. You may opt out of some of those communications in your Account settings.  For information about how to contact Google, please visit our contact page.<br/>
+*              *              *<br/><br/>
+15. Service-Specific Terms<br/>
+If you choose to implement any of the following Services on a Property, you also agree to the additional terms identified below:<br/>
+AdMob: the AdMob Publisher Guidelines and Policies.<br/>
+Custom Search Engine: the Custom Search Engine Terms of Service.<br/>
 	
-	<div class="header"><span><span class="ico gray window"></span>  Sign Up  </span>
-                            
-						</div>
-						 <div class="content">
-						 
-	<div class="boxtitle"><span class="ico gray audio_knob"></span>
-                        
-	<%if @admin==true then%>
-	Enter Staff Details
-	<%else%>
-	Enter Your Details
-	<%end%>
-  </div>
-  
-<%= form_for(@user) do |f| %>
-
-<%= render 'shared/error_messages', :object => f.object %>
-<div class="section" >
-<%= f.label :name, "Name:" %><br />
-<%= f.text_field :name %>
-</div>
-<div class="section" >
-<%= f.label :email ,"Email:"%><br />
-<%= f.text_field :email %>
-<span class="f_help">
-</span>
-</div>
-<div class="section" >
-<%= f.label :password ,"Password:"%><br />
-<%= f.password_field :password %>
-</div>
-<div class="section" >
-<%= f.label :password_confirmation, "Confirmation:" %><br />
-<%= f.password_field :password_confirmation %>
-</div>
-<div class="section" >
-<%= f.label :role_id ,"Type:"%><br />
-<%=collection_select(:user,:role_id,Role.all,:id,:name,:prompt=>"Please Select")%>
-</div>
-
-<div class="section last">
-
-                                  <div>
-								  
-	<%if @admin==true then%>
-		<%= f.submit "Save"%>
-	<%else%>
-		<%= f.submit "Sign up", :class => 'uibutton loading', :title => 'Saving' %>
-	<%end%>
-
-</div>
-</div>
-							 
-</div>
-<% end %>
-<%if @admin==true%>
-<%=link_to pensyarah_path%>
-<%end%>
-
-
-		</div>
 	</div>
-	<div class="clear"></div>
 
-<!-- </div> <!-- inner -->
-</div> <!--content--> -->
+<!-----end term -->
+	<div class="widget">
+		<div class="header"><span><span class="ico gray wizard"></span>  New Company registration sign up  </span></div>
+		<div class="content">
+			<%= form_for(@user) do |f| %>
+				<%= render "shared/error_messages", :object => f.object %>
+				<input type='hidden' name="issubmit" value="1">
+			<!-- wizard -->
+			<div id="wizardvalidate" class="swMain">
+  			<ul>
+  		  		<li><a href="#step-1">
+  					<label class="stepNumber">1</label>
+  					<span class="stepDesc">
+  					   Account <br />
+  					   <small>account details</small>
+  					</span>
+  			    	</a></li>
+  		  		<li><a href="#step-2">
+  					<label class="stepNumber">2</label>
+  					<span class="stepDesc">
+  					   Contact <br />
+  					   <small>Contact details</small>
+  					</span>
+  				</a></li>
+  	  		</ul>
+
+	  		<div id="step-1" style="width:100%;">	
+            <h4 class="StepTitle">Step 1: Account Details</h4>
+                <div class="section last">
+                	<label> Login  Account  <small>Signup details</small></label>
+                    <div>
+                    	<%= f.text_field :fullname,:placeholder=>"Full Company Name",:class=>"medium",:id=>"fullname"%>
+                    	<label id="msg_username" class="red"></label>
+                    	<span class="f_help"> Full Company Name. </span> 
+                    </div>
+                    <div>
+                    	<%= f.text_field :name,:placeholder=>"Username",:class=>"medium",:id=>"username"%>
+                    	<label id="msg_username" class="red"></label>
+                    	<span class="f_help"> Company name login to register. </span> 
+                    </div>
+                    <div>	
+                    	<%= f.password_field :password,:placeholder=>"Password",:class=>"medium",:id=>"password"%>
+                    	<label id="msg_password" class="red"></label>
+                    </div>
+                    <div>
+                    	<%= f.password_field :password_confirmation,:placeholder=>"Confirm Password",:class=>"medium",:id=>"cpassword" %>
+						<label id="msg_cpassword" class="red"></label>
+                    </div>
+                </div>
+			</div>
+			<div id="step-2" style="width:100%;">
+			<h4 class="StepTitle">Step 2: Contact Details</h4>
+            <div class="section last">
+            	<label> Contact Detail <small></small></label>
+                <div>
+					<%= f.text_field :email,:placeholder=>"Email",:class=>"medium",:id=>"email"  %>
+              		<label id="msg_email" class="red"></label>
+			  	</div>  
+                <div>
+                	<%=collection_select(:user,:role_id,Role.where(:name => "company"),:id,:name,:class=>"medium")%>
+                </div>	
+				<div>           
+	                <%if @admin==true then%>
+	                  <%= f.submit "Save"%>
+	                <%else%>
+	                  <%= f.submit "Sign up", :class => 'uibutton loading', :title => 'Saving' %>
+	                <%end%>
+				</div>
+			</div> <!-- end wizard -->
+		</div>
+		<% end %>
+		<%if @admin==true%>
+		<%=link_to pensyarah_path%>
+		<%end%>
+	</div>
+</div> <!---->
+	<div class="clear"></div>
+</div>	
+
+<style>
+	.widget {background-color:#ffffff	}
+	.widget .content {
+		background: #ffffff url("/images/inner-shadow.png") repeat-x;
+		border-top: 1px solid #cecece;
+		padding: 4px 18px;
+		min-height: 50px;
+	}
+	
+	.swMain ul.anchor li a .stepNumber {
+		position: relative;
+		font-family: "Myriad Pro", Arial, Helvetica, sans-serif;
+		float: left;
+		width: 23px;
+		text-align: center;
+		padding: 0px;
+		padding-top: 0;
+		font-size: 30px;
+	}
+	.swMain ul.anchor li a .stepDesc {
+		position: relative;
+		display: block;
+		float: left;
+		text-align: left;
+		padding: 3px 5px 5px 5px;
+		font-size: 15px;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+	.term {
+		padding: 10px;
+		font-size: 90%;
+	}
+</style>
+

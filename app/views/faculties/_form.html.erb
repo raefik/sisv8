@@ -1,21 +1,27 @@
-<%= form_for(@faculty) do |f| %>
-  <% if @faculty.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@faculty.errors.count, "error") %> prohibited this faculty from being saved:</h2>
-
-      <ul>
-      <% @faculty.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span> Faculty </span></div>
+						 <div class="content">
+		<%= form_for(@faculty) do |f| %>
+		  <% if @faculty.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@faculty.errors.count, "error") %> prohibited this faculty from being saved:</h2>
+		
+		      <ul>
+		      <% @faculty.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+		
+		  <div class="section">
+		    <%= f.label :name %><br />
+		    <%= f.text_area :name, :cols=>'50px',:rows=>'5px'%>
+		  </div>
+		  <div class="actions">
+		    <%= f.submit "Submit", :class => 'uibutton loading', :title => 'Submit' %><%= link_to 'Back', faculties_path , :class => 'uibutton'%>
+		  </div>
+		<% end %>
+	</div>
+</div>

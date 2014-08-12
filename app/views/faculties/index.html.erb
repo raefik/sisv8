@@ -1,6 +1,30 @@
-<h1>Listing faculties</h1>
+<style>
+    table{
+        margin: 10px;padding: 10px
+        border-collapse: collapse;
+        border-spacing: 0;
+        padding: 10px;
+        margin: 0px;
+    }
+    table td{
+        padding: 10px;
+        font-size: 90%;
+        border-bottom-style:solid;
+        border-bottom-width: 1px;
+    }
 
-<table>
+    table th{
+      font-weight:bold; 
+      border-bottom-style:solid;
+      border-bottom-width: 3px;
+      padding-bottom: 10px;
+      border-bottom-color: #7F6DDD;
+      color: #7F6DDD;
+    }
+</style>
+<h4>Listing faculties</h4><%= link_to 'New Faculty ', new_faculty_path ,:class => 'uibutton loading', :title => 'Add new' %>
+
+<table bgcolor="white">
   <tr>
     <th>Name</th>
     <th></th>
@@ -11,13 +35,11 @@
 <% @faculties.each do |faculty| %>
   <tr>
     <td><%= faculty.name %></td>
-    <td><%= link_to 'Show', faculty %></td>
     <td><%= link_to 'Edit', edit_faculty_path(faculty) %></td>
-    <td><%= link_to 'Destroy', faculty, confirm: 'Are you sure?', method: :delete %></td>
+    <td> <a href="/faculties/erase/<%= faculty.id %>"><img src="/images/icon/color_18/cross.png" style="float:left;"/></a></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Faculty', new_faculty_path %>

@@ -1,6 +1,97 @@
 class FacultiesController < ApplicationController
   # GET /faculties
   # GET /faculties.json
+  def course_report
+    aColumns = ['id','name','']
+  aColumnType = ['id', 'string','']
+  
+  # ordering
+    sOrder = ""
+    if params[:iSortCol_0].present?
+      #sOrder = "ORDER BY  "
+      inc = 0
+      until inc > params[:iSortingCols].to_i-1
+        sortInc = params[:"iSortCol_#{inc}"].to_i
+        if params[:"bSortable_#{sortInc}"] == "true" && !aColumns[sortInc].empty?
+          sOrder += aColumns[sortInc] + ( params[:"sSortDir_#{inc}"] == 'asc' ? " asc" : " desc") + ", "
+        end
+        inc+=1
+      end
+      
+      sOrder = sOrder[0..-3]
+      #if sOrder == "ORDER BY"
+      # sOrder = ""
+      #end
+    end
+    
+    # filtering
+    sWhere = "" 
+    if !params[:sSearch].empty?
+      inc = 0
+      until inc > aColumns.count-1
+        if !aColumns[inc].empty?
+          if aColumnType[inc] == "int"
+            sWhere += aColumns[inc] + " = " + params[:sSearch].to_i.to_s + " OR "
+          else
+            sWhere += aColumns[inc] + " ILIKE '%" + params[:sSearch] + "%' OR "
+          end
+        end
+        inc+=1
+      end
+      
+      sWhere = sWhere[0..-5]
+      sWhere += " AND "
+    end
+    
+    # individual column filtering
+    inc = 0
+    until inc > aColumns.count-1
+      if params[:"bSearchable_#{inc}"].present? && params[:"bSearchable_#{inc}"] == "true" && !params[:"sSearch_#{inc}"].empty?
+        if aColumnType[inc] == "int"
+          sWhere += aColumns[inc] + " = " + params[:"sSearch_#{inc}"].to_i.to_s + " AND "
+        else
+          sWhere += aColumns[inc] + " ILIKE '%" + params[:"sSearch_#{inc}"] + "%'" + " AND "
+        end
+      end
+      inc+=1
+    end
+    sWhere += "true=true"
+    
+    aColumns.reject! { |c| c.empty? }
+    selectedColumn = aColumns.join(', ')
+  
+    
+    totalrecord = Faculty.select(selectedColumn)
+        .where(sWhere)
+                
+    rowno = params[:iDisplayStart].to_i
+    
+    fac = totalrecord
+        .limit(params[:iDisplayLength])
+        .offset(params[:iDisplayStart])
+        .order(sOrder)
+    
+    facs = fac.each.map do |r| [
+      rowno += 1,
+      r.name,
+      "<center><img src='/assets/icons/packs/fugue/16x16/pencil-ruler.png' id='edit#{r.id}' onClick='edit(#{r.id});'/></center>"
+    ] end
+
+    if sWhere == "true=true"
+      totallen = Faculty.all.length
+    else
+      totallen = totalrecord.length
+    end
+    
+    render :json => { 
+      :sEcho => params[:sEcho], 
+      :iTotalRecords => totallen, 
+      :iTotalDisplayRecords => totallen,
+      :aaData => facs 
+    }
+  end
+
+
   def index
     @faculties = Faculty.all
 

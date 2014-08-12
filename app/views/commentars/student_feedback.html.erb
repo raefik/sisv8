@@ -1,0 +1,148 @@
+<div class="boxx">
+<h4>Student Status Summary</h4>
+
+
+	<div class="widget">
+		<div class="header"><span ><span class="ico  color chat-exclamation"></span>
+		 Comment </span></div>
+		<div class="content"  style="padding:0px 0px;">
+			<form><div class="tableName">
+				<table class="display" >
+				<thead>
+				<tr>
+					<th >Student Detail</th>
+					<th >Comments from Industrial Supervisor</th>
+					<th >Status</th>
+					<th >Start/End</th>
+				</tr>
+				</thead>
+					
+				<%@userCs.each do |f|%>
+				<tbody>
+					<%if f.action_status_id==6 %>
+					<tr>
+						<td width="25%">
+							<table  class="ext">
+								<tr>
+								<td >
+								<%if Photo.find_by_user_id(f.student.user.id).nil? %>
+							 		<img class="profile" src="/assets/profileNope.jpg" width="50px" />
+							 	<%else%>
+									<img class="profile" src="<%= Photo.find_by_user_id(f.student.user.id).image%>" width="50px"/>
+								<%end%>
+								<td >
+									<a><b><%= f.student.user.fullname%></b></a></br>
+									<%= StudProfile.find_by_user_id(f.student.user_id).matric_no %></br>
+									<%= StudProfile.find_by_user_id(f.student.user_id).nric %></br>
+									<%= StudProfile.find_by_user_id(f.student.user_id).hp_no %></br>
+									<%= User.find_by_id(f.student.user_id).email %></br>
+									
+								</td>
+								</tr>	
+							</table>
+						</td>
+						<td width="30%" align="center">
+							
+						  <%if current_user.role_id == 4 %>
+						  		<%= Commentar.find_by_student_id(f.student.user.id).remark%>
+						  <%else%>
+							<%if Commentar.find_by_student_id(f.student.user.id).nil? %>
+								<%if current_user.role_id == 3 %>		
+									<center >... no comment from industry ...</center >
+								<%else%>	
+									<a href="/commentars/new?sid=<%= f.student.user.id%>" class="uibutton">add Comment</a>
+								<%end%>
+							<%else%>
+								<a href="/commentars/<%= Commentar.find_by_student_id(f.student.user.id).id%>/edit?sid=<%= f.student.user.id%>" ><%= Commentar.find_by_student_id(f.student.user.id).remark%> &nbsp&nbsp<img class="profile" src="/assets/zice/images/icon/color_18/pencil.png" width="12px"/></a>
+							<%end%>
+						  <%end%>	
+						</td>
+						<td>
+							<table>
+							<tr>
+								<td>
+									Pre/End Survey 
+								</td>	 
+								<td>
+									<%if EvalStudentEnd.find_by_user_id(f.student.user.id).nil?%>
+										<img src="images/icon/color_18/cross.png" height="12px"/>
+									<%else%>
+										<img src="images/icon/color_18/checkmark2.png" height="12px"/>
+									<%end%>
+								</td>
+							 </tr>
+							<tr>
+								<td>
+									Your Survey
+								</td>
+								<td>	
+							<%if EvalByAkademicSv.find_by_student_id(f.student.user.id).nil?%>
+								<%if EvalByIndustrySv.find_by_user_id(f.student.user.id).nil?%>
+										<%if current_user.role_id != 3 %>
+									<img src="images/icon/color_18/cross.png" height="12px"/>
+		<a class="uibutton inside" href="/industry_svs?sid=<%= f.student.user.id%>&sname=<%= f.student.user.fullname%>&sidd=<%= f.student.user.name%>&compid=<%= f.company.user_id%>&comp=<%= f.company.user.name%>">Do it</a>
+										<%else%>
+										
+											<img src="images/icon/color_18/cross.png" height="12px"/>
+		<a class="uibutton inside" href="/academic_svs?sid=<%= f.student.user.id%>&sname=<%= f.student.user.fullname%>&sidd=<%= f.student.user.name%>">Do it</a>									
+										<%end%>
+								<%else%>
+									<img src="images/icon/color_18/checkmark2.png" height="12px"/>
+								<%end%>
+							<%else%>
+								<img src="images/icon/color_18/checkmark2.png" height="12px"/>
+							<%end%>	
+								</td>
+							</tr>
+							<tr>
+								<td>							
+									Active 
+								</td>
+								<td>	
+									<%if StudInternship.find_by_user_id(f.student.user.id).nil? %>
+										No
+									<%else%>
+										Yes
+									<%end%>
+								</td>
+							</tr>		
+							</table>
+						</td>
+						<td>
+							<%if StudInternship.find_by_user_id(f.student.user.id).nil? %>
+								not stated
+							<%else%>
+								Start : <%= StudInternship.find_by_user_id(f.student.user.id).sem_internship_start%> </br>
+								End : <%= StudInternship.find_by_user_id(f.student.user.id).sem_internship_end%>
+							<%end%>
+						</td>
+					</tr>
+					<%end%>
+				</tbody>
+				<%end%>
+				</table>
+			</div>
+			</form>
+		</div>
+	</div>					
+	</br>
+</div>
+<style>
+	td{text-align: left;
+		font-size: 90%;
+		
+	}
+	table .ext{}
+	table.display tbody td {padding: 3px 5px!important;}
+	.profile:hover{background-color:red;
+opacity:0.5;
+filter:Alpha(opacity=50);}
+	.uibutton {
+		margin: 0px 0px 0px 0;
+		font-size: 90%;
+	}
+	table.display tbody tr:last-child td {
+border-bottom: 1px solid #d9d9d9;
+}
+
+</style>

@@ -1,10 +1,120 @@
+<div class="boxx">
+	<h4>Interested student for Internship</h4>
+	<div class="oneTwo">
+	  <div class="widget">
+	     <div class="header"><span ><span class="ico  color emoticon_smile"></span> Interested student for Internship </span></div>
+	     <div class="content"  style="padding:0px 0px;">
+			  <div class="tableName">
+			    <table class="display data_table2" >
+			     <thead><tr>
+					<th align="left"> Student Name </th><th  align="left">Date Applied</th><th  align="left">Action</th><th  align="left">Respond</th>
+				 </tr></thead>
+			     <tbody>	
+				   <%if signed_in?%>
+					<%@usercompanies.each do |f|%>
+					<%if f.action_status_id!=6 %>
+					<tr>
+					    <td  align="left">
+				           <%= link_to f.student.user.fullname,"",:target=>'_self',:onClick=>"popup('resume/#{f.user_id}/edit')" %>
+						</td>
+						<td  align="left"><%=f.created_at.strftime("%d %b %Y ") %></td>
+						<td  align="left"><%=f.action_status.name%></td>
+						<td  align="left"><%if f.action_status_id==2 ||f.action_status_id==3%><%=f.updated_at.strftime("%d %b %Y ") %><%end%></td>
+					</tr>
+							<%end%>	
+						<%end%>	
+					<%end%>
+				</tbody>
+			  </table>
+		     </div> <!-- end tablename-->
+		</div>
+	  </div>
+	</div>  
+
+<div class="oneTwo">
+	<div class="widget">
+		<div class="header"><span ><span class="ico  color checkmark2"></span>Check-in </span></div>
+		<div class="content"  style="padding:0px 0px;">
+			<form>
+				<table class="display" >
+					<thead>
+					<tr>
+						<th >Student Details</th>
+						<th >Start/End</th>
+					</tr>
+					</thead>
+					<%@userCs=UserCompany.where(:company_id=>Company.find_by_user_id(current_user.id)) %>
+					<%@userCs.each do |f|%>
+					<tbody>
+						<%if f.action_status_id==6 %>
+						<tr>
+							<td style="padding: 1px 10px!important;">
+								<table border="0" class="ext">
+									<tr>
+									<td style="padding: 1px 10px!important;">
+									<%if Photo.find_by_user_id(current_user.id).nil? %>
+								 		<img class="profile" src="/assets/profilePlus.jpg" width="50px" />
+								 	<%else%>
+										<img class="profile" src="<%= Photo.find_by_user_id(f.student.user.id).image%>" width="50px"/>
+									<%end%>
+									<td align="left" onclick="detail(<%= f.user_id%>); return false">
+										<%= f.student.user.name%></br>
+										<%= f.student.user.fullname %></br>
+										<%= StudProfile.find_by_user_id(f.student.user_id).hp_no %></br>
+										<%= User.find_by_id(f.student.user_id).email %></br>
+										<%= StudProfile.find_by_user_id(f.student.user_id).nric %></br>
+									</td>
+									</tr>	
+								</table>
+							</td>
+							<td>
+								<%if StudInternship.find_by_user_id(f.student.user.id).nil? %>
+									not stated
+								<%else%>
+									Start : <%= StudInternship.find_by_user_id(f.student.user.id).sem_internship_start%> </br>
+									End : <%= StudInternship.find_by_user_id(f.student.user.id).sem_internship_end%>
+								<%end%>
+							</td>
+						</tr>
+						<%end%>
+					</tbody>
+					<%end%>
+				</table>
+			</form>
+		</div>
+	</div>					
+	</br>
+</div>
+<div class="clear"></div>
 
 <script type="text/javascript">
-<!--
+	var gap     = 10;
+		var boxH    = $(window).height() - gap;     // bottom gap
+		var boxW    = $(window).width() - gap * 2 - 460;  // left + right gap
+		var iboxH    = $(window).height() - gap - 70;     // bottom gap
+		var iboxW    = $(window).width() - gap * 2 - 500;  // left + right gap
+		
+	function detail(idd){
+  	$.fallr('show', {
+		    content     : '<p>Curriculum Vitae</p>'
+                  + "<iframe src='/resume/"+idd+"/edit?id="+idd+"' style='background: white' frameborder=0 width='"+iboxW+"' height='"+iboxH+"'></iframe>",
+		    width   : boxW,
+		    	height  : boxH,
+		    	title: "Curriculum Vitae",
+		    icon        : 'chat',
+		    closeOverlay: true,
+		    buttons     : {
+		        button1 : {text: 'Close'}    
+		    }
+		});
+	}
+
+
+
 function popup(url) 
 {
- var width  = 600;
- var height = 400;
+ var width  = 800;
+ var height = 1000;
  var left   = (screen.width  - width)/2;
  var top    = (screen.height - height)/2;
  var params = 'width='+width+', height='+height;
@@ -26,53 +136,21 @@ myWindow=window.open('','','width=200,height=100');
 myWindow.document.write("<p>This is 'myWindow'</p>");
 myWindow.focus();
 }
-
 </script>
 
-<div class="widget">
-						<div class="header"><span ><span class="ico  gray random"></span> INTERESTED STUDENT FOR INTERNSHIP (ACCEPT OFFER) </span></div>
-						<div class="content"  >
+<style>
+.tableName .dataTables_wrapper .dataTables_filter {
+right: 2px;
+top: -32px;
+}
+table.display tbody td {
 
-				 <form> 
-						<div class="tableName">
-							
-							
-<table class="display data_table2" >
-	<thead>
-		<tr>
-			<th align="left">Bil</th><th align="left"><div class="th_wrapp"> Student Name </div></th><th  align="left">id</th><th  align="left">Date Applied</th><th  align="left">Action</th><th  align="left">Request Accepted</th><th  align="left">Offer Letter</th>
-		</tr>
-	</thead>
-	
-	<tbody>	
-
-<%if signed_in?%>
-				
-<div class="right_column">
-							
-					
-									
-									<%i=0%>
-									<%@companies.each do |f|%>
-									<%i+=1%>
-									
-									<tr>
-										<td  align="left"><%=i%>.</td>
-									    <td  align="left">
-								           <%= link_to f.student.name,"",:target=>'_self',:onClick=>"popup('resume/#{f.user_id}/edit')" %>
-																																				
-										</td>
-										<td  align="left"><%=f.id%></td>
-										<td  align="left"><%=f.created_at.strftime("%d-%m-%Y ") %></td>
-										<td  align="left"><%=f.action_status.name%></td>
-										<td  align="left"><%if f.action_status_id==2 ||f.action_status_id==3%><%=f.updated_at.strftime("%d-%m-%Y ") %><%end%></td>
-										<td  align="left"><%if f.action_status_id==3%><%= link_to "offer letter","",:target=>'_self',:onClick=>"popup('/confirmation_letters/#{f.user_id}')" %><%end%></td>
-										</tr>
-									
-									<%end%>
-									
-													
-<%end%>
-</tbody>
-</table>
-</div>
+padding: 10px 10px!important;
+}
+table.display tbody tr:last-child td {
+	border-bottom: 0px solid #d9d9d9;
+}
+.widget .header {height: 36px;}
+td{font-size: 90%;}
+table .ext td{padding: 1px 1px!important;}
+</style>

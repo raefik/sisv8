@@ -1,0 +1,58 @@
+<div class="twoOne">
+<div class="widget">
+						<div class="header"><span ><span class="ico  gray random"></span> Companies For Internships (max 5 companies) </span></div>
+						<div class="content"  style="padding:0px 0px;">
+				 <form> 
+						<div class="tableName">					
+     <table class="display " >
+	<thead>
+		<tr>
+			<th class="th_wrapp">Company Name</th>
+			<th class="th_wrapp">Date Applied</th>
+			<th class="th_wrapp">Action</th>
+			<th class="th_wrapp">Request Accepted</th>
+			<th class="th_wrapp">Checkin</th>
+		</tr>
+	</thead>
+						<tbody>
+									<%i=0%>
+									<%@students.each do |f| %>
+									<%i+=1%>
+									<tr>
+										<td class="th_wrapp">
+												<%=f.company.name%>				              
+										</td>				
+										<td class="th_wrapp"><%=f.created_at.strftime("%d %b %Y ") %></td>
+										<td class="th_wrapp"><%=f.action_status.name%></td>
+										<td class="th_wrapp"><%unless f.action_status_id==1%><%=f.updated_at.strftime("%d %b %Y ") %><%end%></td>
+										<td class="th_wrapp">
+												<%unless f.action_status_id==1%>
+											<p class="uibutton"><%= link_to image_tag("/images/checkmark2.png"), edit_user_company_path(f) %></p>
+												<%end%>	
+										</td>
+										</tr>
+									<%end%>
+									<input type=text hidden="true" id="total" value="<%= i%>"/>
+						</tbody>
+</table>	
+</div>
+</form>
+</div></div>
+	<div style="padding:15px;">
+<br/>
+		<p>Another version of the text uses the word "adipisici" (rather than "adipisicing"; the digraph ng at the end of words is alien to classical Latin). 
+		Other versions of lorem ipsum include additional words to add variety so that repeated verses will not word-wrap on the same phrases.</p>
+		<p>A variation of the common lorem ipsum text has been used since the 1960s or earlier	 to provide a filler text during typesetting.</p>
+	</div>
+</div>
+<div class="oneThree">
+<div class="widget">
+						<div class="header"><span ><span class="ico  color info"></span> Tips</span></div>
+						<div class="content"  style="padding:0px 0px;">			
+						</div>
+</div>
+</div>
+<style>
+table.display tbody td {
+padding: 10px 10px!important;}
+</style>

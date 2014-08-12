@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 attr_accessor :password #virtual password
-attr_accessible :name, :email, :password, :password_confirmation, :role_id,:status
+attr_accessible :name, :email, :password, :password_confirmation, :role_id,:fullname,:status,:image
 email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/
 #-------validates-attr----------
 validates :name, :presence=>true,
@@ -27,6 +27,8 @@ validates :role ,:presence=>true
   has_many :education_backgrounds, :dependent=>:destroy
   has_many :user_companies
   has_many :log_books
+  has_many :sesis
+  has_many :photos
   #--------------------------------------------
   #-------relationship_for_company----
   has_many :companies , :dependent=>:destroy
@@ -56,8 +58,8 @@ def has_password?(submitted_password)
 encrypted_password==encrypt(submitted_password)
 end
 
-def self.authenticate(email,submitted_password)
-user=find_by_email(email)
+def self.authenticate(name,submitted_password)
+user=find_by_name(name)
 	return nil if user.nil?
 	return user if user.has_password?(submitted_password)
 end
@@ -77,19 +79,29 @@ if search
 end
 private
 
-def encrypt_password
-self.salt=make_salt if new_record?
-self.encrypted_password=encrypt(password)
-end
-def encrypt(string)
-secure_hash("#{salt}--#{string}")
-end
-def make_salt
-secure_hash("#{Time.now.utc}--#{password}")
-end
-def secure_hash(string)
-Digest::SHA2.hexdigest(string)
-end
+	def encrypt_password
+		self.salt=make_salt if new_record?
+		self.encrypted_password=encrypt(password)
+	end
 	
-					 
+	def encrypt(string)
+		secure_hash("#{salt}--#{string}")
+	end
+	
+	def make_salt
+		secure_hash("#{Time.now.utc}--#{password}")
+	end
+	
+	def secure_hash(string)
+		Digest::SHA2.hexdigest(string)
+	end
+	
+	def self.to_csv
+	    CSV.generate do |csv|
+	      csv << column_names
+	      all.each do |user|
+	        csv << user.attributes.values_at(*column_names)
+	      end
+	    end
+	end		 
 end

@@ -78,7 +78,15 @@
     <%= f.label :state_id %><br />
     <%= collection_select(:comp_profile,:state_id,State.all,:id,:name,:prompt=>"Please Select")%>
   </div>
-
+<div class="section" >
+    <%= f.label :supervisor %><br />
+    <%= f.text_field :supervisor %>
+  </div>
+<div class="section" >
+    <%= f.label :supervisor_contact %><br />
+    <%= f.text_field :supervisor_contact %>
+  </div>  
+  
   
   <div class="section last">
 

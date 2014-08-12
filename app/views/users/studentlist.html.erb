@@ -1,0 +1,218 @@
+<div class="oneThree uploadNew" >	
+	<div class="widget">
+		<div class="header"><span><span class="ico gray window"></span> Upload New Picture </span></div>
+		<div class="content">
+			<form enctype="multipart/form-data" method="post">
+				<div class="section" >
+				Insert file <input type="file" class="pictureUpNew"/>
+				</div></br>
+				<div class="section" >
+				user_id  <input type="text" class="iddNew" />
+				</div></br>
+				<div class="section last">			  											  
+					<div class="actions">
+						<input type="Submit" id="uploadNeww" value="Upload New" onclick="return false"/>
+					</div>
+				</div>	
+			</form>
+		</div>
+	</div>  
+</div>
+
+<div class="oneThree uploadEdit" >	
+	<div class="widget" >
+		<div class="header"><span><span class="ico gray window"></span> Upload Edit Picture </span></div>
+		<div class="content">
+			<form enctype="multipart/form-data" method="post">
+				<div class="section" >
+				Insert file <input type="file" class="pictureUp"/>
+				</div></br>
+				<div class="section" >
+				user_id  <input type="text" class="idd" /></br>
+				photo_id  <input type="text" class="upid" />
+				</div></br>
+				<div class="section last">			  											  
+					<div class="actions">
+						<input type="Submit" id="uploadEditt" value="Change" onclick="return false"/>
+					</div>
+				</div>	
+			</form>
+		</div>
+	</div>  
+</div>
+
+<div class="clear"></div>
+<div class="widget">
+						<div class="header"><span ><span class="ico  gray random"></span> Student List &nbsp </span><%= link_to "Download Excel", studentlist_path(format: "xls"), :class=>"uibutton" %> (<%= current_user.faculty_id%>)
+								
+						</div>
+	<div class="content" style="padding:15px 0px;" >
+		<form> 
+		<div class="tableName">
+			<table class="display data_table2" >
+				<thead>
+				  <tr>
+					<th>Photo</th>
+					<th>Detail</th>
+					<th>Contact</th>
+					<th>Supervisor</th>
+					<th>Company</th>
+					<th></th>
+				  </tr>
+				</thead>
+			<tbody>
+			<% @users.each do|user|%>		
+			  <tr >
+			  	<td>
+			  		<div class="tops">
+			  		<%if Photo.find_by_user_id(user.id).nil? %>
+					 	<a onclick="uploadNew(<%= user.id %>); return false"><img class="profile" src="/assets/profilePlus.jpg" width="50px" /></a>
+					<%else%>
+						<a onclick="uploadEdit(<%= user.id %>,<%= Photo.find_by_user_id(user.id).id%>); return false"><img class="profile" src="<%= Photo.find_by_user_id(user.id).image%>" width="50px"/>
+					<%end%>
+					</div>
+					<%if Photo.find_by_user_id(user.id).nil? %>
+					 	<div class="profile"><a href="/photos/new?user_id=<%= user.id %>"><img  src="/assets/profilePlus.jpg" width="50px" /></a></div>
+					<%else%>
+						<div class="profile"><a href="/photos/<%= Photo.find_by_user_id(user.id).id%>/edit?user_id=<%= user.id %>"><img  src="<%= Photo.find_by_user_id(user.id).image%>" width="50px"/></a></div>
+					<%end%>
+			  	</td>
+				<td align="left">
+				<a onclick="loadStudentIntern(<%= user.id %>); return false">
+				<%= user.fullname %></a></br>
+				<%= StudProfile.find_by_user_id(user.id).matric_no %></br>
+				<%= StudProfile.find_by_user_id(user.id).nric %></br>
+				<%= StudEdu.find_by_user_id(user.id).faculty.name %></br>
+				<%= StudEdu.find_by_user_id(user.id).prog_name.name %></br>
+				
+				</td>
+				<td align="left">
+				<%= user.email %></br>
+				<%= StudProfile.find_by_user_id(user.id).hp_no %></br>
+				
+				</td>
+				<td align="left">
+				<%if StudProfile.find_by_user_id(user.id).staff_id == nil %>
+					<%else%>
+						<%= Staff.find_by_id(StudProfile.find_by_user_id(user.id).staff_id).name %></br>
+						<%= Staff.find_by_id(StudProfile.find_by_user_id(user.id).staff_id).hp_no %></br>
+						<%= Staff.find_by_id(StudProfile.find_by_user_id(user.id).staff_id).email %></br>
+				<%end%>
+				</td>
+				<td align="left">
+					<%if UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).nil?%>
+					<%else%>
+				<b><%= Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).company_id).name %>&nbsp<%= CompProfile.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).company_id).user.id).city %></b><br/>
+			<%= CompProfile.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).company_id).user.id).official_no %><br/>
+			<%= CompProfile.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).company_id).user.id).email %><br/>
+			<%= CompProfile.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).company_id).user.id).supervisor %><br/>
+			<%= CompProfile.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,user.id ,]).company_id).user.id).supervisor_contact %><br/>
+					<%end%>
+				</td>
+			    <td>
+			    	<%= link_to image_tag('/images/icon/icon_edit.png'), edit_comp_profile_path(user.stud_profiles.first.id) ,:style => "font-size:80%;float:left;"%>
+				</td>
+			  </tr>
+			<% end %>
+			</table>
+		</div>
+		</form>
+	</div>
+</div>	
+<br />
+
+<div class="widget" hidden="hidden">
+	<div class="header"><span ><span class="ico  gray random"></span> Student List</span></div>
+	<div class="content" style="padding:15px 0px;" >
+		<div class="tableName">
+			<table class="display data_table2" id="lablist">
+				<thead>
+					<th>Name</th>
+					<th>Contact</th>
+					<th>Academic Supervisor( Contact )</th>
+					<th></th>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>		
+	</div>
+	
+</div>
+
+<style>
+	td{font-size: 90%}
+	table.display tbody td {padding: 10px 0px!important;}
+	.tableName .dataTables_wrapper .dataTables_filter {
+		position: absolute;
+		float: none;
+		right: 3px;
+		top: -48px;
+		width: auto;
+	}
+	table.display tbody td {
+		padding: 5px 0px!important;
+	}
+	
+	.profile:hover {	
+		width: 100%;
+		height: 80%;
+		opacity:0.3;
+		filter:alpha(opacity=30);
+		transition: all 0.5s;
+		-webkit-transition: all 0.5s;
+	}
+</style>
+<script>
+	$(".tops").hide();
+	$(".uploadEdit").hide(100);
+	$(".uploadNew").hide(100);
+	function uploadEdit(id,id2){
+			$(".uploadNew").hide(100);
+			$(".uploadEdit").hide(100);
+			$(".uploadEdit").show(100);
+			$(".idd").val(id);
+			$(".upid").val(id2)
+	}
+	
+	function uploadNew(id){
+			$(".uploadEdit").hide(100);
+			$(".uploadNew").hide(100);
+			$(".uploadNew").show(100);
+			$(".iddNew").val(id);
+	}
+	
+	$("#uploadEditt").click(function(){
+                $.getJSON("/upload_save",
+                        {
+                            id: $(".upid").val(),
+                            pictureUp: $(".pictureUp").val(),
+                            idd: $(".idd").val()
+                        });
+                $('#uploadEdit').hide(500);
+            }
+    );
+    $("#uploadNeww").click(function(){
+                $.getJSON("/upload_new",
+                        {
+                            pictureUpNew: $(".pictureUpNew").val(),
+                            iddNew: $(".iddNew").val()
+                        });
+                $('#uploadNew').hide(500);
+            }
+    );
+    
+    function loadStudentIntern(id) {
+     var oTable = $('#lablist').dataTable({
+        	"sDom": "lrtip",
+            "sPaginationType": "full_numbers",
+            "bProcessing": true,
+            "bServerSide": true,
+            "bDestroy": true,
+            "sAjaxSource": "/get_student_interns?id="+id,
+            "aoColumnDefs": [{"bSortable": false, "aTargets": [0,3,4]}],
+            "aLengthMenu":[[10,25,50,100],[10,25,50,100]],
+            "iDisplayLength": 10,
+     });
+    } 
+</script>

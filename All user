@@ -1,0 +1,41 @@
+
+Moderator
+username moderator
+password moderator
+
+ ------- Coordinator ---------
+
+Coordinator (Dr Abdul Kadir bin Awang) !
+username 222111
+password 561112012345
+
+Coordinator (Prof Madya Mohammad bin amin) !
+username 403212
+password 70101011010
+
+ ------- Supervisor ---------
+
+Supervisor (Ustaz Zamzuri bin Mokhtar) !
+username 134323 
+password 690102235243
+
+ ------- Student ---------
+
+Student (Nurazhar bin Rohaizat) !
+username 2010100905
+password 871211235293
+
+
+Log kerja yang dah settle =>
+
+User registration:
+1. Student
+2. Coordinator (Didaftarkan oleh Moderator)
+3. Supervisor Academic (Didaftarkan oleh Coordinator)
+4. Supervisor Company (company yang register)
+
+Upload Log kerja (Attachment file PDF,image,WORD,EXCEL)
+1. Student (upload, view, delete)
+2. Supervisor Academic/Company(download, View)
+
+

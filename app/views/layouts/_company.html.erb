@@ -1,4 +1,35 @@
-<li class="limenu" ><%= link_to "Profile", current_user%> </li>
-<li class="limenu" ><%= link_to "Company", syarikat_path %> </li>
-<li class="limenu" ><%= link_to "Advertisements", users_path %></li>
-<li class="limenu" ><%# link_to "Profile", current_user%> </li>
+<li class="limenu " ><a href="#"><span class="ico color  file" ></span><b>User Company</b></a>
+					<ul>
+						<li class="limenu" ><%= link_to "Profile", current_user%> </li>
+						<li class="limenu" ><%= link_to "Advertisement Previews", users_path %></li>
+					</ul>
+	</li>
+<li class="limenu " ><a href="#"><span class="ico color  pyramid" ></span><b>Student</b></a>
+					<ul>
+						<li class="limenu" ><%= link_to "Interested applicants", syarikat_path %> </li>
+						<li class="limenu" ><%= link_to "Academic Supervisor Visit", compvisit_path %> </li>
+						<li class="limenu" ><%= link_to "Student Status Summary", student_feedback_path %> </li>
+						<li class="limenu" ><%= link_to "Student Log Book", log_svc_path %> </li>
+					</ul>
+	</li>
+	<li class="limenu" ><a href="#">Help</a></li>
+  <li class="limenu" ><%= link_to "FAQ", faq_path %></li>	
+
+
+<!-- View Report View -->
+
+
+<style>
+	.images{
+		position:fixed;
+		bottom: 0px;
+		left: 0px;
+		width:200px;
+		padding-top:5px;
+		padding-bottom:5px;
+		background-color: #ffffff;
+		-moz-border-radius: 0 32px 0 0;
+		-webkit-border-radius:0 32px 0 0;
+		border-radius: 0 32px 0 0;
+	}
+</style>

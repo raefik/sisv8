@@ -1,15 +1,16 @@
 <div class="widget">
-                    <div class="header"><span >Prefered Location For Internships</span> 
-					<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/tambah.png"), new_location_path %></div>
-                            </div>
-                            </div>
-							
-
-<div class="content" >
-     <table >
+            <div class="header">
+	            <span >Prefered Location For Internships</span> 
+				<div align="right" class="edit_link">
+						<%= link_to image_tag("/images/icon/tambah.png"), new_location_path %>
+				</div>
+            </div>
+					
+<div class="content" style="padding:0px;">
+     <table class="display">
 	<thead>
 		<tr>
-			<th align="left">Bil</th><th align="left">Locations</th><th align="left"></th>
+			<th align="left">Bil</th><th align="left">Locations</th><th align="left"></th><th align="left"></th>
 		</tr>
 	</thead>
 	
@@ -22,12 +23,14 @@
 <tr>
 <td  align="left"><%=i%> ) </td>
 <td  align="left"><%= u.state.name%></td>
-<td  align="left"><%= link_to image_tag("/images/icon/icon_edit.png"), edit_location_path(u) %>&nbsp&nbsp&nbsp&nbsp<%= link_to image_tag("/images/icon/icon_delete.png"), u, confirm: 'Are you sure?', method: :delete %></td>
+<td  align="left"><%= link_to image_tag("/images/icon/icon_edit.png"), edit_location_path(u) %></td>
+<td  align="left"><%= button_to 'Delete', u,method: :delete, :confirm => 'Are you sure?'  %></td>
 </tr>
 
 <%end%>
 <br />
 </tbody>
 </table>
+</div>
 </div>
 

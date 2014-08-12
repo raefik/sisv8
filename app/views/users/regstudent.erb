@@ -1,0 +1,83 @@
+<div class="oneTwo">
+	<div >
+		<p><input type="text"  class=" medium" id="sid" placeholder="Student ID"/><a  class="uibutton loading" id="findme" title="Searching">Search</a>
+		
+	</div>
+	<div class="resultpanel oneTwo">
+	<div class="widget">
+	                    <div class="header"><span > Register New User </span><br/></div>
+		<div class="content" >
+		<a  class="uibutton loading" id="register" title="Searching" hidden=true><h1>Register</h1></a>
+		
+		<%= form_for(@user) do |f| %>
+		<%= f.text_field :name ,:placeholder=>'Student ID' ,:id=>"studid"%>
+		<%= f.text_field :password ,:placeholder=>'Identity Card I/C' ,:id=>"ic"%>
+		<%= f.text_field :email ,:placeholder=>'Email' ,:id=>"mail"%>
+		<%= f.text_field :role_id , :value=>'1' %>
+		<%= f.submit "Register", :class => 'uibutton loading', :title => 'Saving' %>
+		<% end %>
+		</div>
+	</div>
+	</div>
+	<div class="resultpanel oneTwo">
+		<div class="widget">
+	                    <div class="header"><span > Student Detail </span><br/></div>
+		<div class="content" >
+		
+			<p>Student ID:<span id="studentid"><span/>
+			<p>MyCard Number:<span id="mykadno"><span/>
+			<p>Full Name:<span id="fullname"><span/>
+			<p>Group Code:<span id="groupcode"/>
+			<p>Faculty Code:<span id="facultycode"/><p>Contact Number:<span id="contactno"/>
+			<p>Email :<span id="email"/>
+		</div>
+		</div>
+	</div>
+</div>	
+
+
+<script >
+
+	$(document).ready(function(){
+			$('.resultpanel').hide();
+			
+			$('#findme').click(function(){
+					sid = $('#sid').val();
+					url = 'studentfind.json?sid='+sid;
+		        
+			$.getJSON(url, function(data) {
+              if(data[0] != null){
+                   
+				   $('#studentid').append(data[0]['studentid']);
+				   $('#mykadno').append(data[0]['mykadno']);
+				   
+				   $('#gender_id').append(data[0]['gender_id']);$('#fullname').append(data[0]['fullname']);
+				   $('#groupcode').append(data[0]['groupcode']);
+				   $('#programcode').append(data[0]['programcode']);
+				   $('#facultycode').append(data[0]['facultycode']);
+				   $('#campuscode').append(data[0]['campuscode']);
+				   $('#handphoneno').append(data[0]['handphoneno']);
+				   $('#contactno').append(data[0]['contactno']);
+				   $('#religion_id').append(data[0]['religion_id']);
+				   $('#add1').append(data[0]['add1']);$('#add2').append(data[0]['add2']);
+				   $('#postcode').append(data[0]['postcode']);$('#city').append(data[0]['city']);
+				   $('#state_id').append(data[0]['state_id']);
+				   $('#email').append(data[0]['email']);$('#cgpa').append(data[0]['cgpa']);
+				   
+				   $('#studid').val(data[0]['studentid']);
+				   $('#ic').val(data[0]['mykadno']);
+				   $('#mail').val(data[0]['email']);
+              }else{
+                $('#tabedu ').prepend("<span class='ico color cross'></span>");
+              }
+			  $('.resultpanel').show(1000);
+      });     
+			});
+			
+			$(function() {
+				$( "#tabs" ).tabs({ autoHeight: true });
+			});
+		});
+		
+	
+</script>

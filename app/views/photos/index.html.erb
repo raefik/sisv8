@@ -1,0 +1,41 @@
+<script>
+  $(function() {    
+              // Call masonry plugin
+              var $container = $('#container');
+              $container.imagesLoaded( function(){
+                  $container.masonry({
+                    itemSelector : '.boxs'
+                  });
+              });
+  }); 
+</script>
+<h1>Listing photos</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>User ID</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<div id="container" class="clearfix fluid">
+<% @photos.each do |photo| %>
+  <tr>
+    <td>
+      <div class="boxs photo col3"> 
+        <a href="<%= photo.image %>" class="pop_img">
+          <img src="<%= photo.image %>" height="120px" width="100px" />
+        </a>
+      </div>  
+    </td>
+    <td><%= photo.user_id %></td>
+    <td><%= link_to 'Show', photo %></td>
+    <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
+    <td><%= link_to 'Destroy', photo, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+<br />
+
+<%= link_to 'New Duration', new_photo_path %>

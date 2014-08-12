@@ -77,7 +77,7 @@ class StudLanguagesController < ApplicationController
     @stud_language.destroy
 
     respond_to do |format|
-      format.html { redirect_to @stud_language.user, notice: 'Stud language was successfully deleted.' } 
+      format.html { redirect_to @stud_language.user} 
       format.json { head :ok }
     end
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130306185030) do
+ActiveRecord::Schema.define(:version => 20131118080413) do
 
   create_table "action_statuses", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(:version => 20130306185030) do
 
   create_table "allowances", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "attachments", :force => true do |t|
+    t.string   "filename"
+    t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -110,14 +117,16 @@ ActiveRecord::Schema.define(:version => 20130306185030) do
     t.string   "url"
     t.string   "contact_person"
     t.string   "register_no"
-    t.integer  "sector_id",      :default => 18
-    t.integer  "industry_id",    :default => 9
-    t.integer  "cluster_id",     :default => 14
+    t.integer  "sector_id",          :default => 18
+    t.integer  "industry_id",        :default => 9
+    t.integer  "cluster_id",         :default => 14
     t.text     "place"
     t.string   "postcode"
     t.string   "city"
-    t.integer  "state_id",       :default => 15
+    t.integer  "state_id",           :default => 15
     t.integer  "user_id"
+    t.string   "supervisor"
+    t.string   "supervisor_contact"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -132,11 +141,10 @@ ActiveRecord::Schema.define(:version => 20130306185030) do
   create_table "date_visits", :force => true do |t|
     t.integer  "staff_id"
     t.date     "date"
-    t.integer  "student_id"
-    t.integer  "user_id"
+    t.integer  "stud_profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "matric_no_id"
+    t.integer  "company_id"
   end
 
   create_table "durations", :force => true do |t|
@@ -354,6 +362,20 @@ ActiveRecord::Schema.define(:version => 20130306185030) do
     t.datetime "updated_at"
   end
 
+  create_table "lecturer_lists", :force => true do |t|
+    t.string "staffno",     :limit => 10, :null => false
+    t.string "fullname",                  :null => false
+    t.string "faculty",                   :null => false
+    t.string "subjectcode",               :null => false
+    t.string "subjectname",               :null => false
+    t.string "groupname",   :limit => 6,  :null => false
+    t.string "campuscode",  :limit => 10, :null => false
+    t.string "contactno",   :limit => 20, :null => false
+    t.string "handphoneno", :limit => 20, :null => false
+    t.string "email",                     :null => false
+    t.string "mykadno",     :limit => 12, :null => false
+  end
+
   create_table "locations", :force => true do |t|
     t.integer  "state_id",   :default => 15
     t.integer  "user_id"
@@ -380,20 +402,6 @@ ActiveRecord::Schema.define(:version => 20130306185030) do
     t.datetime "updated_at"
   end
 
-  create_table "markah_students", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "staff_id"
-    t.integer  "buku_log"
-    t.integer  "penyelia"
-    t.integer  "laporan"
-    t.integer  "jumlah"
-    t.string   "gred"
-    t.string   "catatan"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "matric_no"
-  end
-
   create_table "numbers", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -416,6 +424,23 @@ ActiveRecord::Schema.define(:version => 20130306185030) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "products", :force => true do |t|
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  create_table "profile_pics", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "prog_codes", :force => true do |t|
@@ -671,6 +696,7 @@ ActiveRecord::Schema.define(:version => 20130306185030) do
     t.string   "office_no"
     t.string   "hp_no"
     t.string   "email"
+    t.string   "email2"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -832,7 +858,60 @@ ActiveRecord::Schema.define(:version => 20130306185030) do
     t.string   "tahun"
   end
 
+  create_table "student_data", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "mykadno"
+    t.string   "fullname"
+    t.integer  "gender_id"
+    t.string   "groupcode"
+    t.string   "programcode"
+    t.string   "facultycode"
+    t.string   "campuscode"
+    t.string   "contactno"
+    t.string   "handphoneno"
+    t.integer  "religion_id"
+    t.string   "add1"
+    t.string   "add2"
+    t.integer  "postcode"
+    t.integer  "city"
+    t.integer  "state_id"
+    t.string   "email"
+    t.string   "cgpa"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "student_lists", :force => true do |t|
+    t.string  "studentid",   :limit => 10, :null => false
+    t.string  "mykadno",     :limit => 12, :null => false
+    t.string  "fullname",                  :null => false
+    t.integer "gender_id",                 :null => false
+    t.string  "groupcode",   :limit => 6,  :null => false
+    t.string  "programcode", :limit => 6,  :null => false
+    t.string  "facultycode", :limit => 10, :null => false
+    t.string  "campuscode",  :limit => 10, :null => false
+    t.string  "contactno",   :limit => 20, :null => false
+    t.string  "handphoneno", :limit => 20, :null => false
+    t.integer "religion_id",               :null => false
+    t.string  "add1",                      :null => false
+    t.string  "add2",                      :null => false
+    t.string  "postcode",                  :null => false
+    t.string  "city",                      :null => false
+    t.integer "state_id",                  :null => false
+    t.string  "email",                     :null => false
+    t.string  "cgpa",        :limit => 10, :null => false
+  end
+
   create_table "students", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.integer  "staff_id"
+    t.integer  "kpi_id"
+  end
+
+  create_table "students_b", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -875,6 +954,7 @@ ActiveRecord::Schema.define(:version => 20130306185030) do
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "fullname"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,0 +1,80 @@
+                    <div class="clear"></div>
+
+					<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span>  Lecturers List  </span>
+                            
+						</div>
+						 <div class="content">
+<%= form_for(@lecturer_list) do |f| %>
+  <% if @lecturer_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lecturer_list.errors.count, "error") %> prohibited this lecturer_list from being saved:</h2>
+
+      <ul>
+      <% @lecturer_list.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="section">
+    <%= f.label :staffno %><br />
+    <%= f.text_field :staffno %>
+  </div>
+  <div class="section">
+    <%= f.label :fullname %><br />
+    <%= f.text_field :fullname %>
+  </div>
+  <div class="section">
+    <%= f.label :faculty %><br />
+    <%= f.text_field :faculty %>
+  </div>
+  <div class="section">
+    <%= f.label :subjectcode %><br />
+    <%= f.text_field :subjectcode %>
+  </div>
+  <div class="section">
+    <%= f.label :subjectname %><br />
+    <%= f.text_field :subjectname %>
+  </div>
+  <div class="section">
+    <%= f.label :groupname %><br />
+    <%= f.text_field :groupname %>
+  </div>
+  <div class="section">
+    <%= f.label :campuscode %><br />
+    <%= f.text_field :campuscode %>
+  </div>
+  <div class="section">
+    <%= f.label :contactno %><br />
+    <%= f.text_field :contactno %>
+  </div>
+  <div class="section">
+    <%= f.label :handphoneno %><br />
+    <%= f.text_field :handphoneno %>
+  </div>
+  <div class="section">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="section">
+    <%= f.label :mykadno %><br />
+    <%= f.text_field :mykadno %>
+  </div>
+   <div class="section last">	
+  <div class="actions">
+    <%= f.submit "Submit", :class => 'uibutton loading', :title => 'Saving' %>
+  </div>
+  
+    
+  
+<% end %>
+
+</div>
+
+</div>
+</div>
+</div>
+<div class="clear"></div>

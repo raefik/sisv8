@@ -1,0 +1,127 @@
+
+<div class="twoOne">
+	<div class="widget">
+		<div class="header"><span ><span class="ico  color calendar"></span>Calendar</span></div>
+		<div class="content"  >
+			<div id='calendar2'></div>
+		</div>
+	</div>
+<div class="widget">
+	<div class="header"><span ><span class="ico  gray random"></span>Visit Records</span></div>
+	<div class="content"  style="padding:0px 0px;">
+		<form> 
+			<div class="tableName">
+				<table class="display data_table2" >
+					<thead>
+						<tr>
+							<th><div class="th_wrapp">Date</div></th>
+							<th><div class="th_wrapp">Staff Name. Contact & Email</div></th>
+							<th><div class="th_wrapp">Student Name, Contact & Student ID</div></th>
+						</tr>
+					</thead>
+					<tbody>
+					<% @date_visits = DateVisit.all %>
+					<% @date_visits.each do |date_visit| %>
+						<%if UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,StudProfile.find_by_id(date_visit.stud_profile_id).user_id,]).company.user_id==current_user.id %>
+						<tr class="odd gradeX">
+						<td><%= date_visit.date.strftime("%d %b %Y") %></td>
+						<td>
+							<table>
+								<tr>
+									<td>
+										<%if Photo.find_by_user_id(Staff.find_by_user_id(date_visit.staff_id).user_id).nil? %>
+										<img src="/assets/profilePlus.jpg" width="50px" />
+									<%else%>
+										<img src="<%= Photo.find_by_user_id(Staff.find_by_user_id(date_visit.staff_id).user_id).image%>" width="50px"/>
+									<%end%>
+									</td>
+									<td>
+										<b><%= Staff.find_by_user_id(date_visit.staff_id).name %></b></br> 
+										(<%= Staff.find_by_user_id(date_visit.staff_id).hp_no %>)</br>
+										<i><%= Staff.find_by_user_id(date_visit.staff_id).email %></i>
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<table>
+								<tr>
+									<td>
+							<%if Photo.find_by_user_id(date_visit.stud_profile.user_id).nil? %>
+										<img src="/assets/profilePlus.jpg" width="50px" />
+									<%else%>
+										<img src="<%= Photo.find_by_user_id(date_visit.stud_profile.user_id).image%>" width="50px"/>
+									<%end%>		
+									</td>
+									<td>
+							<b><%= Student.find_by_user_id(date_visit.stud_profile.user_id).name %></b></br>
+							(<%= date_visit.stud_profile.hp_no%>)</br>
+							<i><%= date_visit.stud_profile.matric_no %></i>
+									</td>
+								</tr>
+							</table>
+						</td>
+						</tr>
+						<% end %>
+					<% end %>
+					</tbody>
+				</table>
+			</div>
+		</form>
+	</div>
+</div>
+</div> <!--- end twoOne -->
+<div class="oneThree">
+	
+	<div class="content">
+	
+	</div>
+</div>
+</br>
+
+<div class="clear"></div>
+<style>
+	.tableName .dataTables_wrapper .dataTables_filter {
+		right: 5px;
+		top: -35px;
+		
+	}
+	table.display tbody td {	
+		padding: 1px 10px!important;
+	}
+	
+	#calendar2 {
+		width: 80%;
+		margin: 0 auto;
+	}
+	td {font-size: 90%;}
+	table.display tbody tr:last-child td {
+		border-bottom: 0px solid #d9d9d9;
+	}
+	
+</style>
+<script>
+	$(document).ready(function() {
+	
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		
+		$('#calendar2').fullCalendar({
+			editable: false,
+			events: [
+			<% @date_visits.each do |date_visit| %>
+						<%if UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,StudProfile.find_by_id(date_visit.stud_profile_id).user_id,]).company.user_id==current_user.id %>
+				{
+					title: 'visit-> <%= Student.find_by_user_id(date_visit.stud_profile.user_id).name %> (<%= date_visit.stud_profile.hp_no%>)',
+					start: new Date(<%= date_visit.date.strftime("%Y,  %m-1, %d") %>)
+				},
+				<% end %>
+			<% end %>
+				
+			]
+		});
+		
+	});
+</script>

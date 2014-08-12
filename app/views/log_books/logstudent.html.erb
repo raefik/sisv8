@@ -1,0 +1,142 @@
+<style>
+	td{font-size: 90%}
+	.twoOne{
+		float: left;
+		margin-left: 0%;
+	}
+	table td, table td * {
+    vertical-align: top;
+}
+	.doit {
+   opacity: 1;
+   float:left; padding-right:3px;
+   transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+   }
+
+   .doit:hover {
+      opacity: 0.5;
+      }
+      .info td{font-size: 90%;
+	      padding: 5px;
+      }
+</style>
+<div class="boxx">	
+	<div class="twoOne">
+	<div class="widget">
+	                    <div class="header"><span ><span class="ico  gray random"></span> Log Book </span>
+						<div align="right" class="edit_link"><%= link_to "New entry", new_log_book_path, :class => "uibutton loading", :title => "Opening"%></div></div>
+							<div class="content"  style="padding:0px 0px;">
+	     <table class="display data_table2" >
+		<thead>
+			<tr>
+				<th align="left">Date</th><th align="left">Title</th><th width= "250" align="left">Content</th><th align="left">Action</th><th align="left"></th><th align="left" colspan="3"></th>
+			</tr>
+		</thead>
+	<tbody >
+	  
+	<%i=0%>
+	<% @log_books.each do |log_book| %>
+	<%i+=1%>
+	  <tr>																						
+	    <td  align="left"><%= log_book.date.strftime('%d/%m/%y')%></td>
+	    <td  align="left"><b><%= log_book.title %></b></td>
+	    <td width= "250" align="justify"><%= log_book.content %></td>
+	    <td  align="left"><%= log_book.action_id %></td>
+	    <td  align="left">
+	    	<%if log_book.upload_content_type.nil? %>
+	    		<p>No File</p>
+	    	<% else %>	
+	    		<a href="<%= log_book.upload %>">Download</a>
+	    	<% end %>
+	    </td>
+	    <td  align="left">
+	    	<span class="tip" >
+	    	<%= link_to image_tag("/images/icon/color_18/pencil.png"), edit_log_book_path(log_book),:class => "doit" %>
+	    		<a href="/log_books/erase/<%= log_book.id %>"><img src="/images/icon/color_18/cross.png" style="float:left;"/></a>
+	    	
+	    </td>
+	  </tr>
+	<% end %>
+	</tbody>
+	</table>
+	</div>
+	</div>
+	
+	<div style="padding:15px;">
+	<br/>
+			<h5><span><img class="profile" src="/assets/zice/images/icon/color_18/info.png" height="15px" /></span> Something need to told to student </h5>
+		<table class="info">
+			<tr>
+				<td valign="baseline">
+					<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="15px" />
+					</td>
+				<td>
+		online computer and Internet terms dictionary strive to maintain a database of concise and relevant technology definitions. Each day new words, phrases and abbre <b>by our staff using only professional</b> industry sources -- and then defined in easy-to-understand language. As our database of Internet and computer technology terms grow, this New Terms page lists the most recent 100 terms we have added so you can.
+				</td>
+			</tr>
+			<tr>
+				<td valign="baseline">
+					<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="15px" />
+					</td>
+				<td>
+		online comprms dictionary strive to maintain a database of concise and relevant technology definitions. Each day new words, phrases and abbreviations are researched by our staff using only professional industry sources -- and then defined in easy-to-understand language. As our  and computer technology terms grow, this New Terms page lists the most recent 100 terms we have added so you can easily see what's new at Webopedia.
+				</td>
+			</tr>
+			<tr>
+				<td valign="baseline">
+					<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="15px" />
+					</td>
+				<td>
+		online comprms dictionary and computer technology terms grow, this New Terms page lists the most recent 100 terms we have added so you can easily see what's new at Webopedia.
+				</td>
+			</tr>
+		</table>
+	
+	
+		</div>
+	
+	</div>	
+	<div class="oneThree" >
+		
+		<div class="widget" >
+			<div class="header"><span ><span class="ico  color info"></span> Final Attachments</span><div align="right" class="edit_link">
+			<%if Attachment.find_by_user_id(current_user.id).nil? %>
+			<%= link_to 'New attachment', new_attachment_path, :class => "uibutton loading", :title => "Add new attachment"%>
+			<%else%>
+				<span>(Done)</span>
+			<%end%>
+			</div></div>
+				<div class="content"  style="padding:0px 0px;">
+					<table class="display data_table2">
+						<thead>
+					  		<tr>
+					    		<th >remark</th><th width="60px"></th>
+					  		</tr>
+					  	</thead>	
+					  <tbody >
+					  	<% @attachments = Attachment.where(:user_id =>current_user.id) %>
+					<% @attachments.each do |attachment| %>
+					  <tr>
+					    <td align="justify"><a href="<%= attachment.attach %>">Download</a><br/><%= attachment.remark %></td>
+					    <td>
+					    	
+					    	<span class="tip" ><%= link_to image_tag("/images/icon/icon_edit.png"), edit_attachment_path(attachment),:style => "float:left;" %><%= button_to 'Delete', attachment, confirm: 'Are you sure?', method: :delete ,:style => "font-size:80%;float:right;"%>
+	
+					    	</td>
+					  </tr>
+					<% end %>
+					  </tbody >
+					</table>		
+				</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+
+
+<style>
+table.display tbody td {
+padding: 7px 10px!important;}
+</style>

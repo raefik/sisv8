@@ -47,7 +47,7 @@ class EvalByAkademicSvsController < ApplicationController
 	
     respond_to do |format|
       if @eval_by_akademic_sv.save
-        format.html { redirect_to @eval_by_akademic_sv, notice: 'Eval by akademic sv was successfully created.' }
+        format.html { redirect_to student_feedback_path, notice: 'Eval by akademic sv was successfully created.' }
         format.json { render json: @eval_by_akademic_sv, status: :created, location: @eval_by_akademic_sv }
       else
         format.html { render action: "new" }

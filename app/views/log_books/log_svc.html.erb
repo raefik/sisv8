@@ -1,0 +1,240 @@
+<style>
+
+    table td{
+        font-size: 90%;
+    }
+    table.display tbody tr:last-child td {
+		border-bottom: 0px solid #d9d9d9;
+	}
+    .tableName .dataTables_wrapper .dataTables_filter {
+		right: 7px;
+		top: -47px;
+	}
+
+	table.display tbody td {padding: 3px 10px!important;}
+	
+	.oneThree {
+		width: 30%;
+		display: inline;
+		float: right;
+		margin-left: 2%;
+	}
+	
+	.twoOne {
+		width: 66%;
+		float: left;
+		margin-left: 2%;
+	}
+	
+	.info td{
+		padding: 5px;
+	}
+</style>
+<div hidden="true">
+	<div class="widget ">
+	        <div class="header"><span ><span class="ico  gray random"></span>Your Student  </span></div>
+			<div class="content"  style="padding:0px 0px 10px 0px; ">
+			 <form>	
+				<div class="tableName">
+				 <table class="display data_table2" >
+					<thead>
+						<tr>
+							<th width="20%" align="center"><div class="th_wrapp">Name & Student ID</div></th>
+							<th ><div class="th_wrapp">Company & Academic Supervisor</div></th>
+							<th width="80" align="center" hidden=true><div class="th_wrapp"></div></th>
+						</tr>
+					</thead>
+					<tbody>
+					  <% @studcin = UserCompany.includes(:company,:student,:user=>[:role,{:stud_profiles=>:staff},:staffs]).find(:all,:conditions=>["total =?",2])%>
+				 	  <% @studcin.each do|f|%>
+					  <%if  UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,6]).company.user_id==current_user.id%>
+						 <tr>
+							<td >
+								<b><%= Student.find(:all,:conditions=>["user_id=?",f.user_id]).first.name%></b></br>
+								<i><%= StudProfile.find(:all,:conditions=>["user_id=?",f.user_id]).first.matric_no%></i>
+							</td>
+							<td>
+								<b><%=  UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,6]).company.name%> </b></br>
+								<i><%if !StudProfile.find_by_user_id(f.user_id).staff_id.nil? %> </i>
+							<%= StudProfile.find_by_user_id(f.user_id).staff.name %>
+							<%end%>
+							</td>
+							<td hidden=true>
+								<a class="uibutton views" onclick="loadlogbook(<%= StudProfile.find(:all,:conditions=>["user_id=?",f.user_id]).first.matric_no%>)">View Log</a>
+							</td>
+						</tr>
+							<%end%>
+							<%end%>
+					</tbody>
+				 </table>
+				</div>	
+	 		 </form>	
+		 </div>
+	</div>	
+</div>	
+<div >
+	<table id="viewlog" hidden=true>
+		<thead>
+			<tr>
+				<th width="20%" align="center"><div class="th_wrapp">Name & Student ID</div></th>
+				<th width="" ><div class="th_wrapp">Company</div></th>
+				<th width="" align="center"><div class="th_wrapp">Academic Supervisor</div></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				
+			</tr>
+		</tbody>	
+	</table>	
+</div>	
+
+<div>
+<div class="twoOne">
+<div class="widget">
+    <div class="header"><span ><span class="ico  gray random"></span> Log Book </span></div>
+		<div class="content" style="padding:0px 0px 10px 0px; ">
+		<form> 
+			<div class="tableName">		
+			 <table class="display data_table2" >
+					<thead>
+						<tr>
+							<th align="left" width="20%"></th>
+							<th align="left">Title & Content</th>
+							<th align="left">...</th>
+						</tr>
+					</thead>
+				<tbody >
+				<%i=0%>
+				<% @log_books.each do |log_book| %>
+				<%i+=1%>
+					<%if Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,log_book.user_id]).company_id).user_id == current_user.id%>
+				  <tr>																
+				    <td  align="left" width="10%">
+				    	<%if Photo.find_by_user_id(log_book.user_id).nil? %>
+						 		<img class="profile" src="/assets/profilePlus.jpg" width="50px" />
+						<%else%>
+								<img class="profile" src="<%= Photo.find_by_user_id(log_book.user_id).image%>" width="50px"/>
+						<%end%>
+				    </td>
+				    <td align="left">
+				    	<%=  User.find_by_id(log_book.user_id).fullname  %>&nbsp(<%= StudProfile.find_by_user_id(log_book.user_id).matric_no %>)</br>
+				    	<b><%= log_book.title %></b>&nbsp-&nbsp<i><%= log_book.date %></i><br/>
+				    	<hr/>
+				    	<%= log_book.content %>
+				    </td>
+				    <td  align="left">
+				    	<%if log_book.upload_content_type.nil? %>
+				    		No File
+				    	<% else %>	
+							<%if log_book.upload_content_type == "image/png" || log_book.upload_content_type == "image/jpeg"%>
+					    		<img src="/assets/picture.png" height="30px" /> </br>
+					    	<%end%>	
+					    	<%if log_book.upload_content_type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || log_book.upload_content_type == "application/msword"%>
+					    		<img src="/assets/wordms.png" height="30px" /> </br>
+					    	<%end%>	
+					    	<%if log_book.upload_content_type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||  log_book.upload_content_type == "application/vnd.ms-excel"%>
+					    		<img src="/assets/xcelms.png" height="30px" /> </br>
+					    	<%end%>	
+					    	<%if log_book.upload_content_type == "application/pdf"%>
+					    		<img src="/assets/pdfdownload.png" height="30px" /> </br>
+					    	<%end%>	
+				    		<a href="<%= log_book.upload %>">Download</a>
+				    	<% end %>
+				    </td>
+				
+				  </tr>
+						<% end %>
+				<% end %>
+				<br/>
+				</tbody>
+			</table>
+		</div>
+	  </form>
+	</div>
+</div>
+</div>
+</div>	
+
+<div class="oneThree">
+	<div class="widget">
+			<div class="header"><span><span class="ico color info"></span>Information</span></div>
+			<div class="content" >
+				<table class="info">
+					<tr>
+						<td valign="baseline">
+							<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="20px" />
+							</td>
+						<td>
+				"Smart Internship System" is a UiTM Online Internship Placement System provided by Student-Industry Linkages Centre (SILC)
+			for UiTM's final year students to find internship placement.
+						</td>
+					</tr>
+					<tr>
+						<td valign="baseline">
+							<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="20px" />
+							</td>
+						<td>
+				For any enquiry, call 603-55442058/2053 or email to silc@salam.uitm.edu.my
+						</td>
+					</tr>
+					<tr>
+						<td valign="baseline">
+							<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="20px" />
+							</td>
+						<td>
+				 You can shortlist the view by searching student full name, student ids, and others. You can <b>download</b> the attachment they made(upload) 
+						</td>
+					</tr>
+					
+				</table>	
+			</div>	
+		</div>
+	</div>
+</div>
+<style>
+.tableName .dataTables_wrapper .dataTables_filter {
+right: 8px;
+top: -48px;
+}
+
+table.display tbody td {
+padding: 5px 10px!important;}
+</style>
+
+<script>
+	$(document).ready(function() {
+		$(".tab1").hide();
+		$(".tab2").hide();
+		
+		$(".tab1").show(500);
+		$(".tab1").click(function (){
+				$(".tab2").hide(100);
+				$(".tab2").show(500);
+		});
+		$("#DataTables_Table_0_filter").append(<% current_user.id %>);
+		
+		
+		function loadlogbook(tdd) {
+			
+			$("#viewlog").hide(500);
+
+	        var oTable = $('#viewlog').dataTable({
+	        	"sDom": "lrtip",
+	            "sPaginationType": "full_numbers",
+	            "bProcessing": true,
+	            "bServerSide": true,
+	            "bDestroy": true,
+	            "sAjaxSource": "/get_logbook?&pid="tdd,
+	            "aoColumnDefs": [{"bSortable": false, "aTargets": [0,3,4]}],
+	            "aLengthMenu":[[10,25,50,100],[10,25,50,100]],
+	            "iDisplayLength": 10,
+	        });
+	    }    
+
+	});	
+</script>
+
+
+
+

@@ -1,0 +1,68 @@
+<div class="widget">
+						<div class="header"><span ><span class="ico  gray random"></span> Listing staffs </span></div>
+						<div class="content"  style="padding: 0px 0px;">
+
+                    <form> 
+						<div class="tableName">
+<table class="display data_table2">
+  <thead>
+	<tr>
+    <th >Photo</th>
+    <th >ID</th>
+    <th >Program</th>
+    <th >Faculty</th>
+    <th >Contact</th>
+    <th></th>
+    
+	</tr>
+  </thead>
+  <tbody>
+<% @staffs = Staff.where( :faculty_id => Staff.find_by_user_id(current_user.id).faculty_id) %>
+<% @staffs.each do |staff| %>
+	<%if staff.staff_type_id==3 %>
+  <tr>
+    <td >
+    <%if Photo.find_by_user_id(staff.user_id).nil? %>
+	 	<div class="profile"><a href="/photos/new?user_id=<%= staff.user_id %>"><img  src="/assets/profilePlus.jpg" width="50px" /></a></div>
+	<%else%>
+		<div class="profile"><a href="/photos/<%= Photo.find_by_user_id(staff.user_id).id%>/edit?user_id=<%= staff.user_id %>"><img  src="<%= Photo.find_by_user_id(staff.user_id).image%>" width="50px"/></a></div>
+	<%end%>
+    </td>
+    <td align="left"><%= staff.name %><br/><%= staff.staff_no %></br><%= staff.staff_type.name %></td>
+    <td><%= staff.prog_name.name %></td>
+    <td><%= staff.faculty.name %></td>
+    <td align="left">
+    	Room &nbsp <%= staff.room_no %></br>
+		<%= staff.email %></br>
+		<%= staff.office_no %></br>
+    </td>
+    <td><%= link_to image_tag('/images/icon/icon_edit.png'), edit_staff_path(staff) %>
+	</td>
+    
+  </tr>
+	<% end %>
+<% end %>
+	</tbody>
+	
+</table>
+</div></form> 
+</div>
+</div>
+<br />
+
+<style>
+	td{font-size: 90%}
+.tableName .dataTables_wrapper .dataTables_filter {
+	right: 5px;
+top: -34px;}	
+table.display tbody td {
+padding: 2px 1px!important;}
+	.profile:hover {	
+		width: 100%;
+		height: 80%;
+		opacity:0.3;
+		filter:alpha(opacity=30);
+		transition: all 0.5s;
+		-webkit-transition: all 0.5s;
+	}
+</style>

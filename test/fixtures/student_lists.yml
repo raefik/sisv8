@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  student_id: 1
+  mykadno: 1
+  fullname: MyString
+  gender_id: 1
+  groupcode: MyString
+  programcode: MyString
+  facultycode: MyString
+  campuscode: MyString
+  contactno: MyString
+  handphoneno: MyString
+  religion_id: 1
+  add1: MyString
+  add2: MyString
+  postcode: 1
+  city: 1
+  state_id: 1
+  email: MyString
+  cgpa: MyString
+
+two:
+  student_id: 1
+  mykadno: 1
+  fullname: MyString
+  gender_id: 1
+  groupcode: MyString
+  programcode: MyString
+  facultycode: MyString
+  campuscode: MyString
+  contactno: MyString
+  handphoneno: MyString
+  religion_id: 1
+  add1: MyString
+  add2: MyString
+  postcode: 1
+  city: 1
+  state_id: 1
+  email: MyString
+  cgpa: MyString

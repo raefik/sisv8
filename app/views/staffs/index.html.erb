@@ -1,43 +1,48 @@
-<h1>Listing staffs</h1>
+<div class="widget">
+						<div class="header"><span ><span class="ico  gray random"></span> Listing staffs </span></div>
+						<div class="content"  style="padding: 0px 0px;">
 
-<table>
-  <tr>
-    <th>Staff no</th>
-    <th>Type</th>
-    <th>Gelaran</th>
-    <th>Program</th>
-    <th>Faculty</th>
-    <th>Room no</th>
-    <th>Place</th>
-    <th>Office no</th>
-    <th>Hp no</th>
-    <th>Email</th>
-    <th>User</th>
+                    <form> 
+						<div class="tableName">
+<table class="display data_table2">
+  <thead>
+	<tr>
+    <th >StaffID</th>
+    <th >Type</th>
+    <th >Faculty/Program</th>
+    <th >Room no</th>
+    <th>Office no/Email</th>
     <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+    
+	</tr>
+  </thead>
+  <tbody>
 <% @staffs.each do |staff| %>
+	
   <tr>
-    <td><%= staff.staff_no %></td>
-    <td><%= staff.type %></td>
-    <td><%= staff.gelaran.name %></td>
-    <td><%= staff.program_id %></td>
-    <td><%= staff.faculty.name %></td>
+    <td><%= staff.staff_no %></br><%= staff.user.name %></td>
+    <td><%= staff.staff_type.name %></td>
+    <td><%= staff.faculty.name %></br><%= staff.prog_name.name %></td>
     <td><%= staff.room_no %></td>
-    <td><%= staff.place %></td>
-    <td><%= staff.office_no %></td>
-    <td><%= staff.hp_no %></td>
-    <td><%= staff.email %></td>
-    <td><%= staff.user_id %></td>
-    <td><%= link_to 'Show', staff %></td>
-    <td><%= link_to 'Edit', edit_staff_path(staff) %></td>
-    <td><%= link_to 'Destroy', staff, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= staff.office_no %></br><%= staff.email %></td>
+    <td><%= link_to image_tag('/images/icon/icon_edit.png'), edit_staff_path(staff) %>
+	</td>
+    
   </tr>
+  
 <% end %>
+	</tbody>
+	
 </table>
-
+</div></form> 
+</div>
+</div>
 <br />
 
-<%= link_to 'New Staff', new_staff_path %>
+<style>
+.tableName .dataTables_wrapper .dataTables_filter {
+	right: 5px;
+top: -34px;}	
+table.display tbody td {
+padding: 2px 1px!important;}
+</style>

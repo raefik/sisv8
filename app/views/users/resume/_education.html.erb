@@ -1,12 +1,11 @@
-<div class="widget">
-                    <div class="header"><span > Education Details </span>
-                            </div>
-                            </div>
-						</div>
+<style>
+.widget .header {height: 35px;}
+</style>
+			<div class="widget">
+			<div class="header"><span><span class="ico gray window"></span> Education Details  </span></div>
+			<div class="content">	
 
-
-<div class="content" >
-     <table>
+ <table>
 	<thead>
 	</thead>
 	<tbody>																
@@ -30,6 +29,6 @@
 <td  align="left"><b>Cgpa:</b>&nbsp;&nbsp;<%= if !@stud_edu.cgpa.blank? then @stud_edu.cgpa else " " end%></td>																		
 </tr>
 	</tbody>
-</table
-
-</div>
+</table><div class="clear"></div>
+			</div>
+		</div>

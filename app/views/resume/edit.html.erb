@@ -1,97 +1,112 @@
-<div class="clear"></div>
+<style>
+    table{
+        margin: 10px;padding: 10px
+        border-collapse: collapse;
+        border-spacing: 0;
+        
+    }
 
-					<div class="widget">
-					
-					<div class="content">
+    td{font-size: 80%;
+	    padding:2px;
+	    
+    }
+    body {
+		margin: 0;
+		padding: 0;
+		font-size: 90%;
+		
+		}
+</style>
 
-<h1>Resume</h1>
-<table id="resume_content" >
-	<tr><td id="resume_header"></td><td id="resume_header"></td></tr>
-	            <tr>
-						<td><%#kolum yang pertama%>
-							<table id="left",border=1>
-								<tr>
-									<td>
-										  
-										<%=render 'resume/resume/picture'%>			
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<%=render 'resume/resume/profile'%>				
-									</td>
-								</tr>
-								
-								<tr>
-									<td>
-										 <%=render 'resume/resume/education'%>			
-														
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<%=render 'resume/resume/internship'%>	
-									</td>
-								</tr>
-								
-								<tr>
-									<td>				
-										<%=render 'resume/resume/custodian'%>					
-									</td>
-								</tr>
-								
-								
-							</table>
-						</td>
+<table border="0">
+	
+	<tr>
+		<td style="padding-right:10px;">
+			<%if Photo.find_by_user_id(params['id']).nil? %>
+			 		<img  src="/assets/profilePlus.jpg" width="100px" />
+			<%else%>
+					<img  src="<%= Photo.find_by_user_id(params['id']).image%>" width="100px"/>
+			<%end%>		
+		</td>
+		<td style="padding-right:10px;"> 
+			<div>
+				<table border="0">
+				<tr>
+				<td><img src="/assets/zice/images/icon/color_18/diary.png" height="15px"/></td><td><%=@stud_add.place%>
+				<%=@stud_add.postcode%>
+				<%=@stud_add.city%>
+				<%=@stud_add.state.name%></td></tr>
+				<tr>
+				<td><img src="/assets/zice/images/icon/email.png" height="15px"/></td>
+					<td><%=@stud_profile.second_email%></td>
+				</tr><tr>	<td>
+				<img src="/assets/zice/images/icon/color_18/phone.png" height="15px"/></td><td><%=@stud_profile.hp_no%></td>
+				</tr><tr><td>
+				<img src="/assets/zice/images/icon/icon_modal.png" height="15px"/></td><td><%=@stud_profile.nric%></td>
+				</tr><tr><td>
+				<img src="/assets/zice/images/icon/color_18/administrator.png" height="15px"/></td><td><%=@stud_profile.gender.name%></td></tr>
+				</table>
+			</div>
+		</td>
+	</tr>
+</table>	
+<table border="0">
+	<tr>
+		
+	</tr>
+	<tr>
+		<td>
+			 <%=render 'resume/resume/education'%>			
+		</td>
+		<td>				
+			<%=render 'resume/resume/location'%>						
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%=render 'resume/resume/internship'%>	
+		</td>
+		<td>
+			<%=render 'resume/resume/language'%>							
+		 </td>
+	</tr>
+	
+	<tr>
+		<td>				
+			<%=render 'resume/resume/custodian'%>	
+		</td>
+		<td>
+			<%=render 'resume/resume/skill'%>							
+		</td>
+	</tr>	
+</table>
+<div class="clean"></div>
+				<table id="right">
 
-						<td><%#kolum yang kedua%>
-							<table id="right">
-								<tr>
-									<td>				
-										<%=render 'resume/resume/location'%>						
-									</td>
-								</tr>
-									
-									<tr>
-										<td>
-											  
-															<%=render 'resume/resume/language'%>				
-														
-										 </td>
-									</tr>
-									<tr>
-										<td>
-											   
-															<%=render 'resume/resume/skill'%>							
-														
-										</td>
-									</tr>
-									<tr>
-										 <td>
-											  <%=render 'resume/resume/workingexperience'%>	
-																		
-														
-										</td>
-									</tr>
-									<tr>
-										 <td>
-											 
-															<%=render 'resume/resume/reference'%>			
-													
-										</td>
-									</tr>		
-									<tr>
-										 <td>
-											  
-															<%=render 'resume/resume/aboutme'%>			
-														
-										</td>
-									</tr>
-												
-						
-					        </table>
-				        </td>
-	            </tr>
+						<tr>
+						</tr>
+						<tr>
+							 <td>
+								  <%=render 'resume/resume/workingexperience'%>	
+							</td>
+						</tr>
+						<tr>
+							 <td>
+								 
+												<%=render 'resume/resume/reference'%>			
+										
+							</td>
+						</tr>		
+						<tr>
+							 <td>
+								  
+												<%=render 'resume/resume/aboutme'%>			
+											
+							</td>
+						</tr>
+		        </table>
+	        </td>
+	</tr>
 <tr><td id="resume_header"></td><td id="resume_header"></td></tr>
 </table>
 

@@ -1,9 +1,32 @@
+<style>
+    table{
+        margin: 10px;padding: 10px
+        border-collapse: collapse;
+        border-spacing: 0;
+        padding: 10px;
+        margin: 0px;
+    }
+    table td{
+        padding: 10px;
+        font-size: 90%;
+        border-bottom-style:solid;
+        border-bottom-width: 1px;
+    }
+
+    table th{
+      font-weight:bold; 
+      border-bottom-style:solid;
+      border-bottom-width: 3px;
+      padding-bottom: 10px;
+      border-bottom-color: #7F6DDD;
+      color: #7F6DDD;
+    }
+</style>
 
 <%= form_for(@eval_by_industry_sv) do |f| %>
 	<% if @eval_by_industry_sv.errors.any? %>
     <div id="error_explanation">
     	<h2><%= pluralize(@eval_by_industry_sv.errors.count, "error") %> prohibited this eval_by_industry_sv from being saved:</h2>
-
     	<ul>
     		<% @eval_by_industry_sv.errors.full_messages.each do |msg| %>
     			<li><%= msg %></li>
@@ -13,24 +36,24 @@
 <% end %>
 
 <div class="widget">
-	<div class="header"><span><span class="ico gray window"></span> Evaluation By Academic Supervisor </span> </div> 
+	<div class="header"><span><span class="ico gray window"></span> Evaluation By Industry Supervisor </span> </div> 
 	<div class="content">
 		<div class="section" >
-			<%= f.label :stud_name,"Student Name:"%>
+			<%= f.label :stud_name,"Student Name:" %>
+			<%= f.text_field :stud_name , :value=>params[:sname] ,:disabled=>"disabled"%>
 		</div>
-		<div><%= f.text_field :stud_name %></div>
+		<div class="section" hidden="true">
+			<%= f.label :stud_id ,"Student Id:" %>
+		</div>
+		<%= f.text_field :user_id , :value=>params[:sid] ,:hidden=>"true"%>
 		<div class="section" >
-			<%= f.label :stud_id ,"Student Id:"%>
-		</div>
-		<div><%= f.text_field :stud_id %></div>
-		<div class="section" >
-			<%= f.label :sv_name, "Supervisor Name:"%>
-		</div>
-		<div><%= f.text_field :sv_name %></div>	
+			<%= f.label :sv_name, "Company Name:"%>
+			<%= f.text_field :sv_name , :value=>params[:comp],:disabled=>"disabled"%><%= f.text_field :company_id , :value=>params[:compid] ,:hidden=>"true"%>
+		</div>	
 	<br/><br/>
-  <table border="1" width="900">
+  <table  width="900">
   <tr>
-     <th>No</th><th>Presentation</th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th>
+     <th>No</th><th width="69%">Presentation</th><th>Weak</th><th>Below <br/>Average</th><th>Average</th><th>Good</th><th>Excellent</th>
 	 </tr>
 		 <tr>
 		 <td>1</td>
@@ -75,7 +98,7 @@
 		 <td><div align="center"><%= f.radio_button :p5 ,"5"%></div></td>
 	  </tr>
 	  </table><br/><br/><br/>
-	  <table border="1" width="900"><tr><th>No</th><th>Industrial Training Assessment</th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
+	  <table  width="900"><tr><th>No</th><th>Industrial Training Assessment</th><th>Weak</th><th>Below <br/>Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
 	  <tr>
 	    <td>1</td>
 	    <td> <%= f.label :a1 ,"The student is a fast learner in absorbing new knowledge and concept"%></td>
@@ -127,7 +150,7 @@
 	  </tr><tr>
 	    <td>7</td>
 	    <td> <%= f.label :a7 ,"The student interact well with colleagues and subordinates"%></td>
-	 <td><%= f.radio_button :a7 ,"1"%></td>
+	 <td><div align="center"><%= f.radio_button :a7 ,"1"%></div></td>
 		 <td><div align="center"><%= f.radio_button :a7 ,"2" %></div></td>
 		 <td><div align="center"><%= f.radio_button :a7 ,"3"%></div></td>
 		 <td><div align="center"><%= f.radio_button :a7 ,"4"%></div></td>

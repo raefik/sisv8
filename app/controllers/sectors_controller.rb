@@ -80,4 +80,15 @@ class SectorsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def erase
+  	id = params[:id]
+  	lb = Sector.find(id)
+	  	if lb.delete
+		  	respond_to do |format|
+		      format.html { redirect_to sectors_url }
+		      format.json { head :ok }
+		    end
+		end    
+  end
 end

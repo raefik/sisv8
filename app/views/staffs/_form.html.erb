@@ -8,11 +8,6 @@
 						 <div class="content">
 						 
 
-
-
-
-
-
 <%= form_for(@staff) do |f| %>
   <% if @staff.errors.any? %>
     <div id="error_explanation">
@@ -28,11 +23,17 @@
 
   <div class="section">
     <%= f.label :staff_no %><br />
-    <%= f.text_field :staff_no %>
+    <%= f.text_field :staff_no ,:value=>current_user.name%>
   </div>
   <div class="section">
+	<%if :staff_type_id==1%>
     <%= f.label :staff_type_id %><br />
    <%=collection_select(:staff,:staff_type_id,StaffType.all,:id,:name,:prompt=>"Please Select")%>
+   <%end%>
+  </div>
+   <div class="section">
+    <%= f.label :program_id %><br />
+   <%=collection_select(:staff,:prog_name_id,ProgName.all,:id,:name,:prompt=>"Please Select")%>
   </div>
   <div class="section">
     <%= f.label :gelaran_id %><br />
@@ -46,7 +47,7 @@
     <%= f.label :kampu_id,"Kampus" %><br />
    <%=collection_select(:staff,:kampu_id,Kampu.all,:id,:name,:prompt=>"Please Select")%>
   </div>
-  <div class="field">
+  <div class="section">
     <%= f.label :room_no %><br />
     <%= f.text_field :room_no %>
   </div>
@@ -64,7 +65,7 @@
   </div>
   <div class="section">
     <%= f.label :email %><br />
-    <%= f.text_field :email %>
+    <%= f.text_field :email ,:value=>current_user.email %>
   </div>
   <div class="section last">
 								  

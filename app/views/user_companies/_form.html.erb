@@ -1,3 +1,15 @@
+
+
+  <div class="oneThree">
+	<h2><a class="uibutton" id="yeah">YES</a><a href="/stud_checkin"class="uibutton">NO</a></h2>
+  </div>
+  <div class="twoOne">
+		<p>
+		<% @user_company = UserCompany.find(params[:id])%>
+			<span ><%= @user_company.company.name %></span><b> Company</b>
+		</p>
+  </div>
+<div hidden=true>
 <%= form_for(@user_company) do |f| %>
   <% if @user_company.errors.any? %>
     <div id="error_explanation">
@@ -10,24 +22,32 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
+  <div class="clear"></div>
+  <div class="section">
     <%= f.label :student_id %><br />
-    <%= f.number_field :student_id %>
+    <%= f.text_field :student_id %>
   </div>
-  <div class="field">
+  <div class="section">
     <%= f.label :company_id %><br />
-    <%= f.number_field :company_id %>
+    <%= f.text_field :company_id %>
   </div>
-  <div class="field">
-    <%= f.label :status %><br />
-    <%=collection_select(:user_company,:status,Status.all,:id,:name)%>
+  <div class="section">
+    <%= f.label :action_status_id %><br />
+    <%= f.text_field :action_status_id, :value=>6%>
   </div>
-  <div class="field">
-    <%= f.label :quantity %><br />
-    <%= f.number_field :quantity %>
+  <div class="section">
+    <%= f.label :total %><br />
+    <%= f.text_field :total %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit", :class => 'uibutton loading sub', :title => 'Loading' %>
   </div>
 <% end %>
+</div>
+<script>
+	$(document).ready(function(){
+			$("#yeah").click(function(){
+					$(".sub").click();
+				});  
+			});
+</script>

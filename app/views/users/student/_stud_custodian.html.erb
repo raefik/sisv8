@@ -20,24 +20,17 @@
 <td  align="left"><span><%=@stud_custodian.name%></span></td>
 </tr>
 <tr>
-<td  align="left">Location</td>
+<td  align="left">Relationship</td>
 <td  align="left">:</td>
-<td  align="left"><span><%=@stud_custodian.place%></span></td>
+<td  align="left"><span><%=@stud_custodian.relationship%></span></td>
 </tr>
 <tr>
-<td  align="left">Postcode</td>
+<td  align="left">Address</td>
 <td  align="left">:</td>
-<td  align="left"><span><%=@stud_custodian.postcode%></span></td>
-</tr>
-<tr>
-<td  align="left">City</td>
-<td  align="left">:</td>
-<td  align="left"><span><%=@stud_custodian.city%></span></td>
-</tr>
-<tr>
-<td  align="left">State</td>
-<td  align="left">:</td>
-<td  align="left"><span><%=@stud_custodian.state.name%></span></td>
+<td  align="left">
+	<%=@stud_custodian.place%>&nbsp
+	<%=@stud_custodian.postcode%>&nbsp<%=@stud_custodian.city%>&nbsp<%=@stud_custodian.state.name%>
+</td>
 </tr>
 <tr>
 <td  align="left">Email</td>
@@ -54,11 +47,7 @@
 <td  align="left">:</td>
 <td  align="left"><span><%=@stud_custodian.hp_no_2%></span></td>
 </tr>
-<tr>
-<td  align="left">Relationship</td>
-<td  align="left">:</td>
-<td  align="left"><span><%=@stud_custodian.relationship%></span></td>
-</tr>
+
 
 </tbody>
 </table>

@@ -44,7 +44,7 @@ class EvalByIndustrySvsController < ApplicationController
 
     respond_to do |format|
       if @eval_by_industry_sv.save
-        format.html { redirect_to @eval_by_industry_sv, notice: 'Eval by industry sv was successfully created.' }
+        format.html { redirect_to student_feedback_path, notice: 'Eval by industry sv was successfully created.' }
         format.json { render json: @eval_by_industry_sv, status: :created, location: @eval_by_industry_sv }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class EvalByIndustrySvsController < ApplicationController
 
     respond_to do |format|
       if @eval_by_industry_sv.update_attributes(params[:eval_by_industry_sv])
-        format.html { redirect_to @eval_by_industry_sv, notice: 'Eval by industry sv was successfully updated.' }
+        format.html { redirect_to student_feedback_path, notice: 'Eval by industry sv was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

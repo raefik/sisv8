@@ -1,0 +1,115 @@
+<div id="login"  class="oneTwo">
+  <div class="inner">
+  <div align="center"><img src="images/logo/sis2.png"/></div>
+		<center>
+			<div class="tip">
+				<input type="text" id="username_id" class="sid" placeholder="Student ID"/>
+				<input type="password" id="password" class="cid" placeholder="MyCard ID"/></br>
+				<a  class="uibutton " id="findme" title="Login">Login</a>
+			</div>
+		</center></br>
+<div class="loginButton">
+		<div style="float:right; padding:3px 0; margin-right:-12px;">
+            <div> 
+				<div class="actions">
+				</div> 
+            </div>
+        </div>
+</div>
+</div>
+	<div class="clear"></div>
+	<div class="shadow"></div>
+</div>
+<div class="oneTwo">
+	<h5>Information </h5>
+	<table>
+		<tr>
+			<td valign="baseline">
+				<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="20px" />
+				</td>
+			<td>
+	"Smart Internship System" is a UiTM Online Internship Placement System provided by Student-Industry Linkages Centre (SILC)
+for UiTM's final year students to find internship placement.
+			</td>
+		</tr>
+		<tr>
+			<td valign="baseline">
+				<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="20px" />
+				</td>
+			<td>
+	For any enquiry, call 603-55442058/2053 or email to silc@salam.uitm.edu.my
+			</td>
+		</tr>
+	</table>	
+</div>
+<div >
+<%= form_for(:session, :url => sessions_path) do |f| %>
+		<%= f.text_field :name, :placeholder => "Student ID", :id => "username_id", :class=>"stud"%>
+		<%= f.password_field :password, :placeholder => "MyCard No", :id => "password",:class=>"cdid"%>
+	<%= f.submit "Sign in", :class => "uibutton loading cliker", :title => "Login" %>	
+<% end %>
+
+<%= form_for(@user) do |f| %>
+	<%= f.text_field :name ,:placeholder=>"Student ID" ,:id=>"studid"%>
+	<%= f.text_field :password ,:placeholder=>"Identity Card I/C" ,:id=>"ic"%>
+	<%= f.text_field :email ,:placeholder=>"Email" ,:id=>"mail"%>
+	<%= f.text_field :fullname ,:placeholder=>"Fullname" ,:id=>"fname"%>
+	<%= f.text_field :role_id , :value=>"1" %>
+	<%= f.submit "Register", :class => "uibutton loading regclick", :title => "Saving" %>
+<% end %>
+</div>
+
+<script >
+
+	$(document).ready(function(){
+			
+			$("#findme").click(function(){
+					sid = $(".sid").val();
+				url = "userfind.json?sid="+sid;
+				$.getJSON(url, function(data) {
+				if(data[0] != null){
+					$(".stud").val(data[0]["name"]);
+					cid = $(".cid").val();
+					url = "studentfind2.json?cid="+cid;
+						$.getJSON(url, function(data) {
+							if(data[0] != null){
+								$(".cdid").val(data[0]["mykadno"]);
+								$(".cliker").click();
+							}else{
+								$(".cdid").val("N Registered too");
+							}
+						}); 	
+					
+				}else{
+					cid = $(".cid").val();
+					url = "studentfind2.json?cid="+cid;
+						$.getJSON(url, function(data) {
+							if(data[0] != null){
+								$("#studid").val(data[0]["studentid"]);
+								$("#ic").val(data[0]["mykadno"]);
+								$("#mail").val(data[0]["email"]);
+								$("#fname").val(data[0]["fullname"]);
+								
+								$(".stud").val(data[0]["studentid"]);
+								$(".cdid").val(data[0]["mykadno"]);
+								$(".regclick").click();
+							}else{
+							$(".stud").val("Nope Registered");
+							}
+						}); 
+					}	
+				});
+			});
+			$("html, body").animate({scrollTop: 1000}, 1000);
+			
+	});	
+	
+</script>		
+<style>
+	td{ padding: 5px 5px;}
+	#content .inner {
+		width: 100%;
+		padding-top: 5px;
+	}
+</style>
+

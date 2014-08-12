@@ -1,3 +1,27 @@
+<style>
+    table{
+        margin: 10px;padding: 10px
+        border-collapse: collapse;
+        border-spacing: 0;
+        padding: 10px;
+        margin: 0px;
+    }
+    table td{
+        padding: 10px;
+        font-size: 90%;
+        border-bottom-style:solid;
+        border-bottom-width: 1px;
+    }
+
+    table th{
+      font-weight:bold; 
+      border-bottom-style:solid;
+      border-bottom-width: 3px;
+      padding-bottom: 10px;
+      border-bottom-color: #7F6DDD;
+      color: #7F6DDD;
+    }
+</style>
 <%= form_for(@eval_by_akademic_sv) do |f| %>
   <% if @eval_by_akademic_sv.errors.any? %>
     <div id="error_explanation">
@@ -15,20 +39,24 @@
 	<div class="content">
 		<div class="section" >
 			<%= f.label :stud_name ,"Student Name:"%>
+			<%= f.text_field :stud_name, :value=>params[:sname],:disabled=>'disabled'%>
 		</div>
-		<div><%= f.text_field :stud_name %></div>
+
 		<div class="section" >
-			<%= f.label :stud_id,"Student Id:" %>
+			<%= f.label :user_id,"Student Id:" %>
+			<%= f.text_field :matricno, :value=>params[:sidd],:disabled=>'disabled' %>
 		</div>
-		<div><%= f.text_field :stud_id %></div>
 		<div class="section" >
 			<%= f.label :sv_name ,"Supervisor Name:"%>
+			<%= f.text_field :sv_name ,:value=>Staff.find_by_user_id(current_user.id).name ,:disabled=>'disabled'%>
 		</div>
-		<div><%= f.text_field :sv_name %></div>
+		
+		<%= f.text_field :staff_id, :value=>Staff.find_by_user_id(current_user.id).id ,:hidden=>true%>
+		<%= f.text_field :student_id, :value=>params[:sid] ,:hidden=>true%>
  <br/> <br/>
  
- <table border="1" width="900">
- <tr><th>No</th><th>Presentation</th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
+ <table  width="900">
+ <tr><th width="3%">No</th><th width="69%">Presentation</th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
  <tr>
     <td>1</td>
     <td><%= f.label :p1 ,"The student is well prepared for the  presentation"%></td>
@@ -76,8 +104,8 @@
   </tr>
   <table/>
   <br/>
-  <table border="1" width="900">
- <tr><th>No</th><th>Presentation</th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
+  <table  width="900">
+ <tr><th width="3%">No</th><th width="69%">Presentation</th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
   <tr>
   <td>1</td>
    <td> <%= f.label :a1 ,"The type of operation, equipment or process is suitable for the application of student's knowledge "%></td>
@@ -153,8 +181,8 @@
   </tr>
   </table>
   <br/>
-  <table border="1" width="900">
-  <tr><th>No</th><th>Log Book </th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
+  <table  width="900">
+  <tr><th width="3%">No</th><th width="69%">Log Book </th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
   <tr>
   <td>1</td>
     <td><%= f.label :l1 ,"Weekly activities and verification by industry supervisor is illustrated in the log book "%></td>
@@ -182,8 +210,8 @@
   </tr>
   </table>
   <br/>
-  <table border="1" width="900">
-  <tr><th>No</th><th>Field Report</th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
+  <table  width="900">
+  <tr><th width="3%">No</th><th width="69%">Field Report</th><th>Weak</th><th>Below Average</th><th>Average</th><th>Good</th><th>Excellent</th></tr>
   <tr>
   <td>1</td>
    <td> <%= f.label :r1 ,"Summary of daily activity and job roles is clearly described"%></td>

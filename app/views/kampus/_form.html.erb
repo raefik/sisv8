@@ -1,29 +1,35 @@
-<%= form_for(@kampu) do |f| %>
-  <% if @kampu.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@kampu.errors.count, "error") %> prohibited this kampu from being saved:</h2>
-
-      <ul>
-      <% @kampu.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :cawangan %><br />
-    <%= f.text_field :cawangan %>
-  </div>
-  <div class="field">
-    <%= f.label :state_id %><br />
-    <%= f.number_field :state_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<div class="widget">
+	
+	<div class="header"><span><span class="ico gray window"></span> Session (Semester) </span></div>
+						 <div class="content">
+		<%= form_for(@kampu) do |f| %>
+		  <% if @kampu.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@kampu.errors.count, "error") %> prohibited this kampu from being saved:</h2>
+		
+		      <ul>
+		      <% @kampu.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+		
+		  <div class="section">
+		    <%= f.label :name %><br />
+		    <%= f.text_field :name %>
+		  </div>
+		  <div class="section">
+		    <%= f.label :cawangan %><br />
+		    <%= f.text_field :cawangan %>
+		  </div>
+		  <div class="section">
+		    <%= f.label :state_id %><br />
+		    <%=collection_select(:kampu,:state_id,State.all,:id,:name,:prompt=>"Please Select")%>
+		  </div>
+		  <div class="actions">
+		    <%= f.submit "Submit", :class => 'uibutton loading', :title => 'Submit' %><%= link_to 'Back', kampus_path, :class => 'uibutton ' %>
+		  </div>
+		<% end %>
+	</div>
+</div>

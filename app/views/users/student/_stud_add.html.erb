@@ -15,26 +15,17 @@
 <tbody>
 
 <tr>
-<td  align="left">Location:</td>
+<td  align="left">Address:</td>
 <td  align="left">:</td>
-<td  align="left"><span><%=@stud_add.place%></span></td>
+<td  align="left"><%=@stud_add.place%>&nbsp<%=@stud_add.postcode%>&nbsp<%=@stud_add.city%>&nbsp<%=@stud_add.state.name%></td>
 </tr>
 <tr>
-<td  align="left">Postcode</td>
-<td  align="left">:</td>
-<td  align="left"><span><%=@stud_add.postcode%></span></td>
-</tr>
-<tr>
-<td  align="left">City</td>
-<td  align="left">:</td>
-<td  align="left"><span><%=@stud_add.city%></span></td>
-</tr>
-<tr>
-<td  align="left">State</td>
-<td  align="left">:</td>
-<td  align="left"><span><%=@stud_add.state.name%></span></td>
-</tr>
 
 </tbody>
 </table>
 </div>
+
+<style>
+	td {padding:7px;}
+	table {margin-top: 5px; margin-bottom: 5px}
+</style>

@@ -60,7 +60,7 @@ class CompProfilesController < ApplicationController
 
     respond_to do |format|
       if @comp_profile.update_attributes(params[:comp_profile])
-        format.html { redirect_to @comp_profile.user, notice: 'Comp profile was successfully updated.' }
+        format.html { redirect_to current_user, notice: 'Comp profile was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

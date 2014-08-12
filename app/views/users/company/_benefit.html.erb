@@ -1,12 +1,16 @@
+<div class="oneTwo" >
 <div class="widget">
                     <div class="header"><span >Benefits</span>
+					<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/tambah.png"), new_benefit_path %></div>
                             </div>
-                            </div>
-<div class="content" >
-     <table>
+                            
+<div class="content" style="padding: 0px 0px;">
+     <table class="display ">
 	<thead>
 		<tr>
-			<th align="left">Bil</th><th align="left" width= "392" style="width: 20px;">Benefit</th><th align="left"></th>
+			<th align="left" style="width: 10px;">Bil</th>
+			<th align="left" style="width: 70%;">Benefit</th>
+			<th align="left"></th>
 		</tr>
 	</thead>
 	
@@ -19,7 +23,7 @@
 <tr>
 
 	<td  align="left"><%=i%> ) </td>
-	<td  align="left"><%=u.name%></td>
+	<td  align="left" >	<%=u.name%></td>
     <td  align="left"><span class="tip" ><%= link_to image_tag("/images/icon/icon_edit.png"), edit_benefit_path(u) %>&nbsp&nbsp&nbsp&nbsp<%= link_to image_tag("/images/icon/icon_delete.png"), u, confirm: 'Are you sure?', method: :delete %></td>
 	
 </tr>
@@ -29,4 +33,5 @@
 </tbody>
 </table>
 </div>
-<%= link_to 'New Benefit', new_benefit_path, :class => 'uibutton loading', :title => 'Opening'%>
+</div>
+</div>

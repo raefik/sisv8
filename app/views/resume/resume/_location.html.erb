@@ -1,12 +1,9 @@
 
-
 <div class="widget">
-                    <div class="header"><span > Preferred Internship Details</span>
+                    <div class="header"><span > Preferred Internship Locations</span>
                             </div>
                             </div>
 						</div>
-
-
 <div class="content" >
      <table class="display static " id="static">
 	<thead>
@@ -19,7 +16,7 @@
 <%@resume.locations.each do |u|%>
 <%i+=1%>
 <tr>
-<td width="50" align="left"><%=i%> ) </td><td  align="left"><%=u.state.name%></td>
+<td width="50" align="left"><img src="/assets/zice/images/icon/color_18/directional_right.png" height="10px"/></td><td  align="left"><%=u.state.name%></td>
 </tr>
 <%end%>
 

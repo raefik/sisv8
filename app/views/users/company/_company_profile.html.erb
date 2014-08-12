@@ -1,25 +1,20 @@
-<div class="widget">
-                    <div class="header"><span > Company Profile</span>
-					<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/edit.png"), edit_comp_profile_path("#{@comp_profile.id}") %></div>
-					<br/>
-                            </div>
-                            </div>
-					
-
-
+<div class="oneTwo">
+<div class="widget ">
+	<div class="header"><span > Company Profile</span>
+	<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/edit.png"), edit_comp_profile_path("#{@comp_profile.id}") %></div><br/></div>
 <div class="content" >
-     <table >
+    <table>
 	<thead>
+		<tr>
+			<th></th><th></th><th></th>
+		</tr>
 	</thead>
-	
-<tbody>
-
-<!--stud_profile -->
+	<tbody>
 
 <tr>
-<td  align="left">Type Of Business</td>
-<td  align="left">:</td>
-<td  align="left"><span><%=@comp_profile.bis_type%></span></td>
+<td  >Type Of Business</td>
+<td  >:</td>
+<td  ><span><%=@comp_profile.bis_type%></span></td>
 </tr>
 <tr>
 <td  align="left">Register No</td>
@@ -61,8 +56,19 @@
 <td  align="left">:</td>
 <td  align="left"><span><%unless @comp_profile.cluster_id.nil?%><%=@comp_profile.industry.name%><%end%></span></td>
 </tr>
-
+<td  align="left">Supervisor </td>
+<td  align="left">:</td>
+<td  align="left"><span><%unless @comp_profile.cluster_id.nil?%><%=@comp_profile.supervisor%><%end%></span></td>
+</tr>
+<td  align="left">Supervisor Contact </td>
+<td  align="left">:</td>
+<td  align="left"><span><%unless @comp_profile.cluster_id.nil?%><%=@comp_profile.supervisor_contact%><%end%></span></td>
+</tr>
 
 </tbody>
 </table>
 </div>
+</div>
+</div>
+<style>
+</style>

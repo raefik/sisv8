@@ -24,29 +24,8 @@ class DurationsController < ApplicationController
   # GET /durations/new
   # GET /durations/new.json
   def new
-    @duration = Duration.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @duration }
-    end
-  end
-
-  # GET /durations/1/edit
-  def edit
-    @duration = Duration.find(params[:id])
-  end
-
-  # POST /durations
-  # POST /durations.json
-  def create
-    @duration = Duration.new(params[:duration])
-
-    respond_to do |format|
-      if @duration.save
-        format.html { redirect_to @duration, notice: 'Duration was successfully created.' }
-        format.json { render json: @duration, status: :created, location: @duration }
-      else
+    @duration = Duration./home/laptop/Desktop/sis_v7/public/images/avartar2.png46y7 bnew
+`21Q      else
         format.html { render action: "new" }
         format.json { render json: @duration.errors, status: :unprocessable_entity }
       end

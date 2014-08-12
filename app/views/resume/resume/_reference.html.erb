@@ -7,26 +7,11 @@
 
 <div class="content" >
      <table class="display static " id="static">
-	<thead>
-	<tr>
-		<th align="left">Bil</th><th align="left">Name</th><th align="left">Position</th><th align="left">Company</th><th align="left">Contact No</th><th align="left">Email</th><th align="left">Relationship</th>
-	</tr>
-	</thead>
-	
 <tbody>
-
-
-<%i=0%>
 <%@resume.stud_references.each do |u|%>
-<%i+=1%>
 <tr>
-		<td  align="left"><%=i%> )</td>
-		<td  align="left"><%=u.name%></td>
-		<td  align="left"><%=u.occupation%></td>
-		<td  align="left"><%=u.company%></td>
-		<td  align="left"><%=u.contact_no%></td>
-		<td  align="left"><%=u.email%></td>
-		<td  align="left"><%=u.relationship%></td>
+		<td><img src="/assets/zice/images/icon/color_18/directional_right.png" height="10px"/></td>
+		<td  align="left"><%=u.name%> was a <%=u.relationship%> works at <%=u.company%> as a <%=u.occupation%>, with contact <%=u.contact_no%> and email <%=u.email%></td>
 </tr>
 <%end%>
 

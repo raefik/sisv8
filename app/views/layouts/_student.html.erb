@@ -1,6 +1,19 @@
- <li class="limenu" ><%= link_to "Profile", current_user%></li>
- <li class="limenu" ><%= link_to "Student", pelajar_path %> </li>
- <li class="limenu" ><%= link_to "Resume", users_path %> </li>
-	<%if current_user.user_companies.sum(:total)==1%>
- <li class="limenu" ><%= link_to "Log Book", log_books_path%> </li>
+ <li class="limenu " ><a href="#"><span class="ico color  file" ></span><b>User</b></a>
+					<ul>
+						<li class="limenu" ><%= link_to "Student Profile", current_user%></li>
+					</ul>
+	</li>	
+	
+	<%if UserCompany.where(:user_id=> current_user.id, :total=>2 ) %>
+ <li class="limenu " ><a href="#"><span class="ico color  pyramid" ></span><b>Internship</b></a>
+					<ul>
+						<li class="limenu" ><%= link_to "Daily Log Book & Final Report", logstudent_path%> </li>
+						
+						<li class="limenu" ><%= link_to "Academic & Industry Supervisors", studentsuper_path%> </li>
+						
+						
+					</ul>
+	</li>
  <%end%>
+  <li class="limenu" ><a href="#">Help</a></li>
+  <li class="limenu" ><%= link_to "FAQ", faq_path %></li>	

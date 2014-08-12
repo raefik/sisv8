@@ -1,0 +1,45 @@
+<%= form_for(@commentars) do |f| %>
+  <% if @commentars.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@commentars.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @commentars.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="clear"></div>
+
+<div class="widget">
+
+<div class="header"><span><span class="ico gray window"></span> Your Comment </span></div>
+ <div class="content">
+	 <div class="boxtitle"><span class="ico gray audio_knob"></span>Your Comment for student</div>
+<div hidden="true">
+  <div class="section">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id ,:value=>current_user.id %>
+  </div>
+  <div class="section">
+    <%= f.label :student_id %><br />
+    <%= f.text_field :student_id, :value=>params[:sid] %>
+  </div>
+</div>  
+  <div class="section">
+    <%= f.label :remark %><br />
+    <%= f.text_area :remark ,:cols=>"100",:rows=>"10"%>
+  </div>
+  <div class="section last">	
+	  
+   <div class="actions">
+     <%= f.submit "Submit", :class => 'uibutton loading', :title => 'Saving' %>
+	<%= link_to 'Back to profile', user_path(current_user), :class => 'uibutton loading', :title => 'Loading' %>
+  </div>
+<% end %>
+</div>
+</div>
+</div>			
+

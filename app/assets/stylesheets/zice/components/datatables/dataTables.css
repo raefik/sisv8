@@ -95,7 +95,7 @@ table.display thead tr th.sorting_desc {
 }
 
 .dataTables_wrapper div {
-	display : inline-block;
+	/*display : inline-block;*/
 	width : 100%;
 }
 
@@ -123,6 +123,7 @@ table.display thead tr th.sorting_desc {
 	-moz-box-shadow:1px 1px 2px #f5f5f5;
 	-webkit-box-shadow:1px 1px 2px #f5f5f5;
 	box-shadow:1px 1px 2px #f5f5f5;
+	width: 70px;
 }
 .dataTables_wrapper .dataTables_length select{
 
@@ -162,10 +163,16 @@ table.display thead tr th.sorting_desc {
     background: url(images/search-white.png) no-repeat 10px 5px #f8f8f8;
 	border : 1px solid #dcdcdc;
 	outline : 0;
-	padding : 2px 5px;
-	width : 166px;
+	margin-left: 10px;
 	line-height: 15px!important;
 	height : 15px!important;
+	padding: 4px 15px 4px 32px !important;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1) inset;
 }
 .tableName h3{
 	position:absolute;

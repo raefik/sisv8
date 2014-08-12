@@ -11,13 +11,14 @@ group :development do
   gem 'meta_request'
 end
 
-gem 'mysql2'
+gem 'mysql'
 #gem 'mongrel', '>= 1.2.0.pre2'
 gem 'gravatar_image_tag'
 gem 'will_paginate'
 gem 'faker'
 gem 'annotate', '2.4.0'
 gem 'paperclip', '~> 3.0'
+gem "cocaine", "~> 0.5.1"
 
 
 # Gems used only for assets and not required
@@ -28,7 +29,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 gem 'jquery-rails'
-gem 'therubyracer'
+gem 'therubyracer', '0.12.1'
 #gem 'execjs'
 
 # To use ActiveModel has_secure_password

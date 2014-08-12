@@ -1,10 +1,9 @@
+<div class="twoOne"  >
 <div class="widget">
-	<div class="header">
-		<span ><span class="ico  gray random"></span>Table Student</span>
-	</div>
-	<div class="content"  >
-		<div align="center">
-			<%=form_tag @data_student_path, :method=>'get' do%>
+	<div class="header"><span ><span class="ico  gray random"></span>Assign Student with Supervisor (Accepted by Company)</span></div>
+	<div class="content" style="padding: 0px 0px;" >
+		<div hidden="true">
+			<%=form_tag @data_student_path, :method=>"get" do%>
 			<p>
 				<%= label_tag :search,"Enter Student No:"%>
 				<br/>
@@ -25,16 +24,16 @@
 		This user is not register under a company...
 		<%else%>
 		<form>
-			<table>
+			<table border="0" class="tops" style="padding: 11px 12px 3px 12px; margin-left:2px;">
 				<%@data_student.each do|f|%>
 				<tr>
-					<td><b>Matric No:</b></td><td><%= f.matric_no%></td>
+					<td><b>Matric No</b></td><td><%= f.matric_no%></td>
 				</tr>
 				<tr>
-					<td><b>Name:</b></td><td><%= f.user.name%></td>
+					<td><b>Name:</b></td><td><%= f.user.fullname%></td>
 				</tr>
 				<tr>
-					<td><b>Company For Internships:</b></td>
+					<td><b>Company For Internships</b></td>
 					<td><b><%= f.user.user_companies.where(:action_status_id=>3).first.company.user.name%></b>
 					<br/>
 					<%= f.user.user_companies.where(:action_status_id=>3).first.company.user.comp_profiles.first.place%>
@@ -49,103 +48,152 @@
 					</td>
 				</tr>
 				<tr>
-					<td><b>Academic Supervisor:</b></td><td><%if f.staff_id? %><%= f.staff.name%><%end%></td>
+					<td><b>Academic Supervisor</b></td><td><%if f.staff_id? %><%= f.staff.name%><%end%></td>
 				</tr>
 				<%end%>
-			
 				<tr>
-					<fieldset>
-						<legend>
-							Action
-						</legend>
 						<form>
-							<div class="field">
-								<label>Academic Supervisor :</label>
-								<input type="hidden" id="studid" value= '<%=@data_student[0].matric_no%>'/>
+								<table border="0" style="padding:1px 12px; margin-left:2px;">
+								<tr>
+								<td><label>Academic Supervisor :</label></td>
+								<input type="hidden" id="studid" value= "<%=@data_student[0].matric_no%>"/>
+								<td>
 								<%= collection_select(:stud_profile,:staff_id,Staff.where(:staff_type_id=>3).all,:id,:name,:prompt=>"Please Select") %>
-								<input type="button" value="Update Student Profile" id="updatesv"/>
-							</div>
+								
+								</td>
+								<td></br><input type="button" class="uibutton" value="Update Student Profile" id="updatesv"/></td>
+								</tr>
+								
 						</form>
-					</fieldset>
 				</tr>
 			</table>
 		</form>
 			<%end%>
 			<%end%>
 			<%end%>
-			<%end%>
-			<form>
+			<%end%>	
 				<div class="tableName">
 					<table class="display data_table2" >
 						<thead>
 							<tr>
-							    <th width="40" align="left">
-								<div class="th_wrapp">
-									No
-								</div></th>
-								<th width="80" align="center">
-								<div class="th_wrapp">
-									Matric No
-								</div></th>
-								<th width="174" >
-								<div class="th_wrapp">
-									Name
-								</div></th>
-								<th width="174" >
-								<div class="th_wrapp">
-									Company
-								</div></th>
-								<th width="174" >
-								<div class="th_wrapp">
-									State
-								</div></th>
-								<th width="246" >
-								<div class="th_wrapp">
-									Academic Supervisor
-								</div></th>
+								<th width="80" align="center">Matric No</th>
+								<th width="174" >Name</th>
+								<th width="174" >Company</th>
+								<th width="246" >Academic Supervisor</th>
 							</tr>
 						</thead>
 						<tbody>
-						
-							<% @i=0%>
-
 							<%@stud.each do|f|%>
-							<% @i+=1%>
 							<tr>
-								<td><%=@i%>)</td>
 
-								<td><%=form_tag @data_student_path, :method=>'get' do%>
+								<td>
+								<%=form_tag @data_student_path, :method=>"get" do%>
 								<%= hidden_field_tag :search,params[:search],:value=>StudProfile.find(:all,:conditions=>["user_id=?",f.user_id]).first.matric_no%>
-								<%= submit_tag "",:class => 'uibutton loading',:value=>StudProfile.find(:all,:conditions=>["user_id=?",f.user_id]).first.matric_no,:name=>nil %>
+								<%= submit_tag "",:class => "uibutton loading",:value=>StudProfile.find(:all,:conditions=>["user_id=?",f.user_id]).first.matric_no,:name=>nil %>
 								<%end%></td>
-								<td><%=f.user.name %></td>
+								<td><%=f.student.user.fullname %></td>
 								<td>
-										
-										 <%= UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,3]).company.name%>
+										 <%=  UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,3]).company.name%>
 										<%#end%>
-									
 								</td>
-								<td>
-									<%#unless f.user.user_companies.exists? == false%>
-										<%#unless f.user.user_companies.where(:action_status_id=>3).exists? == false%>
-										 <%= f.action_status.name%>
-										
-								</td>								
 								<td>
 								<%if !StudProfile.find_by_user_id(f.user_id).staff_id.nil? %> 
 								<%= StudProfile.find_by_user_id(f.user_id).staff.name %>
+								
 								<%end%>
 								</td>
 							</tr>
 							<%end%>
 						</tbody>
 					</table>
-				</div>
+			</div>
+</div></div></div>
+
+<div class="oneThree">
+<div class="widget tips" >
+<div class="header"><span ><span class="ico  color info"></span>Tips</span></div>
+	<div class="content" style="padding: 15px 15px;" >
+		1. The end of a pointed or projecting object.
+2. A piece or an attachment, such as a cap or ferrule, meant to be fitted to the end of something else: the barbed tip of a harpoon.
 	</div>
-	</form>
+</div>	
+</br>
+
 </div>
+
+<div class="clear"></div>
+</br>
+<div class="widget">
+	<div class="header"><span ><span class="ico  gray random"></span>Confirmed Internship Placements</span></div>
+	<div class="content" style="padding: 0px 0px;" >
+		<div class="tableName">
+					<table class="display " >
+						<thead>
+							<tr>
+								<th width="174" ><div class="th_wrapp">Student</div></th>
+								<th width="174" ><div class="th_wrapp">Company</div></th>
+								<th width="80" align="center"><div class="th_wrapp">Supervisor</div></th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @studcin = UserCompany.includes(:company,:student,:user=>[:role,{:stud_profiles=>:staff},:staffs]).find(:all,:conditions=>["total =?",2])%>
+							<%@studcin.each do|f|%>
+							<tr>
+								<td align="left" width="25%">
+									<%=f.student.user.fullname %></br>
+									<%= StudProfile.find(:all,:conditions=>["user_id=?",f.user_id]).first.matric_no%></br>
+									<%=f.student.user.email %></br>
+									<%= StudProfile.find_by_user_id(f.student.user_id).hp_no %></br>
+								</td>
+								<td align="left">
+		<%=  UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,6]).company.name%></br>
+		<%=  UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,6]).company.user.email%></br>
+		<%=  CompProfile.find_by_user_id(UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,6]).company.user.id).url%></br>
+		Contact :<%=  CompProfile.find_by_user_id(UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,6]).company.user.id).supervisor%>&nbsp(<%=  CompProfile.find_by_user_id(UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,6]).company.user.id).supervisor_contact%>)</br>
+								</td>
+								<td align="left">
+								<%if !StudProfile.find_by_user_id(f.user_id).staff_id.nil? %> 
+								<%= StudProfile.find_by_user_id(f.user_id).staff.name %></br>
+								<%= StudProfile.find_by_user_id(f.user_id).staff.hp_no %></br>
+								Room <%= StudProfile.find_by_user_id(f.user_id).staff.room_no %></br>
+								<%= StudProfile.find_by_user_id(f.user_id).staff.email %></br>
+								<%end%>
+								</td>
+							</tr>
+							<%end%>
+						</tbody>
+					</table>
+			</div>	
+	</div>
+</div>	
+
+<style>
+.tableName .dataTables_wrapper .dataTables_filter {
+right: 4px;
+}
+table.display thead tr th {
+padding: 3px 10px 4px;
+line-height: 30px;}
+
+.tips
+{
+opacity:0.4;
+filter:alpha(opacity=40); /* For IE8 and earlier */
+}
+.tips:hover
+{
+opacity:1.0;
+filter:alpha(opacity=100); /* For IE8 and earlier */
+}
+table.display tbody td {
+padding: 5px 10px!important;
+}
+td {font-size: 90%;}
+.tops td{
+	border-bottom: 1px solid #d9d9d9;
+}
+</style>
 <script type="text/javascript">
-	
 	$(document).ready(function () {
 		$("#updatesv").click(function (){
 			$.ajax({

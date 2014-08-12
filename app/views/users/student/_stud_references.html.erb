@@ -2,37 +2,39 @@
                     <div class="header"><span >References</span> 
 					<div align="right" class="edit_link"><%= link_to image_tag("/images/icon/tambah.png"), new_stud_reference_path %></div>
                             </div>
-                            </div>
+                            
 							
 
-<div class="content" >
-     <table >
+<div class="content" style="padding:0px;">
+     <table class="display">
 	<thead>
 		<tr>
-			<th align="left">Bil</th><th align="left">Name</th><th align="left">Position</th><th align="left">Company</th><th align="left">Contact No.</th><th align="left">Email</th><th align="left">Relationship</th><th align="left"></th>
+			<th align="left">Name</th><th align="left">Position</th><th align="left">Company</th><th align="left">Contact No.</th><th align="left">Email</th><th align="left">Relationship</th><th align="left"></th><th align="left"></th>
 		</tr>
 	</thead>
 	
 <tbody>
 
-<%i=0%>
+
 <%current_user.stud_references.each do |u|%>
-<%i+=1%>
+
 
 <tr>
-<td  align="left"><%=i%> ) </td>
+
 <td  align="left"><%=u.name%></td>
 <td  align="left"><%=u.occupation%></td>
 <td  align="left"><%=u.company%></td>
 <td  align="left"><%=u.contact_no%></td>
 <td  align="left"><%=u.email%></td>
 <td  align="left"><%=u.relationship%></td>
-    <td  align="left"><%= link_to image_tag("/images/icon/icon_edit.png"), edit_stud_reference_path(u) %>&nbsp&nbsp&nbsp&nbsp<%= link_to image_tag("/images/icon/icon_delete.png"), u, confirm: 'Are you sure?', method: :delete %></td>
+    <td  align="left"><%= link_to image_tag("/images/icon/icon_edit.png"), edit_stud_reference_path(u) %></td>
+    <td  align="left"><%= button_to 'Delete', u,method: :delete, :confirm => 'Are you sure?'  %></td>
 </tr>
 <%end%>
 
 <br />
 </tbody>
 </table>
+</div>
 </div>
 

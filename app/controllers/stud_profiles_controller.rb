@@ -1,6 +1,19 @@
 class StudProfilesController < ApplicationController
   # GET /stud_profiles
   # GET /stud_profiles.json
+  
+  def studentsuper
+    @stud_profiles = StudProfile.where(:user_id=>current_user.id)
+	@date_visits = DateVisit.all
+	
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render :json => {	:stud_profiles => @stud_profiles,
+                                  :date_visits => @date_visits }}
+    end
+  end
+  
+  
   def index
     @stud_profiles = StudProfile.all  
 	@stud_add = StudAdd.all

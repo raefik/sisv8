@@ -8,20 +8,12 @@
 
 
 <div class="content" >
-     <table class="display static " id="static">
-	<thead>
-	<tr>
-		<th align="left">Bil</th><th align="left">Skill</th><th align="left">Duration</th><th align="left">Proficiency</th>
-	</tr>
-	</thead>
-	
+     <table class="display static " >
 <tbody>
-
-<%i=0%>
 <%@resume.stud_skills.each do |u|%>
-<%i+=1%>
 <tr>
-<td  align="left"><%=i%> ) </td><td  align="left"><%=u.skill%></td><td  align="left"><%=u.year_exp%> month</td><td  align="left"><%=u.skill_pro.name%></td>
+<td><img src="/assets/zice/images/icon/color_18/directional_right.png" height="10px"/></td>
+<td  align="left">Has <%=u.skill%> skill for <%=u.year_exp%> month with <%=u.skill_pro.name%> Proficiency
 </tr>
 <%end%>
 

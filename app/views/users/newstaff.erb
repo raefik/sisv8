@@ -1,0 +1,235 @@
+
+<style>
+	td {font-size: 90%;}
+	.dataTables_wrapper .dataTables_info {padding-left: 10px}
+	.dataTables_wrapper .dataTables_paginate {padding-right: 10px;}
+	.widget .content {
+		background: #ffffff url("/images/inner-shadow.png") repeat-x;
+		border-top: 1px solid #cecece;
+		padding: 11px 12px;
+		min-height: 35px;
+	}
+	.widget .header {height: 35px;}
+	input[type=text], input[type=password], .fileupload {height: 25px; }
+	.tableName .dataTables_wrapper .dataTables_filter {right: 12px;top: -41px;}
+	table.display tbody td {padding: 10px 10px!important;}
+	
+	#tableuser{
+        margin: 10px;padding: 10px
+        border-collapse: collapse;
+        border-spacing: 0;
+        padding: 10px;
+        margin: 0px;
+    }
+      #tableuser td{
+        padding-bottom: 5px;
+        padding-left: 8px;
+        padding-top: 5px;
+        padding-right: 5px;
+        font-size: 80%;
+        border-bottom-style:solid;
+        border-bottom-width: 1px;
+    }
+
+	#tableuser th{
+      font-weight:bold; 
+      border-bottom-style:solid;
+      border-bottom-width: 3px;
+      padding-bottom: 10px;
+      border-bottom-color: #7F6DDD;
+      color: #7F6DDD;
+    }
+</style>
+<div class="boxx">
+	<h3>Register Staff</h3>
+	<div >
+		<input type="text" style="line-height: 25px;" class=" medium" id="sid" placeholder="Staff ID"/><a  class="uibutton loading" id="findme" title="Searching"><span>Search</span></a>
+		<span id='norecord' style="color:red;"hidden=true><b>No record found</b></span>
+	</div>
+	<div class="clear"></div>
+	<div class="oneTwo">
+		<div class="confirmation " hidden="true">
+		<div class="widget">
+		    <div class="header"><span > Register New User </span><br/></div>
+			<div class="content" >
+				<table border='0'>
+				<tr>
+					<td><span>Username</td><td>  <input type="text" class="hi" disabled="disabled"/></span></td>
+					
+				</tr>	
+				<tr>
+					<td><span>Password</td><td> <input type="text" class="ho" disabled="disabled"/></span></td>
+					<td><a  class="uibutton loading" id="yes" title="Submit" ><span>Yes</span></a></td>
+					<td><a  class="uibutton special" id="nope" title="Cancel"  ><span>No</span></a></span></td>
+				</tr>
+				</table>
+		</div>
+			
+			
+			<div hidden=true>
+			<%= form_for(@user) do |f| %>
+			<%= f.text_field :name ,:placeholder=>'Student ID' ,:id=>"studid"%>
+			<%= f.text_field :password ,:placeholder=>'Identity Card I/C' ,:id=>"ic"%>
+			<%= f.text_field :email ,:placeholder=>'Email' ,:id=>"mail"%>
+			<%= f.text_field :role_id , :value=>'3' %>
+			<%= f.submit "Register", :class => 'uibutton registration', :id=>"registration" ,:title => 'Saving' %>
+			<% end %>
+			</div>
+			</div>
+		</div>
+	
+	
+		<div class="resultpanel ">
+			<div class="widget">
+		                    <div class="header"><span ></span><a  class="uibutton loading" id="regicall" title="Searching" ><label style="float: right;"> Register</label></a></div>
+			<div class="content" >
+				<table border='0'>
+				<tr>
+					<td>Staff ID </td>
+					<td><input type="text" id="staffno" disabled="disabled"/><td>
+				</tr>		
+				<tr>
+					<td>MyCard Number</td>
+					<td> <input type="text" id="mykadno" disabled="disabled"/></td>
+				</tr>		
+				<tr>
+					<td>Full Name </td>
+					<td><input type="text" id="fullname" disabled="disabled"/></td>
+				</tr>	
+				<tr>
+					<td>Group</td>
+					<td><input type="text" id="groupname" disabled="disabled"/></td>
+				</tr>	
+				<tr>
+					<td>Faculty</td>
+					<td><input type="text" id="faculty" disabled="disabled"/></td>
+				</tr>
+				<tr>
+					<td>Contact Number</td>
+					<td><input type="text" id="contactno"  disabled="disabled"/></td>
+				</tr>	
+				<tr>
+					<td>Handphone Number</td>
+					<td><input type="text" id="handphoneno" disabled="disabled"/><td>
+				<tr>		
+					<td>Email</td>
+					<td><input type="text" id="email" disabled="disabled"/></td>
+				</tr>
+				<tr>
+					<td>Subject Code</td>
+					<td><input type="text" id="subjectcode" disabled="disabled"/></td>
+				</tr>	
+				<tr>
+					<td>Subject Name</td>
+					<td><input type="text" id="subjectname" disabled="disabled"/></td>
+				</tr>
+				</table>
+			</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="oneTwo">
+			<div class="widget">
+	                    <div class="header"><span > Lecturer Record </span><br/></div>
+						<div class="content" style="padding:10px 0px;">
+							<form> 
+							 <div class="tableName">
+							  <table id="tableuser">
+									  <thead>
+									  <tr>
+									    <th><div align="left">Staff ID</div></th>
+									    <th>Fullname</th>
+									    <th >Hp No</th>
+									    <th align="left">MyKad No</th>
+										<th>Email</th>
+									  </tr>
+										</thead>
+										<tbody>
+										
+										</tbody>
+									</table>
+							 </div>
+						</form>		
+						</div>
+			</div>			
+	</div>
+	<div class="clear"></div><br/>
+</div>	
+<script >
+
+	$(document).ready(function(){
+	
+			var oTable = $('#tableuser').dataTable({
+				"sDom": 'T<"clear">lfrtip',        
+				"sPaginationType": "full_numbers",
+				"oLanguage": {
+		            "sSearch": "Find"
+		        },
+				"bProcessing": true,
+				"bServerSide": true,
+				"sAjaxSource": "/lecturerlisting_data",
+				"aLengthMenu":[[15,25,50,100],[15,25,50,100]],
+				"iDisplayLength": 10,
+			});
+			
+			$('.resultpanel').hide();
+			$('.confirmation').hide();
+			$('#regicall').click(function(){
+				$('.confirmation').show(100);
+				$('#regicall').hide();
+			});
+			$('#yes').click(function(){
+				sid = $('#staffno').val();
+				url = '?sid='+sid
+				$('.registration').click();
+			});
+			$('#nope').click(function(){
+				$('.confirmation').hide(100);
+				$('#regicall').show();
+			});
+			$('#findme').click(function(){
+				$('.resultpanel').hide();
+				$('.confirmation').hide();
+				$('#norecord').hide();
+					sid = $('#sid').val();
+					url = 'stafffind.json?sid='+sid;
+		        
+			$.getJSON(url, function(data) {
+              if(data[0] != null){
+                   
+				   $('#staffno').val(data[0]['staffno']);
+				   $('#fullname').val(data[0]['fullname']);
+				   $('#mykadno').val(data[0]['mykadno']);
+				   $('#groupname').val(data[0]['groupname']);
+				   $('#programcode').val(data[0]['programcode']);
+				   $('#faculty').val(data[0]['faculty']);
+				   $('#campuscode').val(data[0]['campuscode']);
+				   $('#handphoneno').val(data[0]['handphoneno']);
+				   $('#subjectname').val(data[0]['subjectname']);
+				   $('#subjectcode').val(data[0]['subjectcode']);
+				   
+				   $('#contactno').val(data[0]['contactno']);
+				   $('#email').val(data[0]['email']);
+				   
+				   $('#studid').val(data[0]['staffno']);
+				   $('#ic').val(data[0]['mykadno']);
+				   $('#mail').val(data[0]['email']);
+				   $('.hi').val(data[0]['staffno']);
+				   $('.ho').val(data[0]['mykadno']);
+				   $('.resultpanel').show(200);
+				   $('#regicall').show();
+              }else{
+                $('#norecord').show();
+              }
+			  
+      });     
+			});
+			
+			$(function() {
+				$( "#tabs" ).tabs({ autoHeight: true });
+			});
+		});
+		
+	
+</script>

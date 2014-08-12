@@ -1,26 +1,19 @@
 
 <div class="widget">
-                    <div class="header"><span > Language Details</span>
+                    <div class="header"><span ><b> Language Skills </b></span>
                             </div>
                             </div>
 						</div>
 
 
 <div class="content" >
-     <table class="display static " id="static">
-	<thead>
-	<tr>
-		<th align="left">Bil</th><th align="left">Language</th><th align="left">Spoken</th><th align="left">Written</th>
-	</tr>
-	</thead>
-	
-<tbody>
+     <table class="display static " >
 
-<%i=0%>
+<tbody>
 <%@resume.stud_languages.each do |u|%>
-<%i+=1%>
+
 <tr>
-<td  align="left"><%=i%> )</td><td  align="left"><%=u.language%></td><td  align="left"><%=u.spoken.name%></td><td  align="left"><%=u.written.name%></td>
+<td><img src="/assets/zice/images/icon/color_18/directional_right.png" height="10px"/></td><td  align="left"><%=u.language%>, was a <%=u.spoken.name%> spoken and <%=u.written.name%> written skill</td>
 </tr>
 <%end%>
 

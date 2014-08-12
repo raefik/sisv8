@@ -1,2 +1,18 @@
-<li class="limenu " ><%= link_to "View Student", view_student_path%> </li>
-<li class="limenu " ><%= link_to 'New Date visit', new_date_visit_path %> </li>
+<li class="limenu " ><a href="#"><span class="ico color  pyramid" ></span><b>Internship</b></a>
+					<ul>
+						<!-- View Profile-->
+						<li class="limenu " ><%= link_to "Site Visit Calendar", new_date_visit_path %> </li>
+						<li class="limenu " ><%= link_to "Student Log Book", log_sva_path %> </li>
+						<li class="limenu " ><%= link_to "Student Status Summary", student_feedback_path %> </li>
+					</ul>
+</li>				
+<li class="limenu " ><a href="#"><span class="ico color  info" ></span><b>Survey Report </b></a>
+					<ul>
+						<!-- View Profile-->
+						
+						<li class="limenu " ><%= link_to "Evaluation by Industry Supervisor", report_eval_industry_path %></li>
+						<li class="limenu " ><%= link_to "Evaluation by Academic Supervisor", report_eval_academic_path %></li>
+					</ul>
+</li>	
+<li class="limenu" ><a href="#">Help</a></li>
+  <li class="limenu" ><%= link_to "FAQ", faq_path %></li>	

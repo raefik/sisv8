@@ -17,6 +17,7 @@ class ResumeController < ApplicationController
   def index
   end
   def edit
+  		
         @resume                  = User.find(params[:id]) #untuk cari student
         @student                 = Student.find_by_user_id(@resume.id)
 		@stud_profile            = StudProfile.find_by_user_id(@resume.id)
@@ -32,7 +33,7 @@ class ResumeController < ApplicationController
 		#@user_company		     = @student.user_companies.find_by_student_id(@student.id)
 		company					 = Company.find_by_user_id(current_user.id)
 		@resume_company		     = company.user_companies.find_by_student_id(@student.id)
-		
+		render :layout => false
 		
   end
   def update

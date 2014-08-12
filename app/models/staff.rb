@@ -1,4 +1,5 @@
 class Staff < ActiveRecord::Base
+attr_accessible :name,:user_id
 belongs_to :user
 belongs_to :staff_type
 belongs_to :gelaran
@@ -6,6 +7,7 @@ belongs_to :faculty
 has_many :student_classes
 belongs_to :prog_name
 belongs_to :prog_code
+
 belongs_to :kampu
 has_many :stud_profiles
 has_many :date_visits

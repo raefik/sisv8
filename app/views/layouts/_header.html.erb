@@ -1,60 +1,113 @@
 <% unless @iklan||@resume||@offer||@reminder||@test%>
-
+<style >
+	.toplogos{
+		float:left;
+		padding-top: 18px;
+		padding-left: 10px;
+	}
+</style>
 <body class="dashborad">        
     <div id="alertMessage" class="error"></div>
-	
-	 <div id="header">
 	 <% if signed_in? %>
-                <div id="account_info"> 
-					<div class="setting" title="Profile Setting"><b>Welcome,</b> <b class="red"><%= current_user.name %></b><img src="/images/gear.png" class="gear"  alt="Profile Setting" ></div>
-					<div class="logout" title="Disconnect"><b ><%= link_to "Logout", signout_path %></li></b></div> 
+     <div id="header" >
+        <div id="account_info"> 
+                		<img class="toplogos" src="/assets/logos.png" height="15px" />
+					<div class="setting" title="Profile Setting"><b>Welcome,</b> <b class="red">
+						<%= current_user.name %></b>
+						<img src="/images/gear.png" class="gear"  alt="Profile Setting" >
+					</div>
+					<div class="logout" title="Disconnect">
+						<b><%= link_to "Logout", signout_path %>
+							<img src="/images/connect.png" name="connect" class="disconnect" alt="disconnect" />
+						</b>
+					</div> 
                 </div>
-				<%else%>
+            </div>
+		</div><!-- End Header -->
+	 <%else%>
+
+		<!-- 
+		.
+		.
+		.
+		.
+		.
+		.
+		.
+		.
+		Unslider here
+		.
+		.
+		.
+		.
+		.
+		.
+		 -->
+
+		<div id="header" style="z-index: 47;">
+
 				<div id="account_info">
-				<div title="Click Here to Login"><b ><%= link_to "Login", signin_path %></li></b></div> 
-				<% end %>
-				</div>
-			</div><!-- End Header -->
+					<img class="toplogos" src="/assets/logos.png" height="15px"/>
+				<div title="Click Here to Login"></div>
+			</div>
+		</div><!-- End Header -->
+	 <% end %>
 			
 
 
-<div id="left_menu">
+<div id="left_menu" style="z-index:47;">
 	<ul id="main_menu" class="main_menu">
-	<li class="limenu" ><%= link_to "Home", root_path %></li>
-<% if signed_in? %>
+	
+			<% if signed_in? %>
 					<%if current_user.role_id==1%>
 					<%=render 'layouts/student'%>
 					<%end%>
 					<%if current_user.role_id==2%>
 					<%=render 'layouts/company'%>
 					<%end%>
-							<%if current_user.role_id==3 %>
+					<%if current_user.role_id==3 %>
 								<li class="limenu" ><%= link_to "Profile", current_user%> </li>
 									<%if Staff.find_by_user_id(current_user.id).staff_type_id==1%>
 												<%=render 'layouts/coordinator'%>
 									<%else %>
-									<%if Staff.find_by_user_id(current_user.id).staff_type_id==3%>
-											<%if Staff.find_by_user_id(current_user.id).validate_staff==true%>	
+										<%if Staff.find_by_user_id(current_user.id).staff_type_id==3%>
 												<%=render 'layouts/academic_sv'%>
-											<%end%>
-												
+										<%end%>
 									<%end%>
-									<%end%>
-							<%end%>
-					
-<% end %>
+					<%end%>
+					<%if current_user.role_id==4%>
+					<%=render 'layouts/moderator'%>
+					<%end%>
+			<% end %>
 
 
 
-<% if signed_in? %>
-<li class="limenu " > <%= link_to "Logout", signout_path, :method => :delete %> </li>
-<% else %>
-<li class="limenu " ><%= link_to "Register", signup_path %> </li>
-<li class="limenu " ><%= link_to "Login", signin_path %> </li>
-<li class="limenu " ><%= link_to "Evaluation Form Industrial Supervisor", industry_svs_path %> </li>
-<li class="limenu " ><%= link_to "Evaluation Form Academic Supervisor", academic_svs_path %> </li>
-<% end %>
+		<% if signed_in? %>
+			<li class="limenu " > <%= link_to "Logout", signout_path, :method => :delete %> </li>
+		<% else %>
+		<li class="limenu " ><a href="#"><span class="ico gray  file" ></span><b>Register</b></a>
+						<ul>
+	                          <li ><a href="<%= signup_path %>"> New Company</a></li>
+	                    </ul>
+		</li>
+		<li class="limenu " ><a href="#"><span class="ico gray  paragraph_align_left" ></span><b>Login</b></a>
+						<ul>
+	                          <li ><a href="<%= studentnew_path %>"> Student</a></li>
+	                          <li ><a href="<%= signin_path %>"> Staff</a></li>
+							  <li ><a href="<%= signin_path %>"> Company</a></li>
+	                    </ul>
+		</li>
+		<li class="limenu" ><a href="#">Help</a></li>
+		  <li class="limenu" ><%= link_to "FAQ", faq_path %></li>
+		<!--<li class="limenu " ><%= link_to "Evaluation Form Industrial Supervisor", industry_svs_path %> </li>-->
+		
+	<% end %>
 </ul>
 </div>
 
 <%end%>
+<script>
+	$(document).ready(function() {
+
+	});	
+</script>

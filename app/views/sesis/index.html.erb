@@ -1,9 +1,36 @@
-<h1>Listing sesis</h1>
+<style>
+    table{
+        margin: 10px;padding: 10px
+        border-collapse: collapse;
+        border-spacing: 0;
+        padding: 10px;
+        margin: 0px;
+    }
+    table td{
+        padding: 10px;
+        font-size: 90%;
+        border-bottom-style:solid;
+        border-bottom-width: 1px;
+    }
 
-<table>
+    table th{
+      font-weight:bold; 
+      border-bottom-style:solid;
+      border-bottom-width: 3px;
+      padding-bottom: 10px;
+      border-bottom-color: #7F6DDD;
+      color: #7F6DDD;
+    }
+</style>
+<h4>Listing sesis</h4><%= link_to 'New Sesi', new_sesi_path ,:class => 'uibutton loading', :title => 'Add new' %>
+
+<table bgcolor="white">
   <tr>
     <th>Name</th>
-    <th></th>
+    <th>Start</th>
+    <th>End</th>
+    <th>Programs</th>
+    <th>User</th>
     <th></th>
     <th></th>
   </tr>
@@ -11,13 +38,16 @@
 <% @sesis.each do |sesi| %>
   <tr>
     <td><%= sesi.name %></td>
-    <td><%= link_to 'Show', sesi %></td>
-    <td><%= link_to 'Edit', edit_sesi_path(sesi) %></td>
-    <td><%= link_to 'Destroy', sesi, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= sesi.start_sesi %></td>
+    <td><%= sesi.end_sesi %></td>
+    <td><%= sesi.prog_name.name %></td>
+    <td><%= sesi.user.name %></td>
+    <td> <a href="/sesis/<%= sesi.id %>/edit"><img src="/images/icon/color_18/pencil.png" style="float:left;"/></a></td>
+    <td> <a href="/sesis/erase/<%= sesi.id %>"><img src="/images/icon/color_18/cross.png" style="float:left;"/></a></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Sesi', new_sesi_path %>
+

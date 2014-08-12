@@ -1,0 +1,81 @@
+<style>
+    table{
+        margin: 10px;padding: 10px
+        border-collapse: collapse;
+        border-spacing: 0;
+        padding: 10px;
+        margin: 0px;
+    }
+    table td{
+        padding: 3px 5px 3px 5px;
+        font-size: 90%;
+        border-bottom-style:solid;
+        border-bottom-width: 1px;
+    }
+
+    table th{
+      font-weight:bold; 
+      border-bottom-style:solid;
+      border-bottom-width: 3px;
+      padding-bottom: 10px;
+      border-bottom-color: #7F6DDD;
+      color: #7F6DDD;
+    }
+</style>
+<div class="boxx">
+
+	<h5>Student lists</h5><%= link_to 'New Student', new_student_list_path , :class=>"uibutton"%>
+
+	<div class="widget">
+		<div class="header"><span ><span class="ico  gray random"></span> Company List</span></div>
+		<div class="content" style="padding:15px 0px;" >
+			<table bgcolor="white" id="tableuser" >
+				<thead>
+			  <tr>
+			    <th>Student ID</th>
+			    <th>Mykadno</th>
+			    <th>Name</th>
+			    <th>Gender</th>
+			    <th>Program code</th>
+			    <th>Faculty code</th>
+			    <th>Campus code</th>
+			    <th>Contact No</th>
+			    <th>H/P No</th>
+			    <th>Religion</th>
+			    <th>Add1</th>
+			    <th>Add2</th>
+			    <th>Postcode</th>
+			    <th>City</th>
+			    <th>State</th>
+			    <th>Email</th>
+			    <th>Cgpa</th>
+			    <th></th>
+			    <th></th>
+			    <th></th>
+			  </tr>
+			  </thead>
+			  <tbody id='table_item'>
+			  
+			
+				</tbody>
+			</table>
+			<br />
+		</div>
+	</div>
+</div>	
+<script>
+	$(document).ready(function(){
+		var oTable = $('#tableuser').dataTable({
+			"sDom": 'T<"clear">lfrtip',        
+			"sPaginationType": "full_numbers",
+			"oLanguage": {
+	            "sSearch": "Find"
+	        },
+			"bProcessing": true,
+			"bServerSide": true,
+			"sAjaxSource": "/studentlisting_data",
+			"aLengthMenu":[[15,25,50,100],[15,25,50,100]],
+			"iDisplayLength": 10,
+		});
+	});	
+</script>

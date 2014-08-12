@@ -1,0 +1,612 @@
+<style>
+	table{
+        margin: 10px;padding: 10px
+        border-collapse: collapse;
+        border-spacing: 0;
+        
+    }
+    table td{
+        padding: 5px;
+        font-size: 90%;
+        border-bottom-style:solid;
+        border-bottom-width: 1px;
+    }
+
+    table th{
+      font-weight:bold; 
+      border-bottom-style:solid;
+      border-bottom-width: 3px;
+      padding-bottom: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+      border-bottom-color: #7F6DDD;
+      color: #7F6DDD;
+    }
+	.oneTwo{
+		float: left;
+	}
+	.insider{
+		border: 0px;
+	} 
+	.insider td{
+		border-bottom-width: 0px;
+	} 
+	 .test {width: 970px;}
+</style>
+
+<%= form_for(@eval_student_pre) do |f| %>
+	<% if @eval_student_pre.errors.any? %>
+    <div id="error_explanation">
+    	<h2><%= pluralize(@eval_student_pre.errors.count, "error") %> prohibited this eval_student_pre from being saved:</h2>
+
+    	<ul>
+    		<% @eval_student_pre.errors.full_messages.each do |msg| %>
+    			<li><%= msg %></li>
+    		<% end %>
+    	</ul>
+    </div>
+<% end %>
+
+<div class="widget test">
+	<div class="header"><span><span class="ico gray window"></span> BEFORE INDUSTRIAL TRAINING/PLACEMENT (Student’s Evaluation) </span> </div> 
+	<div class="content">
+		<h4>SECTION A- STUDENT INFORMATION</h4>
+		<div class="section" hidden="true">
+			<%= f.label :stud_name,"Student Name:" %>
+		</div>
+		<div hidden="true"><%= f.text_field :user_id , :value=>current_user.id %></div>
+		<div class="section" hidden="true">
+			<%= f.label :student_id ,"Student Id:" %>
+		</div>
+		<div hidden="true"><%= f.text_field :student_id , :value=>current_user.fullname%></div>
+		
+		<div class="widget oneTwo">
+			<div class="header"><span style="font-size:12px;"> SECTION A- STUDENT INFORMATION</span> </div> 
+			<div class="content">
+				<%if current_user.role_id == 1%>
+				<table class="insider">
+				
+					<tr>
+						<td>Student ID </td><td>:</td><td> <%= current_user.name%></td>
+					</tr>
+					<tr>	
+						<td>Address </td><td>:</td><td> <%= StudAdd.find_by_user_id(current_user.id).place%>&nbsp,<%= StudAdd.find_by_user_id(current_user.id).postcode%>&nbsp,<%= StudAdd.find_by_user_id(current_user.id).city%>&nbsp,<%= StudAdd.find_by_user_id(current_user.id).state.name%></td>
+					</tr>	
+					<tr>
+						<td>Student H/P </td><td>:</td><td> <%= StudProfile.find_by_user_id(current_user.id).hp_no%></td>
+					</tr>
+					<tr>	
+						<td>Program </td><td>:</td><td> <%= StudEdu.find_by_user_id(current_user.id).prog_name.name%></td>
+					</tr>
+					<tr>	
+						<td>Duration </td><td>:</td><td> <%= StudInternship.find_by_user_id(current_user.id).duration%> Month</td>
+					</tr>
+					<tr>
+						<td>Company </td><td>:</td><td> <%= Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,current_user.id ,]).company_id).name %></td>
+					</tr>
+				</table>		
+				<%else%>
+					Nope Haha
+				<%end%>
+			</div>
+		</div>		
+			
+	<div class="clear"></div>
+	
+  <table  width="900">
+  <tr><th width="69%">SECTION B - PERSONAL ATTRIBUTES</th><th>Very 
+Strongly Disagree</th><th>Strongly Disagree <br/></th><th>Disagree</th><th>Uncertain</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th>
+	 </tr>
+		 <tr>
+	     <td><%= f.label :a1,"I am a faithful person." %></td>
+	     <div align="center" style="display: none;"><%= f.radio_button 'a1', "1", :checked => true, :type => 'hidden'%></div>
+	     <td><div align="center"><%= f.radio_button 'a1', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'a1', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'a1', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'a1', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'a1', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'a1', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'a1', "7"%></div></td>
+	  </tr><tr>
+	     <td><%= f.label :a2 ,"I cannot cope under pressure." %></td>
+	     <td><div align="center"><%= f.radio_button 'a2', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'a2', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'a2', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'a2', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'a2', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'a2', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'a2', "7"%></div></td>
+	 </tr><tr>
+	     <td><%= f.label :a3 ,"I have a sense of humor."%></td>
+	     <td><div align="center"><%= f.radio_button :a3 ,"1", :class => "ck"%></div></td>
+	     <td><div align="center"><%= f.radio_button :a3 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a3 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a3 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a3,"5" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a3 ,"6"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a3,"7" %></div></td>
+	</tr><tr>
+	     <td><%= f.label :p4 ,"I am an honest and reliable person."%></td>
+	     <td><div align="center"><%= f.radio_button :a4 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a4 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a4 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a4 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a4,"5" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a4 ,"6"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a4,"7" %></div></td>
+	 </tr><tr>
+	    <td> <%= f.label :p5 ,"I cannot adapt well to changes." %></td>
+	     <td><div align="center"><%= f.radio_button :a5 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a5 ,"2" %></div></td>
+	     <td><div align="center"><%= f.radio_button :a5 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a5 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a5 ,"5"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a5 ,"6"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a5 ,"7"%></div></td>
+	  </tr>
+	  </tr><tr>
+	     <td><%= f.label :p4 ,"I can manage time effectively.   "%></td>
+	     <td><div align="center"><%= f.radio_button :a6 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a6 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a6 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a6 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a6,"5" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a6 ,"6"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a6 ,"7" %></div></td>
+	 </tr><tr>
+	     <td><%= f.label :p4 ,"I have a high self respect of myself.  "%></td>
+	     <td><div align="center"><%= f.radio_button :a7 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a7 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a7 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a7 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a7 ,"5" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a7 ,"6"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a7 ,"7" %></div></td>
+	 </tr><tr>
+	     <td><%= f.label :p4 ,"I am a dependable person. "%></td>
+	     <td><div align="center"><%= f.radio_button :a8 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a8 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a8 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a8 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a8 ,"5" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a8 ,"6"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a8 ,"7" %></div></td>
+	 </tr><tr>
+	     <td><%= f.label :p4 ,"I am not a committed person."%></td>
+	     <td><div align="center"><%= f.radio_button :a9 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a9 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a9 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a9 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a9,"5" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a9 ,"6"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a9 ,"7" %></div></td>
+	 </tr><tr>
+	     <td><%= f.label :p4 ,"I am a self-motivated person."%></td>
+	     <td><div align="center"><%= f.radio_button :a10 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a10 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a10 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a10 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a10,"5" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a10 ,"6"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a10 ,"7" %></div></td>
+	 </tr><tr>
+	     <td><%= f.label :p4 ,"I am a practical and logical person."%></td>
+	     <td><div align="center"><%= f.radio_button :a11 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a11 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a11 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a11 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a11,"5" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a11 ,"6"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a11 ,"7" %></div></td>
+	 </tr><tr>
+	     <td><%= f.label :p4 ,"I am an enthusiastic person."%></td>
+	     <td><div align="center"><%= f.radio_button :a12 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a12 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a12 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a12 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a12,"5" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a12 ,"6"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a12 ,"7" %></div></td>
+	  </tr><tr>
+	     <td><%= f.label :p4 ,"I am a flexible person."%></td>
+	     <td><div align="center"><%= f.radio_button :a13 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a13 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a13 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a13 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a13 ,"5" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a13 ,"6"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a13 ,"7" %></div></td>	 
+	  </tr><tr>
+	     <td><%= f.label :p4 ,"I am not a punctual person."%></td>
+	     <td><div align="center"><%= f.radio_button :a14 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a14 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a14 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a14 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a14 ,"5" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a14 ,"6"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a14 ,"7" %></div></td>	 
+	  </tr><tr>
+	     <td><%= f.label :p4 ,"I cannot present myself appropriately
+(It includes my physical presentation, personal hygiene, how I speak, get along with others and deal with issues that come up in any situations).
+"%></td>
+	     <td><div align="center"><%= f.radio_button :a15 ,"1"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a15 ,"2" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a15 ,"3"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a15 ,"4"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a15 ,"5" %></div></td>
+		 <td><div align="center"><%= f.radio_button :a15 ,"6"%></div></td>
+		 <td><div align="center"><%= f.radio_button :a15 ,"7" %></div></td>	 
+		</tr>	 
+	  </table><br/><br/><br/>
+	  <h4>SECTION C – EMPLOYABILITY SKILLS</h4>
+	    <table  width="900">
+  <tr><th width="69%">Communication</th><th>Very 
+Strongly Disagree</th><th>Strongly Disagree <br/></th><th>Disagree</th><th>Uncertain</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th>
+	 </tr>
+		 <tr>
+	     <td><%= f.label :a1,"I speak clearly and directly." %></td>
+	     <td><div align="center"><%= f.radio_button 'cc1', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cc1', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cc1', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cc1', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cc1', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cc1', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cc1', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I am not capable of negotiating." %></td>
+	     <td><div align="center"><%= f.radio_button 'cc2', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cc2', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cc2', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cc2', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cc2', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cc2', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cc2', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I listen and ask questions to understand the points of views of others." %></td>
+	     <td><div align="center"><%= f.radio_button 'cc3', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cc3', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cc3', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cc3', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cc3', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cc3', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cc3', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I interact using a range of ICT 
+( Eg. e-mail, sms, blog, facebook, twitter, etc. )
+" %></td>
+	     <td><div align="center"><%= f.radio_button 'cc4', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cc4', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cc4', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cc4', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cc4', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cc4', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cc4', "7"%></div></td>	 
+	  </tr>
+	  </table>
+<table  width="900">
+  <tr><th width="69%">Teamwork</th><th>Very 
+Strongly Disagree</th><th>Strongly Disagree <br/></th><th>Disagree</th><th>Uncertain</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th>
+	 </tr>
+		 <tr>
+	     <td><%= f.label :a1,"I contribute to a team by sharing information and expertise." %></td>
+	     <td><div align="center"><%= f.radio_button 'ct1', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct1', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct1', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct1', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ct1', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct1', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ct1', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I cannot work across different ages, gender, ethnic. " %></td>
+	     <td><div align="center"><%= f.radio_button 'ct2', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct2', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct2', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct2', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ct2', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct2', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ct2', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I cannot work as an individual and as a member of a team." %></td>
+	     <td><div align="center"><%= f.radio_button 'ct3', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct3', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct3', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct3', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ct3', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct3', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ct3', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I lead or support a team when appropriate." %></td>
+	     <td><div align="center"><%= f.radio_button 'ct4', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct4', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct4', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct4', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ct4', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct4', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ct4', "7"%></div></td>	 
+	  </tr><tr>	
+		 <td><%= f.label :a1,"I manage and resolve conflicts when appropriate." %></td>
+	     <td><div align="center"><%= f.radio_button 'ct5', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct5', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct5', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct5', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ct5', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct5', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ct5', "7"%></div></td>
+	  </tr><tr>	
+		 <td><%= f.label :a1,"I try to respect and be open to the opinions and contributions of others. " %></td>
+	     <td><div align="center"><%= f.radio_button 'ct6', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct6', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct6', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct6', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ct6', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ct6', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ct6', "7"%></div></td>
+	  </tr>
+	  </table>
+	  <table  width="900">
+  <tr><th width="69%">Problem Solving</th><th>Very 
+Strongly Disagree</th><th>Strongly Disagree <br/></th><th>Disagree</th><th>Uncertain</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th>
+	 </tr>
+		 <tr>
+	     <td><%= f.label :a1,"Identify the source of a problem." %></td>
+	     <td><div align="center"><%= f.radio_button 'cp1', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp1', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp1', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp1', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cp1', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp1', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cp1', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I am innovative in exploring possible solutions." %></td>
+	     <td><div align="center"><%= f.radio_button 'cp2', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp2', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp2', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp2', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cp2', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp2', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cp2', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I implement solutions" %></td>
+	     <td><div align="center"><%= f.radio_button 'cp3', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp3', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp3', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp3', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cp3', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp3', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cp3', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I apply a range of strategies to problem solving." %></td>
+	     <td><div align="center"><%= f.radio_button 'cp4', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp4', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp4', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp4', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cp4', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp4', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cp4', "7"%></div></td>	 
+	  </tr><tr>	
+		 <td><%= f.label :a1,"I cannot solve problems in teams." %></td>
+	     <td><div align="center"><%= f.radio_button 'cp5', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp5', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp5', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp5', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cp5', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp5', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cp5', "7"%></div></td>
+	  </tr><tr>	
+		 <td><%= f.label :a1,"I develop practical solutions to problem solving." %></td>
+	     <td><div align="center"><%= f.radio_button 'cp6', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp6', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp6', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp6', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cp6', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cp6', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cp6', "7"%></div></td>
+	  </tr>
+	  </table>
+	  <table  width="900">
+  <tr><th width="69%">Self-management</th><th>Very 
+Strongly Disagree</th><th>Strongly Disagree <br/></th><th>Disagree</th><th>Uncertain</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th>
+	 </tr>
+		 <tr>
+	     <td><%= f.label :a1,"I have confidence in my own ideas. " %></td>
+	     <td><div align="center"><%= f.radio_button 'cs1', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs1', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs1', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs1', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cs1', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs1', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cs1', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I am a responsible person." %></td>
+	     <td><div align="center"><%= f.radio_button 'cs2', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs2', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs2', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs2', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cs2', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs2', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cs2', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I carry out a task from start to finish." %></td>
+	     <td><div align="center"><%= f.radio_button 'cs3', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs3', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs3', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs3', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cs3', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs3', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cs3', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I cannot monitor the success of a task." %></td>
+	     <td><div align="center"><%= f.radio_button 'cs4', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs4', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs4', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs4', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cs4', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs4', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cs4', "7"%></div></td>	 
+	  </tr><tr>	
+		 <td><%= f.label :a1,"I work based on quality standards and specifications." %></td>
+	     <td><div align="center"><%= f.radio_button 'cs5', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs5', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs5', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs5', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cs5', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cs5', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cs5', "7"%></div></td>
+	  </tr>
+	  </table>
+	  <table  width="900">
+  <tr><th width="69%">Planning and Organising</th><th>Very 
+Strongly Disagree</th><th>Strongly Disagree <br/></th><th>Disagree</th><th>Uncertain</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th>
+	 </tr>
+		 <tr>
+	     <td><%= f.label :a1,"I manage time and priorities." %></td>
+	     <td><div align="center"><%= f.radio_button 'co1', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'co1', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'co1', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'co1', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'co1', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'co1', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'co1', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I am a resourceful person." %></td>
+	     <td><div align="center"><%= f.radio_button 'co2', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'co2', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'co2', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'co2', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'co2', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'co2', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'co2', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I can allocate people and other resources to tasks." %></td>
+	     <td><div align="center"><%= f.radio_button 'co3', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'co3', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'co3', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'co3', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'co3', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'co3', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'co3', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I am not able to collect, analyze and organize information." %></td>
+	     <td><div align="center"><%= f.radio_button 'co4', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'co4', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'co4', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'co4', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'co4', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'co4', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'co4', "7"%></div></td>	 
+	  </tr>
+	  </table>
+	  <table  width="900">
+  <tr><th width="69%">Technology Skill</th><th>Very 
+Strongly Disagree</th><th>Strongly Disagree <br/></th><th>Disagree</th><th>Uncertain</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th>
+	 </tr>
+		 <tr>
+	     <td><%= f.label :a1,"I have a range of basic IT skills eg. Words, Excel, Power Point." %></td>
+	     <td><div align="center"><%= f.radio_button 'cts1', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cts1', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cts1', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cts1', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cts1', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cts1', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cts1', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I apply IT as a management tool." %></td>
+	     <td><div align="center"><%= f.radio_button 'cts2', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cts2', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cts2', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cts2', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cts2', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cts2', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cts2', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I use IT to organize data." %></td>
+	     <td><div align="center"><%= f.radio_button 'cts3', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cts3', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cts3', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cts3', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cts3', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cts3', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cts3', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I am not willing to learn new IT skills." %></td>
+	     <td><div align="center"><%= f.radio_button 'cts4', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cts4', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cts4', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cts4', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cts4', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cts4', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cts4', "7"%></div></td>	 
+	  </tr>
+	  </table>
+	  <table  width="900">
+  <tr><th width="69%">Learning Continuously</th><th>Very 
+Strongly Disagree</th><th>Strongly Disagree <br/></th><th>Disagree</th><th>Uncertain</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th>
+	 </tr>
+		 <tr>
+	     <td><%= f.label :a1,"I do not have an enthusiasm for ongoing learning." %></td>
+	     <td><div align="center"><%= f.radio_button 'cl1', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cl1', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cl1', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cl1', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cl1', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cl1', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cl1', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I am willing to learn in any setting." %></td>
+	     <td><div align="center"><%= f.radio_button 'cl2', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cl2', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cl2', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cl2', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cl2', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cl2', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cl2', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I am prepared to learn in order to accommodate change." %></td>
+	     <td><div align="center"><%= f.radio_button 'cl3', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cl3', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cl3', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cl3', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cl3', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'cl3', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'cl3', "7"%></div></td>
+	  </tr>
+	  </table>
+	  <table  width="900">
+  <tr><th width="69%">Innovative outcomes</th><th>Very 
+Strongly Disagree</th><th>Strongly Disagree <br/></th><th>Disagree</th><th>Uncertain</th><th>Agree</th><th>Strongly Agree</th><th>Very Strongly Agree</th>
+	 </tr>
+		 <tr>
+	     <td><%= f.label :a1,"I am willing to put extra effort in given task." %></td>
+	     <td><div align="center"><%= f.radio_button 'ci1', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ci1', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ci1', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ci1', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ci1', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ci1', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ci1', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I do not translate ideas into actions." %></td>
+	     <td><div align="center"><%= f.radio_button 'ci2', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ci2', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ci2', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ci2', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ci2', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ci2', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ci2', "7"%></div></td>
+	  </tr><tr>
+	  	<td><%= f.label :a1,"I initiate innovative solutions." %></td>
+	     <td><div align="center"><%= f.radio_button 'ci3', "1"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ci3', "2"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ci3', "3"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ci3', "4"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ci3', "5"%></div></td>
+		 <td><div align="center"><%= f.radio_button 'ci3', "6"%></div></td> 
+		 <td><div align="center"><%= f.radio_button 'ci3', "7"%></div></td>
+	  </tr>
+	  </table>
+	  <center >
+   <%= f.submit "Submit Form", :class => "uibutton loading"%>
+   	</center>
+ 	</div>
+</div>
+<% end %>

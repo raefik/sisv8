@@ -17,7 +17,7 @@
 <%= render 'shared/error_messages', :object => f.object %>
 <div class="section" >
 <%= f.label :name %>
-<%= f.text_field :name %>
+<%= f.text_field :name , :disabled=>'disabled'%>
 </div>
 </br>
 
@@ -50,12 +50,6 @@
 <p/>
 
 
-<div class="boxtitle"><span class="ico gray audio_knob"></span>
-Profile Picture
- </div>
-  
-<%= gravatar_for @user %>
-<a href="http://gravatar.com/emails">change</a>
 
 
 </div>

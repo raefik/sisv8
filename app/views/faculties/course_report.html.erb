@@ -1,0 +1,31 @@
+<h1>Listing faculties</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Faculty', new_faculty_path %>
+<script>
+  function listRoom() { 
+      $.ajax({
+        type: "GET",
+        url: "list-room.json",
+        data: { 
+          iprc: $('#inpatientroomcategory_id').val(),
+          vs: $('#vacantstat_id').val()
+        }
+      });
+    }
+</script>

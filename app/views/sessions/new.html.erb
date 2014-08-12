@@ -1,37 +1,59 @@
-<div id="login" >
-  <div class="inner">
-  <div align="center"><img src="images/logo/sis2.png"/></div>
-  
-  
-<%= form_for(:session, :url => sessions_path) do |f| %>
-
-<center>
-<div class="tip">
-<%= f.text_field :email, :placeholder => "Email", :id => "username_id"%>
-</div>
-</br>
-<div class="tip">
-<%= f.password_field :password, :placeholder => "Password", :id => "password"%>
-</div>
-</center>
-
-</br>
-<div class="loginButton">
-		<div style="float:right; padding:3px 0; margin-right:-12px;">
-            <div> 
-				<div class="actions">
-				<%= f.submit "Sign in", :class => 'uibutton loading', :title => 'Login' %>
-				</div> 
-            </div>
-			  
-        </div>
-			<div class="clear"></div>	
-</div>
-
-<% end %>
-
-</div>
-	<div class="clear"></div>
+<div id="login" class="oneTwo" >
+    <div class="inner">
+	  <div align="center"><img src="images/logo/sis2.png"/></div>
+			<%= form_for(:session, :url => sessions_path) do |f| %>
+			<center>
+			<div class="tip">
+			<%= f.text_field :name, :placeholder => "Username", :id => "username_id"%>
+			</div>
+			</br>
+			<div class="tip">
+			<%= f.password_field :password, :placeholder => "Password", :id => "password"%>
+		</div>
+			<%= f.submit "Log in", :class => 'uibutton loading', :title => 'Login' %>
+			<% end %>
+	</div>
 	<div class="shadow"></div>
 </div>
+<div class="oneTwo">
+	<%if params[:click] == 'staff'%>
+		<h5>Information for Staff</h5>
+	<%else%>
+		<h5>Information for Industries/Companies</h5>
+	<%end%>
+	<table>
+		<tr>
+			<td valign="baseline">
+				<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="20px" />
+				</td>
+			<td>
+	"Smart Internship System" is a UiTM Online Internship Placement System provided by Student-Industry Linkages Centre (SILC)
+for UiTM's final year students to find internship placement.
+			</td>
+		</tr>
+		<tr>
+			<td valign="baseline">
+				<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="20px" />
+				</td>
+			<td>
+	For any enquiry, call 603-55442058/2053 or email to silc@salam.uitm.edu.my
+			</td>
+		</tr>
+		
+	</table>	
+</div>
 
+
+<script>
+	$(document).ready(function(){
+			$("html, body").animate({scrollTop: 1000}, 900);
+	});	
+</script>		
+<style>
+	td{ padding: 5px 5px;}
+	#login .oneTwo{float: left;}
+	#content .inner {
+		width: 100%;
+		padding-top: 5px;
+	}
+</style>

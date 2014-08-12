@@ -1,32 +1,37 @@
+<div class="oneTwo">
 <div class="widget">
-                    <div class="header"><span >Available Program For Internship</span>
-                            </div>
-                            </div>
-<div class="content" >
-     <table >
-	<thead>
-		<tr>
-			<th align="left">Bil</th><th align="left">Programmes</th><th align="left"></th>
-		</tr>
-	</thead>
-	
-<tbody>
-
-
-<%i=0%>
-<% current_user.available_internships.each do |u|%>
-<%i+=1%>
-<tr>
-    <td  align="left"><%=i%> ) </td>
-	<td  align="left"><%=u.prog_name.name%></td>
-    <td  align="left"><span class="tip" ><%= link_to image_tag("/images/icon/icon_edit.png"), edit_available_internship_path(u) %>&nbsp&nbsp&nbsp&nbsp<%= link_to image_tag("/images/icon/icon_delete.png"), u, confirm: 'Are you sure?', method: :delete %></td>
-</tr>
-<%end%>
-
-
-<br />
-</tbody>
-</table>
+        <div class="header"><span >Available Program For Internship</span>
+			<div align="right" class="edit_link">
+				<%= link_to image_tag("/images/icon/tambah.png"), new_available_internship_path %>
+			</div>
+        </div>
+                            
+		<div class="content" style="padding: 0px 0px;">
+			<table class="display ">
+				<thead>
+					<tr>
+						<th align="left" style="width: 10px;">Bil</th>
+						<th align="left" style="width: 70%;">Programmes</th>
+						<th align="left"></th>
+					</tr>
+				</thead>	
+				<tbody>
+				
+				
+				<%i=0%>
+				<% current_user.available_internships.each do |u|%>
+				<%i+=1%>
+				<tr>
+				    <td  align="left"><%=i%> ) </td>
+					<td  align="left"><%=u.prog_name.name%></td>
+				    <td  align="left"><span class="tip" ><%= link_to image_tag("/images/icon/icon_edit.png"), edit_available_internship_path(u) %>&nbsp&nbsp&nbsp&nbsp<%= link_to image_tag("/images/icon/icon_delete.png"), u, confirm: 'Are you sure?', method: :delete %></td>
+				</tr>
+				<%end%>
+				
+				
+				<br />
+				</tbody>
+			</table>
+		</div>
 </div>
-
-<%= link_to 'New Available internship', new_available_internship_path, :class => 'uibutton loading', :title => 'Opening'%>
+</div>

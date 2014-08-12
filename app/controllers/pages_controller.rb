@@ -1,30 +1,46 @@
 class PagesController < ApplicationController
   def home
-  @title="home"  
-  @users=User.all
+  	
+  	@title="home"  
+  	@users=User.all
+  	@company = Company.find(:all, :order => "created_at desc", :limit => 9)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @company }
+    end
+    
+  end
+  
+  def faq
+  	@title="FAQ"
+  	
   end
 
   def about
-  @title="about"
+  	@title="about"
   end
 
   def help
-  @title="help"
+  	@title="help"
   end
 
   def contact
-  @title="contact"
+  	@title="contact"
   end
 
   def index
-  @title="index"
+  	@title="index"
   end
+  
   def profile
-  @title="profile"
+  	@title="profile"
   end
+  
   def search_class
-  @data_class=StudEdu.search(params[:search])
+  	@data_class=StudEdu.search(params[:search])
   end
+  
+  
   def markah_student
   @title="view_marks"
   staff=Staff.find_by_user_id(current_user.id)
@@ -42,16 +58,7 @@ class PagesController < ApplicationController
   @title="students"
   staff=Staff.find_by_user_id(current_user.id)
   @data_student=StudProfile.search(params[:search])
-  #@data_class=StudEdu.search(params[:search])
-  #@markah_student = staff.markah_students.find_by_matric_no(@data_student.matric_no)
-		  #unless @markah_student = MarkahStudent.includes(:staff=>:date_visits).find(:all,:conditions=>['matric_no like?',"#{params[:search]}"]).nil?
-		  #@markah_student = staff.markah_students.create(params[:markah_student])
-		  #else
-		  #@markah_student = staff.markah_students.new(params[:markah_student])
-		  #end
-  #@markah_student2 = MarkahStudent.includes(:staff=>:date_visits).find(:all,:conditions=>['matric_no like?',"#{params[:search]}"])
-  #@markah_student = staff.markah_students.where(:matric_no=>"#{"params[:search]}")
-  #@markah_student = staff.markah_students.update_attributes(params[:markah_student])
+
   @student_all= StudProfile.includes(:staff,:user=>[:role,{:user_companies=>:company},:companies,:students]).all
   @student_sv = StudProfile.includes(:staff,:user=>[:role,{:user_companies=>:company},:companies,:students]).where('staff_id=?',staff.id)
 	unless params[:search].blank?  
@@ -71,13 +78,11 @@ class PagesController < ApplicationController
 	  	@stud.staff_id = @staffid
 	  	@stud.save
   end
-  #@data_academic=Student.find_by_user_id("#{@data.user_id}")
-  #@data_class=StudEdu.search(params[:search])
-  #@data_class=StudEdu.find(:all,:conditions=>["student_class_id=?",params[:search]])
+ 
   @data_class=StudEdu.search(params[:search])
   @student_all = StudProfile.includes(:staff,:user=>[:role,{:user_companies=>:company},:companies,:students]).all
-  #@stud = UserCompany.includes(:company,:student,:user=>[:role,{:stud_profiles=>:staff},:staffs]).find(:all,:conditions=>["total =?",1])
   @stud = UserCompany.includes(:company,:student,:user=>[:role,{:stud_profiles=>:staff},:staffs]).find(:all,:conditions=>["total =?",1])
+  
   end
   
   def updatestudprofile
@@ -118,12 +123,16 @@ class PagesController < ApplicationController
   def company
    @title="company"
    current_company=Company.find_by_user_id(current_user.id)
-   @companies=UserCompany.where(:company_id=>current_company.id).all
+   #@usercompanies=UserCompany.where(:company_id=>current_company.id).all
+   @usercompanies=UserCompany.where(:company_id=>current_company.id).all
   end
+  
   def reminder
   @title="student"
    @reminder=current_user
   end
+  
+  
   def internship
   @data_student=StudProfile.includes(:log_books,:staff=>:date_visits,:user=>[:role,:user_companies]).find_by_user_id(current_user.id)
   @data_class=StudEdu. includes(:user,:student_class,:faculty).find_by_user_id(current_user.id)

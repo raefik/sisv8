@@ -76,7 +76,7 @@ class EducationBackgroundsController < ApplicationController
     @education_background.destroy
 
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_to @education_background.user}
       format.json { head :ok }
     end
   end

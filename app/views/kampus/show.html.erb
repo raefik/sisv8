@@ -12,7 +12,7 @@
 
 <p>
   <b>State:</b>
-  <%= @kampu.state_id %>
+  <%= State.find_by_id(@kampu.state_id).name %>
 </p>
 
 

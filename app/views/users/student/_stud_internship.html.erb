@@ -22,12 +22,24 @@
 <tr>
 <td  align="left">Internships start date</td>
 <td  align="left">:</td>
-<td  align="left"><span><%=@stud_internship.sem_internship_start%></span></td>
+<td  align="left"><span>
+	<%if @stud_internship.sem_internship_start.nil? %>
+		
+	<%else%>	
+		<%=@stud_internship.sem_internship_start.strftime("%d/%m/%Y")%>
+	<%end%>
+	</span></td>
 </tr>
 <tr>
 <td  align="left">Internships end date</td>
 <td  align="left">:</td>
-<td  align="left"><span><%=@stud_internship.sem_internship_end%></span></td>
+<td  align="left"><span>
+	<%if @stud_internship.sem_internship_start.nil? %>
+	
+	<%else%>	
+		<%=@stud_internship.sem_internship_end.strftime("%d/%m/%Y")%>	
+	<%end%>	
+		</span></td>
 </tr>
 
 </tbody>

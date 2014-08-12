@@ -2,6 +2,102 @@ class UserCompaniesController < ApplicationController
 
   # GET /user_companies
   # GET /user_companies.json
+  
+  def get_student_interns
+  	aColumnType = ['','', 'integer', 'integer', '', '','']
+    aColumns = ['','', 'user_company.id', 'user_company.id', '', '','']
+
+    sIndexColumn = 'user_company.id'
+
+    sOrder = ""
+    if params[:iSortCol_0].present?
+      inc = 0
+      until inc > params[:iSortingCols].to_i-1
+        sortInc = params[:"iSortCol_#{inc}"].to_i
+        if params[:"bSortable_#{sortInc}"] == "true" && !aColumns[sortInc].empty?
+          sOrder += aColumns[sortInc] + ( params[:"sSortDir_#{inc}"] == 'asc' ? " asc" : " desc") + ", "
+        end
+        inc+=1
+      end
+
+      sOrder = sOrder[0..-3]
+    end
+
+    sWhere = ""
+
+    if !params[:sSearch].empty?
+      inc = 0
+      until inc > aColumns.count-1
+        if !aColumns[inc].empty?
+          if aColumnType[inc] == "int"
+            sWhere += aColumns[inc]+"::text ILIKE '%" + params[:sSearch]+"%'"
+          elsif aColumnType[inc] == "datetime"
+            sWhere += "to_char("+ aColumns[inc] + "::date, 'dd-mm-yyyy') ILIKE '%" + params[:sSearch] + "%'"
+          else678590w3-
+            sWhere += aColumns[inc] + " ILIKE '%" + params[:sSearch] + "%'"
+          end
+
+          if !aColumns[inc+1].empty?
+            sWhere += " OR "
+          end
+        end
+
+        inc+=1
+      end
+    end
+
+    bColumns.reject! { |c| c.empty? }
+    selectedColumn = bColumns.join(', ')
+
+    totalrecord = UserCompany.select("id,student_id,company_id,user_id,action_status_id,total").where(:company_id => params[:id])
+    rowno = params[:iDisplayStart].to_i
+
+    record = totalrecord
+    .where(sWhere)
+    .limit(params[:iDisplayLength])
+    .offset(params[:iDisplayStart])
+    .order(sOrder)
+
+    records = record.each.map do |tl|
+
+      [
+          rowno += 1,
+          tl.testname,
+          "<a onclick='editLab("+tl.resultid+"); return false'><img class='cross' title='Edit' src='/assets/icons/25x25/blue/pencil.png' width='20'/></a>
+          <a onclick='deleteLab("+tl.resultid+"); return false'><img class='cross' title='Delete' src='/assets/icons/25x25/dark/cross.png' width='20'/></a>"
+      ]
+    end
+
+    if sWhere == ""
+      totallen = totalrecord.length
+    else
+      record = totalrecord
+      .where(sWhere)
+      .offset(params[:iDisplayStart])
+      .order(sOrder)
+      totallen = record.length
+    end
+    #l = lssss
+    render :json => {
+        :sEcho => params[:sEcho],
+        :iTotalRecords => totallen,
+        :iTotalDisplayRecords => totallen,
+        :aaData => records
+    }
+  end
+  
+  def checkin
+	@user_company = UserCompany.find(params[:id])
+  end
+  
+  def stud_checkin
+	current_student=Student.find_by_user_id(current_user.id)
+   @users=User.where(:role_id=>2).all
+   #raise current_student.id.to_s
+   @students=UserCompany.where(:student_id=>current_student).all  
+  end
+  
+  
   def index
     @user_companies = UserCompany.all
 
@@ -95,38 +191,38 @@ class UserCompaniesController < ApplicationController
 	student=Student.find_by_user_id(current_user.id)
 	
 					if params[:user_company][:action_status_id]=="1"
-					@user_company.update_attributes(:action_status_id=>1)
+					@user_company.update_attributes(:action_status_id=>1,:total=>"")
 					flash[:error]="Applied"
 					redirect_to reminder_path
 					return
 					end
 					if params[:user_company][:action_status_id]=="2"
-					@user_company.update_attributes(:action_status_id=>2)
+					@user_company.update_attributes(:action_status_id=>2,:total=>"")
 					flash[:error]="Offered"
 					redirect_to reminder_path
 					return
 					end
 					if params[:user_company][:action_status_id]=="3"
-						if student.user_companies.sum(:total)==1
-						flash[:error]="Only one offer is allowed to accept"
-						redirect_to reminder_path
-						return
-						else 
+						
 						@user_company.update_attributes(:action_status_id=>3,:total=>1)
 						flash[:error]="Accepted"
 						redirect_to reminder_path
-						return
-						end
 					end
 					if params[:user_company][:action_status_id]=="4"
-					@user_company.update_attributes(:action_status_id=>4)
+					@user_company.update_attributes(:action_status_id=>4,:total=>"")
 					flash[:error]="KIV"
 					redirect_to reminder_path
 					return
 					end
 					if params[:user_company][:action_status_id]=="5"
-					@user_company.update_attributes(:action_status_id=>5)
+					@user_company.update_attributes(:action_status_id=>5,:total=>"")
 					flash[:error]="Rejected"
+					redirect_to reminder_path
+					return
+					end
+					if params[:user_company][:action_status_id]=="6"
+					@user_company.update_attributes(:action_status_id=>6,:total=>"2")
+					flash[:error]="Check in"
 					redirect_to reminder_path
 					return
 					end

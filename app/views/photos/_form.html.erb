@@ -1,0 +1,44 @@
+
+<div class="clear"></div>
+<div class="widget">
+	<div class="header"><span><span class="ico gray window"></span>  Change Photo  </span></div>
+	<div class="content">
+		<div class="boxtitle"><span class="ico gray audio_knob"></span>
+		
+		<%= form_for @photos, :html => { :multipart => true } do |f| %>
+		  <% if @photos.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@photos.errors.count, "error") %> prohibited this photo from being saved:</h2>
+		
+		      <ul>
+		      <% @photos.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+  
+		  <div class="section">
+		    Upload Image<br />
+		    <%= f.file_field :image %>
+		  </div>
+		  <br/>
+		  <div class="section" hidden="true">
+		    <%= f.label :user_id %><br />
+		    <%if params[:user_id].nil? %>
+		    	<%= f.text_field :user_id , :value=>current_user.id %>
+		    <%else%>
+		    	<%= f.text_field :user_id , :value=>params[:user_id] %>
+		    <%end%>
+		  </div>
+		  <div class="section last">	
+		
+		   	<div class="actions">
+		    	<%= f.submit "Done", :class => 'uibutton loading', :title => 'Saving' %>
+		    </div>
+		  </div>
+		<% end %>
+	</div>
+</div>	
+
+

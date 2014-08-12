@@ -1,17 +1,14 @@
 
-
-<div class="widget">
-                    <div class="header"><span > Skills </span>
-                            </div>
-                            </div>
-						</div>
-
-
-<div class="content" >
-     <table >
+								<div class="widget">
+								 <div class="header"><span><span class="ico gray window"></span>  Skills   </span></div>
+									<div class="content">
+      <table >
 	<thead>
 	<tr>
-		<th align="left">Bil</th><th align="left">Skill</th><th align="left">Duration</th><th align="left">Proficiency</th>
+		<th align="left" style="width:20%;">Bil</th>
+		<th align="left" style="width:35%;">Skill</th>
+		<th align="left" style="width:35%;">Duration</th>
+		<th align="left" style="width:35%;">Proficiency</th>
 	</tr>
 	</thead>
 	
@@ -21,11 +18,17 @@
 <%current_user.stud_skills.each do |u|%>
 <%i+=1%>
 <tr>
-<td  align="left"><%=i%> ) </td><td  align="left"><%=u.skill%></td><td  align="left"><%=u.year_exp%> month</td><td  align="left"><%=u.skill_pro.name%></td>
+<td  align="left" ><%=i%> ) </td>
+<td  align="left" ><%=u.skill%></td>
+<td  align="left" ><%=u.year_exp%> month</td>
+<td  align="left" ><%=u.skill_pro.name%></td>
 </tr>
 <%end%>
 
 </tbody>
-</table>
+</table>                         
 
-</div>
+									</div>
+								 </div>
+							
+

@@ -1,6 +1,19 @@
 class WorkingExperiencesController < ApplicationController
   # GET /working_experiences
   # GET /working_experiences.json
+  
+  def working_exp
+    ids=params[:ids];
+    @working_experiences =  WorkingExperience
+      .where(:user_id=>ids)
+      .select("company,year_exp,working_as")
+    respond_to do |format|
+      format.json { render json: @working_experiences }
+    end
+  end
+
+
+
   def index
     @working_experiences = WorkingExperience.all
 

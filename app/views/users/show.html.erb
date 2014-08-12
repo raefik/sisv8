@@ -1,37 +1,517 @@
+<style>
+.oneTwo {
+	width: 48%;
+	display: inline;
+	float: left;
+}
+.ui-tabs {
+	position: relative;
+	padding: .2em;
+	zoom: 1;
+	-moz-box-shadow: none;
+	-webkit-box-shadow:  none;
+	box-shadow:  none;
+}
+.ui-tabs .ui-widget-content{
+	-moz-box-shadow: none;
+	-webkit-box-shadow:  none;
+	box-shadow:  none;
+	}
+	
+.ui-tabs .ui-widget-header {
+	background: none;
+	color: #ffffff;
+	font-weight: bold;
+	text-shadow:none;
+}
+.ui-tabs .ui-tabs-nav {
+	margin: 0;
+	border-bottom: 1px solid #e9e9e9;
+	border-left: 1px solid #e9e9e9;
+}
+.ui-tabs .ui-tabs-nav li {
+	list-style: none;
+	float: left;
+	position: relative;
+	top: 1px;
+	margin: 0;
+	padding: 0;
+	height: 32px;
+	line-height: 32px;
+	border: 1px solid #e9e9e9;
+	border-left: none;
+	margin-bottom: -1px!important;
+	white-space: nowrap;
+	background-image: url(../images/bg/NavBg.png);
+}
+.ui-tabs .ui-tabs-nav li a {
+	float: left;
+	padding: 0 20px;
+	border: 1px solid #fff;
+	text-decoration: none;
+}
+.ui-tabs .ui-tabs-nav li a:hover {
+	color: #000;
+	background-image: url(../images/bg/NavBgHover.png);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected {
+	margin-bottom: 0;
+	padding-bottom: 1px;
+	background-color:#ffffff;
+	background-image:none;
+
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a {
+	cursor: text;
+}
+.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a {
+	cursor: pointer;
+}
+.ui-tabs .ui-tabs-panel {
+	display: block;
+	border-width: 0;
+	padding: 1em 1.4em;
+	background: none;
+}
+.ui-tabs .ui-tabs-hide {
+	display: none !important;
+}
+.uibutton { padding: 6px 12px 12px 12px;}
+a img {padding:4px;}
+table.display thead tr th {padding: 0px 10px 3px;}
+table.display tbody td {
+	padding: 3px 10px!important;
+}
+table.display {margin: 0px auto !important;}
+.widget .header {height: 33px;}
+table {margin-top: 0px;margin-bottom: 0px;}
+.ui-tabs .ui-tabs-nav li a {
+	float: left;
+	padding: 0 7px;
+	border: 0px solid #fff;
+	text-decoration: none;
+}
+.ui-tabs .ui-tabs-nav {
+	margin: 0;
+	border-bottom: 0px solid #e9e9e9;
+	border-left: 0px solid #e9e9e9;
+}
+.widget .content {
+	background: #ffffff url("/images/inner-shadow.png") repeat-x;
+	border-top: 1px solid #cecece;
+	padding: 6px 11px;
+	min-height: 50px;
+}
+.ui-tabs .ui-tabs-panel {padding: 0.5em 0.2em;}
+td{font-size:  90%;
+	padding: 5px;
+}
 
 
-<%#----------for student------------------%>
-<%if current_user.role.name=="student"%>
-<%=render 'users/basic_info'%>
-<%=render 'users/student/stud_edu'%>
-<%=render 'users/student/stud_add'%>
-<%=render 'users/student/stud_custodian'%>
-<%=render 'users/student/stud_skill'%>
-<%=render 'users/student/stud_language'%>
-<%=render 'users/student/education_background'%>
-<%=render 'users/student/working_experience'%>
-<%=render 'users/student/stud_internship'%>
-<%=render 'users/student/prefered_location'%>
-<%=render 'users/student/stud_references'%>
-<%=render 'users/student/stud_description'%>
-<%=render 'users/student/stud_profile'%>
+    #tableuser {
+        margin: 10px;padding: 10px
+        border-collapse: collapse;
+        border-spacing: 0;
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+    }
+    #tableuser  td{
+        padding: 3px;
+        font-size: 90%;
+        border-bottom-style:solid;
+        border-bottom-width: 1px;
+    }
+    
+    
+    
+    #tableuser  tr:hover{
+        background-color: #dddcff;
+    }
+
+    #tableuser th{
+      font-weight:bold; 
+      border-bottom-style:solid;
+      border-bottom-width: 3px;
+      padding-bottom: 10px;
+      border-bottom-color: #7F6DDD;
+      color: #7F6DDD;
+    }
+    
+    #tablesesi {
+        margin: 10px;padding: 10px
+        border-collapse: collapse;
+        border-spacing: 0;
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+    }
+    #tablesesi  td{
+        padding: 3px;
+        font-size: 90%;
+        border-bottom-style:solid;
+        border-bottom-width: 1px;
+    }
+    
+    #tablesesi  tr:hover{
+        background-color: #dddcff;
+    }
+
+    #tablesesi th{
+      font-weight:bold; 
+      border-bottom-style:solid;
+      border-bottom-width: 3px;
+      padding-bottom: 10px;
+      border-bottom-color: #7F6DDD;
+      color: #7F6DDD;
+    }
+
+</style>
+	<%if current_user.role.name=="student"%>
+	<div class="widget">
+	<div class="header"><span >
+		<span class="ico  color info"></span> Student's Curriculum Vitae (CV) 
+			<%if UserCompany.find_by_user_id(current_user.id) == nil %>
+				(Not in Company)
+			<%end%>
+			<%if StudProfile.find_by_user_id(current_user.id).staff_id == nil %>
+				(Not Have Supervisor)
+			<%else	%>
+				SV : <%= StudProfile.find_by_user_id(current_user.id).staff.name %>
+			<%end%>
+		</span></div>
+		<div class="content">   
+		
+		<a href="/faq"  class="uibutton" hidden=true>Faq</a>
+		<!--UserCompany.find_by_user_id(current_user.id) == nil-->
+		<%if EvalStudentPre.find_by_user_id(current_user.id).nil?  %>
+		<a href="/eval_student_pres/new"  class="uibutton" >Entrance Survey</a>	
+		<%end%>
+		
+		<%if EvalStudentEnd.find_by_user_id(current_user.id).nil? && !EvalStudentPre.find_by_user_id(current_user.id).nil? %>
+			<a href="/eval_student_ends/new"  class="uibutton" >Exit Survey</a>
+		<%end%>
+		
+		
+		
+		<a href="/pelajar" id="go" class="uibutton" hidden=true>Go Apply Companies</a>	
+			<div id="tabs" width="100%">
+				<ul>
+					<li><a href="#tabs-1"><span class="ico color checkmark2"></span>Account info </a></li>
+					<li><a href="#tabs-2" id="tabinfo">Student Basic Info</a></li>
+					<li><a href="#tabs-3" id="tabedu">Education</a></li>
+					<li><a href="#tabs-4" id="tabskil">Skill</a></li>
+					<li><a href="#tabs-5" id="tabexp">Experience</a></li>
+					<li><a href="#tabs-6" id="tabint">Internship</a></li>
+					
+				</ul>
+				<div id="tabs-1">
+					       <%=render 'users/basic_info'%>
+					       
+				</div>
+				<div id="tabs-2">
+		
+					<div class="oneTwo" style="margin:0px;">
+			            <%=render 'users/student/stud_profile'%>              
+					</div>
+					<div class="oneTwo" style="margin:0px;">
+						<%=render 'users/student/stud_add'%>
+						<%=render 'users/student/stud_custodian'%>
+					</div>
+					
+				</div>
+				<div id="tabs-3">
+					<div class="oneThree">
+						<%=render 'users/student/stud_edu'%>
+					</div>
+					<div class="twoOne">
+						<%=render 'users/student/education_background'%>
+					</div>
+				</div>
+				<div id="tabs-4">
+					<div class="oneThree">
+						<%=render 'users/student/stud_description'%>
+					</div>
+					<div class="twoOne">
+						<%=render 'users/student/stud_skill'%>
+					</div>
+					<div class="twoOne">
+						<%=render 'users/student/stud_language'%>
+					</div>	
+				</div>
+				<div id="tabs-5">
+					<%=render 'users/student/working_experience'%>
+				</div>
+				<div id="tabs-6">
+					<div class="oneThree">
+						<%=render 'users/student/stud_internship'%>
+					</div>
+					<div class="twoOne">
+						<%=render 'users/student/prefered_location'%>
+					</div>
+					<div class="twoOne">
+						<%=render 'users/student/stud_references'%>
+					</div>
+				</div>
+				
+			</div> <!-- end tabs-->
+			
+			<div class="clear"></div>
+			
+			<br/>
+			<h5>Something need to told to student </h5>
+	<table>
+		<tr>
+			<td valign="baseline">
+				<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="20px" />
+				</td>
+			<td>
+	online computer and Internet terms dictionary strive to maintain a database of concise and relevant technology definitions. Each day new words, phrases and abbre <b>by our staff using only professional</b> industry sources -- and then defined in easy-to-understand language. As our database of Internet and computer technology terms grow, this New Terms page lists the most recent 100 terms we have added so you can.
+			</td>
+		</tr>
+		<tr>
+			<td valign="baseline">
+				<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="20px" />
+				</td>
+			<td>
+	online comprms dictionary strive to maintain a database of concise and relevant technology definitions. Each day new words, phrases and abbreviations are researched by our staff using only professional industry sources -- and then defined in easy-to-understand language. As our  and computer technology terms grow, this New Terms page lists the most recent 100 terms we have added so you can easily see what's new at Webopedia.
+			</td>
+		</tr>
+		<tr>
+			<td valign="baseline">
+				<img class="profile" src="/assets/zice/images/icon/color_18/directional_right.png" height="20px" />
+				</td>
+			<td>
+	online comprms dictionary and computer technology terms grow, this New Terms page lists the most recent 100 terms we have added so you can easily see what's new at Webopedia.
+			</td>
+		</tr>
+	</table>
+		</div>	
+	</div>		
+	<%end%>
 
 
-<%end%>
+		<%#----------for company------------------%>
+		<%if current_user.role.name=="company"%>
+			<div class="boxx">
+			<h4>Company Profile</h4>
+			<%=render 'users/basic_info'%>
+			<%=render 'users/company/company_profile'%>
 
-<%#----------for company------------------%>
-<%if current_user.role.name=="company"%>
-<%=render 'users/basic_info'%>
-<%=render 'users/company/company_profile'%>
-<%=render 'users/company/company_adv'%>
-<%=render 'users/company/requirement'%>
-<%=render 'users/company/benefit'%>
-<%=render 'users/company/available_internship'%>
-<%end%>
+				<%=render 'users/company/requirement'%>	
+				<%=render 'users/company/company_adv'%>
+				<%=render 'users/company/benefit'%>
+				<%=render 'users/company/available_internship'%>
 
-<%#----------for student------------------%>
-<%if current_user.role.name=="staff"%>
-<%=render 'users/basic_info'%>
-<%=render 'users/staff/staff_profile'%>
-<%end%>
+			<div class="clear"></div><br/>
+			</div>
+		<%end%>
 
+	<%#----------for staff------------------%>
+		<div class="boxx">
+			<%if current_user.role.name=="staff"%>
+			<%=render 'users/basic_info'%>
+			<div class="clear"></div>
+			<%=render 'users/staff/staff_profile'%>
+		<div class="clear"></div><br/>
+		</div>	
+	<%end%>
+
+	<%#----------for moderator------------------%>
+		<%if current_user.role.name=="moderator"%>
+			<div class="boxx">
+					<%=render 'users/staff/staff_profile'%>
+
+						<div class="widget oneTwo" style="width: 49%;margin-left:0px;">
+							<div class="header"><span ><span class="ico  color calendar"></span> Semester</span>
+								<div align="right" class="edit_link"><%= link_to 'New Semester', new_sesi_path ,:class => 'uibutton loading', :title => 'Add new' %></div>
+							</div>
+							<div class="content" style="padding:15px 0px;" >
+								<table bgcolor="white" id="tablesesi" >
+									<thead>
+									  <tr>
+									    <th>Name</th>
+									    <th>Start</th>
+									    <th>End</th>
+									    <th>Programme</th>
+									    <th>Status</th>
+									    <th width="60px"></th>
+									  </tr>
+									</thead>
+								  	<tbody id='table_item'>
+									  	
+								
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+
+					</div>	
+					<div class="clear"></div><br/>
+					<div style="padding-left:5px;">
+						<div class="widget" >
+							<div class="header"><span ><span class="ico  color group"></span> Coordinator List</span></div>
+							<div class="content" style="padding:15px 0px;" >
+								<table bgcolor="white" id="tableuser" >
+									<thead>
+									  <tr>
+									    <th width="50px">Photo</th>
+									    <th>Detail</th>
+									    <th>Programme</th>
+									    <th>Contact</th>
+									    <th>...</th>
+									    <th></th>
+									  </tr>
+									</thead>
+								  	<tbody id='table_item'>
+								  
+								
+									</tbody>
+								</table>
+							</div>
+						</div>		
+					</div>	<!-end oneTwo->
+				<div class="clear"></div><br/>
+			</div>		
+	<%end%>
+
+</div>
+
+<%#----------START SCRIPT------------------%>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var oTable = $('#tableuser').dataTable({
+			"sDom": 'T<"clear">lfrtip',        
+			"sPaginationType": "full_numbers",
+			"oLanguage": {
+	            "sSearch": "Find"
+	        },
+			"bProcessing": true,
+			"bServerSide": true,
+			"sAjaxSource": "/coordinatorlisting_data",
+			"aLengthMenu":[[15,25,50,100],[15,25,50,100]],
+			"iDisplayLength": 10,
+		});
+		var oTable = $('#tablesesi').dataTable({
+			"sDom": 'T<"clear">lfrtip',        
+			"sPaginationType": "full_numbers",
+			"oLanguage": {
+	            "sSearch": "Find"
+	        },
+			"bProcessing": true,
+			"bServerSide": true,
+			"sAjaxSource": "/semester_data",
+			"aLengthMenu":[[15,25,50,100],[15,25,50,100]],
+			"iDisplayLength": 10,
+		});
+        $(function() {
+  		    $( "#tabs" ).tabs({ autoHeight: true });
+  	    });
+  	    
+	});
+		lol=0;
+		$('#go').hide();
+      url = '/working_exp.json?ids='+'<%= current_user.id %>';
+          $.getJSON(url, function(data) {
+              if(data[0] == null){
+                $('#tabexp').prepend("<span class='ico gray cross'></span>");
+              }else{
+                $('#tabexp').prepend("<span class='ico color checkmark2'></span>");
+				lol++;
+              }
+      });
+      url = '/intern.json?ids='+'<%= current_user.id %>';
+          $.getJSON(url, function(data) {
+              if(data[0] != null){
+                url = '/locate.json?ids='+'<%= current_user.id %>';
+                  $.getJSON(url, function(data) {
+                    if(data[0] != null){
+                      url = '/ref.json?ids='+'<%= current_user.id %>';
+                        $.getJSON(url, function(data) {
+                        if(data[0] != null){
+                          $('#tabint').prepend("<span class='ico color checkmark2'></span>");
+						  lol++;
+                        }else{
+                          $('#tabint').prepend("<span class='ico gray cross'></span>");
+                        }
+                      });
+                    }else{
+                      $('#tabint').prepend("<span class='ico gray cross'></span>");
+                    }
+                });      
+              }else{
+                $('#tabint').prepend("<span class='ico gray cross'></span>");
+              }
+      });
+
+      url = '/studesc.json?ids='+'<%= current_user.id %>';
+          $.getJSON(url, function(data) {
+              if(data[0] != null){
+                url = '/stuskill.json?ids='+'<%= current_user.id %>';
+                  $.getJSON(url, function(data) {
+                    if(data[0] != null){
+                      url = '/stulang.json?ids='+'<%= current_user.id %>';
+                        $.getJSON(url, function(data) {
+                        if(data[0] != null){
+                          $('#tabskil').prepend("<span class='ico color checkmark2'></span>");
+						  lol++;
+                        }else{
+                          $('#tabskil').prepend("<span class='ico gray cross'></span>");
+                        }
+                      });
+                    }else{
+                      $('#tabskil').prepend("<span class='ico gray cross'></span>");
+                    }
+                });      
+              }else{
+                $('#tabskil').prepend("<span class='ico gray cross'></span>");
+              }
+      });    
+
+      url = '/stuedu.json?ids='+'<%= current_user.id %>';
+          $.getJSON(url, function(data) {
+              if(data[0] != null){
+                url = '/stuback.json?ids='+'<%= current_user.id %>';
+                  $.getJSON(url, function(data) {
+                    if(data[0] != null){
+                          $('#tabedu').prepend("<span class='ico color checkmark2'></span>");
+						  lol++;
+                    }else{
+                      $('#tabedu').prepend("<span class='ico gray cross'></span>");
+                    }
+                });      
+              }else{
+                $('#tabedu').prepend("<span class='ico gray cross'></span>");
+              }
+      });       
+
+      url = '/stupro.json?ids='+'<%= current_user.id %>';
+          $.getJSON(url, function(data) {
+              if(data[0] != null){
+                url = '/stuadd.json?ids='+'<%= current_user.id %>';
+                  $.getJSON(url, function(data) {
+                    if(data[0] != null){
+                      url = '/stucust.json?ids='+'<%= current_user.id %>';
+                        $.getJSON(url, function(data) {
+                        if(data[0] != null){
+                          $('#tabinfo').prepend("<span class='ico color checkmark2'></span>");
+						  lol++;
+						  console.log(lol);
+						  if(lol>=4){
+							$('#go').show();
+						  }
+                        }else{
+                          $('#tabinfo').prepend("<span class='ico color cross'></span>");
+                        }
+                      });
+                    }else{
+                      $('#tabinfo').prepend("<span class='ico color cross'></span>");
+                    }
+                });      
+              }else{
+                $('#tabinfo').prepend("<span class='ico color cross'></span>");
+              }
+      });  
+</script>
