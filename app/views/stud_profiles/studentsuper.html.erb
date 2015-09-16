@@ -19,7 +19,7 @@
 				<tr>
 					<% @stud_profiles.each do |stud_profile| %>
 						<td>
-							<%if Photo.find_by_user_id(stud_profile.staff.user_id).nil? %>
+							<%if Photo.find_by_user_id(stud_profile.staff.try(:user_id)).nil? %>
 								<img class="profile" src="/assets/profileNope.jpg" height="70px" />
 							<%else%>
 							   <img class="profile" src="<%= Photo.find_by_user_id(stud_profile.staff.user_id).image%>" height="70px"/>
@@ -27,10 +27,10 @@
 						</td>
 						<td style="padding-left:10px;">
 							<b>Academic</b><br/>
-							<b style="color:blue;"><%= stud_profile.staff.name %></b><br/>
-							<%= stud_profile.staff.office_no %><br/>
-							Room <%= stud_profile.staff.room_no %><br/>
-							<%= stud_profile.staff.email %><br/>
+							<b style="color:blue;"><%= stud_profile.staff.try(:name) %></b><br/>
+							<%= stud_profile.staff.try(:office_no) %><br/>
+							Room <%= stud_profile.staff.try(:room_no) %><br/>
+							<%= stud_profile.staff.try(:email) %><br/>
 						</td>
 					<% end %>
 				</tr>	

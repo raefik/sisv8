@@ -41,7 +41,7 @@ class StudLanguagesController < ApplicationController
   # POST /stud_languages.json
   def create
     #@stud_language = StudLanguage.new(params[:stud_language])
-    @stud_language =current_user.stud_languages.create(params[:stud_language])
+    @stud_language =current_user.stud_language.create(params[:stud_language])
     respond_to do |format|
       if @stud_language.save
         format.html { redirect_to @stud_language.user, notice: 'Stud language was successfully created.' }

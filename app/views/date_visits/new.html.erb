@@ -21,7 +21,7 @@
 						</thead>
 						<tbody>
 
-							<% @studcin = UserCompany.includes(:company,:student,:user=>[:role,{:stud_profiles=>:staff},:staffs]).find(:all,:conditions=>["total =?",2])%>
+							<% @studcin = UserCompany.includes(:company,:student,:user=>[:role,{:stud_profiles	=>:staff},:staffs]).find(:all,:conditions=>["total =?",2])%>
 							<%@studcin.each do|f|%>
 							  <%if StudProfile.find_by_user_id(f.user_id).staff.id == Staff.find_by_user_id(current_user.id).id%>
 									<tr>

@@ -81,12 +81,9 @@
 					<tr>	
 						<td>Duration </td><td>:</td><td> <%= StudInternship.find_by_user_id(current_user.id).duration%> Month</td>
 					</tr>
-					<tr>
-						<td>Company </td><td>:</td><td> <%= Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,current_user.id ,]).company_id).name %></td>
-					</tr>
+					
 				</table>		
 				<%else%>
-					Nope Haha
 				<%end%>
 			</div>
 		</div>		

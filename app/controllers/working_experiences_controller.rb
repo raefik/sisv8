@@ -54,7 +54,7 @@ class WorkingExperiencesController < ApplicationController
   # POST /working_experiences.json
   def create
     #@working_experience = WorkingExperience.new(params[:working_experience])
-    @working_experience = current_user.working_experiences.create(params[:working_experience])
+    @working_experience = current_user.working_experience.create(params[:working_experience])
     respond_to do |format|
       if @working_experience.save
         format.html { redirect_to @working_experience.user, notice: 'Working experience was successfully created.' }

@@ -19,7 +19,6 @@ validates :role ,:presence=>true
   has_many :stud_edus,:dependent=>:destroy
   has_many :stud_references, :dependent=>:destroy
   has_many :stud_adds, :dependent=>:destroy
-  has_many :locations, :dependent=>:destroy
   has_many :stud_internships, :dependent=>:destroy
   has_many :locations, :dependent=>:destroy
   has_many :stud_descriptions, :dependent=>:destroy
@@ -29,6 +28,11 @@ validates :role ,:presence=>true
   has_many :log_books
   has_many :sesis
   has_many :photos
+
+  #......missing relation......
+  has_many :date_visits
+
+
   #--------------------------------------------
   #-------relationship_for_company----
   has_many :companies , :dependent=>:destroy

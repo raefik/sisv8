@@ -32,18 +32,15 @@
     <%= f.label :current_sem %><br />
     <%= f.text_field :current_sem %>
   </div>
-   <div class="section" >
-    <%= f.label :group %><br />
-    <%=collection_select(:stud_edu,:student_class_id,StudentClass.all,:id,:class_name,:prompt=>"Please Select")%>
-  </div>
+  
+  
   <div class="section" >
     <%= f.label :prog_name_id %><br />
    <%=collection_select(:stud_edu,:prog_name_id,ProgName.all,:id,:name,:prompt=>"Please Select")%>
   </div>
-  <div class="section" >
-    <%= f.label :course_code_id %><br />
-   <%=collection_select(:stud_edu,:prog_code_id,ProgCode.all,:id,:name,:prompt=>"Please Select")%>
-  </div>
+  
+   
+
   <div class="section" >
     <%= f.label :faculty_id %><br />
     <%=collection_select(:stud_edu,:faculty_id,Faculty.all,:id,:name,:prompt=>"Please Select")%>

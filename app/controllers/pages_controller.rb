@@ -79,8 +79,8 @@ class PagesController < ApplicationController
 	  	@stud.save
   end
  
-  @data_class=StudEdu.search(params[:search])
-  @student_all = StudProfile.includes(:staff,:user=>[:role,{:user_companies=>:company},:companies,:students]).all
+   @data_class=StudEdu.search(params[:search])
+  #@student_all = StudProfile.includes(:staff,:user=>[:role,{:user_companies=>:company},:companies,:students]).all
   @stud = UserCompany.includes(:company,:student,:user=>[:role,{:stud_profiles=>:staff},:staffs]).find(:all,:conditions=>["total =?",1])
   
   end
@@ -123,7 +123,7 @@ class PagesController < ApplicationController
   def company
    @title="company"
    current_company=Company.find_by_user_id(current_user.id)
-   #@usercompanies=UserCompany.where(:company_id=>current_company.id).all
+ 
    @usercompanies=UserCompany.where(:company_id=>current_company.id).all
   end
   

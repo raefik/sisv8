@@ -242,7 +242,7 @@ SisV5::Application.routes.draw do
 
   #--------users--------
   resources :users
-  match '/signup' ,:to=>'users#new'
+  match ' ' ,:to=>'users#new'
   match '/new_assistant_registerar' ,:to=>'users#new_assist_reg'
   match '/adminregister' ,:to=>'users#newest'
   get "users/new"
@@ -269,32 +269,33 @@ match '/home', :to=>'pages#home'
 	  match '/stupro' => 'users#stupro'
 	  match '/stuadd' => 'users#stuadd'
 	  match '/stucust' => 'users#stucust'
-	match '/kp_list' => 'staffs#kp_list'
-	match '/asv_list' => 'staffs#asv_list'
-	match '/newstaff' => 'users#newstaff'
-	match '/newcoordinator' => 'users#newcoordinator'
-	match '/modnew' => 'users#modnew'
-	match '/regstudent' => 'users#regstudent'
-	match '/studentfind' => 'student_lists#studentfind'
-	match '/studentprofind' => 'date_visits#studentprofind'
-	
-	match '/studentfind2' => 'student_lists#studentfind2'
-	match '/stafffind' => 'lecturer_lists#stafffind'
-	match '/regstudent' => 'users#regstudent'
-	match '/userfind' => 'users#userfind'
-	match '/registernewstudent' => 'users#registernewstudent'
-	
-	match '/complist', :to=>'users#complist'
-	match '/studentlist', :to=>'users#studentlist'
-	
-	match '/compvisit', :to=>'date_visits#compvisit'
-	match '/logstudent', :to=>'log_books#logstudent'
-	match '/studentsuper', :to=>'stud_profiles#studentsuper'
-	match '/stud_checkin', :to=>'user_companies#stud_checkin'
-	match '/checkin', :to=>'user_companies#checkin'
-	match '/log_sva', :to=>'log_books#log_sva'
-	match '/log_svc', :to=>'log_books#log_svc'
+	  match '/kp_list' => 'staffs#kp_list'
+	  match '/asv_list' => 'staffs#asv_list'
+	  match '/newstaff' => 'users#newstaff'
+	  match '/newcoordinator' => 'users#newcoordinator'
+	  match '/modnew' => 'users#modnew'
+	  match '/regstudent' => 'users#regstudent'
+	  match '/studentfind' => 'student_lists#studentfind'
+	  match '/studentprofind' => 'date_visits#studentprofind'
+ 	
+  	match '/studentfind2' => 'student_lists#studentfind2'
+  	match '/stafffind' => 'lecturer_lists#stafffind'
+  	match '/regstudent' => 'users#regstudent'
+  	match '/userfind' => 'users#userfind'
+  	match '/registernewstudent' => 'users#registernewstudent'
+  	
+  	match '/complist', :to=>'users#complist'
+  	match '/studentlist', :to=>'users#studentlist'
+  	
+  	match '/compvisit', :to=>'date_visits#compvisit'
+  	match '/logstudent', :to=>'log_books#logstudent'
+  	match '/studentsuper', :to=>'stud_profiles#studentsuper'
+  	match '/stud_checkin', :to=>'user_companies#stud_checkin'
+  	match '/checkin', :to=>'user_companies#checkin'
+  	match '/log_sva', :to=>'log_books#log_sva'
+  	match '/log_svc', :to=>'log_books#log_svc'
 
   get '/get_logbook', :to=>'log_books#get_logbook'
 
 end
+  

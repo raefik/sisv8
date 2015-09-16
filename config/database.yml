@@ -12,7 +12,7 @@ development:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: sis_v5_development
+  database: sis_v7
   pool: 5
   username: root 
   password: 

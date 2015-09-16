@@ -41,7 +41,7 @@ class StudSkillsController < ApplicationController
   # POST /stud_skills.json
   def create
     #@stud_skill = StudSkill.new(params[:stud_skill])
-	@stud_skill = current_user.stud_skills.create(params[:stud_skill])
+	@stud_skill = current_user.stud_skill.create(params[:stud_skill])
 
     respond_to do |format|
       if @stud_skill.save
