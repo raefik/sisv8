@@ -17,7 +17,7 @@
 	-webkit-box-shadow:  none;
 	box-shadow:  none;
 	}
-	
+
 .ui-tabs .ui-widget-header {
 	background: none;
 	color: #ffffff;
@@ -123,22 +123,22 @@ td{font-size:  90%;
         border-bottom-style:solid;
         border-bottom-width: 1px;
     }
-    
-    
-    
+
+
+
     #tableuser  tr:hover{
         background-color: #dddcff;
     }
 
     #tableuser th{
-      font-weight:bold; 
+      font-weight:bold;
       border-bottom-style:solid;
       border-bottom-width: 3px;
       padding-bottom: 10px;
       border-bottom-color: #7F6DDD;
       color: #7F6DDD;
     }
-    
+
     #tablesesi {
         margin: 10px;padding: 10px
         border-collapse: collapse;
@@ -153,13 +153,13 @@ td{font-size:  90%;
         border-bottom-style:solid;
         border-bottom-width: 1px;
     }
-    
+
     #tablesesi  tr:hover{
         background-color: #dddcff;
     }
 
     #tablesesi th{
-      font-weight:bold; 
+      font-weight:bold;
       border-bottom-style:solid;
       border-bottom-width: 3px;
       padding-bottom: 10px;
@@ -171,9 +171,11 @@ td{font-size:  90%;
 	<%if current_user.role.name=="student"%>
 	<div class="widget">
 	<div class="header"><span >
-		<span class="ico  color info"></span> Student's Curriculum Vitae (CV) 
+		<span class="ico  color info"></span> Student's Curriculum Vitae (CV)
 			<%if UserCompany.find_by_user_id(current_user.id) == nil %>
 				(Not in Company)
+				<%else	%>
+				Company: <%= UserCompany.find_by_user_id(current_user.id).company.name %>
 			<%end%>
 			<%if StudProfile.find_by_user_id(current_user.id).staff_id == nil %>
 				(Not Have Supervisor)
@@ -181,21 +183,21 @@ td{font-size:  90%;
 				SV : <%= StudProfile.find_by_user_id(current_user.id).staff.name %>
 			<%end%>
 		</span></div>
-		<div class="content">   
-		
+		<div class="content">
+
 		<a href="/faq"  class="uibutton" hidden=true>Faq</a>
 		<!--UserCompany.find_by_user_id(current_user.id) == nil-->
 		<%if EvalStudentPre.find_by_user_id(current_user.id).nil?  %>
-		<a href="/eval_student_pres/new"  class="uibutton" >Entrance Survey</a>	
+		<a href="/eval_student_pres/new"  class="uibutton" >Entrance Survey</a>
 		<%end%>
-		
+
 		<%if EvalStudentEnd.find_by_user_id(current_user.id).nil? && !EvalStudentPre.find_by_user_id(current_user.id).nil? %>
 			<a href="/eval_student_ends/new"  class="uibutton" >Exit Survey</a>
 		<%end%>
-		
-		
-		
-		<a href="/pelajar" id="go" class="uibutton" hidden=true>Go Apply Companies</a>	
+
+
+
+		<a href="/pelajar" id="go" class="uibutton" hidden=true>Go Apply Companies</a>
 			<div id="tabs" width="100%">
 				<ul>
 					<li><a href="#tabs-1"><span class="ico color checkmark2"></span>Account info </a></li>
@@ -204,22 +206,22 @@ td{font-size:  90%;
 					<li><a href="#tabs-4" id="tabskil">Skill</a></li>
 					<li><a href="#tabs-5" id="tabexp">Experience</a></li>
 					<li><a href="#tabs-6" id="tabint">Internship</a></li>
-					
+
 				</ul>
 				<div id="tabs-1">
 					       <%=render 'users/basic_info'%>
-					       
+
 				</div>
 				<div id="tabs-2">
-		
+
 					<div class="oneTwo" style="margin:0px;">
-			            <%=render 'users/student/stud_profile'%>              
+			            <%=render 'users/student/stud_profile'%>
 					</div>
 					<div class="oneTwo" style="margin:0px;">
 						<%=render 'users/student/stud_add'%>
 						<%=render 'users/student/stud_custodian'%>
 					</div>
-					
+
 				</div>
 				<div id="tabs-3">
 					<div class="oneThree">
@@ -238,7 +240,7 @@ td{font-size:  90%;
 					</div>
 					<div class="twoOne">
 						<%=render 'users/student/stud_language'%>
-					</div>	
+					</div>
 				</div>
 				<div id="tabs-5">
 					<%=render 'users/student/working_experience'%>
@@ -254,11 +256,11 @@ td{font-size:  90%;
 						<%=render 'users/student/stud_references'%>
 					</div>
 				</div>
-				
+
 			</div> <!-- end tabs-->
-			
+
 			<div class="clear"></div>
-			
+
 			<br/>
 			<h5>Something need to told to student </h5>
 	<table>
@@ -287,8 +289,8 @@ td{font-size:  90%;
 			</td>
 		</tr>
 	</table>
-		</div>	
-	</div>		
+		</div>
+	</div>
 	<%end%>
 
 
@@ -299,7 +301,7 @@ td{font-size:  90%;
 			<%=render 'users/basic_info'%>
 			<%=render 'users/company/company_profile'%>
 
-				<%=render 'users/company/requirement'%>	
+				<%=render 'users/company/requirement'%>
 				<%=render 'users/company/company_adv'%>
 				<%=render 'users/company/benefit'%>
 				<%=render 'users/company/available_internship'%>
@@ -315,7 +317,7 @@ td{font-size:  90%;
 			<div class="clear"></div>
 			<%=render 'users/staff/staff_profile'%>
 		<div class="clear"></div><br/>
-		</div>	
+		</div>
 	<%end%>
 
 	<%#----------for moderator------------------%>
@@ -340,15 +342,15 @@ td{font-size:  90%;
 									  </tr>
 									</thead>
 								  	<tbody id='table_item'>
-									  	
-								
+
+
 									</tbody>
 								</table>
 							</div>
 						</div>
 
 
-					</div>	
+					</div>
 					<div class="clear"></div><br/>
 					<div style="padding-left:5px;">
 						<div class="widget" >
@@ -366,15 +368,15 @@ td{font-size:  90%;
 									  </tr>
 									</thead>
 								  	<tbody id='table_item'>
-								  
-								
+
+
 									</tbody>
 								</table>
 							</div>
-						</div>		
+						</div>
 					</div>	<!-end oneTwo->
 				<div class="clear"></div><br/>
-			</div>		
+			</div>
 	<%end%>
 
 </div>
@@ -383,7 +385,7 @@ td{font-size:  90%;
 <script type="text/javascript">
     $(document).ready(function(){
         var oTable = $('#tableuser').dataTable({
-			"sDom": 'T<"clear">lfrtip',        
+			"sDom": 'T<"clear">lfrtip',
 			"sPaginationType": "full_numbers",
 			"oLanguage": {
 	            "sSearch": "Find"
@@ -395,7 +397,7 @@ td{font-size:  90%;
 			"iDisplayLength": 10,
 		});
 		var oTable = $('#tablesesi').dataTable({
-			"sDom": 'T<"clear">lfrtip',        
+			"sDom": 'T<"clear">lfrtip',
 			"sPaginationType": "full_numbers",
 			"oLanguage": {
 	            "sSearch": "Find"
@@ -409,7 +411,7 @@ td{font-size:  90%;
         $(function() {
   		    $( "#tabs" ).tabs({ autoHeight: true });
   	    });
-  	    
+
 	});
 		lol=0;
 		$('#go').hide();
@@ -440,7 +442,7 @@ td{font-size:  90%;
                     }else{
                       $('#tabint').prepend("<span class='ico gray cross'></span>");
                     }
-                });      
+                });
               }else{
                 $('#tabint').prepend("<span class='ico gray cross'></span>");
               }
@@ -464,11 +466,11 @@ td{font-size:  90%;
                     }else{
                       $('#tabskil').prepend("<span class='ico gray cross'></span>");
                     }
-                });      
+                });
               }else{
                 $('#tabskil').prepend("<span class='ico gray cross'></span>");
               }
-      });    
+      });
 
       url = '/stuedu.json?ids='+'<%= current_user.id %>';
           $.getJSON(url, function(data) {
@@ -481,11 +483,11 @@ td{font-size:  90%;
                     }else{
                       $('#tabedu').prepend("<span class='ico gray cross'></span>");
                     }
-                });      
+                });
               }else{
                 $('#tabedu').prepend("<span class='ico gray cross'></span>");
               }
-      });       
+      });
 
       url = '/stupro.json?ids='+'<%= current_user.id %>';
           $.getJSON(url, function(data) {
@@ -509,9 +511,9 @@ td{font-size:  90%;
                     }else{
                       $('#tabinfo').prepend("<span class='ico color cross'></span>");
                     }
-                });      
+                });
               }else{
                 $('#tabinfo').prepend("<span class='ico color cross'></span>");
               }
-      });  
+      });
 </script>

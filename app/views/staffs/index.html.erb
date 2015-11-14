@@ -1,40 +1,46 @@
 <div class="widget">
-						<div class="header"><span ><span class="ico  gray random"></span> Listing staffs </span></div>
+						<div class="header"><span ><span class="ico  gray random"></span> Listing staffs</span></div>
 						<div class="content"  style="padding: 0px 0px;">
 
-                    <form> 
+                    <form>
 						<div class="tableName">
 <table class="display data_table2">
   <thead>
 	<tr>
-    <th >StaffID</th>
+    <th >StaffID </th>
     <th >Type</th>
+    <th >Kampus </th>
     <th >Faculty/Program</th>
     <th >Room no</th>
     <th>Office no/Email</th>
-    <th></th>
-    
+
+
 	</tr>
   </thead>
   <tbody>
-<% @staffs.each do |staff| %>
-	
-  <tr>
-    <td><%= staff.staff_no %></br><%= staff.user.name %></td>
+
+<%
+    @staffs
+    .each do |staff|
+
+%>
+
+    <tr>
+
+    <td><%= staff.staff_no %></br><%= staff.name %></td>
     <td><%= staff.staff_type.name %></td>
+    <td><%= staff.kampu.name %></td>
     <td><%= staff.faculty.name %></br><%= staff.prog_name.name %></td>
     <td><%= staff.room_no %></td>
     <td><%= staff.office_no %></br><%= staff.email %></td>
-    <td><%= link_to image_tag('/images/icon/icon_edit.png'), edit_staff_path(staff) %>
-	</td>
-    
+    <!--<td><%= link_to image_tag('/images/icon/icon_edit.png'), edit_staff_path(staff) %>
+	</td>-->
   </tr>
-  
 <% end %>
 	</tbody>
-	
+
 </table>
-</div></form> 
+</div></form>
 </div>
 </div>
 <br />
@@ -42,7 +48,7 @@
 <style>
 .tableName .dataTables_wrapper .dataTables_filter {
 	right: 5px;
-top: -34px;}	
+top: -34px;}
 table.display tbody td {
 padding: 2px 1px!important;}
 </style>

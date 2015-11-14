@@ -1,7 +1,7 @@
 class WorkingExperiencesController < ApplicationController
   # GET /working_experiences
   # GET /working_experiences.json
-  
+
   def working_exp
     ids=params[:ids];
     @working_experiences =  WorkingExperience
@@ -54,7 +54,7 @@ class WorkingExperiencesController < ApplicationController
   # POST /working_experiences.json
   def create
     #@working_experience = WorkingExperience.new(params[:working_experience])
-    @working_experience = current_user.working_experience.create(params[:working_experience])
+    @working_experience = current_user.working_experiences.create(params[:working_experience])
     respond_to do |format|
       if @working_experience.save
         format.html { redirect_to @working_experience.user, notice: 'Working experience was successfully created.' }
@@ -70,7 +70,7 @@ class WorkingExperiencesController < ApplicationController
   # PUT /working_experiences/1.json
   def update
     @working_experience = WorkingExperience.find(params[:id])
-    
+
     respond_to do |format|
       if @working_experience.update_attributes(params[:working_experience])
         format.html { redirect_to @working_experience.user, notice: 'Working experience was successfully updated.' }

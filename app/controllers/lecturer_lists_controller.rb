@@ -1,7 +1,7 @@
 class LecturerListsController < ApplicationController
   # GET /lecturer_lists
   # GET /lecturer_lists.json
-  
+
   def stafffind
     sid=params[:sid];
     @lecturer_lists =  LecturerList
@@ -9,10 +9,7 @@ class LecturerListsController < ApplicationController
       .select("fullname,
 	  mykadno,
 	  staffno,
-	  groupname,
-	  faculty,
-	  subjectname,
-	  subjectcode,
+	  faculty_description,
 	  campuscode,
 	  contactno,
 	  handphoneno,
@@ -21,8 +18,8 @@ class LecturerListsController < ApplicationController
       format.json { render json: @lecturer_lists }
     end
   end
-  
-  
+
+
   def index
     @lecturer_lists = LecturerList.all
 
@@ -115,8 +112,11 @@ class LecturerListsController < ApplicationController
 			#end
 		end
 
+		facultycode = Faculty.find(params[:facultyid].to_i).lecturer_list_code
+		#kampucode =  Kampu.find(params[:kampuid].to_i).lecturer_list_code
 		# filtering
-		sWhere = ""
+		sWhere = "faculty_code = '#{facultycode}' and "
+
 		if !params[:sSearch].empty?
 			inc = 0
 			until inc > aColumns.count-1
@@ -161,7 +161,7 @@ class LecturerListsController < ApplicationController
 		usr = totalrecord.limit(params[:iDisplayLength])
 				.offset(rowno)
 				.order(sOrder)
-				
+
 
 		usrs = usr.each.map do |u| [
 			u.staffno,
@@ -169,7 +169,7 @@ class LecturerListsController < ApplicationController
 			(u.handphoneno.nil?) ? ''  : u.handphoneno,
 			u.mykadno,
 			u.email,
-		    
+
 		] end
 
 		if sWhere == "true=true"
@@ -178,12 +178,16 @@ class LecturerListsController < ApplicationController
 			totallen = totalrecord.length
 		end
 
-		render :json => {
-			:sEcho => params[:sEcho],
-			:iTotalRecords => totallen,
-			:iTotalDisplayRecords => totallen,
-			:aaData => usrs
-		}
+		respond_to do |format|
+	      format.json {
+	      	render :json => {
+				:sEcho => params[:sEcho],
+				:iTotalRecords => totallen,
+				:iTotalDisplayRecords => totallen,
+				:aaData => usrs
+			}
+	      }
+	    end
   end
 
   # DELETE /lecturer_lists/1

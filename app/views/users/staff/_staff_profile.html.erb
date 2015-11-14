@@ -2,7 +2,7 @@
 	<div class="widget">
 	    <div class="header"><span ><span class="ico  color administrator"></span>Your Profile</span>
 			<div align="right" class="edit_link"><%= link_to " Edit ", edit_staff_path("#{@staff_profile.id}") ,:class=>"uibutton"%></div>
-		
+
 		<br/>
 		</div>
 		<div class="content" >
@@ -21,21 +21,21 @@
 			<%if @staff_profile.staff_type.name != ""%>
 				<td class="label">Type</td>
 				<td>:</td>
-				<td><span><%=@staff_profile.staff_type.name%></span></td>
+				<td><span><%=@staff_profile.staff_type.name rescue '-' %></span></td>
 				</tr>
-			<%end%>	
+			<%end%>
 			<tr>
 			<td class="label">Faculty</td>
 			<td>:</td>
-			<td><span><%=@staff_profile.faculty.name%></span></td>
+			<td><span><%= @staff_profile.faculty.name rescue '-' %></span></td>
 			</tr>
 			<tr>
 			<%if @staff_profile.staff_type.name != ""%>
 				<td class="label">Program</td>
 				<td>:</td>
-				<td><span><%=@staff_profile.prog_name.name%></span></td>
+				<td><span><%=@staff_profile.prog_name.name rescue '-' %></span></td>
 				</tr>
-			<%end%>	
+			<%end%>
 			<tr>
 			<td class="label">Kampus</td>
 			<td>:</td>
@@ -52,7 +52,7 @@
 				<td>:</td>
 				<td><span><%=@staff_profile.place%></span></td>
 				</tr>
-			<%end%>	
+			<%end%>
 			<tr>
 			<td class="label">Office No</td>
 			<td>:</td>

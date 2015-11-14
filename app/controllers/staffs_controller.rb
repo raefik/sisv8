@@ -1,19 +1,53 @@
 class StaffsController < ApplicationController
   # GET /staffs
   # GET /staffs.json
-  
+
   def kp_list
-    
+
   end
-  
+
+  def current_user
+
+  	@current_user || staffs.find(session[:id]) if session[:id]
+
+  end
+
   def index
-    @staffs = Staff.all
+  	if !view_context.current_user.nil?
+  		user = Staff.find_by_user_id(view_context.current_user.id)
+    	@staffs = Staff
+    	.where('faculty_id = ? and kampu_id=? ',user.faculty_id,user.kampu_id)
+    else
+    	@staffs = Staff.all
+    end
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @staffs }
+      format.html # show.html.erb
+      format.json { render json: @staff }
     end
   end
+
+
+
+def asv_list
+
+	if !view_context.current_user.nil?
+		user = Staff.find_by_user_id(view_context.current_user.id)
+  		#user = Staff.find_by_user_id(current_user.id).faculty_id
+    	@staffs = Staff
+    	.where('faculty_id = ? and prog_name_id =? and kampu_id=?  ',user.faculty_id,user.prog_name_id,user.kampu_id)
+    else
+    	@staffs = Staff.all
+    end
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @staff }
+    end
+
+end
+
+
 
   # GET /staffs/1
   # GET /staffs/1.json
@@ -58,24 +92,30 @@ class StaffsController < ApplicationController
     end
   end
 
+
+
+
+
+
   # PUT /staffs/1
   # PUT /staffs/1.json
   def update
     @staff = Staff.find(params[:id])
-				if params[:staff][:staff_no]||
-				   params[:staff][:staff_type_id]||
-				   params[:staff][:gelaran_id]||
-				   params[:staff][:faculty_id]||
-				   params[:staff][:kampu_id]||
-				   params[:staff][:room_no]||
-				   params[:staff][:place]||
-				   params[:staff][:office_no]||
-				   params[:staff][:hp_no]||
-				   params[:staff][:email]
-			  
+					if  params[:staff][:staff_no]||
+					    params[:staff][:staff_type_id]||
+					    params[:staff][:gelaran_id]||
+					 	params[:staff][:gelaran_id]||
+					 	params[:staff][:faculty_id]||
+						params[:staff][:kampu_id]||
+					    params[:staff][:room_no]||
+					    params[:staff][:place]||
+					    params[:staff][:office_no]||
+					    params[:staff][:hp_no]||
+					    params[:staff][:email]
+
 				  @staff.update_attributes(params[:staff])
 				  flash[:notice]="Staff Updated"
-				   redirect_to current_user
+				   redirect_to "/users/#{@staff.user_id}"
 				else
 				if params[:staff][:validate_staff]
 				   @staff.update_attributes(params[:staff])
@@ -97,7 +137,14 @@ class StaffsController < ApplicationController
       format.json { head :ok }
     end
   end
-  
+
+  def current_user
+        @current_user ||= Staff.find(session[:user_id]) if session[:user_id]
+    end
+
+
+
+
   def coordinatorlisting_data
 	# array of database columns use by DataTables. use an empty string when you want to insert a non-database field
 	aColumns = ['id','faculty_id','staff_type_id','user_id','hp_no','staff_no','name','prog_name_id','room_no','email']
@@ -168,14 +215,14 @@ class StaffsController < ApplicationController
 		usr = totalrecord.limit(params[:iDisplayLength])
 				.offset(rowno)
 				.order(sOrder)
-				
+
 
 		usrs = usr.each.map do |u| [
 
-	    if Photo.find_by_user_id(u.user_id).nil? 
+	    if Photo.find_by_user_id(u.user_id).nil?
 		 	"<td align='left'><div class='profile'><a href='/photos/new?user_id=#{u.user_id}>'><img  src='/assets/profilePlus.jpg' width='35px' /></a></div></td>"
 		else
-			"<td align='left'><div class='profile'><a href='/photos/#{Photo.find_by_user_id(u.user_id).id}/edit?user_id=#{u.user_id}'><img src='#{Photo.find_by_user_id(u.user_id).image}' width='30px'/></a></div></td>" 
+			"<td align='left'><div class='profile'><a href='/photos/#{Photo.find_by_user_id(u.user_id).id}/edit?user_id=#{u.user_id}'><img src='#{Photo.find_by_user_id(u.user_id).image}' width='30px'/></a></div></td>"
 		end,
 	    "<td align='left'><b>#{u.name}</b><br/>#{u.staff_no}</br>#{u.staff_type.name}</td>",
     	u.prog_name.name,
@@ -196,5 +243,5 @@ class StaffsController < ApplicationController
 			:aaData => usrs
 		}
   end
-  
+
 end

@@ -8,108 +8,108 @@
         <meta name="description" content=""/>
         <meta name="keywords" content=""/>
 		<title><%# title %></title>
-		
+
 <%= csrf_meta_tag %>
 
 <%= render 'layouts/stylesheets' %>
- 
+
 </head>
 	<% if signed_in? %>
 		<%= render 'layouts/header' %>
-		
+
 		<%else%>
-		    
-		    <link rel="stylesheet" href="/assets/extra/slider/lush.animations.css" />        
+
+		    <link rel="stylesheet" href="/assets/extra/slider/lush.animations.css" />
 		    <link rel="stylesheet" href="/assets/extra/slider/lush.min.css" />
 		        <link href="/assets/extra/slider/stylo.css" rel="stylesheet" />
 		    <link href="/assets/extra/slider/flexslider.css" rel="stylesheet">
 		<div class="row">
         <div class="span12">
-          
+
           <!-- Lush Slider -->
-          
+
           <div id="main-slider" class="flexslider">
             <ul class="slides">
               <li>
-                  <img src="/assets/slider/sky.png" class="ignore"/>   
-      
+                  <img src="/assets/slider/sky.png" class="ignore"/>
+
                   <img src="/assets/slider/clouds.png"
-                        data-slide-in="at 2400 from r use easeOutCirc during 9000" 
-                        data-slide-out="at 1500 to l use easeInCirc during 600" 
-                        style="top: 0; left: 0; " />   
-      
+                        data-slide-in="at 2400 from r use easeOutCirc during 9000"
+                        data-slide-out="at 1500 to l use easeInCirc during 600"
+                        style="top: 0; left: 0; " />
+
                   <img src="/assets/slider/clouds.png"
-                        data-slide-in="at 4000 from r use easeOutQuart during 9000" 
-                        data-slide-out="at 1000 to left use easeInCirc during 600" 
-                        style="top: 10%; left:15%; " />   
-      
+                        data-slide-in="at 4000 from r use easeOutQuart during 9000"
+                        data-slide-out="at 1000 to left use easeInCirc during 600"
+                        style="top: 10%; left:15%; " />
+
                   <img src="/assets/slider/tree-1.png"
-                        data-slide-in="at 1500 from bottom use easeOutQuart during 600" 
-                        data-slide-out="at 11000 to back use easeInBack during 600" 
-                        style="bottom: 0%; left: 0%; " />   
-      
+                        data-slide-in="at 1500 from bottom use easeOutQuart during 600"
+                        data-slide-out="at 11000 to back use easeInBack during 600"
+                        style="bottom: 0%; left: 0%; " />
+
                   <img src="/assets/slider/tree-2.png"
-                        data-slide-in="at 1600 from bottom use easeOutQuart during 600" 
-                        data-slide-out="at 11100 to back use easeInBack during 600" 
-                        style="top: 20%; left: 22%; " />   
-      
+                        data-slide-in="at 1600 from bottom use easeOutQuart during 600"
+                        data-slide-out="at 11100 to back use easeInBack during 600"
+                        style="top: 20%; left: 22%; " />
+
                   <img src="/assets/slider/tree-4.png"
-                        data-slide-in="at 1700 from bottom use easeOutQuart during 600" 
-                        data-slide-out="at 11200 to back use easeInBack during 600" 
-                        style="top: 20%; left: 55%; " />   
-      
+                        data-slide-in="at 1700 from bottom use easeOutQuart during 600"
+                        data-slide-out="at 11200 to back use easeInBack during 600"
+                        style="top: 20%; left: 55%; " />
+
                   <img src="/assets/slider/tree-3.png"
-                        data-slide-in="at 1800 from bottom use easeOutQuart during 600" 
-                        data-slide-out="at 11300 to back use easeInBack during 600" 
-                        style="top: 20%; left: 75%; " />   
-      
+                        data-slide-in="at 1800 from bottom use easeOutQuart during 600"
+                        data-slide-out="at 11300 to back use easeInBack during 600"
+                        style="top: 20%; left: 75%; " />
+
                   <img src="/assets/slider/pasto.png"
-                        data-slide-in="at 200 from bottom use easeOutCirc during 300" 
-                        data-slide-out="at 12600 to bottom use easeInBack during 100" 
-                        style="bottom: 0; left: 0; " />   
-                  
+                        data-slide-in="at 200 from bottom use easeOutCirc during 300"
+                        data-slide-out="at 12600 to bottom use easeInBack during 100"
+                        style="bottom: 0; left: 0; " />
+
                   <img src="/assets/slider/sis.png"
-                      data-slide-in="at 2000 from front use easeOutBack  during 500"  
+                      data-slide-in="at 2000 from front use easeOutBack  during 500"
                       data-slide-out="at 9500 to front use easeInBack during 600"
                       style="bottom: 20%; right: 10%;"/>
-      
 
-              </li> 
+
+              </li>
               <li>
                   <img src="/assets/slider/logos.png" class="ignore"/>
 
                   <h3 class="t-white"
-                      data-slide-in="at 500 from back use easeOutBack  during 500"  
+                      data-slide-in="at 500 from back use easeOutBack  during 500"
                       data-slide-out="at 3500 to lbr use easeInBack during 600"
                       style="top: 10%; left: 25%;">Are you prepared</h3>
-      
+
 
                   <h3 class="t-black-b"
-                      data-slide-in="at 1700 from front-rotate use easeOutQuart during 800" 
-                      data-slide-out="at 3500 to right use easeInBack during 600" 
+                      data-slide-in="at 1700 from front-rotate use easeOutQuart during 800"
+                      data-slide-out="at 3500 to right use easeInBack during 600"
                       style="top: 40%; left: 30%; ">Easy</h3>
-      
+
 
                   <h3 class="t-black-b"
-                      data-slide-in="at 1800 from front-rotate use easeOutQuart during 800" 
-                      data-slide-out="at 3000 to left use easeInBack during 600" 
-                      style="top: 65%; left: 30%; ">Fast Response</h3>   
-      
-              </li>          
+                      data-slide-in="at 1800 from front-rotate use easeOutQuart during 800"
+                      data-slide-out="at 3000 to left use easeInBack during 600"
+                      style="top: 65%; left: 30%; ">Fast Response</h3>
+
+              </li>
             </ul>
           </div>  <!-- /Lush FlexSlider -->
         </div>
       </div>
-      
+
       <style>
-	      	.menumenu a{ 
+	      	.menumenu a{
 	      		color:inherit;text-decoration: none;
-	      		white-space:nowrap; 
+	      		white-space:nowrap;
 				overflow:hidden;
-				text-overflow:ellipsis; 
+				text-overflow:ellipsis;
 	      	}
-	
-				
+
+
 			.menumenu {
 				-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 				-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -142,16 +142,16 @@
 				top:1px;
 			}
 			/* This button was generated using CSSButtonGenerator.com */
-				
+
 				#content {
-			
+
 				padding-top: 0px;
 				}
-			
-			
+
+
 			.menus{
 			}
-				
+
 			.first{
 				background: #ffd500;
 				float: left;
@@ -177,7 +177,7 @@
 				width: 50px;
 				height: 30px;
 			}
-			
+
 			.firstb{
 				background: #ffd500;
 				float: left;
@@ -204,7 +204,7 @@
 			}
 			.buts{padding: 3px;}
       </style>
-      
+
       <div class="clear"></div>
       <div class="menus">
       		<a href="/"><div class="first" >
@@ -214,17 +214,17 @@
 	      		<img class="buts" src="/assets/zice/images/icon/color_18/mail.png" height="18px">
       		</div><div class="third" >
 	      		<img class="buts" src="/assets/zice/images/icon/color_18/help.png" height="18px">
-	      		
+
       		</div><div class="fourth" >
 	      		<img class="buts" src="/assets/zice/images/icon/color_18/security.png" height="18px">
       		</div>
 	      <div id="content">
-	      	<div class="menumenu " style="font-size:100%;"><%= link_to "New Company Registration"%> </div>
+	      	<div class="menumenu " style="font-size:100%;"><%= link_to "New Company Registration", newuser_path %> </div>
 			<div class="menumenu " ><%= link_to "Student Login", studentnew_path %> </div>
 			<div class="menumenu" ><a href="/signin?click=staff">Staff Login<a></div>
-			<div class="menumenu" ><%= link_to "Company Login", signin_path %></div>	
-	      </div>	
-      </div>	
+			<div class="menumenu" ><%= link_to "Company Login", signin_path %></div>
+	      </div>
+      </div>
       	<br/>
 		<script src="/assets/mylib/slider/bootstrap.min.js"></script>
 	    <script src="/assets/mylib/slider/jquery.lush.js"></script>
@@ -241,7 +241,7 @@
 	<img src="/assets/email.png" width="15px"/>&nbsp&nbsp salam@uitm.edu.my</td>
 	</tr>
 	</table>
-</div> 
+</div>
 	<div class="awesome" hidden="true">
 		<div class="firstb" ></div><div class="secondb" ></div><div class="thirdb" ></div><div class="fourthb" ></div>
 	</div>
@@ -252,7 +252,7 @@
 -->
 <body>
 
-						
+
 <div id="content" >
 
 <%= yield %>
@@ -306,7 +306,7 @@
                 });
     });
 	$(document).ready(function(){
-		<% flash.each do |key, value| %>		
+		<% flash.each do |key, value| %>
 			$.jGrowl('<%= content_tag(:div, value, :class => "flash #{key}") %>');
 		<% end %>
 	});

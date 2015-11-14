@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :authenticate, :only=>[:index,:edit, :update]
   before_filter :correct_user, :only=>[:edit, :update]
   before_filter :admin_user, :only=>[:destroy]
- 
+
   def complist
     @users = User.where(:role_id=>2)
     respond_to do |format|
@@ -11,15 +11,15 @@ class UsersController < ApplicationController
       format.json { render json: @users }
     end
   end
-  
+
   def studentlist
   	case current_user.role_id
 		when 5
 			@users = User.where(:role_id=>1)
     	when 4
     		@users = User.where(:role_id=>1,:faculty_id=>current_user.faculty_id)
-    	end 
-    
+    	end
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -27,24 +27,24 @@ class UsersController < ApplicationController
       format.xls #{ send_data @users.to_csv(col_sep: "\t") }
     end
   end
- 
+
 	def modnew
 		@user=User.new
 		@title="sign up"
 	end
- 
+
 	def regstudent
 		@user=User.new
 	end
- 
+
 	def newstaff
 		@user=User.new
 	end
-	
+
 	def newcoordinator
 		@user=User.new
 	end
-	
+
   def userfind
     sid=params[:sid];
     @users =  User.where(:name=>sid).select("name")
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
       format.json { render json: @users }
     end
   end
-	
+
 	def registernewstudent
 		studid = params[:studid]
 		mycid = params[:mycid]
@@ -71,8 +71,8 @@ class UsersController < ApplicationController
   respond_to do |format|
       format.json { render json: @studdata }
     end
-  end	
-	
+  end
+
   def intern
     ids=params[:ids];
     @stud_internships =  StudInternship
@@ -105,6 +105,7 @@ class UsersController < ApplicationController
 
   def studesc
     ids=params[:ids];
+    @faculties = Faculty.all
     @stud_descriptions =  StudDescription
       .where(:user_id=>ids)
       .select("about_me")
@@ -196,7 +197,7 @@ class UsersController < ApplicationController
 		@stud_skill              = current_user.stud_skills.find_by_user_id(@user.id)
 		@stud_language           = current_user.stud_languages.find_by_user_id(@user.id)
 		@stud_edu                = current_user.stud_edus.find_by_user_id(@user.id)
-	    @stud_reference          = current_user.stud_references.find_by_user_id(@user.id)
+	   @stud_reference          = current_user.stud_references.find_by_user_id(@user.id)
 		@stud_add                = current_user.stud_adds.find_by_user_id(@user.id)
 		@stud_description        = current_user.stud_descriptions.find_by_user_id(@user.id)
 		@stud_internship         = current_user.stud_internships.find_by_user_id(@user.id)
@@ -208,20 +209,23 @@ class UsersController < ApplicationController
 		@comp_adv      =   current_user.comp_advs.find_by_user_id(@user.id)
 		when 3
 		@staff_profile    =   current_user.staffs.find_by_user_id(@user.id)
+
+
 		end
 	@title="#{current_user.name}"
   end
-  
+
   def newest
   @user=User.new
   @title="New Admin"
   end
-  
-  
+
+
   def new
   @user=User.new
   @title="sign up"
   end
+
   def show
 		  @user=User.find(params[:id])
 		case @user.role_id
@@ -249,60 +253,59 @@ class UsersController < ApplicationController
 		when 4
 		@staff_profile    =   current_user.staffs.find_by_user_id(@user.id)
 		end
-		
+
 		  @title = @user.name
   end
-  
+
   def create
-  @user=User.new(params[:user])
-	sid=params[:sid];
-	if @user.save
-		case @user.role_id
-		when 1
-		@user.students.create!(:user_id=>"#{@user.id}",:name=>"#{@user.name}")
-		@user.stud_profiles.create!(:user_id=>"#{@user.id}",:matric_no=>"#{@user.name}",:nric=>"#{@user.password}")
-		@user.stud_custodians.create!(:user_id=>"#{@user.id}")
-		@user.stud_descriptions.create!(:user_id=>"#{@user.id}")
-		@user.stud_edus.create!(:user_id=>"#{@user.id}")
-		@user.stud_adds.create!(:user_id=>"#{@user.id}")
-		@user.stud_internships.create!(:user_id=>"#{@user.id}")
-		when 2
-		@user.comp_profiles.create!(:user_id=>"#{@user.id}")
-		@user.companies.create!(:user_id=>"#{@user.id}",:name=>"#{@user.name}")
-		@user.comp_advs.create!(:user_id=>"#{@user.id}")
-		when 3
+    @user=User.new(params[:user])
+	  sid=params[:sid];
+	  if @user.save!
+		  case @user.role_id
+		  when 1
+    		@user.students.create!(:user_id=>"#{@user.id}",:name=>"#{@user.name}")
+    		@user.stud_profiles.create!(:user_id=>"#{@user.id}",:matric_no=>"#{@user.name}",:nric=>"#{@user.password}")
+    		@user.stud_custodians.create!(:user_id=>"#{@user.id}")
+    		@user.stud_descriptions.create!(:user_id=>"#{@user.id}")
+    		@user.stud_edus.create!(:user_id=>"#{@user.id}")
+    		@user.stud_adds.create!(:user_id=>"#{@user.id}")
+    		@user.stud_internships.create!(:user_id=>"#{@user.id}")
+		  when 2
+    		@user.comp_profiles.create!(:user_id=>"#{@user.id}")
+    		@user.companies.create!(:user_id=>"#{@user.id}",:name=>"#{@user.name}")
+    		@user.comp_advs.create!(:user_id=>"#{@user.id}")
+		  when 3
         if current_user.role_id == 4
-		    @user.staffs.create!(:user_id=>"#{@user.id}",:staff_no=>"#{@user.name}",:name=>"#{@user.fullname}",:email=>"#{@user.email}",:validate_staff=>1,:staff_type_id=>1,:faculty_id=>"#{@user.faculty_id}")       
-       else current_user.role_id == 3
-        @user.staffs.create!(:user_id=>"#{@user.id}",:name=>"#{@user.fullname}",:staff_no=>"#{@user.name}",:email=>"#{@user.email}",:validate_staff=>1,:staff_type_id=>3,:faculty_id=>"#{@user.faculty_id}")
-       end 
-      
-		end
-	
-		if @admin==false
-			sign_in @user
-			flash[:success]="Welcome to SIMS-UiTM,"+"   #{@user.name} "
-			redirect_to signin_path
-		else
-			@buser=@user
-			@user=@auser
-			flash[:success]="   #{@buser.name} "+" Please Login " 
-			
-			redirect_to home_path
-		end
-	
-	else
-	@title="sign up"
-	render 'new'
-	end
-	
+		      @user.staffs.create!(:user_id=>"#{@user.id}",:staff_no=>"#{@user.name}",:name=>"#{@user.fullname}",:email=>"#{@user.email}",:validate_staff=>1,:staff_type_id=> 1 ,:faculty_id=>"#{@user.faculty_id}")
+        else current_user.role_id == 3
+          @user.staffs.create!(:user_id=>"#{@user.id}",:name=>"#{@user.fullname}",:staff_no=>"#{@user.name}",:email=>"#{@user.email}",:validate_staff=>1,:staff_type_id=> 3 ,:faculty_id=>"#{@user.faculty_id}")
+        end
+	    end
+
+  		if @admin==false
+  			sign_in @user
+  			flash[:success]="Welcome to SIMS-UiTM,"+"   #{@user.name} "
+  			redirect_to signin_path
+  	  else
+  			@buser=@user
+  			@user=@auser
+  			flash[:success]=" #{@buser.name} "+" Please Login "
+  			redirect_to home_path
+  	  end
+
+	  else
+	    @title="sign up"
+	    render 'home'
+
+    end
+
   end
-  
+
   def edit
   @user=User.find(params[:id])
   @titile="Edit user"
   end
-  
+
   def update
   @user=User.find(params[:id])
 	  if @user.update_attributes(params[:user])
@@ -313,14 +316,14 @@ class UsersController < ApplicationController
 	  @title="Edit user"
 	  end
   end
-  
+
   def destroy
   @user=User.find(params[:id])
   @user.destroy
   flash[:success]="User destroyed"
   redirect_to users_path
   end
-  
+
   private
   def authenticate
   deny_access unless signed_in?
@@ -333,8 +336,22 @@ class UsersController < ApplicationController
   def admin_user
   redirect_to(root_path) unless current_user.admin?
   end
-  
-  
-  
+
+
+ def add_faculty
+    @faculties = Faculty.find(params[:faculty_id], :joins => :kampus)
+
+  respond_to do |format|
+    format.js
+  end
+  end
+
+ def add_kampu
+    @kampus = Kampu.find(params[:kampu_id], :joins => :faculties)
+
+  respond_to do |format|
+    format.js
+  end
+  end
 
 end

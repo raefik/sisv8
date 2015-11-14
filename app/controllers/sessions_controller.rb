@@ -2,17 +2,17 @@ class SessionsController < ApplicationController
   def new
   @title="Sign in"
   end
-  
-  
-  
+
+
+
   def studentnew
   @title="Sign in"
 	@user=User.new
 	return false
   end
-	
+
   def create
- 
+
   user=User.authenticate(params[:session][:name],
 							params[:session][:password])
 				if user.nil?
@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
 				redirect_back_or user
 				flash[:success]="User  #{current_user.name}  logged in!"
 				end
-  
+
   end
 
   def destroy

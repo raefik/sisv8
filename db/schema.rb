@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131118080413) do
+ActiveRecord::Schema.define(:version => 20151022100653) do
+
+  create_table "KampuFaculties", :force => true do |t|
+    t.integer  "kampu_id"
+    t.integer  "faculti_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "action_statuses", :force => true do |t|
     t.string   "name"
@@ -32,56 +39,41 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
   end
 
   create_table "attachments", :force => true do |t|
-    t.string   "filename"
-    t.integer  "student_id"
+    t.string   "attach"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "remark"
+    t.string   "attach_file_name"
+    t.float    "attach_file_size"
+    t.string   "attach_content_type"
   end
+
+  add_index "attachments", ["user_id"], :name => "user_id"
 
   create_table "available_internships", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "adv_id"
+    t.integer  "comp_adv_id"
     t.integer  "user_id"
     t.integer  "prog_name_id"
   end
+
+  add_index "available_internships", ["comp_adv_id"], :name => "comp_adv_id"
+  add_index "available_internships", ["prog_name_id"], :name => "prog_name_id"
+  add_index "available_internships", ["user_id"], :name => "user_id"
 
   create_table "benefits", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "adv_id"
+    t.integer  "comp_adv_id"
   end
 
-  create_table "buttons", :force => true do |t|
-    t.string   "name"
-    t.string   "gender"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "c_skills", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "campus", :force => true do |t|
-    t.string   "name"
-    t.string   "cawangan"
-    t.integer  "state_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "cawangans", :force => true do |t|
-    t.string   "name"
-    t.integer  "state_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "benefits", ["comp_adv_id"], :name => "comp_adv_id"
+  add_index "benefits", ["user_id"], :name => "user_id"
 
   create_table "clusters", :force => true do |t|
     t.string   "name"
@@ -93,6 +85,12 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "commentars", :force => true do |t|
+    t.integer "user_id"
+    t.integer "student_id"
+    t.string  "remark"
   end
 
   create_table "comp_advs", :force => true do |t|
@@ -109,6 +107,10 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.datetime "updated_at"
     t.integer  "status_id",       :default => 3
   end
+
+  add_index "comp_advs", ["allowance_id"], :name => "allowance_id"
+  add_index "comp_advs", ["status_id"], :name => "status_id"
+  add_index "comp_advs", ["user_id"], :name => "user_id"
 
   create_table "comp_profiles", :force => true do |t|
     t.string   "bis_type"
@@ -131,12 +133,20 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.datetime "updated_at"
   end
 
+  add_index "comp_profiles", ["cluster_id"], :name => "cluster_id"
+  add_index "comp_profiles", ["industry_id"], :name => "industry_id"
+  add_index "comp_profiles", ["sector_id"], :name => "sector_id"
+  add_index "comp_profiles", ["state_id"], :name => "state_id"
+  add_index "comp_profiles", ["user_id"], :name => "user_id"
+
   create_table "companies", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
   end
+
+  add_index "companies", ["user_id"], :name => "user_id"
 
   create_table "date_visits", :force => true do |t|
     t.integer  "staff_id"
@@ -147,13 +157,11 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.integer  "company_id"
   end
 
-  create_table "durations", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "date_visits", ["company_id"], :name => "company_id"
+  add_index "date_visits", ["staff_id"], :name => "staff_id"
+  add_index "date_visits", ["stud_profile_id"], :name => "stud_profile_id"
 
-  create_table "e_skills", :force => true do |t|
+  create_table "durations", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -168,38 +176,11 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.string   "education_level"
   end
 
-  create_table "employability_skills", :force => true do |t|
-    t.text     "expected_communication"
-    t.text     "perception_communication"
-    t.text     "expected_teamwork"
-    t.text     "perception_teamwork"
-    t.text     "expected_ps"
-    t.text     "perception_ps"
-    t.text     "expected_sm"
-    t.text     "perception_sm"
-    t.text     "expected_po"
-    t.text     "perception_po"
-    t.text     "expected_ts"
-    t.text     "perception_ts"
-    t.text     "expected_lc"
-    t.text     "perception_lc"
-    t.text     "expected_io"
-    t.text     "perception_io"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "employer_traits", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "title"
-  end
+  add_index "education_backgrounds", ["user_id"], :name => "user_id"
 
   create_table "eval_by_akademic_svs", :force => true do |t|
     t.string   "stud_name"
-    t.string   "stud_id"
+    t.integer  "student_id"
     t.string   "sv_name"
     t.string   "p1"
     t.string   "p2"
@@ -220,15 +201,20 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.string   "l2"
     t.string   "r1"
     t.string   "r2"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "r3"
+    t.datetime "updated_at"
     t.string   "r4"
+    t.datetime "created_at"
+    t.integer  "staff_id"
+    t.string   "matricno"
   end
+
+  add_index "eval_by_akademic_svs", ["staff_id"], :name => "staff_id"
+  add_index "eval_by_akademic_svs", ["student_id"], :name => "student_id"
 
   create_table "eval_by_industry_svs", :force => true do |t|
     t.string   "stud_name"
-    t.string   "stud_id"
+    t.string   "user_id"
     t.string   "sv_name"
     t.string   "p1"
     t.string   "p2"
@@ -255,43 +241,136 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.string   "a18"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "company_id"
   end
 
-  create_table "eval_industry_svs", :force => true do |t|
-    t.string   "stud_name"
-    t.string   "stud_id"
-    t.string   "sv_name"
-    t.string   "p1"
-    t.string   "p2"
-    t.string   "p3"
-    t.string   "p4"
-    t.string   "p5"
-    t.string   "a1"
-    t.string   "a2"
-    t.string   "a3"
-    t.string   "a4"
-    t.string   "a5"
-    t.string   "a6"
-    t.string   "a7"
-    t.string   "a8"
-    t.string   "a9"
-    t.string   "a10"
-    t.string   "a11"
-    t.string   "a12"
-    t.string   "a13"
-    t.string   "a14"
-    t.string   "a15"
-    t.string   "a16"
-    t.string   "a17"
-    t.string   "a18"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "eval_student_ends", :force => true do |t|
+    t.integer "user_id"
+    t.integer "student_id"
+    t.string  "a1"
+    t.string  "a2"
+    t.string  "a3"
+    t.string  "a4"
+    t.string  "a5"
+    t.string  "a6"
+    t.string  "a7"
+    t.string  "a8"
+    t.string  "a9"
+    t.string  "a10"
+    t.string  "a11"
+    t.string  "a12"
+    t.string  "a13"
+    t.string  "a14"
+    t.string  "a15"
+    t.string  "cc1"
+    t.string  "cc2"
+    t.string  "cc3"
+    t.string  "cc4"
+    t.string  "ct1"
+    t.string  "ct2"
+    t.string  "ct3"
+    t.string  "ct4"
+    t.string  "ct5"
+    t.string  "ct6"
+    t.string  "cp1"
+    t.string  "cp2"
+    t.string  "cp3"
+    t.string  "cp4"
+    t.string  "cp5"
+    t.string  "cp6"
+    t.string  "cs1"
+    t.string  "cs2"
+    t.string  "cs3"
+    t.string  "cs4"
+    t.string  "cs5"
+    t.string  "co1"
+    t.string  "co2"
+    t.string  "co3"
+    t.string  "co4"
+    t.string  "cts1"
+    t.string  "cts2"
+    t.string  "cts3"
+    t.string  "cts4"
+    t.string  "cl1"
+    t.string  "cl2"
+    t.string  "cl3"
+    t.string  "ci1"
+    t.string  "ci2"
+    t.string  "ci3"
+    t.string  "d1"
+    t.string  "d2"
+    t.string  "d3"
+    t.string  "d4"
+    t.string  "d5"
+    t.string  "d6"
+    t.string  "d7"
+    t.string  "d8"
+    t.string  "remark"
+  end
+
+  create_table "eval_student_pres", :force => true do |t|
+    t.integer "user_id"
+    t.integer "student_id"
+    t.string  "a1"
+    t.string  "a2"
+    t.string  "a3"
+    t.string  "a4"
+    t.string  "a5"
+    t.string  "a6"
+    t.string  "a7"
+    t.string  "a8"
+    t.string  "a9"
+    t.string  "a10"
+    t.string  "a11"
+    t.string  "a12"
+    t.string  "a13"
+    t.string  "a14"
+    t.string  "a15"
+    t.string  "a16"
+    t.string  "cc1"
+    t.string  "cc2"
+    t.string  "cc3"
+    t.string  "cc4"
+    t.string  "cc5"
+    t.string  "ct1"
+    t.string  "ct2"
+    t.string  "ct3"
+    t.string  "ct4"
+    t.string  "ct5"
+    t.string  "ct6"
+    t.string  "cp1"
+    t.string  "cp2"
+    t.string  "cp3"
+    t.string  "cp4"
+    t.string  "cp5"
+    t.string  "cp6"
+    t.string  "cs1"
+    t.string  "cs2"
+    t.string  "cs3"
+    t.string  "cs4"
+    t.string  "cs5"
+    t.string  "co1"
+    t.string  "co2"
+    t.string  "co3"
+    t.string  "co4"
+    t.string  "cts1"
+    t.string  "cts2"
+    t.string  "cts3"
+    t.string  "cts4"
+    t.string  "cl1"
+    t.string  "cl2"
+    t.string  "cl3"
+    t.string  "ci1"
+    t.string  "ci2"
+    t.string  "ci3"
   end
 
   create_table "faculties", :force => true do |t|
     t.string   "name"
+    t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "lecturer_list_code"
   end
 
   create_table "gelarans", :force => true do |t|
@@ -324,12 +403,6 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.datetime "updated_at"
   end
 
-  create_table "innovative_outcomes", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "intership_periods", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -338,8 +411,18 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
 
   create_table "kampus", :force => true do |t|
     t.string   "name"
-    t.string   "cawangan"
+    t.string   "code"
     t.integer  "state_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "code_lecturer"
+  end
+
+  add_index "kampus", ["state_id"], :name => "state_id"
+
+  create_table "kampus_faculties", :force => true do |t|
+    t.integer  "campus_id"
+    t.integer  "faculti_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -356,24 +439,18 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.datetime "updated_at"
   end
 
-  create_table "learning_skills", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "lecturer_lists", :force => true do |t|
-    t.string "staffno",     :limit => 10, :null => false
-    t.string "fullname",                  :null => false
-    t.string "faculty",                   :null => false
-    t.string "subjectcode",               :null => false
-    t.string "subjectname",               :null => false
-    t.string "groupname",   :limit => 6,  :null => false
-    t.string "campuscode",  :limit => 10, :null => false
-    t.string "contactno",   :limit => 20, :null => false
-    t.string "handphoneno", :limit => 20, :null => false
-    t.string "email",                     :null => false
-    t.string "mykadno",     :limit => 12, :null => false
+    t.string "staffno",             :limit => 10
+    t.string "fullname"
+    t.string "faculty_code"
+    t.string "faculty_description"
+    t.string "campuscode",          :limit => 10
+    t.string "campus_description"
+    t.string "contactno",           :limit => 20
+    t.string "email"
+    t.string "gred"
+    t.string "mykadno",             :limit => 14
+    t.string "handphoneno",         :limit => 20
   end
 
   create_table "locations", :force => true do |t|
@@ -382,6 +459,9 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "locations", ["state_id"], :name => "state_id"
+  add_index "locations", ["user_id"], :name => "user_id"
 
   create_table "log_books", :force => true do |t|
     t.date     "date"
@@ -394,7 +474,16 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.integer  "company_id"
     t.integer  "stud_profile_id"
     t.string   "matric_no"
+    t.string   "upload_file_name"
+    t.float    "upload_file_size"
+    t.string   "upload_content_type"
+    t.string   "upload",              :limit => 0
   end
+
+  add_index "log_books", ["action_id"], :name => "action_id"
+  add_index "log_books", ["company_id"], :name => "company_id"
+  add_index "log_books", ["stud_profile_id"], :name => "stud_profile_id"
+  add_index "log_books", ["user_id"], :name => "user_id"
 
   create_table "marital_statuses", :force => true do |t|
     t.string   "name"
@@ -420,6 +509,16 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.datetime "updated_at"
   end
 
+  create_table "photos", :force => true do |t|
+    t.string  "image"
+    t.integer "user_id"
+    t.string  "image_file_name"
+    t.float   "image_file_size"
+    t.string  "image_content_type"
+  end
+
+  add_index "photos", ["user_id"], :name => "user_id"
+
   create_table "plannings", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -443,23 +542,17 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.datetime "photo_updated_at"
   end
 
-  create_table "prog_codes", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "profile_pics", ["user_id"], :name => "user_id"
 
   create_table "prog_names", :force => true do |t|
     t.string   "name"
+    t.string   "code"
+    t.integer  "faculty_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "programs", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "prog_names", ["faculty_id"], :name => "faculty_id"
 
   create_table "relationships", :force => true do |t|
     t.string   "name"
@@ -475,6 +568,8 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.integer  "user_id"
   end
 
+  add_index "requirements", ["user_id"], :name => "user_id"
+
   create_table "results", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -483,172 +578,6 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
 
   create_table "roles", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "s_managements", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "section_bs", :force => true do |t|
-    t.integer  "pa_1"
-    t.integer  "pa_2"
-    t.integer  "pa_3"
-    t.integer  "pa_4"
-    t.integer  "pa_5"
-    t.integer  "pa_6"
-    t.integer  "pa_7"
-    t.integer  "pa_8"
-    t.integer  "pa_9"
-    t.integer  "pa_10"
-    t.integer  "pa_11"
-    t.integer  "pa_12"
-    t.integer  "pa_13"
-    t.integer  "pa_14"
-    t.integer  "pa_15"
-    t.integer  "user_id"
-    t.integer  "student_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "section_bs_zzz", :force => true do |t|
-    t.integer  "p_attribute_id"
-    t.integer  "agree_level_id"
-    t.integer  "user_id"
-    t.integer  "student_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "section_c1s", :force => true do |t|
-    t.integer  "c_skill_id"
-    t.integer  "agree_level_id"
-    t.integer  "user_id"
-    t.integer  "student_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "section_c2s", :force => true do |t|
-    t.integer  "t_skill_id"
-    t.integer  "agree_level_id"
-    t.integer  "user_id"
-    t.integer  "student_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "section_c3s", :force => true do |t|
-    t.integer  "p_solving_id"
-    t.integer  "agree_level_id"
-    t.integer  "user_id"
-    t.integer  "student_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "section_c4s", :force => true do |t|
-    t.integer  "s_management_id"
-    t.integer  "agree_level_id"
-    t.integer  "user_id"
-    t.integer  "student_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "section_c5s", :force => true do |t|
-    t.integer  "planning_id"
-    t.integer  "agree_level_id"
-    t.integer  "user_id"
-    t.integer  "student_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "section_c6s", :force => true do |t|
-    t.integer  "technology_skill_id"
-    t.integer  "agree_level_id"
-    t.integer  "user_id"
-    t.integer  "student_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "section_c7s", :force => true do |t|
-    t.integer  "learning_skill_id"
-    t.integer  "agree_level_id"
-    t.integer  "user_id"
-    t.integer  "student_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "section_c8s", :force => true do |t|
-    t.integer  "innovative_outcome_id"
-    t.integer  "agree_level_id"
-    t.integer  "user_id"
-    t.integer  "student_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "section_cs", :force => true do |t|
-    t.integer  "c_1"
-    t.integer  "c_2"
-    t.integer  "c_3"
-    t.integer  "c_4"
-    t.integer  "tw_1"
-    t.integer  "tw_2"
-    t.integer  "tw_3"
-    t.integer  "tw_4"
-    t.integer  "tw_5"
-    t.integer  "tw_6"
-    t.integer  "ps_1"
-    t.integer  "ps_2"
-    t.integer  "ps_3"
-    t.integer  "ps_4"
-    t.integer  "ps_5"
-    t.integer  "ps_6"
-    t.integer  "sm_1"
-    t.integer  "sm_2"
-    t.integer  "sm_3"
-    t.integer  "sm_4"
-    t.integer  "sm_5"
-    t.integer  "po_1"
-    t.integer  "po_2"
-    t.integer  "po_3"
-    t.integer  "po_4"
-    t.integer  "ts_1"
-    t.integer  "ts_2"
-    t.integer  "ts_3"
-    t.integer  "ts_4"
-    t.integer  "lc_1"
-    t.integer  "lc_2"
-    t.integer  "lc_3"
-    t.integer  "io_1"
-    t.integer  "io_2"
-    t.integer  "io_3"
-    t.integer  "user_id"
-    t.integer  "student_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "section_ds", :force => true do |t|
-    t.integer  "d_1"
-    t.integer  "d_2"
-    t.integer  "d_3"
-    t.integer  "d_4"
-    t.integer  "d_5"
-    t.integer  "d_6"
-    t.integer  "d_7"
-    t.integer  "d_8"
-    t.integer  "user_id"
-    t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -667,9 +596,16 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
 
   create_table "sesis", :force => true do |t|
     t.string   "name"
+    t.date     "start_sesi"
+    t.date     "end_sesi"
+    t.integer  "prog_name_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "sesis", ["prog_name_id"], :name => "prog_name_id"
+  add_index "sesis", ["user_id"], :name => "user_id"
 
   create_table "skill_pros", :force => true do |t|
     t.string "name"
@@ -687,25 +623,31 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
 
   create_table "staffs", :force => true do |t|
     t.string   "staff_no"
+    t.integer  "user_id"
     t.integer  "staff_type_id",  :default => 7
     t.integer  "gelaran_id",     :default => 9
+    t.string   "name"
     t.integer  "program_id",     :default => 18
     t.integer  "faculty_id",     :default => 26
+    t.integer  "kampu_id"
     t.string   "room_no"
     t.text     "place"
     t.string   "office_no"
     t.string   "hp_no"
     t.string   "email"
     t.string   "email2"
-    t.integer  "user_id"
+    t.integer  "prog_name_id",   :default => 18
+    t.boolean  "validate_staff"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
-    t.integer  "prog_code_id",   :default => 18
-    t.integer  "prog_name_id",   :default => 18
-    t.integer  "kampu_id"
-    t.boolean  "validate_staff"
   end
+
+  add_index "staffs", ["faculty_id"], :name => "faculty_id"
+  add_index "staffs", ["gelaran_id"], :name => "gelaran_id"
+  add_index "staffs", ["kampu_id"], :name => "kampu_id"
+  add_index "staffs", ["prog_name_id"], :name => "prog_name_id"
+  add_index "staffs", ["staff_type_id"], :name => "staff_type_id"
+  add_index "staffs", ["user_id"], :name => "user_id"
 
   create_table "states", :force => true do |t|
     t.string   "name"
@@ -730,6 +672,10 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.datetime "updated_at"
   end
 
+  add_index "stud_adds", ["state_id"], :name => "state_id"
+  add_index "stud_adds", ["student_id"], :name => "student_id"
+  add_index "stud_adds", ["user_id"], :name => "user_id"
+
   create_table "stud_custodians", :force => true do |t|
     t.string   "name"
     t.text     "place"
@@ -746,6 +692,10 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.string   "hp_no_2"
   end
 
+  add_index "stud_custodians", ["state_id"], :name => "state_id"
+  add_index "stud_custodians", ["student_id"], :name => "student_id"
+  add_index "stud_custodians", ["user_id"], :name => "user_id"
+
   create_table "stud_descriptions", :force => true do |t|
     t.text     "about_me"
     t.integer  "user_id"
@@ -753,19 +703,24 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.datetime "updated_at"
   end
 
+  add_index "stud_descriptions", ["user_id"], :name => "user_id"
+
   create_table "stud_edus", :force => true do |t|
     t.integer  "user_id"
     t.string   "cgpa"
     t.string   "current_sem"
-    t.integer  "prog_name_id",     :default => 18
-    t.integer  "prog_code_id",     :default => 18
-    t.integer  "faculty_id",       :default => 26
+    t.integer  "prog_name_id", :default => 18
+    t.integer  "faculty_id",   :default => 26
+    t.integer  "kampu_id"
     t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "student_class_id", :default => 0
-    t.integer  "kampu_id"
   end
+
+  add_index "stud_edus", ["faculty_id"], :name => "faculty_id"
+  add_index "stud_edus", ["kampu_id"], :name => "kampu_id"
+  add_index "stud_edus", ["student_id"], :name => "student_id"
+  add_index "stud_edus", ["user_id"], :name => "user_id"
 
   create_table "stud_internships", :force => true do |t|
     t.integer  "duration",             :default => 0
@@ -777,15 +732,22 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.date     "sem_internship_end"
   end
 
+  add_index "stud_internships", ["student_id"], :name => "student_id"
+  add_index "stud_internships", ["user_id"], :name => "user_id"
+
   create_table "stud_languages", :force => true do |t|
     t.string   "language"
     t.integer  "spoken_id"
-    t.string   "written_id"
+    t.integer  "written_id"
     t.integer  "user_id"
     t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "stud_languages", ["spoken_id"], :name => "spoken_id"
+  add_index "stud_languages", ["student_id"], :name => "student_id"
+  add_index "stud_languages", ["user_id"], :name => "user_id"
 
   create_table "stud_pref_locations", :force => true do |t|
     t.string   "user_id"
@@ -798,6 +760,8 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
   end
 
   create_table "stud_profiles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "staff_id"
     t.string   "matric_no"
     t.string   "nric"
     t.integer  "gender_id",           :default => 3
@@ -805,21 +769,20 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.string   "disease_description"
     t.string   "hp_no"
     t.string   "second_email"
-    t.integer  "user_id"
     t.integer  "student_id"
+    t.date     "dob"
+    t.integer  "gred_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "age"
-    t.integer  "marital_status_id"
-    t.date     "dob"
-    t.integer  "staff_id"
-    t.integer  "buku_log",            :default => 0
-    t.integer  "penyelia",            :default => 0
-    t.integer  "laporan",             :default => 0
-    t.integer  "jumlah",              :default => 0
-    t.integer  "gred_id"
-    t.string   "catatan"
+    t.integer  "state_id"
   end
+
+  add_index "stud_profiles", ["gender_id"], :name => "gender_id"
+  add_index "stud_profiles", ["gred_id"], :name => "gred_id"
+  add_index "stud_profiles", ["staff_id"], :name => "staff_id"
+  add_index "stud_profiles", ["state_id"], :name => "state_id"
+  add_index "stud_profiles", ["student_id"], :name => "student_id"
+  add_index "stud_profiles", ["user_id"], :name => "user_id"
 
   create_table "stud_references", :force => true do |t|
     t.integer  "user_id"
@@ -834,6 +797,9 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.datetime "updated_at"
   end
 
+  add_index "stud_references", ["student_id"], :name => "student_id"
+  add_index "stud_references", ["user_id"], :name => "user_id"
+
   create_table "stud_skills", :force => true do |t|
     t.string   "skill"
     t.string   "year_exp"
@@ -843,6 +809,9 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "stud_skills", ["student_id"], :name => "student_id"
+  add_index "stud_skills", ["user_id"], :name => "user_id"
 
   create_table "student_classes", :force => true do |t|
     t.integer  "prog_name_id"
@@ -858,48 +827,34 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.string   "tahun"
   end
 
-  create_table "student_data", :force => true do |t|
-    t.integer  "student_id"
-    t.integer  "mykadno"
-    t.string   "fullname"
-    t.integer  "gender_id"
-    t.string   "groupcode"
-    t.string   "programcode"
-    t.string   "facultycode"
-    t.string   "campuscode"
-    t.string   "contactno"
-    t.string   "handphoneno"
-    t.integer  "religion_id"
-    t.string   "add1"
-    t.string   "add2"
-    t.integer  "postcode"
-    t.integer  "city"
-    t.integer  "state_id"
-    t.string   "email"
-    t.string   "cgpa"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "student_classes", ["prog_name_id"], :name => "prog_name_id"
+  add_index "student_classes", ["sesi_id"], :name => "sesi_id"
+  add_index "student_classes", ["staff_id"], :name => "staff_id"
+  add_index "student_classes", ["user_id"], :name => "user_id"
 
-  create_table "student_lists", :force => true do |t|
-    t.string  "studentid",   :limit => 10, :null => false
-    t.string  "mykadno",     :limit => 12, :null => false
-    t.string  "fullname",                  :null => false
-    t.integer "gender_id",                 :null => false
-    t.string  "groupcode",   :limit => 6,  :null => false
-    t.string  "programcode", :limit => 6,  :null => false
-    t.string  "facultycode", :limit => 10, :null => false
-    t.string  "campuscode",  :limit => 10, :null => false
-    t.string  "contactno",   :limit => 20, :null => false
-    t.string  "handphoneno", :limit => 20, :null => false
-    t.integer "religion_id",               :null => false
-    t.string  "add1",                      :null => false
-    t.string  "add2",                      :null => false
-    t.string  "postcode",                  :null => false
-    t.string  "city",                      :null => false
-    t.integer "state_id",                  :null => false
-    t.string  "email",                     :null => false
-    t.string  "cgpa",        :limit => 10, :null => false
+  create_table "student_list", :force => true do |t|
+    t.string "studentid",           :limit => 10
+    t.string "mykadno",             :limit => 12
+    t.string "fullname"
+    t.string "gender_id",           :limit => 100
+    t.string "groupcode",           :limit => 10
+    t.string "group_description"
+    t.string "programcode",         :limit => 10
+    t.string "program_description"
+    t.string "facultycode",         :limit => 10
+    t.string "faculty_description"
+    t.string "campuscode",          :limit => 10
+    t.string "campus_description"
+    t.string "contactno",           :limit => 20
+    t.string "handphoneno",         :limit => 50
+    t.string "religion_id",         :limit => 100
+    t.string "add1"
+    t.string "add2"
+    t.string "postcode",            :limit => 5
+    t.string "city",                :limit => 100
+    t.string "state_id",            :limit => 100
+    t.string "email"
+    t.string "cgpa",                :limit => 10
   end
 
   create_table "students", :force => true do |t|
@@ -911,6 +866,9 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.integer  "kpi_id"
   end
 
+  add_index "students", ["staff_id"], :name => "staff_id"
+  add_index "students", ["user_id"], :name => "user_id"
+
   create_table "students_b", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
@@ -920,29 +878,23 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.integer  "kpi_id"
   end
 
-  create_table "t_skills", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "technology_skills", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "user_companies", :force => true do |t|
     t.integer  "student_id"
     t.integer  "company_id"
     t.integer  "status_id",        :default => 1
     t.integer  "quantity",         :default => 1
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "action_status_id", :default => 1
     t.integer  "total"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "user_companies", ["action_status_id"], :name => "action_status_id"
+  add_index "user_companies", ["company_id"], :name => "company_id"
+  add_index "user_companies", ["status_id"], :name => "status_id"
+  add_index "user_companies", ["student_id"], :name => "student_id"
+  add_index "user_companies", ["user_id"], :name => "user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -952,12 +904,17 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.integer  "role_id"
     t.integer  "admin"
     t.string   "status"
+    t.string   "fullname"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "fullname"
+    t.integer  "faculty_id"
+    t.integer  "kampu_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["faculty_id"], :name => "faculty_id"
+  add_index "users", ["kampu_id"], :name => "kampu_id"
+  add_index "users", ["role_id"], :name => "role_id"
 
   create_table "working_experiences", :force => true do |t|
     t.string   "company"
@@ -967,6 +924,8 @@ ActiveRecord::Schema.define(:version => 20131118080413) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "working_experiences", ["user_id"], :name => "user_id"
 
   create_table "writtens", :force => true do |t|
     t.string "name"

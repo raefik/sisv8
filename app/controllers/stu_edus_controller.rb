@@ -4,6 +4,7 @@ class StuEdusController < ApplicationController
   def index
     @stu_edus = StuEdu.all
 
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @stu_edus }

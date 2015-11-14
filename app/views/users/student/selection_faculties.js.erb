@@ -1,0 +1,26 @@
+
+var kampus = new Array();
+<% for kampu in @kampus_faculties -%>
+  kampus.push(new Array(<%= kampu.faculty_id %>, '<%=h kampu.name %>', <%= kampu.id %>));
+<% end -%>
+
+function facultySelected() {
+  faculty_id = $('person_faculty_id').getValue();
+  options = $('person_country_id').options;
+  options.length = 1;
+  kampus.each(function(kampu) {
+    if (kampu[0] == faculty_id) {
+      options[options.length] = new Option(kampu[1], kampu[2]);
+    }
+  });
+  if (options.length == 1) {
+    $('kampu_field').hide();
+  } else {
+    $('kampu_field').show();
+  }
+}
+
+document.observe('dom:loaded', function() {
+  countrySelected();
+  $('person_kampu_id').observe('change', facultySelected);
+});

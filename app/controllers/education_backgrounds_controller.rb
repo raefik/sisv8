@@ -41,7 +41,7 @@ class EducationBackgroundsController < ApplicationController
   # POST /education_backgrounds.json
   def create
     #@education_background = EducationBackground.new(params[:education_background])
-    @education_background = current_user.education_background.create(params[:education_background])
+    @education_background = current_user.education_backgrounds.create(params[:education_background])
     respond_to do |format|
       if @education_background.save
         format.html { redirect_to @education_background.user, notice: 'Education background was successfully created.' }

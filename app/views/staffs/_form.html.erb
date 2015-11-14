@@ -1,12 +1,12 @@
     <div class="clear"></div>
 
 	<div class="widget">
-	
-	<div class="header"><span><span class="ico gray window"></span>  Program Available For Internship  </span>
-                            
+
+	<div class="header"><span><span class="ico gray window"></span>  Staff Editing  </span>
+
 						</div>
 						 <div class="content">
-						 
+
 
 <%= form_for(@staff) do |f| %>
   <% if @staff.errors.any? %>
@@ -23,7 +23,7 @@
 
   <div class="section">
     <%= f.label :staff_no %><br />
-    <%= f.text_field :staff_no ,:value=>current_user.name%>
+    <%= f.text_field :staff_no, :value=> current_user.name %>
   </div>
   <div class="section">
 	<%if :staff_type_id==1%>
@@ -31,17 +31,22 @@
    <%=collection_select(:staff,:staff_type_id,StaffType.all,:id,:name,:prompt=>"Please Select")%>
    <%end%>
   </div>
-   <div class="section">
-    <%= f.label :program_id %><br />
-   <%=collection_select(:staff,:prog_name_id,ProgName.all,:id,:name,:prompt=>"Please Select")%>
-  </div>
   <div class="section">
     <%= f.label :gelaran_id %><br />
     <%=collection_select(:staff,:gelaran_id,Gelaran.all,:id,:name,:prompt=>"Please Select")%>
   </div>
   <div class="section">
+    <%= f.label :name %><br />
+   <%= f.text_field :name %>
+  </div>
+
+  <div class="section">
     <%= f.label :faculty_id %><br />
-   <%=collection_select(:staff,:faculty_id,Faculty.all,:id,:name,:prompt=>"Please Select")%>
+   <%=collection_select(:staff,:faculty_id,Faculty.all,:id,:name,:prompt=>"Please Select" )%>
+  </div>
+  <div class="section">
+    <%= f.label :program_id %><br />
+   <%=collection_select(:staff,:prog_name_id,ProgName.all,:id,:name,:prompt=>"Please Select")%>
   </div>
   <div class="section">
     <%= f.label :kampu_id,"Kampus" %><br />
@@ -55,7 +60,7 @@
     <%= f.label :place %><br />
     <%= f.text_area :place %>
   </div>
-  <div class="section"> 
+  <div class="section">
     <%= f.label :office_no %><br />
     <%= f.text_field :office_no %>
   </div>
@@ -68,13 +73,13 @@
     <%= f.text_field :email ,:value=>current_user.email %>
   </div>
   <div class="section last">
-								  
+
 <%= f.submit "Submit", :class => 'uibutton loading', :title => 'Saving'%>
 
 
 </div>
 </div>
-							 
+
 </div>
 <% end %>
 	</div>

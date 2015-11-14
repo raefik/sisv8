@@ -16,6 +16,7 @@ SisV5::Application.routes.draw do
   post 'eval_form' => 'eval_industry_svs#create'
 
   resources :eval_student_pres
+
   resources :eval_student_ends
 
   resources :languages
@@ -48,7 +49,7 @@ SisV5::Application.routes.draw do
   get "photos/index"
   get 'upload_save' => 'photos#upload_save'
   get 'upload_new' => 'photos#upload_new'
-  
+
   resources :p_attributes
 
   get "confirmation_letters/show"
@@ -64,15 +65,16 @@ SisV5::Application.routes.draw do
   resources :greds
 
   resources :date_visits
-  
+
   resources :commentars
   get 'student_feedback' => 'commentars#student_feedback'
-  
+
   resources :kampus
   match '/kampus/erase/:id',:to=>'kampus#erase'
 
   resources :sesis
   match '/sesis/erase/:id',:to=>'sesis#erase'
+  match '/sesis/edit/:id', :to=>'sesis#edit'
   match 'semester_data' => 'sesis#semester_data'
 
   resources :student_classes
@@ -110,8 +112,8 @@ SisV5::Application.routes.draw do
 
   resources :log_books
   match '/log_books/erase/:id',:to=>'log_books#erase'
-  
-  
+
+
 
   get "offer_letters/show"
   get "offer_letters/edit"
@@ -127,7 +129,7 @@ SisV5::Application.routes.draw do
   resources :marital_statuses
 
   resources :statuses
-  
+
   resources :stud_edus
 
   resources :students
@@ -144,7 +146,7 @@ SisV5::Application.routes.draw do
 
   resources :staffs
   match 'coordinatorlisting_data' => 'staffs#coordinatorlisting_data'
-  
+
 
   resources :stud_profiles
 
@@ -161,9 +163,9 @@ SisV5::Application.routes.draw do
   resources :stud_skills
 
   resources :stud_references
-  
+
   resources :stud_adds
-  
+
   resources :roles
 
   resources :staff_types
@@ -187,28 +189,29 @@ SisV5::Application.routes.draw do
   match '/sectors/erase/:id',:to=>'sectors#erase'
 
   resources :industries
-  match '/report',:to=>'industries#report' 
-  match '/report_eval_academic',:to=>'industries#report_eval_academic' 
-  match '/report_eval_industry',:to=>'industries#report_eval_industry' 
+  match '/report',:to=>'industries#report'
+  match '/report_eval_academic',:to=>'industries#report_eval_academic'
+  match '/report_eval_industry',:to=>'industries#report_eval_industry'
   match '/industries/erase/:id',:to=>'industries#erase'
-  
-  match '/course_report',:to=>'faculties#course_report' 
+
+  match '/course_report',:to=>'faculties#course_report'
 
   resources :clusters
 
   resources :genders
-  
+
   resources :iklan
-  
+
   resources :resume
   get "resume/show"
   get "resume/index"
-  
+
   resources :offer_letters
   resources :confirmation_letters
-  
+
   #-------pages--------
-  match '/language',:to=>'language#new'	
+
+  match '/language',:to=>'language#new'
   match '/help',:to=>'pages#help'
   match '/contact',:to=>'pages#contact'
   match '/about', :to=>'pages#about'
@@ -242,7 +245,7 @@ SisV5::Application.routes.draw do
 
   #--------users--------
   resources :users
-  match ' ' ,:to=>'users#new'
+  match 'newuser' ,:to=>'users#new'
   match '/new_assistant_registerar' ,:to=>'users#new_assist_reg'
   match '/adminregister' ,:to=>'users#newest'
   get "users/new"
@@ -277,16 +280,16 @@ match '/home', :to=>'pages#home'
 	  match '/regstudent' => 'users#regstudent'
 	  match '/studentfind' => 'student_lists#studentfind'
 	  match '/studentprofind' => 'date_visits#studentprofind'
- 	
+
   	match '/studentfind2' => 'student_lists#studentfind2'
   	match '/stafffind' => 'lecturer_lists#stafffind'
   	match '/regstudent' => 'users#regstudent'
   	match '/userfind' => 'users#userfind'
   	match '/registernewstudent' => 'users#registernewstudent'
-  	
+
   	match '/complist', :to=>'users#complist'
   	match '/studentlist', :to=>'users#studentlist'
-  	
+
   	match '/compvisit', :to=>'date_visits#compvisit'
   	match '/logstudent', :to=>'log_books#logstudent'
   	match '/studentsuper', :to=>'stud_profiles#studentsuper'
@@ -298,4 +301,3 @@ match '/home', :to=>'pages#home'
   get '/get_logbook', :to=>'log_books#get_logbook'
 
 end
-  

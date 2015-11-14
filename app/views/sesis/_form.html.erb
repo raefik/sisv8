@@ -1,7 +1,7 @@
 <div class="widget">
-	
+
 	<div class="header"><span><span class="ico gray window"></span> Session (Semester) </span>
-                            
+
 						</div>
 						 <div class="content">
 <%= form_for(@sesi) do |f| %>
@@ -16,7 +16,7 @@
       </ul>
     </div>
   <% end %>
-  		
+
 	  <div class="oneTwo">
 		   <div class="section">
 		    <label>Start Semester</label><br />
@@ -26,7 +26,7 @@
 		    <label>End Semester</label><br />
 		    <%= f.text_field :end_sesi ,:placeholder=>"Date",:id => "datepick",:class=>"datepicker" %>
 		    <%= f.text_field :user_id, :value=>current_user.id ,:hidden=>"true"%>
-		  </div>	  
+		  </div>
 	  </div>
 	  <div class="oneTwo">
 		  <div class="section">
@@ -35,10 +35,12 @@
 		  </div>
 		  <div class="section">
 		    <label>Programmed</label><br />
-		    	<%if current_user.role.name == "moderator"%>
-		    		<%=collection_select(:sesi,:prog_name_id,ProgName.where(:faculty_id=>current_user.faculty_id),:id,:name,:prompt=>"Please Select")%>
+		    <!--	<%if current_user.role.name == "moderator"%>
+		    		<%=collection_select(:sesi,:prog_name_id,ProgName.where(:faculty,:faculty_id=>current_user.faculty_id),:id,:name,:prompt=>"Please Select")%>
 		    	<%end%>
-		    	<%if current_user.role.name == "super user"%>
+
+		    -->
+		    	<%if current_user.role.name == "moderator"%>
 		    		<%=collection_select(:sesi,:prog_name_id,ProgName.all,:id,:name,:prompt=>"Please Select")%>
 		    	<%end%>
 		  </div>
@@ -46,6 +48,6 @@
 	  <div class="actions" align="center">
 	    <%= f.submit "Submit", :class => 'uibutton loading', :title => 'Submit' %>
 	  </div>
-	</div>  
+	</div>
 <% end %>
 </div>

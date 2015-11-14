@@ -36,13 +36,15 @@
 				</tr>	
 				<tr>
 					<% @stud_profiles.each do |stud_profile| %>
-					<td><%if Photo.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,stud_profile.user_id ,]).company_id).user_id).nil? %>
+					<td>
+						<%if Photo.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,stud_profile.user_id ]).company_id).user_id).nil? %>
 								<img class="profile" src="/assets/profileNope.jpg" height="70px" />
-							<%else%>
+						<%else%>
 							   <img class="profile" src="<%= Photo.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,stud_profile.user_id ,]).company_id).user_id).image%>" height="70px"/>
-							<%end%>
+						<%end%>
 					</td>
-					<td style="padding-left:10px;">	
+
+				<td style="padding-left:10px;">	
 				<b>Company</b><br/>
 				<b style="color:blue;"><%= Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,stud_profile.user_id ,]).company_id).name %>
 				<%= CompProfile.find_by_user_id(Company.find_by_id(UserCompany.find(:first,:conditions=>["total=? and  action_status_id=? and user_id=?",2,6,stud_profile.user_id ,]).company_id).user_id).state.name %></b><br/>

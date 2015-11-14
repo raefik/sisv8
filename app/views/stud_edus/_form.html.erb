@@ -1,15 +1,16 @@
                     <div class="clear"></div>
 
 					<div class="widget">
-	
+
 	<div class="header"><span><span class="ico gray window"></span> Education Details </span>
-                            
+
 						</div>
 						 <div class="content">
-						 
+
 	<div class="boxtitle"><span class="ico gray audio_knob"></span>
 	Enter Details
 </div>
+<%javascript 'dynamic_kampus'%>
 
 <%= form_for(@stud_edu) do |f| %>
   <% if @stud_edu.errors.any? %>
@@ -26,31 +27,37 @@
 
   <div class="section" >
     <%= f.label :cgpa %><br />
-    <%= f.text_field :cgpa %>
+      <%= f.text_field :cgpa %>
   </div>
   <div class="section" >
     <%= f.label :current_sem %><br />
     <%= f.text_field :current_sem %>
   </div>
-  
-  
+
+   <div class="section" >
+    <label for="person_faculty_id">Faculty :</label><br />
+   <%= f.collection_select :faculty_id, Faculty.find(:all), :id, :name, :prompt => "Select a Faculty" %>
+
+
+  </div>
+
+ <div class="section" >
+   <label for="person_country_id">Kampus:</label><br />
+     <%= f.collection_select :kampu_id, Kampu.find(:all), :id, :name, :prompt => "Select a Kampus" %>
+
+  </div>
+
   <div class="section" >
     <%= f.label :prog_name_id %><br />
    <%=collection_select(:stud_edu,:prog_name_id,ProgName.all,:id,:name,:prompt=>"Please Select")%>
   </div>
-  
-   
 
-  <div class="section" >
-    <%= f.label :faculty_id %><br />
-    <%=collection_select(:stud_edu,:faculty_id,Faculty.all,:id,:name,:prompt=>"Please Select")%>
-  </div>
-   <div class="section" >
-    <%= f.label :kampu_id,"Campus" %><br />
-    <%=collection_select(:stud_edu,:kampu_id,Kampu.all,:id,:name,:prompt=>"Please Select")%>
-  </div>
-  
-  <div class="section last">	
+
+
+
+
+
+  <div class="section last">
 
    <div class="actions">
     <%= f.submit "Update", :class => 'uibutton loading', :title => 'Saving' %>
@@ -61,6 +68,13 @@
 </div>
 
 </div>
+
+
+
+
 </div>
 </div>
 <div class="clear"></div>
+
+
+

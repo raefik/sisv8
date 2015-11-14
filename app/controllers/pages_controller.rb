@@ -1,19 +1,19 @@
 class PagesController < ApplicationController
   def home
-  	
-  	@title="home"  
+
+  	@title="home"
   	@users=User.all
   	@company = Company.find(:all, :order => "created_at desc", :limit => 9)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @company }
     end
-    
+
   end
-  
+
   def faq
   	@title="FAQ"
-  	
+
   end
 
   def about
@@ -31,28 +31,28 @@ class PagesController < ApplicationController
   def index
   	@title="index"
   end
-  
+
   def profile
   	@title="profile"
   end
-  
+
   def search_class
   	@data_class=StudEdu.search(params[:search])
   end
-  
-  
+
+
   def markah_student
   @title="view_marks"
   staff=Staff.find_by_user_id(current_user.id)
   @data_student=StudProfile.search(params[:search])
   @student_all= StudProfile.includes(:staff,:user=>[:role,{:user_companies=>:company},:companies,:students])
   @student_sv = StudProfile.includes(:staff,:user=>[:role,{:user_companies=>:company},:companies,:students]).where('staff_id=?',staff.id)
-	unless params[:search].blank?  
+	unless params[:search].blank?
 	@log_books=LogBook.find(:all,:conditions=>["stud_profile_id=?",@data_student])
 	@date=DateVisit.find(:all,:conditions=>["student_id =?","#{params[:search]}"])
 	end
- 
- 
+
+
   end
   def search_student
   @title="students"
@@ -61,16 +61,27 @@ class PagesController < ApplicationController
 
   @student_all= StudProfile.includes(:staff,:user=>[:role,{:user_companies=>:company},:companies,:students]).all
   @student_sv = StudProfile.includes(:staff,:user=>[:role,{:user_companies=>:company},:companies,:students]).where('staff_id=?',staff.id)
-	unless params[:search].blank?  
+	unless params[:search].blank?
 	@log_books=LogBook.find(:all,:conditions=>["stud_profile_id=?",@data_student])
 	@date=DateVisit.find(:all,:conditions=>["student_id =?","#{params[:search]}"])
 	end
- 
+
   end
-  
+
+
+
   def student_all
   @title="students"
-  @data_student=StudProfile.search(params[:search])
+
+  user = Staff.find_by_user_id(view_context.current_user.id)
+
+  studprofile = StudProfile
+          .joins('inner join stud_edus on stud_edus.user_id = stud_profiles.user_id')
+          .where('stud_edus.faculty_id = ? ',user.faculty_id)
+
+  @data_student = studprofile
+                  .search(params[:search])
+
   if (params[:act].nil? && params[:act] == "searching")
   	@act = "upd"
   		@stud = StudProfile.find_by_matric_no(params[:search])
@@ -78,15 +89,18 @@ class PagesController < ApplicationController
 	  	@stud.staff_id = @staffid
 	  	@stud.save
   end
- 
+
    @data_class=StudEdu.search(params[:search])
   #@student_all = StudProfile.includes(:staff,:user=>[:role,{:user_companies=>:company},:companies,:students]).all
-  @stud = UserCompany.includes(:company,:student,:user=>[:role,{:stud_profiles=>:staff},:staffs]).find(:all,:conditions=>["total =?",1])
-  
+
+  @stud = UserCompany
+          .joins('inner join stud_edus on user_companies.user_id = stud_edus.user_id')
+          .where('stud_edus.faculty_id = ?  and user_companies.action_status_id != ?',user.faculty_id,6)
+          .group(:user_id)
   end
-  
+
   def updatestudprofile
-  
+
   	@stud = StudProfile.find_by_matric_no(params[:studid])
   	@staffid = params[:staffid]
   	if !@staffid.nil?
@@ -117,22 +131,22 @@ class PagesController < ApplicationController
    @title="student"
    current_student=Student.find_by_user_id(current_user.id)
    @users=User.where(:role_id=>2).all
-   @students=UserCompany.where(:student_id=>current_student).all   
+   @students=UserCompany.where(:student_id=>current_student).all
   end
 
   def company
    @title="company"
    current_company=Company.find_by_user_id(current_user.id)
- 
+
    @usercompanies=UserCompany.where(:company_id=>current_company.id).all
   end
-  
+
   def reminder
   @title="student"
    @reminder=current_user
   end
-  
-  
+
+
   def internship
   @data_student=StudProfile.includes(:log_books,:staff=>:date_visits,:user=>[:role,:user_companies]).find_by_user_id(current_user.id)
   @data_class=StudEdu. includes(:user,:student_class,:faculty).find_by_user_id(current_user.id)

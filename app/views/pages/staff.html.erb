@@ -61,13 +61,13 @@ Tiada carian yang berpadanan...
 			<td><%=f.user.name%></td>
 			<td><%=f.staff_type.name%></td>
 			<td><%=f.user.updated_at%></td>
-			<td><%=f.validate_staff%></td>				
+			<td><%=f.validate_staff%></td>
 			<td><%= link_to image_tag('/images/icon/icon_edit.png'), edit_staff_path("#{f.id}") %>
 				<%= link_to image_tag('/images/icon/icon_delete.png'), pensyarah_path(:del => f.id), confirm: 'Are you sure?', method: :delete%></td>
 		</tr>
 <%end%>
 </table>
-<%= link_to "Add New Staff", signup_path %>
+<%= link_to "Add New Staff"  %>
 <%#@a=Staff.find_by_user_id(current_user.id)%>
 <%#if current_user.role_id==3 && @a.staff_type_id==1 then%>
 <%@admin=true%>

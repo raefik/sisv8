@@ -17,7 +17,7 @@
     }
 
 	#tableuser th{
-      font-weight:bold; 
+      font-weight:bold;
       border-bottom-style:solid;
       border-bottom-width: 3px;
       padding-bottom: 10px;
@@ -33,13 +33,13 @@
 
 <div class="confirmation " hidden="true">
 	<div class="widget">
-	    <div class="header"><span > Register New User </span><br/></div>                   
+	    <div class="header"><span > Register New User </span><br/></div>
 		<div class="content" >
 			<table >
 				<tr>
 					<td><span>Username</td><td>  <input type="text" class="hi" disabled="disabled"/></span></td>
-					
-				</tr>	
+
+				</tr>
 				<tr>
 					<td><span>Password</td><td> <input type="text" class="ho" disabled="disabled"/></span></td>
 					<td><a  class="uibutton loading" id="yes" title="Submit" ><span>Yes</span></a></td>
@@ -47,7 +47,7 @@
 				</tr>
 			</table>
 		</div>
-		
+
 		<div hidden="true">
 			<%= form_for(@user) do |f| %>
 			<%= f.text_field :name ,:placeholder=>'sid' ,:id=>"studid"%>
@@ -69,19 +69,19 @@
 		<tr>
 			<td>Staff ID </td>
 			<td><input type="text" id="staffno" disabled="disabled"/><td>
-		</tr>		
+		</tr>
 		<tr>
 			<td>MyCard Number</td>
 			<td> <input type="text" id="mykadno" disabled="disabled"/></td>
-		</tr>		
+		</tr>
 		<tr>
 			<td>Full Name </td>
 			<td><input type="text" id="fullname" disabled="disabled"/></td>
-		</tr>	
+		</tr>
 		<tr>
 			<td>Group</td>
 			<td><input type="text" id="groupname" disabled="disabled"/></td>
-		</tr>	
+		</tr>
 		<tr>
 			<td>Faculty</td>
 			<td><input type="text" id="faculty" disabled="disabled"/></td>
@@ -89,18 +89,18 @@
 		<tr>
 			<td>Contact Number</td>
 			<td><input type="text" id="contactno"  disabled="disabled"/></td>
-		</tr>	
+		</tr>
 		<tr>
 			<td>Handphone Number</td>
 			<td><input type="text" id="handphoneno" disabled="disabled"/><td>
-		<tr>		
+		<tr>
 			<td>Email</td>
 			<td><input type="text" id="email" disabled="disabled"/></td>
 		</tr>
 		<tr>
 			<td>Subject Code</td>
 			<td><input type="text" id="subjectcode" disabled="disabled"/></td>
-		</tr>	
+		</tr>
 		<tr>
 			<td>Subject Name</td>
 			<td><input type="text" id="subjectname" disabled="disabled"/></td>
@@ -116,36 +116,41 @@
 
 <div class="oneTwo">
 		<div class="widget">
-                    <div class="header"><span > Lecturer Record </span><br/></div>
+                    <div class="header"><span > Lecturer Record  </span><br/></div>
+
 					<div class="content" style="padding:10px 0px;">
-<form> 
-						<div class="tableName">
-<table  id="tableuser">
-  <thead>
-  <tr>
-    <th><div align="left">Staff ID</div></th>
-    <th>Fullname</th>
-    <th align="left">Hp No</th>
-    <th align="left">MyKad No</th>
-	<th>Email</th>
-  </tr>
+
+<form>
+
+<div class="tableName">
+		<table  id="tableuser">
+  	<thead>
+ 		 <tr>
+   					 <th><div align="left">Staff ID</div></th>
+    				 <th><div align ="right">Fullname</th>
+    				 <th>Hp No.</th>
+    				 <th align="left">MyKad No</th>
+			 		 <th>Email</th>
+ 		 </tr>
 	</thead>
 	<tbody>
 
 	</tbody>
-</table>
-		</div>
-					</form>		
+
+		</table>
+</div>
+</form>
 					</div>
-		</div>			
+		</div>
 </div>
 
 <script >
 
 	$(document).ready(function(){
-			
+
+
 			var oTable = $('#tableuser').dataTable({
-				"sDom": 'T<"clear">lfrtip',        
+				"sDom": 'T<"clear">lfrtip',
 				"sPaginationType": "full_numbers",
 				"oLanguage": {
 		            "sSearch": "Find"
@@ -155,8 +160,10 @@
 				"sAjaxSource": "/lecturerlisting_data",
 				"aLengthMenu":[[15,25,50,100],[15,25,50,100]],
 				"iDisplayLength": 10,
+
+
 			});
-			
+
 			$('.resultpanel').hide();
 			$('.confirmation').hide();
 			$('#regicall').click(function(){
@@ -178,11 +185,8 @@
 				$('.confirmation').hide();
 				$('#norecord').hide();
 					sid = $('#sid').val();
-
-
-
 					url = 'stafffind.json?sid='+sid;
-		        
+
 			$.getJSON(url, function(data) {
               if(data[0] != null){
 				   $('#staffno').val(data[0]['staffno']);
@@ -195,14 +199,14 @@
 				   $('#handphoneno').val(data[0]['handphoneno']);
 				   $('#subjectname').val(data[0]['subjectname']);
 				   $('#subjectcode').val(data[0]['subjectcode']);
-				   
+
 				   $('#contactno').val(data[0]['contactno']);
 				   $('#email').val(data[0]['email']);
 				   $('#fullname2').val(data[0]['fullname']);
-				   
+
 				   $('#studid').val(data[0]['staffno']);
 				   $('#ic').val(data[0]['mykadno']);
-				   $('#mail').val(data[0]['email']);
+				   $('#mail').val(data[0]['email'].replace(/ +$/, ""));
 				   $('.hi').val(data[0]['staffno']);
 				   $('.ho').val(data[0]['mykadno']);
 				   $('.resultpanel').show(100);
@@ -210,15 +214,15 @@
               }else{
                 $('#norecord').show();
               }
-			  
-      });     
+
+      });
 			});
-			
+
 			$(function() {
 				$( "#tabs" ).tabs({ autoHeight: true });
 			});
 		});
-		
+
 
 
 

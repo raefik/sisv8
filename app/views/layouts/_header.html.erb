@@ -6,11 +6,11 @@
 		padding-left: 10px;
 	}
 </style>
-<body class="dashborad">        
+<body class="dashborad">
     <div id="alertMessage" class="error"></div>
 	 <% if signed_in? %>
      <div id="header" >
-        <div id="account_info"> 
+        <div id="account_info">
                 		<img class="toplogos" src="/assets/logos.png" height="15px" />
 					<div class="setting" title="Profile Setting"><b>Welcome,</b> <b class="red">
 						<%= current_user.name %></b>
@@ -20,13 +20,13 @@
 						<b><%= link_to "Logout", signout_path %>
 							<img src="/images/connect.png" name="connect" class="disconnect" alt="disconnect" />
 						</b>
-					</div> 
+					</div>
                 </div>
             </div>
 		</div><!-- End Header -->
 	 <%else%>
 
-		<!-- 
+		<!--
 		.
 		.
 		.
@@ -52,12 +52,12 @@
 			</div>
 		</div><!-- End Header -->
 	 <% end %>
-			
+
 
 
 <div id="left_menu" style="z-index:47;">
 	<ul id="main_menu" class="main_menu">
-	
+
 			<% if signed_in? %>
 					<%if current_user.role_id==1%>
 					<%=render 'layouts/student'%>
@@ -92,15 +92,16 @@
 		</li>
 		<li class="limenu " ><a href="#"><span class="ico gray  paragraph_align_left" ></span><b>Login</b></a>
 						<ul>
-	                          <li ><a href="<%= studentnew_path %>"> Student</a></li>
-	                          <li ><a href="<%= signin_path %>"> Staff</a></li>
-							  <li ><a href="<%= signin_path %>"> Company</a></li>
+
+	                          <li><a href="<%= studentnew_path %>"> Student</a></li>
+	                          <li><a href="<%= signin_path %>"> Staff</a></li>
+							  <li><a href="<%= signin_path %>"> Company</a></li>
 	                    </ul>
 		</li>
 		<li class="limenu" ><a href="#">Help</a></li>
 		  <li class="limenu" ><%= link_to "FAQ", faq_path %></li>
 		<!--<li class="limenu " ><%= link_to "Evaluation Form Industrial Supervisor", industry_svs_path %> </li>-->
-		
+
 	<% end %>
 </ul>
 </div>
@@ -109,5 +110,5 @@
 <script>
 	$(document).ready(function() {
 
-	});	
+	});
 </script>

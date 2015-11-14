@@ -1,6 +1,6 @@
 <div class="twoOne"  >
 <div class="widget">
-	<div class="header"><span ><span class="ico  gray random"></span>Assign Student with Supervisor (Accepted by Company)</span></div>
+	<div class="header"><span ><span class="ico  gray random"></span>Assign Student with Supervisor (Accepted by Company)<%= current_user.staffs.first.faculty_id%></span></div>
 	<div class="content" style="padding: 0px 0px;" >
 		<div hidden="true">
 			<%=form_tag @data_student_path, :method=>"get" do%>
@@ -25,7 +25,9 @@
 		<%else%>
 		<form>
 			<table border="0" class="tops" style="padding: 11px 12px 3px 12px; margin-left:2px;">
+
 				<%@data_student.each do|f|%>
+
 				<tr>
 					<td><b>Matric No</b></td><td><%= f.matric_no%></td>
 				</tr>
@@ -59,11 +61,11 @@
 								<input type="hidden" id="studid" value= "<%=@data_student[0].matric_no%>"/>
 								<td>
 								<%= collection_select(:stud_profile,:staff_id,Staff.where(:staff_type_id=>3).all,:id,:name,:prompt=>"Please Select") %>
-								
+
 								</td>
 								<td></br><input type="button" class="uibutton" value="Update Student Profile" id="updatesv"/></td>
 								</tr>
-								
+
 						</form>
 				</tr>
 			</table>
@@ -71,7 +73,7 @@
 			<%end%>
 			<%end%>
 			<%end%>
-			<%end%>	
+			<%end%>
 				<div class="tableName">
 					<table class="display data_table2" >
 						<thead>
@@ -93,13 +95,13 @@
 								<%end%></td>
 								<td><%=f.student.user.fullname %></td>
 								<td>
-										 <%=  UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,3]).company.name%>
+										 <%=  UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,3]).company.name rescue '' %>
 										<%#end%>
 								</td>
 								<td>
-								<%if !StudProfile.find_by_user_id(f.user_id).staff_id.nil? %> 
+								<%if !StudProfile.find_by_user_id(f.user_id).staff_id.nil? %>
 								<%= StudProfile.find_by_user_id(f.user_id).staff.name %>
-								
+
 								<%end%>
 								</td>
 							</tr>
@@ -116,7 +118,7 @@
 		1. The end of a pointed or projecting object.
 2. A piece or an attachment, such as a cap or ferrule, meant to be fitted to the end of something else: the barbed tip of a harpoon.
 	</div>
-</div>	
+</div>
 </br>
 
 </div>
@@ -141,9 +143,9 @@
 							<tr>
 								<td align="left" width="25%">
 									<%=f.student.user.fullname %></br>
-									<%= StudProfile.find(:all,:conditions=>["user_id=?",f.user_id]).first.matric_no%></br>
+									<%= StudProfile.find(:all,:conditions=>["user_id=?",f.user_id ]).first.matric_no rescue '-' %></br>
 									<%=f.student.user.email %></br>
-									<%= StudProfile.find_by_user_id(f.student.user_id).hp_no %></br>
+									<%= StudProfile.find_by_user_id(f.student.user_id).hp_no rescue '-'%></br>
 								</td>
 								<td align="left">
 		<%=  UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,6]).company.name%></br>
@@ -152,7 +154,7 @@
 		Contact :<%=  CompProfile.find_by_user_id(UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,6]).company.user.id).supervisor%>&nbsp(<%=  CompProfile.find_by_user_id(UserCompany.find(:first,:conditions=>["company_id=? and  action_status_id=?",f.company_id,6]).company.user.id).supervisor_contact%>)</br>
 								</td>
 								<td align="left">
-								<%if !StudProfile.find_by_user_id(f.user_id).staff_id.nil? %> 
+								<%if !StudProfile.find_by_user_id(f.user_id).staff_id.nil? %>
 								<%= StudProfile.find_by_user_id(f.user_id).staff.name %></br>
 								<%= StudProfile.find_by_user_id(f.user_id).staff.hp_no %></br>
 								Room <%= StudProfile.find_by_user_id(f.user_id).staff.room_no %></br>
@@ -163,9 +165,9 @@
 							<%end%>
 						</tbody>
 					</table>
-			</div>	
+			</div>
 	</div>
-</div>	
+</div>
 
 <style>
 .tableName .dataTables_wrapper .dataTables_filter {
@@ -199,11 +201,11 @@ td {font-size: 90%;}
 			$.ajax({
 				type: "GET",
 				url: "updatestudprof",
-				data: { 
+				data: {
 					studid: $("#studid").val(),
 					staffid: $("#stud_profile_staff_id").val()
 				}
-			}).success(function( t ) {	
+			}).success(function( t ) {
 				//alert("success");
 				window.location.reload();
 			});
